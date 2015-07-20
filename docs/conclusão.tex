@@ -1,0 +1,13 @@
+\chapter{Conclusão}
+\label{cap:Conclusão}
+
+Em relação ao objetivo geral do trabalho, ou seja, estudar e implementar algoritmos de controle PI e preditivo maximizando o desempenho do sistema de separação e otimizando o processo de remoção de contaminantes tóxicos presentes nas águas, foi mostrado que é possível otimizar o processo de separação trifásico e, consequentemente, melhorando o processo de remoção do petróleo da água. 
+
+Para os resultados apresentados nas simulações dos separadores trifásicos os gráficos apresentados são semelhantes àqueles apresentados nos trabalhos de ~\citeonline{Filgueiras2005}, ~\citeonline{Silveira2006} e ~\citeonline{Teixeira2010}. Eles mostraram-se consistentes e representam adequadamente o modelo implementado.
+As simulações geradas serviram de base para a construção de modelos mas adequados aos dados do processo, identificadores de processo, utilizando como base o estimador por mínimos quadrados recursivo, que acompanharam o modelo possuindo baixo erro de predição, sendo o seu funcionamento online. 
+
+O modelo único que representa o sistema de separação trifásica foi encontrado reduzindo-se a quantidade de regressores através da seleção daqueles que melhor representassem o sistema. Isso foi possibilitado pela utilização dos métodos ERR (Error Ratio Reduction), que analisou e ordenou os regressores conforme sua importância para o modelo, e AIC (Critério de Akaike), que verificou a relação entre a inserção de um novo parâmetro no modelo e a melhora proporcionada por ele e escolheu, dessa maneira, a quantidade de regressores importantes.
+
+Quanto às estratégias de controle utilizadas e analisadas, foi possível perceber que independentemente do controle utilizado encontrou-se uma sintonia capaz de regular o sistema de separação trifásica de maneira melhor otimizada à encontrada na literatura. Isso se deveu ao fato de o otiminizador analisar a eficiência global do sistema visualizando todos os controladores como um só e minimizando o erro total sistema e as variações nos sinais de controle.
+
+Nos desempenhos finais dos controladores otimizados foi possível observar que houve uma melhora entre os controladores preditivos e os PI's, apesar das oscilações maiores (mas não grandes em amplitude para o sistema em questão) no início da adaptação do modelo utilizado no controle preditivo. E, apesar de não parecer tão significativa a melhora em escala industrial economias que parecem insignificantes são de extrema importância e podem significar uma economia considerável.

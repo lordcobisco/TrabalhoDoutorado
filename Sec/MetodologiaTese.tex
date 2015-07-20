@@ -1,0 +1,612 @@
+\noindent\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+\\
+\chapter{\large METODOLOGIA, RESULTADOS E DISCUSSÕES}
+\noindent\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+\\
+\label{cap:Metodologia}
+
+Nas seções seguintes serão apresentados dois testes simulados, um deles é o modelo apresentado em \citeonline{ARRUDA2011}, o outro utiliza um sistema de segunda ordem no qual é inserido o efeito de uma dinâmica não modelada. O objetivo dessas seções é realizar um comparativo entre as técnicas apresentadas na revisão e mostrar o desempenho da técnica proposta.
+
+\section{Exemplo Simulado 1}			
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+				
+ \label{sec:example}
+
+Nesta subseção é apresentada a sequência de passos para identificar sistemas lineares utilizando os algoritmos de identificação MQ, MQR, MQE, BCRLS, a PSO convencional e a PSOM híbrida. A planta escolhida é similar à encontrada em ~\citeonline{ARRUDA2011} com a ausência do atraso de transporte. O sistema linear pode ser visualizado na equação \ref{eq:ModeloARX}, em que $y(k)$ e $u(k)$ são as saída e entrada do sistema, respectivamente.
+				
+		\begin{equation}
+			\begin{matrix}
+					y(k)=  2,14y(k-1) -1,3049y(k-2) &  \\- 0,0963y(k-3) + 0,3467y(k-4) - 0,1097y(k-5) &  \\
+					+ 0,0105y(k-6)  + 0,01u(k-1)+ 0,0074u(k-2) &  \\+ 0,000924u(k-3) -0,00001762u(k-4)
+			\end{matrix}
+			\label{eq:ModeloARX}
+			\end{equation}			
+		
+		Como mostrado em ~\citeonline{ARRUDA2011}, os algoritmos determinísticos podem falhar se o modelo utilizado não é capaz de representar o sistema (ou planta), ou quando se deseja realizar uma aproximação de ordem inferior a do modelo. Por isso, nesse exemplo simulado, para identificar o sistema será utilizado um modelo de ordem reduzida. A partir desso modelo de ordem reduzida, será realizada uma comparação da performance dos algoritmos, utilizando o erro médio quadrático (MSE) obtido a partir da diferença entre os sinais de saída dos modelos real e estimado, e o erro médio quadrático obtido a partir do diagrama de Bode (soma de todas as magnitudes e fases em diferentes frequências) dos sistemas real e estimado. As equações utilizadas para realizar estes cálculos podem ser observadas nas equações \ref{eq:EMQ}, and \ref{eq:BODE}.
+			
+			\begin{equation}
+			\begin{array}{ll}
+					 MSE = \frac{\sum_{i=1}^{N_{1}} (y(i) - y_{estimado}(i))^2}{N_{1}}
+			\end{array}
+			\label{eq:EMQ}
+			\end{equation}			
+	
+			Em que: 
+			
+\begin{itemize}
+	\item $y$ é a saída obtida a partir da simulação do sistema da equação \ref{eq:ModeloARX};
+	\item $y_{estimada}$ é a saída obtida a partir da simulação do sistema com os parâmetros identificados pelos algoritmos propostos. Esses parâmetros são quatro valores que aproximam uma função de segunda ordem no domínio discreto. O objetivo é aproximar a função \ref{eq:ModeloARX} por um sistema de segunda ordem no domínio discreto;
+	\item $MSE$ é o erro médio quadrático;
+	\item $N_{1}$ é o tamanho do vetor de saída ($y$).
+\end{itemize}
+			
+				\begin{equation}
+			\begin{array}{ll}
+					 E_{Bode} = \frac{\sum_{i=1}^{N_{2}} \left( \left |\frac{Bode_{abs}-RBode_{abs}}{Bode_{abs}}\right | + \left |\frac{Bode_{phase}-RBode_{phase}}{Bode_{phase}}  \right |\right)^2}{N_{2}}
+			\end{array}
+			\label{eq:BODE}
+			\end{equation}			
+			
+			Em que: 
+			
+\begin{itemize}
+	\item $Bode_{abs}$ e $RBode_{abs}$ são as magnitudes real e estimada do sistema (em dB) obtidas em frequências determinadas;
+	\item $Bode_{phase}$ e $RBode_{phase}$ são as fases real e estimada do sistema obtidas em frequências determinadas; 
+	\item  $E_{Bode}$ é o erro médio quadrático obtido ao utilizar os dados do diagrama de Bode na equação \ref{eq:BODE};
+	\item $N_{2}$ é a quantidade de dados do diagrama de Bode que foram coletados.
+\end{itemize}
+			
+			
+			Vários testes foram realizados com o objetivo de realizar comparações entre os algoritmos. Nesses testes, os algoritmos foram inicializados de acordo com os seguintes parâmetros:
+			
+\begin{itemize}%	
+	\item A matriz de covariância dos algoritmos recursivos (BCRLS e MQR) foi inicializada como uma matriz identidade vezes $10^{11}$;
+	\item A função custo utilizada pelos de otimização com a PSO é a apresentada na equação \ref{eq:EMQ}, em outras palavras, $J_{PSO} = MSE$, uma função unimodal;
+	\item Os algoritmos que utilizam a PSO tradicional foram inicializados com os valores $\phi_1 = 0,3$, $\phi_2 = 0,7$, $\omega = 0,4$, $80$ partículas, $1000$ iterações e foram estabelecidos os limites no intervalo de busca dos parâmetros entre os valores $[-3,3]$;
+	\item Para os algoritmos da PSOM (PSOMMQ e PSOMBCRLS), além de serem inicializados com os mesmos parâmetros da PSO tradicional, também foi utilizado o fator de esquecimento $\lambda_{f} = 0,99$ e $C=0,1$, para a inicialização em uma região próxima aos algoritmos tradicionais (MQ e BCRLS);
+	\item Foram realizados, com o objetivo de obter resultados consistentes, $80$ repetições utilizando os algoritmos heurísticos avaliados. Em sequência, foram coletadas a média, variância e as melhores performances obtidas dentro das $80$ repetições.
+	%\textbf{Foram realizados para a obtencao dos resultados 80 repeticoes para cada algoritmo heuristico avaliado, sendo coletadas as 		informacoes de media, variancia e melhor resultado obtido}.
+\end{itemize}
+
+A escolha dos parâmetros apresentada permite que os autovalores da equação \ref{eq:avMA4} sejam posicionados no interior do círculo de raio unitário fazendo com que o maior autovalor absoluto da matriz $\bar{A}$ seja $0,9985$. Isto significa que existe uma garantia de convergência quase certa para a PSO de acordo com o o teorema apresentado. Os resultados são podem ser visualizados na tabela \ref{tab:ResultIdapx2ordemP1} e nas figuras \ref{fig:ResultIdapx2ordem} e \ref{fig:ResultIdapx2ordemBODE}.
+
+
+	
+\begin{sidewaystable}[!htb]
+	\inserirListaTabelas
+		\caption{Erro quadrático Médio ($MSE$) e Erro no Diagrama de Bode ($E_Bode$).}
+		{\footnotesize
+		\begin{tabular}{|c | c | c | c | c | c | c | c|}
+		\hline 
+		 \textbf{Algoritmos} & \textbf{BCRLS} & \textbf{MQE} & \textbf{BCRLS} & \textbf{MQE} & \textbf{MQ} & \textbf{MQR} & \textbf{PSO}\\
+		 &                   & \textbf{(PSOM)}&\textbf{(PSOM)}&             &             &               & \\
+		\hline
+$MSE_{av}$&$4,809\times10^{-3}$&$3,039\times10^{-3}$&$4,147\times10^{-3}$&$3,400\times10^{-3}$&$3,900\times10^{-3}$&$3,900\times10^{-3}$&$2,062\times10^{-2}$\\
+		\hline
+$MSE_{var}\,$&--&$2,178\times10^{-7}$&$7,389\times10^{-7}$&--&--&--&$1,456\times10^{-5}$\\
+		\hline
+$MSE_{min}\,(\%)$&$11,682$&$5,380$&$5,357$&$8,259$&$9,474$&$9,474$&$21,996$\\
+		\hline
+$E_{Bode_{av}}\,(\%)$&$45,856$&$40,012$&$43,629$&$41,787$&$43,602$&$43,601$&$111,020$\\
+		\hline
+$E_{Bode_{var}}\,(\%)$&--&$5,260\times10^{0}$&$8,251\times10^{0}$&--&--&--&$7,247\times10^{3}$\\
+		\hline
+$E_{Bode_{min}}\,(\%)$&$5,571$&$4,201$&$4,612$&$5,077$&$5,298$&$5,298$&$9,334$\\
+		\hline	
+		\end{tabular}
+		}
+	\label{tab:ResultIdapx2ordemP1}		
+\end{sidewaystable}
+
+\begin{figure}[!htb]
+\inserirListaFiguras
+\centering
+   %\FONTE{\citep{franca}}
+   \includegraphics[scale=0.15]{./Figuras/Fig2_PT.png}
+      \caption{Validação Comparando Saída Real e Estimada}
+   \label{fig:ResultIdapx2ordem}
+\end{figure}
+
+\begin{figure}[!htb]
+\inserirListaFiguras
+\centering
+   %\FONTE{\citep{franca}}
+   \includegraphics[scale=0.13]{./Figuras/Fig3_PT.png}
+   \caption{Validação Comparando os Diagramas de Bode}
+   \label{fig:ResultIdapx2ordemBODE}
+\end{figure}
+
+Na tabela \ref{tab:ResultIdapx2ordemP1} (ao final do capítulo) foram apresentados seis índices para avaliar a performance dos algoritmos de estimação. O primeiro e o quarto índices o $MSE_{av}$ e o $E_{Bode_{av}}$, são a média de todos os resultados obtidos a partir das $80$ repetições (de obtenção de resultados, visto que os algoritmos heurísticos possuem uma variação nos resultados finais) utilizando a saída do sistema e os dados do diagrama de Bode. Os segundo e quinto índices, o $MSE_{var}$ e o $E_{Bode_{var}}$, são as variâncias dos resultados obtidos utilizando a saída do sistema e os dados do diagrama de Bode. Os terceiro e último índices de avaliação, o $MSE_{min}(\%)$ e o $E_{Bode_{min}}(\%)$,  foram obtidos utilizando a equação \ref{eq:formulaErroPorcentagem}.
+
+			\begin{equation}
+			\begin{array}{ll}
+					 Result_{min}(\%) = 100 - \frac{100 \times |MaxResult - Result_{min}|}{MaxResult}
+			\end{array}
+			\label{eq:formulaErroPorcentagem}
+			\end{equation}
+
+Em que, a variável $Result_{min}$ é o menor valor obtido do algoritmo em questão (com o objetivo de normalizá-lo e colocá-lo em porcentagem), e $MaxResult$ é o maior resultado obtido de todos os algoritmos (ou um valor máximo de referência) e o resultado pode ser obtido utilizando os critérios $MSE$ or $Bode$.
+ 
+Os resultados mostram que, com a configuraçção de parâmetros utilizada, os valores de erro $MSE_{av}$ e o $E_{Bode{av}}$ são bem próximos. Por outro lado, quando se analisa os critérios $MSE_{min}$ e $E_{Bode{min}}$ é possível perceber uma diferença significante entre os algoritmos híbridos, baseados na $PSOM$ e os outros algoritmos avaliados. Como esperado, todos os erros da PSO tradicional ( $MSE_{av}$, $E_{Bode{av}}$, $MSE_{min}$ e $E_{Bode{min}}$) foram maiores que os outros algoritmos avaliados. Isso aconteceu devido a uma escolha proposital dos parâmetros $\phi_1$, $\phi_2$ e$\omega$ de maneira a resultar em uma performance ruim e mostrar a eficiência da hibridização (no caso, manter os resultados em uma faixa aceitável, com desempenho tão bom ou mehor que os algoritmos determinísticos).
+
+Quando se analisa a variância, é possível visualizar claramente que os algoritmos baseados na PSOM híbrida resulta valores menores em comparação aos outros algoritmos heurísticos. Isso ocorre devido tanto a inicialização da PSOM ser realizada utilizando os algoritmos tradicionais quanto devido à PSOM propriamente, e a tendência do algoritmo em procurar em uma região próxima à partícula global, partículas que são inicializadas ao redor do rsultado obtido pelos algoritmos tradicionais. Isso permite, também, que o algoritmo conserve a generalidade, representando o sistema em uma faixa razoável de frequências, observado com o diagrama de Bode, cujo erro permanece o mesmo (no diagrma de Bode) enquando o $MSE$ diminui. Como resultado, a resposta obtida nas diversas frequências são bem próximas e representa bem o sistema real.
+%-----------------------------------------------------------------------------------------------------------------
+
+\subsubsection{Exemplo Simulado 2}
+
+Nesse segundo exemplo, foram realizados testes utilizando uma planta de segunda ordem sujeita a dinâmica não modelada de segunda ordem. Esse tipo de dinâmica foi utilizada em \citeonline{Rohrs1982} para mostrar que quando alguns sistemas de controle adaptativos são sujeitos a essas dinâmicas, eles podem se tornar instáveis, devido a identificação inadequada dos parâmetros do processo. Portanto, esses são aspectos importantes de serem analisados. A equação \ref{eq:diff} pode ser visualizada na forma de função de transferência.
+				
+		\begin{equation}
+			\begin{matrix}
+					G(s) =  \frac{2}{(s+1)(s+2)} \,\frac{229}{s^2+30s+229}
+			\end{matrix}
+			\label{eq:diff}
+			\end{equation}
+			
+			Ao escolher um período de amostragem igual a $0,1$ é possível obter a função de transferência na forma discreta, como pode ser visualizado na equação \ref{eq:Arx2}.
+			
+			\begin{equation}
+			\begin{matrix}
+				y(k) = 2,161\,y(k-1) - 1,544\,y(k-2) + 0,4098\,y(k-3) & \\ - 0,03688\,y(k-4) + 0,001024\,u(k-1) + 0,006192\,u(k-2) & \\ + 0,003207\,u(k-3) + 0,0001416\,u(k-4)
+			\end{matrix}
+			\label{eq:Arx2}
+			\end{equation}
+
+De maneira similar ao realizado na seção \ref{sec:example}, nesta seção foram realizados testes de maneira a realizar comparações entre os algoritmos apresentados. Nesses testes, os algoritmos foram inicializados de maneira similar ao utilizado na seção \ref{sec:example}. Os únicos parâmetros que foram modificados para realizar o segundo teste foram os parâmetros relacionados a PSO. Os parâmetros que foram modificados são apresentados a seguir:
+			
+\begin{itemize}%	
+	\item Os algoritmos que utilizam como base a PSO tradicional foram inicializados com os seguintes valores: $\phi_1 = 0,3$, $\phi_2 = 2,7$, $\omega = 0,4$, $80$ partículas, $1000$ iterações e foi estabelecido uma limitação no espaço de busca dos parâmetros entre os valores $[-3,3]$;
+	\item Para os algoritmos na forma matricial (PSOMQE e o BCRLSMPSO), além dos valores que foram apresentados na inicialização dos algoritmos baseados na PSO, foi utilizado o fator de esquecimento $\lambda_{f} = 0,99$ e $C=0,2$;
+		\item Os teste que foram realizados, de maneira a obter os resultados, foram repetidos $80$ vezes utilizando cada uma das heurísticas implementadas. Após a obtenção dos $80$ resultados, este foram utilizados para obter a variância, média e a melhor performance encontradas durante os testes.
+\end{itemize}
+
+A escolha dos parâmetros não permitem que os autovalores da equação \ref{eq:avMA4} permaneçam no interior do círculo de raio unitário, ou seja, que todos os autovalores sejam menores ou iguais a $1$. Porém, o valor do módulo do maior autovalor da matriz $\bar{A}$ permanece no interior do círculo. Isto significa que, existe uma garantia de convergência quase certa com a PSO, de acordo com o teorema apresentado anteriormente, pois, o maior autovalor em módulo $0,9991$. Os resultados podem ser visualizados na tabela \ref{tab:ResultIdapx2ordemP2} ao final do capítulo.
+
+\begin{sidewaystable}[!htb]
+	\inserirListaTabelas
+		\caption{Erro Quadrático Médio ($MSE$) e Erro do Diagrama de Bode ($E_Bode$).}
+		{\footnotesize
+		\begin{tabular}{|c | c | c | c | c | c | c | c|}
+		\hline 
+		 \textbf{Algoritmos} & \textbf{BCRLS} & \textbf{MQE} & \textbf{BCRLS} & \textbf{MQE} & \textbf{MQ} & \textbf{MQR} & \textbf{PSO}\\
+		 &                   & \textbf{(PSOM)}&\textbf{(PSOM)}&             &             &               & \\
+		\hline
+$MSE_{av}$&$1,106\times10^{-3}$&$8,534\times10^{-4}$&$1,100\times10^{-3}$&$8,396\times10^{-4}$&$9,761\times10^{-4}$&$9,764\times10^{-4}$&$5,804\times10^{-1}$\\
+		\hline
+$MSE_{var}\,$&--&$2,665\times10^{-9}$&$1,162\times10^{-9}$&--&--&--&$1,138\times10^{0}$\\
+		\hline
+$MSE_{min}\,(\%)$&$0,028$&$0,021$&$0,026$&$0,021$&$0,025$&$0,025$&$0,780$\\
+		\hline
+$E_{Bode_{av}}\,(\%)$&$91,457$&$91,628$&$92,941$&$91,719$&$92,062$&$92,069$&$462,560$\\
+		\hline
+$E_{Bode_{var}}\,(\%)$&--&$5,894$&$1,518\times10^{2}$&--&--&--&$2,003\times10^{6}$\\
+		\hline
+$E_{Bode_{min}}\,(\%)$&$0,817$&$0,717$&$0,736$&$0,819$&$0,822$&$0,822$&$1,727$\\
+		\hline	
+		\end{tabular}
+		}
+	\label{tab:ResultIdapx2ordemP2}		
+\end{sidewaystable}
+
+Nesse segundo exemplo, os parâmetros escolhidos da $PSO$ e da $MPSO$ foram modificados, porque nos últimos parâmetros escolhidos não foram percebidas mudanças ou melhorias nos resultados finais obtidos com as heurísticas quando comparados com os algoritmos tradicionais. Portanto, neste exemplo, pode-se verificar que o fato de alguma das partes não possuir autovalores no interior do círculo de raio unitário não é determinante na estabilidade do sistema, o que deixa claro, experimentalmente a estabilidade das partículas quando a média dos autovalores está no interior do círculo de raio unitário. Em outras palavras, uma parte do sistema estar fora do círculo não significa que o sistema por completo é instável, porque os autovalores da equação \ref{eq:matMAbs2} são menores que $1$ em módulo . Portanto, os resultados experimentais mostram que as partículas permanecem em uma região finita. Porém, comparando os resultados com os obtidos no pimeiro exemplo é possível perceber uma pequena melhoria.
+			
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%			
+			
+%			Já o modelo não linear
+
+			%\subsection{Identificação Linear sob condição ideal}
+			%\label{sub:LinIdConIdeal}
+			%Primeiramente, antes de realizar testes mais investigativos, serão analisadas as identificações para condições ideais, utilizando como sinal de entrada a resposta a uma onda senoidal (uma única frequência) e parâmetros para o PSO que resultem em autovalores menores que 1. No segundo caso o sistema será excitado utilizando um sinal PRS (elaborado conforme a revisão bibliográfica) e parâmetros para o PSO que resultem em autovalores menores que 1. Além desses, serão realizados testes comparativos utilizando parâmetros para o PSO que resultem em autovalores maiores que um. Com isso será possível analisar se é possível e em quais casos os algoritmos apresentados são capazes de realizar a identificação para os sinais de teste aplicados ao sistema. Também será possível verificar se os limites de convergência do algoritmo PSO e PSOM coincidem com a melhor escolha para os parâmetros em termos de busca do melhor global.
+			%
+			%As considerações que devem ser realizadas para esse caso são:
+			%
+%\begin{itemize}
+	%\item A entrada é uma onda senoidal com amplitude igual a 1 e frequência 1;
+	%\item A ordem suposta para a identificação é exata em todos os algoritmos (BCRLS, PSOMQE, PSOBCRLS, MQE, MQ, MQR e PSO);
+	%\item O fator de esquecimento no mínimos quadrados foi igual a 1;
+	%\item No caso dos algoritmos recursivos (BCRLS e MQR) a matriz de covariância foi inicializada como uma identidade vezes $10^{11}$;
+	%\item A função de custo utilizada para otimização nos algorítimos PSO foi o erro médio quadrático;
+	%\item Para os algoritmos que utilizam o PSO tradicional foram inicializados os valores $\phi_1 = 0,3$, $\phi_2 = 0,7$, $\omega = 0,4$, número de partículas 80, número de iterações 1000 e definido o intervalo de busca dos parâmetros em [-3,3];
+	%\item Para os Matriciais (PSOMQE e PSOBCRLS), além dos valores citados no PSO tradicional foi utilizado o fator de esquecimento $\lambda_{esq} = 0,99$;
+	%\item Para o PSOMQE foram utilizados como parâmetros iniciais, para inicialização da melhor partícula global, os valores do MQE;
+	%\item E, para o PSOBCRLS foram utilizados como parâmetros iniciais, para inicialização da melhor partícula global, os valores do BCRLS;
+%\end{itemize}
+%
+	%Para o PSO matricial a escolha específica dos parâmetros  $\phi_1 = 0,3$, $\phi_2 = 0,7$, $\omega = 0,4$ e $\lambda_{esq} = 0,99$ permitem que os autovalores (para o caso dos parâmetros $\phi_1 = 0,3$ e $\phi_2 = 0,7$ serem constantes) da matriz da equação \ref{eq:avMA4} sejam menores que 1 e o maior autovalor da equação \ref{eq:aT3} é $0,9974$, ou seja, tornando as partículas convergentes, e, buscando desempenhos melhores que os do MQE e BCRLS. Os resultados podem ser visualizados na tabela \ref{tab:ResultIdLinIdeal}.
+	%
+	%\begin{table}[H]
+	%\inserirListaTabelas
+	%\begin{center}
+		%\caption{Erros médios quadráticos (EMQ) e erros absolutos nos parâmetros (ePar).}
+		%{\footnotesize
+		%\begin{tabular}{c c c c c c c c }
+		%\hline 
+		 %& \textbf{BCRLS} & \textbf{PSOMQE} & \textbf{PSOBCRLS} & \textbf{MQE} & \textbf{MQ} & \textbf{MQR} & \textbf{PSO}\\
+		%\hline
+		%$EMQ$&$4,86\,10^{-11}$& $9,61$&$2,12\,10^{-12}$&$9,85$&$9,85$&$4,27\,10^{-12}$&$3,98\,10^{-5}$\\
+		%\hline
+		%ePar&$4,99\,10^2$& $2,84\,10^4$&$4,99\,10^2$&$2,84\,10^4$&$2,84\,10^4$&$5,00\,10^{2}$&$2,45\,10^{3}$\\
+		%\hline
+		%\end{tabular}
+		%}
+	%\label{tab:ResultIdLinIdeal}		
+	%\end{center}
+%\end{table}
+%
+%O resultado gráfico que mostra a simulação dos dados de validação são apresentados na figura \ref{fig:ResultIdLinIdeal}.
+%
+%\begin{figure}[H]
+   %\inserirListaFiguras
+   %\centering
+   %\caption{Resultado da identificação para uma entrada senoidal unitária e frequência unitária.}
+   %%\FONTE{\cite{franca}}
+   %\includegraphics[scale = 0.5]{Figuras/EntradaSenoidal.png}
+   %\label{fig:ResultIdLinIdeal}
+%\end{figure}
+%
+%É importante observar no gráfico que as saídas y (saída real) e yr (saída com ruído) correspondem aos mesmos valores para o caso sem ruído. As demais saídas correspondem às técnicas listadas na tabela \ref{tab:ResultIdLinIdeal}.
+%
+%O segundo teste, realizado para o caso da identificação ideal, foi aplicando uma entrada do tipo PRS, elaborado conforme a revisão bibliográfica. Nesse caso, é importante ressaltar que os algoritmos devem obter desempenho máximo, visto que o sinal de entrada é persistentemente excitante.
+%
+%As considerações para esse caso são:
+			%
+%\begin{itemize}
+	%\item A entrada é a concatenação entre 4 sinais PRS (conforme revisão) com parâmetros $\alpha_1 = 0,95$, $\alpha_2 =0,86$, $\alpha_3 =0,79$, $\alpha_4 =0,73$ conforme equação \ref{eq:PRS2};
+	%\item A entrada final PRS aplicada tem 400 amostras e é semelhante a mostrada na figura \ref{fig:SinalEntradaPRS};
+	%
+	%\begin{figure}[H]
+   %\inserirListaFiguras
+   %\centering
+   %\caption{Exemplo de Sinal PRS Aplicado ao Sistema a ser Identificado}
+   %%\FONTE{\cite{franca}}
+   %\includegraphics[scale = 0.7]{Figuras/SinalEntradaPRS.png}
+   %\label{fig:SinalEntradaPRS}
+%\end{figure}
+	%
+	%\item Os outros parâmetros são iguais aos aplicados no experimento anterior;
+%\end{itemize}
+			%
+				%\begin{table}[H]
+	%\inserirListaTabelas
+	%\begin{center}
+		%\caption{Erros médios quadráticos (EMQ) e erros absolutos nos parâmetros (ePar).}
+		%{\footnotesize
+		%\begin{tabular}{c c c c c c c c }
+		%\hline 
+		 %& \textbf{BCRLS} & \textbf{PSOMQE} & \textbf{PSOBCRLS} & \textbf{MQE} & \textbf{MQ} & \textbf{MQR} & \textbf{PSO}\\
+		%\hline
+%$EMQ$&$1.33\,10^{-9}$&$9.74\,10^{-8}$&$1.33\,10^{-9}$&$1.01\,10^{-7}$&$1.95\,10^{-6}$&$1.16\,10^{-9}$&$1.29\,10^{-1}$\\
+		%\hline
+%ePar&$7.63\,10^{-1}$& $3.40\,10^{-3}$&$7.63\,10^{-1}$&$3.40\,10^{-3}$&$1.35\,10^{-2}$&$1.16\,10^{0}$&$7.75\,10^{3}$\\
+		%\hline
+		%\end{tabular}
+		%}
+	%\label{tab:ResultIdLinIdealPRS}		
+	%\end{center}
+%\end{table}
+%
+%O resultado gráfico que mostra a simulação dos dados de validação são apresentados na figura \ref{fig:ResultIdLinIdealPRS}.
+%
+%\begin{figure}[H]
+   %\inserirListaFiguras
+   %\centering
+   %\caption{Resultado da identificação para uma entrada senoidal unitária e frequência unitária.}
+   %%\FONTE{\cite{franca}}
+   %\includegraphics[scale = 0.5]{Figuras/EntradaPRS.png}
+   %\label{fig:ResultIdLinIdealPRS}
+%\end{figure}
+%
+%A terceira comparação desta subseção foi realizada, porém, avaliando condições mais próximas da região de instabilidade do algoritmo PSO, ou seja, utilizando parâmetros onde os autovalores do PSOM são maix próximos de 1.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%As considerações para esse ultimo caso são:
+			%
+%\begin{itemize}
+	%\item A entrada é a concatenação entre 4 sinais PRS (conforme revisão) com parâmetros $\alpha_1 = 0,95$, $\alpha_2 =0,86$, $\alpha_3 =0,79$, $\alpha_4 =0,73$ conforme equação \ref{eq:PRS2};
+	%\item A entrada final PRS aplicada tem 400 amostras e é semelhante a mostrada na figura \ref{fig:SinalEntradaPRS};
+	%\item Para os algoritmos que utilizam o PSO tradicional foram inicializados os valores $\phi_1 = 0,3$, $\phi_2 = 3,7$, $\omega = 0,2$, número de partículas 80, número de iterações 1000 e definido o intervalo de busca dos parâmetros em [-3,3];
+	%\item Para os Matriciais (PSOMQE e PSOBCRLS), além dos valores citados no PSO tradicional foi utilizado o fator de esquecimento $\lambda_{esq} = 0,99$;
+	%\item Para o PSOMQE foram utilizados como parâmetros iniciais, para inicialização da melhor partícula global, os valores do MQE;
+	%\item E, para o PSOBCRLS foram utilizados como parâmetros iniciais, para inicialização da melhor partícula global, os valores do BCRLS;
+%\end{itemize}
+%
+	%A escolha dos parâmetros  $\phi_1 = 0,3$, $\phi_2 = 3,7$, $\omega = 0,2$ e $\lambda_{esq} = 0,99$ resultam em alguns autovalores (das matrizes A1, A2, A3 e A4) maiores que 1, onde o maior autovalor equivale a 2,84, porém, quando analisado da perspectiva do \textit{teorema 1}, para análise do PSOM, o maior autovalor se torna igual a $0,9991$, ou seja, o comportamento global do PSOM será estável mesmo que suas partes instáveis. Os resultados podem ser visualizados na tabela \ref{tab:ResultIdLinIdeal3}.
+	%
+	%\begin{table}[H]
+	%\inserirListaTabelas
+	%\begin{center}
+		%\caption{Erros médios quadráticos (EMQ) e erros absolutos nos parâmetros (ePar).}
+		%{\footnotesize
+		%\begin{tabular}{c c c c c c c c }
+		%\hline 
+		 %& \textbf{BCRLS} & \textbf{PSOMQE} & \textbf{PSOBCRLS} & \textbf{MQE} & \textbf{MQ} & \textbf{MQR} & \textbf{PSO}\\
+		%\hline
+%$EMQ$&$1,55\,10^{-9}$& $4,26\,10^{-10}$&$1,55\,10^{-9}$&$5,01\,10^{-8}$&$3,57\,10^{-6}$&$1,95\,10^{-9}$&$2,28\,10^{-10}$\\
+		%\hline
+		%ePar&$2,13$& $3,61\,10^{-3}$&$2,13$&$1,03\,10^{-3}$&$1,72\,10^{-3}$&$8,07\,10^{-2}$&$6,60\,10^{1}$\\
+		%\hline
+		%\end{tabular}
+		%}
+	%\label{tab:ResultIdLinIdeal3}		
+	%\end{center}
+%\end{table}
+%
+%Os resultados de validação são apresentados na figura \ref{fig:ResultIdLinIdeal3}.
+%
+%\begin{figure}[H]
+   %\inserirListaFiguras
+   %\centering
+   %\caption{Resultado PSOs com MAX(autovalor)=2,85}
+   %%\FONTE{\cite{franca}}
+   %\includegraphics[scale = 0.5]{Figuras/EntradaPRSPSOauto2_85.png}
+   %\label{fig:ResultIdLinIdeal3}
+%\end{figure}
+%
+%Devido às aproximações serem próximas ao sinal real não é possível fazer distinção da diferença na escala mostrada. Por isso, é apresentado na figura \ref{fig:ResultIdLinIdeal4} uma aproximação entre os pontos $(300;3,3775)$ e $(300,1;3,381)$.
+%
+%\begin{figure}[H]
+   %\inserirListaFiguras
+   %\centering
+   %\caption{Resultado PSOs com MAX(autovalor)=2,85}
+   %%\FONTE{\cite{franca}}
+   %\includegraphics[scale = 0.5]{Figuras/EntradaPRSPSOauto2_85__2.png}
+   %\label{fig:ResultIdLinIdeal4}
+%\end{figure}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%\subsection{Identificação Linear Aproximando o sistema dado por uma função de $2^a$ ordem}
+			%\label{sub:LinId2ordem}
+			%
+			%O segundo teste realizado consistiu em pesquisar a capacidade dos algoritmos de identificação sob o efeito de dinâmicas não modeladas. Para tanto foi utilizada a função \ref{eq:ModeloARX} para gerar os dados de saída, a partir de uma entrada PRS semelhante a da figura \ref{fig:ResultIdLinIdealPRS}. Nesse caso, os testes serão divididos em duas partes onde no primeiro serão escolhidos parâmetros que resultem em autovalores menores que 1 e no segundo momento parâmetros que não resultem.
+			%
+			%As considerações para o primeiro teste são:
+			%
+%\begin{itemize}
+	%\item É suposto que o sistema pode ser representado por uma função de segunda ordem e a identificação é realizada utilizando os algoritmos citados (BCRLS, PSOMQE, PSOBCRLS, MQE, MQ, MQR e PSO);
+	%\item O fator de esquecimento no mínimos quadrados foi igual a 1;
+	%\item No caso dos algoritmos recursivos (BCRLS e MQR) a matriz de covariância foi inicializada como uma identidade vezes $10^{11}$;
+	%\item A função de custo utilizada para otimização nos algorítimos PSO foi o erro médio quadrático;
+	%\item Para os algoritmos que utilizam o PSO tradicional foram inicializados os valores $\phi_1 = 0,3$, $\phi_2 = 0,7$, $\omega = 0,4$, número de partículas 80, número de iterações 1000 e definido o intervalo de busca dos parâmetros em [-3,3];
+	%\item Para os Matriciais (PSOMQE e PSOBCRLS), além dos valores citados no PSO tradicional foi utilizado o fator de esquecimento $\lambda_{esq} = 0,99$;
+	%\item Para o PSOMQE foram utilizados como parâmetros iniciais, para inicialização da melhor partícula global, os valores do MQE;
+	%\item E, para o PSOBCRLS foram utilizados como parâmetros iniciais, para inicialização da melhor partícula global, os valores do BCRLS;
+%\end{itemize}
+%
+%\begin{table}[H]
+	%\inserirListaTabelas
+	%\begin{center}
+		%\caption{Erros médios quadráticos (EMQ) e erros dos dados obtidos a partir do diagrama de Bode (eBode).}
+		%{\footnotesize
+		%\begin{tabular}{c c c c c c c c }
+		%\hline 
+		 %& \textbf{BCRLS} & \textbf{PSOMQE} & \textbf{PSOBCRLS} & \textbf{MQE} & \textbf{MQ} & \textbf{MQR} & \textbf{PSO}\\
+		%\hline
+%$EMQ$&$1,89\,10^{-2}$& $1,22\,10^{-2}$&$1,83\,10^{-2}$&$1,33\,10^{-2}$&$1,54\,10^{-2}$&$1,54\,10^{-2}$&$4,16\,10^{-2}$\\
+		%\hline
+%$E_{Bode}$&$1,73\,10^3$& $1,86\,10^3$&$1,73\,10^3$&$1,86\,10^3$&$1,75\,10^3$&$1,75\,10^{3}$&$1,31\,10^{5}$\\
+		%\hline
+		%\end{tabular}
+		%}
+	%\label{tab:ResultIdapx2ordem}		
+	%\end{center}
+%\end{table}
+%
+	%Os resultados da identificação utilizando as consideração são apresentados através da tabela \ref{tab:ResultIdapx2ordem}	que contêm a soma dos erros médios quadráticos entre as saídas real e estimadas pelos algoritmos citados. Além das saídas também é apresentado o diagrama de Bode juntamente com o erro médio quadrático entre os dados do diagrama obtido a partir dos parâmetros reais e os dados do diagrama obtido a partir das funções estimadas. A equação utilizada para obtenção do erro no diagrama de bode pode ser observada em \ref{eq:BODE}.
+	%
+	%\begin{equation}
+			%\begin{array}{ll}
+					 %E_{Bode} = \frac{\sum_{i=1}^{N} (G_i-\widehat{G}_i)^2 + (P_i-\widehat{P}_i)^2}{N}
+			%\end{array}
+			%\label{eq:BODE}
+			%\end{equation}
+	%
+	%
+%
+%Os resultados gráficos que mostram a simulação dos dados de validação (saída real X saídas estimadas) e dos diagramas de Bode para cada função estimada e a função real são apresentados nas figuras \ref{fig:ResultIdapx2ordem}, e \ref{fig:ResultIdapx2ordemBODE}.
+%
+%\begin{figure}[H]
+   %\inserirListaFiguras
+   %\centering
+   %\caption{Validação entre Saídas reais e Estimadas}
+   %%\FONTE{\cite{franca}}
+   %\includegraphics[scale = 0.5]{Figuras/EntradaPRSapx2ordem.png}
+   %\label{fig:ResultIdapx2ordem}
+%\end{figure}
+%
+%\begin{figure}[H]
+   %\inserirListaFiguras
+   %\centering
+   %\caption{Validação entre diagramas de Bode a frequências determinadas}
+   %%\FONTE{\cite{franca}}
+   %\includegraphics[scale = 0.5]{Figuras/EntradaPRSapx2ordemBODE.png}
+   %\label{fig:ResultIdapx2ordemBODE}
+%\end{figure}
+			%
+			%O Segundo teste foi realizado sob as mesmas condições que o primeiro modificando apenas que para os algoritmos que utilizam o PSO, foram inicializados os valores $\phi_1 = 0,3$, $\phi_2 = 3,7$, $\omega = 0,2$, número de partículas 80, número de iterações 1000 e definido o intervalo de busca dos parâmetros em [-3,3].
+			%
+			%Os resultados apresentados na tabela \ref{tab:ResultIdapx2ordem285} e nos gráficos correspondem aos valores dos erros médios quadráticos, obtidos a partir das saída real e estimada, e o erro médio quadrático entre os valores reais do diagrama de bode e os estimados. 
+			%
+			%\begin{table}[H]
+	%\inserirListaTabelas
+	%\begin{center}
+		%\caption{Erros médios quadráticos (EMQ) e erros dos dados obtidos a partir do diagrama de Bode (eBode).}
+		%{\footnotesize
+		%\begin{tabular}{c c c c c c c c }
+		%\hline 
+		 %& \textbf{BCRLS} & \textbf{PSOMQE} & \textbf{PSOBCRLS} & \textbf{MQE} & \textbf{MQ} & \textbf{MQR} & \textbf{PSO}\\
+		%\hline
+%$EMQ$&$1,47\,10^{-2}$& $1,59\,10^{-3}$&$3,01\,10^{-3}$&$9,43\,10^{-3}$&$1,18\,10^{-2}$&$1,18\,10^{-2}$&$5,57\,10^{-4}$\\
+		%\hline
+%$E_{Bode}$&$1,62\,10^3$& $2,27\,10^2$&$2,44\,10^2$&$1,68\,10^3$&$1,64\,10^3$&$1,64\,10^{3}$&$3,27	\,10^{3}$\\
+		%\hline
+		%\end{tabular}
+		%}
+	%\label{tab:ResultIdapx2ordem285}		
+	%\end{center}
+%\end{table}
+			%
+			%\begin{figure}[H]
+   %\inserirListaFiguras
+   %\centering
+   %\caption{Validação entre Saídas reais e Estimadas}
+   %%\FONTE{\cite{franca}}
+   %\includegraphics[scale = 0.5]{Figuras/ResultIdapx2ordem285.png}
+   %\label{fig:ResultIdapx2ordem285}
+%\end{figure}
+%
+%\begin{figure}[H]
+   %\inserirListaFiguras
+   %\centering
+   %\caption{Validação entre diagramas de Bode a frequências determinadas}
+   %%\FONTE{\cite{franca}}
+   %\includegraphics[scale = 0.5]{Figuras/EntradaPRSapx2ordemBODE285.png}
+   %\label{fig:EntradaPRSapx2ordemBODE285}
+%\end{figure}
+			%
+			%Os testes realizados mostram o desempenho dos algoritmos implementados sob circunstâncias ideais e adversas sendo objetivo deste trabalho encontrar as melhores soluções possíveis.
+
+%É importante observar no gráfico que as saídas y (saída real) e yr (saída com ruído) correspondem aos mesmos valores para o caso sem ruído. As demais saídas correspondem às técnicas listadas na tabela \ref{tab:ResultIdLinIdeal}.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+			
+%			\subsection{Identificação Linear sob efeito de ruído gaussiano de média zero}
+
+%%%%			
+%%%%			Esse modelo 
+%%%%			
+%%%%			Os procedimentos para realizar a identificação, apresentados no referencial teórico deste trabalho são a escolha das entradas para o sistema, a escolha do modelo, a estimação do modelo, e, finalmente, a validação do modelo.
+		
+%		\subsection{Projeto do Sinal de Excitação}
+%		
+%		\subsection{Identificação com MQE e Algorítimos de Redução de Ordem}
+%		\label{subsecao:Id}
+%		Aqui o que será realizado é: 
+%		
+%		Primeiro serão realizados testes simulados onde o modelo não linear seja conhecido. Será então realizada a identificação 		 não linear com MQE, ERR, AKAIKE, BIC:
+%		
+%		\begin{itemize}
+%			\item Supondo ordem superiores no modelo;
+%			\item Supondo ordem inferior do modelo (dinâmicas não modeladas);
+%			\item Supondo ruído de medição de intensidades diferentes;
+%			\item Supondo Baixa Persistência de Sinal;
+%			\item Supondo Alta Persistência de Sinal;
+%		\end{itemize}
+%			   
+%		\subsection{Identificação com PSO com e sem auxílio e Algorítimos de Redução de Ordem}
+%		\label{subsecao:IdPSO} 
+%		
+%		Após a realização desses testes serão realizados testes em iguais condições para o PSO porém:
+%		 	
+%		 	\begin{itemize}
+%				\item PSO não utilizando o auxílio dos parâmetros do modelo final encontrado em cada seção acima;
+%		 		\item PSO utilizando o auxílio dos parâmetros do modelo final encontrado em cada seção acima;
+%		 		\item Realização dos experimentos com diferentes funções \textit{fitness};
+%		 	\end{itemize}
+
+%%%%%\section{Sintonia Simulada}
+%%%%%\label{secao:Sintonia}
+%%%%%
+%%%%%		O que será realizado aqui é Sintonia de controladores PI analisando os vários índices de desempenho apresentados:
+%%%%%		
+%%%%%		\begin{figure}[H]
+%%%%%   	\inserirListaFiguras
+%%%%%   	\centering
+%%%%%   	\caption{Diagrama de sintonia utilizando PSO. Fonte: Adaptado de ~\citeonline{Nagara2010}}
+%%%%%   	%\FONTE{\cite{franca}}
+%%%%%  	\includegraphics[scale = 0.6]{Figuras/PSOsintonia.png}
+%%%%%   	\label{fig:PSOsintonia}
+%%%%%		\end{figure}
+%%%%%		
+%%%%%		
+%%%%%		\begin{itemize}
+%%%%%			\item Sintonia realizada com ziegler and Nichols;
+%%%%%			\item Sintonia com o método do relé em Malha fechada;
+%%%%%		\end{itemize}
+%%%%%
+%%%%%		Após serem realizados os testes com os métodos apresentados o controlador será sintonizado com o PSO utilizando os vários índices de desempenho apresentados:
+%%%%%		
+%%%%%		\begin{itemize}
+%%%%%				\item PSO não utilizando o auxílio dos parâmetros da sintonia encontrada em cada seção acima;
+%%%%%		 		\item PSO utilizando o auxílio dos parâmetros da sintonia encontrada em cada seção acima;
+%%%%%		 	\end{itemize}
+%%%%%		 	
+%%%%%\section{Controle Simulado}
+%%%%%\label{secao:ControleS}
+%%%%%
+%%%%%		O controle realizado aqui deverá ser testado com diferentes características. O PI sintonizado acima será comparado com o controle com PSO com os modelos identificados na seção \ref{subsecao:Id}:
+%%%%%		
+%%%%%		\begin{itemize}
+%%%%%			\item Supondo ordem superiores no modelo;
+%%%%%			\item Supondo ordem inferior do modelo (dinâmicas não modeladas);
+%%%%%			\item Supondo ruído de medição de intensidades diferentes;
+%%%%%			\item Supondo perturbações aditivas na saída da planta;
+%%%%%			\item Supondo perturbações aditivas na entrada da planta;
+%%%%%			\item Supondo Baixa Persistência de Sinal;
+%%%%%			\item Supondo Alta Persistência de Sinal;
+%%%%%		\end{itemize}
+%%%%%		
+%%%%%\section{Identificação, Sintonia e Controle de Válvula Eletro-Pneumática com Histerese}
+%%%%%
+%%%%%		\subsection{Identificação}
+%%%%%		\label{subsecao:IDR}
+%%%%%		
+%%%%%		Como para a identificação de um sistema real não temos como separar os experimentos em com ruído sem ruído, com 		dinâmicas não modeladas e com dinâmicas não modeladas serão testadas aqui 3 diferentes configurações de inicialização para o algoritmo de MQE redução de ordem de modelo. Com isso será possível avaliar de 3 diferentes perspectivas o mesmo algoritmo. Os casos serão:
+%%%%%
+%%%%%		\begin{itemize}
+%%%%%			\item Supondo ordem exageradamente altas;
+%%%%%			\item Supondo ordem +o- recomendadas e utilizadas na literatura;
+%%%%%			\item Supondo $1^a$  ordem;
+%%%%%		\end{itemize}
+%%%%%		
+%%%%%		Sendo que em todos eles serão projetados sinais de excitação de forma que:
+%%%%%		
+%%%%%		\begin{itemize}
+%%%%%			\item Haja Baixa Persistência de Sinal;
+%%%%%			\item Haja Alta Persistência de Sinal;
+%%%%%		\end{itemize}
+%%%%%		
+%%%%%		A partir dos modelos de ordem reduzida encontrados no algoritmo de redução de ordem de modelo serão testados:
+%%%%%		
+%%%%%	 	\begin{itemize}
+%%%%%				\item PSO não utilizando o auxílio dos parâmetros do modelo final encontrado em cada item acima;
+%%%%%		 		\item PSO utilizando o auxílio dos parâmetros do modelo final encontrado em cada item acima;
+%%%%%		 		\item Realização dos experimentos com diferentes funções \textit{fitness};
+%%%%%		 	\end{itemize}
+%%%%%		 	
+%%%%%		 	
+%%%%%		\subsection{Sintonia}
+%%%%%		\label{subsecao:SintoniaR}
+%%%%%		
+%%%%%		 	Tendo realizado a identificação, a sintonia é o próximo passo. Então, como realizado na seção \ref{secao:Sintonia}  será realizada aqui é Sintonia de controladores PI analisando os vários índices de desempenho apresentados:
+%%%%%		
+%%%%%		\begin{itemize}
+%%%%%			\item Sintonia realizada com ziegler and Nichols;
+%%%%%			\item Sintonia com o método do relé;
+%%%%%			\item Sintonia com o método do relé em Malha fechada;
+%%%%%		\end{itemize}
+%%%%%
+%%%%%		Após serem realizados os testes com os métodos apresentados o controlador será sintonizado com o PSO utilizando os vários índices de desempenho apresentados levando em consideração que para a sintonia com o PSO o melhor modelo encontrado na subseção \ref{subsecao:IDR} será utilizado no cálculo dos índices:
+%%%%%		
+%%%%%		\begin{itemize}
+%%%%%				\item PSO não utilizando o auxílio dos parâmetros da sintonia encontrada na subseção \ref{subsecao:SintoniaR};
+%%%%%		 		\item PSO utilizando o auxílio dos parâmetros da sintonia encontrada na subseção \ref{subsecao:SintoniaR};
+%%%%%		 	\end{itemize}
+%%%%%		 	
+%%%%%		 	
+%%%%%		\subsection{Controle}
+%%%%%		\label{subsecao:ControleR}
+%%%%%		
+%%%%%				O controle realizado aqui deverá ser testado com diferentes características. O PI sintonizado na subseção \ref{subsecao:SintoniaR} será comparado com o controle com PSO com o melhor modelo identificado na subseção \ref{subsecao:IDR}:
+%%%%%		
+%%%%%		\begin{itemize}
+%%%%%			\item Supondo perturbações aditivas na saída da planta;
+%%%%%			\item Supondo perturbações aditivas na entrada da planta;
+%%%%%		\end{itemize}
+%%%%%		
+%%%%%\section{Conclusão do Capítulo}
+%%%%%
+%%%%%No capítulo \ref{Cap:ResultDis} serão apresentados os resultados obtidos a partir da metodologia utilizada no trabalho.

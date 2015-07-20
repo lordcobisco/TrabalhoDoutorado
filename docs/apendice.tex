@@ -1,0 +1,207 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Anexos
+\hypertarget{estilo:anexo}{} %% uso para este manual
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{APÊNDICE - MODELO MATEMÁTICO DO SISTEMA DE ELEVAÇÃO ARTIFICIAL DE PETRÓLEO} %% 
+\label{APENDICE_C} %% 
+
+O modelo utilizado para elevação artificial de petróleo neste trabalho é baseado no sistema desenvolvido por Eikrem (2004). O processo é modelado por três estados como exemplificado nas equações \ref{eq:X1Ponto}, \ref{eq:X2Ponto} e \ref{eq:X3Ponto}.
+
+\begin{equation}
+\begin{array}{rcll}
+\dot{x}_1  = & W_{gc} - W_{iv} 
+\end{array}
+\label{eq:X1Ponto}
+\end{equation}
+
+\begin{equation}
+\begin{array}{rcll}
+\dot{x}_2  = & W_{iv} - W_{pg}
+\end{array}
+\label{eq:X2Ponto}
+\end{equation}
+
+\begin{equation}
+\begin{array}{rcll}
+\dot{x}_3  = & W_r - W_{po}
+\end{array}
+\label{eq:X3Ponto}
+\end{equation}
+
+Onde:
+
+$x_1$ - massa de gás no anular;
+
+$x_2$ - massa de gás no tubo de produção;
+
+$x_3$ - massa de óleo no tubo de produção.
+
+Os fluxos de massas de gás, de fluidos provenientes do reservatório e total são modelados pelas seguintes equações:
+
+\begin{equation}
+\begin{array}{rcll}
+W_{gc}  = & C_{gc} \sqrt{\rho_{ab} max\{0,P_{ab} - P_{tb}\}} u_2
+\end{array}
+\label{eq:WGC}
+\end{equation}
+
+\begin{equation}
+\begin{array}{rcll}
+W_{iv}  = & C_{iv} \sqrt{ \rho_{ai} max\{0,P_{ai} - P_{ti} \} }
+\end{array}
+\label{eq:WIV}
+\end{equation}
+
+\begin{equation}
+\begin{array}{rcll}
+W_{pc}  = & C_{pc} \sqrt{\rho_m max\{0,P_{t} - P_{s}\}) u }
+\end{array}
+\label{eq:WPC}
+\end{equation}
+
+\begin{equation}
+\begin{array}{rcll}
+W_{pg}  = & \frac{x_2}{x_2 + x_3}W_{pc}
+\end{array}
+\label{eq:WPG}
+\end{equation}
+
+\begin{equation}
+\begin{array}{rcll}
+W_{po}  = & \frac{x_3}{x_2 + x_3}W_{pc}
+\end{array}
+\label{eq:WPO}
+\end{equation}
+
+\begin{equation}
+\begin{array}{rcll}
+ W_r = & C_r (P_r - P_{tb})
+\end{array}
+\label{eq:WR}
+\end{equation}
+
+
+
+
+
+Onde:
+
+$W_{gc}$ - fluxo de massa de gás injetado no anular;
+
+$W_{iv}$ - fluxo de massa de gás do anular para o tubo de produção;
+
+$W_{pg}$ - fluxo de massa de gás pela válvula de produção;
+
+$W_r$ - fluxo do fluido do reservatório para o tubo;
+
+$W_{po}$ - fluxo de massa de óleo pela válvula de produção;
+
+$W_{pc}$ - fluxo total de massa pela válvula de produção;
+
+$C_{iv}$, $C_{pc}$, $C_{gc}$ - constantes das válvulas;
+
+$\rho_{ai}$ - densidade do gás do anular no ponto de injeção de gás;
+
+$\rho_m$ - densidade da mistura gás/óleo no topo do tubo de produção;
+
+$P_{ai}$ - pressão no anular no ponto de injeção do gás;
+
+$P_{ti}$ - pressão no tubo de produção no ponto de injeção do gás;
+
+$P_t$ - pressão no topo do tubo de produção;
+
+$P_s$ - pressão no separador;
+
+$P_r$ - pressão no reservatório;
+
+$P_{tb}$ - pressão no fundo do tubo de produção.\\
+
+O fluxo de massa de gás injetado no anular (wpc) no modelo de Eikrem (2004) é considerado constante, entretanto, a partir da análise do desenvolvimento realizado por Imsland (2002) é possível manipular uma válvula que regula o fluxo de gás-lift. Para isso, a pressão no separador Ps é realimentada da saída do modelo do separador.
+As densidades são modeladas pelas seguintes equações:
+
+\begin{equation}
+\begin{array}{rcll}
+ \rho_o = & \frac{M}{R T_a}P_{ai}
+\end{array}
+\label{eq:roo}
+\end{equation}
+
+\begin{equation}
+\begin{array}{rcll}
+ \rho_m = & \frac{x_2 + x_3 - \rho_o L_r A_r}{R T_a}
+\end{array}
+\label{eq:rom}
+\end{equation}
+
+\begin{equation}
+\begin{array}{rcll}
+ \rho_{ab} = & \frac{M}{R T_a}P_{ab}
+\end{array}
+\label{eq:roab}
+\end{equation}
+
+E as pressões, como apresentadas nas equações \ref{eq:PPAI}, \ref{eq:PPt}, \ref{eq:PPti}, \ref{eq:PPtb}, \ref{eq:PPab}.
+
+\begin{equation}
+\begin{array}{rcll}
+ P_{ai} = & \big(\frac{R T_a}{V_a M} + \frac{G L_a}{V_a}\big) x_1
+\end{array}
+\label{eq:PPAI}
+\end{equation}
+
+\begin{equation}
+\begin{array}{rcll}
+ P_{t} = \frac{R T_t}{M}  \frac{x_2}{L_t A_t + L_r A_r - v_0 x_3}
+\end{array}
+\label{eq:PPt}
+\end{equation}
+
+\begin{equation}
+\begin{array}{rcll}
+ P_{ti} = P_t + & \frac{g}{A_t}( x_2 + x_3 -\rho_o L_r A_r)
+\end{array}
+\label{eq:PPti}
+\end{equation}
+
+\begin{equation}
+\begin{array}{rcll}
+ P_{tb} = P_{ti} + & ( \rho_o g L_r)
+\end{array}
+\label{eq:PPtb}
+\end{equation}
+
+\begin{equation}
+\begin{array}{rcll}
+ P_{ab} = P_{ai} + & (x_1 g \frac{L_a}{V_a}) \big ( \frac{1}{1 - e^{- \frac{g L_r}{R T_a}}} \big )
+\end{array}
+\label{eq:PPab}
+\end{equation}
+
+Onde:
+
+g - constante da gravidade constante;
+
+R - constante do gás;
+
+M - massa molar do gás;
+
+$\rho_o$ - a densidade do óleo;
+
+$v_o$ - volume específico do óleo (óleo incompressível);
+
+$T_a$ - temperatura no anular;
+
+$T_t$ - temperatura no tubo de produção;
+
+$V_a$ - volume do anular;
+
+$L_t$ - comprimento do tubo de produção;
+
+$L_a$ - comprimento do anular;
+
+$L_r$ - comprimento do fundo do poço até o ponto de injeção do gás;
+
+$A_t$ - área transversal do tubo de produção acima do ponto de injeção;
+
+$A_r$ - área da seção transversal do tubo de produção abaixo do ponto de injeção.

@@ -1,0 +1,451 @@
+\noindent\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+\\
+\chapter{IDENTIFICAÇÃO}
+\label{cap:Identificacao}
+\noindent\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+\\
+
+	Realizar observações a partir das percepções ao nosso redor é uma atividade natural dos seres vivos. A informação adquirida é diversa e consiste em, por exemplo, sinais sonoros ou imagens. Ela é processada e utilizada para criar um modelo particular aplicável àquela situação. Esse ato de construir um modelo a partir de observações é inerente à natureza humana e desempenha um importante papel na tomada de decisões \cite{Verhaegen2007}. 
+
+	Criar um modelo a partir de fenômenos observados também consiste em uma tarefa importante em vários ramos da ciência. Nesse caso, em lugar das percepções através dos 5 sentidos, as observações científicas são comumente realizadas através das medidas de instrumentos ou sensores. Os dados medidos a partir desses sensores normalmente necessitam ser processados auxiliando a tomada de decisões, validando um experimento, ou fornecendo novas informações sobre o processo analisado. Esses dados são utilizados como base para a elaboração de modelos matemáticos que descrevem as propriedades dinâmicas do sistema. Os Métodos de identificação de sistemas são aqueles que podem ser utilizados para construir modelos matemáticos a partir desses dados \cite{Verhaegen2007}. 
+
+	Consequentemente, pode-se concluir que identificação de sistemas é o campo da modelagem matemática de sistemas realizada a partir de dados experimentais. Em termos técnicos, a idéia de identificação de sistemas foi primeiramente utilizada por ~\citeonline{Zadeh1962} em seu trabalho ''From circuit theory to system theory'' \cite{Zhu2001}. 
+
+	Entendida a idéia principal que envolve a identificação é necessária a realização de alguns passos com o intuito de aplicá-la na obtenção de um modelo matemático. Em princípio, um modelo de ordem adequada deve ser definido pela especificação de propriedades comuns. Após, os parâmetros desse modelo devem ser adaptados de maneira a minimizar uma função baseada no erro, chamada função de custo. Depois de identificado o modelo, ou finalizada a adaptação de seus parâmetros, o próximo passo é a validação desse modelo. Nesse ultimo passo o modelo é testado com a intenção de confirmar se é bom o suficiente para a representação do sistema \cite{Zhu2001}.  
+
+	O projeto de identificação compreende a definição das condições sob as quais a planta será submetida para que os sinais coletados, de entrada e saída do sistema, contenham informações suficientes para projetar controladores robustos. A partir disso, algumas condições de projeto devem ser definidas, como a configuração da identificação, se é em malha aberta ou fechada, a taxa de amostragem, os sinais de excitação e o tamanho do conjunto de dados a serem identificados.
+	
+\section{Identificação em Malha Fechada}
+
+	Em certas aplicações o processo somente pode ser identificado em malha fechada. Por exemplo nos sistemas biológicos e econômicos o controlador é integrado e de forma alguma pode ser desvencilhado do processo. Em sistemas mais técnicos, como no controle adaptativo, o modelo do processo deve ser adaptado enquanto a malha está fechada. Além disso, processos com ação integral normalmente tem seu funcionamento em regiões confiáveis apenas controlados em malha fechada, lidando melhor com perturbações externas ao sistema \cite{Isermann2011}.
+
+\begin{epigrafecap}
+Razões de produção, que não permitem a remoção dos controladores durante os experimentos de identificação, e razões de segurança principalmente em processos instáveis, não-lineares ou com características integradoras, estimulam o uso da identificação em malha fechada. Esta tem como objetivo construir um modelo do processo usando dados coletados sob condições de controle por realimentação (total ou parcial).
+
+\begin{flushright}
+~\citeonline{Gomes2009}
+\end{flushright}
+\end{epigrafecap}
+  
+A questão de identificação em malha fechada foi bastante discutida nos anos 70, como uma alternativa de identificação que substituísse a em malha aberta (Miranda, 2005). Porém, por alguma razão, os trabalhos dos anos 70 pararam nas questões de identificabilidade como, por exemplo, que condições fazem com que os parâmetros convirjam para os corretos. A influência de condições experimentais como a influência da polarização em modelos complexos, e variância assintótica não tinham sido resolvidos \cite{Gevers2003}. 
+
+Uma lição importante, que emergiu do estudo da relação entre identificação e controle, nessa época, foi o benefício que a identificação em malha fechada proporciona quando o modelo é utilizado para projetos de controle. Em geral, a identificação em malha fechada reduz o problema de direção no ganho, devido à produção das correlações necessárias nas entradas produzidas pelo controlador para excitar as saídas (\citeonline{ANDERSEN1992}; ~\citeonline{JACOBSEN1994}; ~\citeonline{LI1996}).
+ 
+Segundo ~\citeonline{LJUNG1999} é possível garantir que um sistema é identificável quando o sistema está submetido a duas situações, ou o controlador é não linear, ou o sinal injetado é persistentemente excitante. É importante lembrar que para o caso em malha fechada, o que garante a identificabilidade é o sinal possuir excitação persistente. Logo, é possível concluir que este sistema pode ser identificado se o experimento for suficiente informativo, independentemente de o sistema estar em malha aberta ou fechada. Uma visão mais profunda sobre a identificabilidade de sistemas em malha fechada pode ser obtida em~\citeonline{Alves2011}.
+
+Os principais métodos de identificação em malha fechada são: o Direto, que consiste na aplicação direta dos métodos de erro de predição aos dados experimentais de entrada e saída do processo ignorando os efeitos da realimentação; Indireto, que pode ser realizado através da coleta dos sinais de referência e saída e determinando o modelo do sistema em malha aberta a partir do seu modelo em malha fechada; e Conjunto de Entrada e Saída, que utiliza as entradas u e y como saídas de um sistema que tem por entrada a referência e o ruído \cite{SODERSTROM1989}. Segundo ~\citeonline{Gomes2009} e ~\citeonline{Alves2011} existe uma lista de vantagens que cada método oferece e que é descrita na tabela \ref{tab:MetodosId}.
+
+
+
+\begin{table}[H]
+	\inserirListaTabelas
+	\begin{center}
+		\caption{Comparação entre os Métodos de Identificação em Malha Fechada. Fonte: \cite{Gomes2009}}
+		{\footnotesize
+		\begin{tabular}{l l l}
+		\hline 
+		\textbf{Direto} 		& \textbf{Indireto} 	& \textbf{Conjunto de Entrada/Saída}\\
+		\hline
+		%\hline
+			Funciona independente da			 	&Requer o perfeito conhecimento		&Fornece estimativa consistente,\\
+			natureza do controlador,				&da estrutura do controlador,			&independente do modelo do ruído,\\
+			pode ser usado de forma					&não funciona se o controlador		&desde que o controlador seja LIT\\ 
+			direta, requer um modelo				&apresenta não-linearidade, 			&(Linear e Invariante no tempo ),\\
+			adequado, fornece 							&não é necessário conhecer a			&permite realizar identificação do\\
+			consistência e ótima  					&representação perfeita do				&modelo da planta, do ruído e do\\
+			precisão, desde	que a 					&controlador.											&modelo do ruído;\\
+			estrutura do modelo 						&	 																&	\\													        
+			contenha o sistema real.				&	 																&	\\
+		 
+		\hline		
+		\end{tabular}
+		}
+	\label{tab:MetodosId}
+	\end{center}
+\end{table}
+
+
+O método direto proposto por Ljung atua independentemente da complexidade do controlador, o que implica dizer que as características de realimentação do sistema não são requeridas para que haja convergência correta nos parâmetros. É possível afirmar que o método direto ignora a presença do controlador na malha de controle e permite a utilização de algoritmos como se o sistema estivesse operando em malha aberta. Isso torna o método direto mais simples que os demais, já que nenhum tipo de processamento é necessário, apenas o conhecimento das variáveis de entrada e saída do processo \cite{Racoski2009}.
+
+Outra propriedade importante no método direto de estimação de parâmetros em malha fechada é que mesmo que o sistema seja instável em malha aberta, ele pode ser utilizado desde que seja utilizado um controlador que torne o sistema estável em malha fechada. Com isso, é possível utilizar modelos polinomiais ARX, NARX, ARMAX, e NARMAX \cite{Forssell1999}.
+
+\subsection{Identificabilidade do Método Direto}
+
+Uma análise aprofundada das condições necessárias para que o sistema a ser trabalhado seja identificável pode ser observada em \cite{SODERSTROM1989}. Nele, são analisadas as propriedades de identificabilidade para modelos polinomiais, levando em consideração um sistema sem a presença de ruídos e na ausência e presença de sinais externos para a excitação do sistema.
+
+A conclusão segundo ~\citeonline{SODERSTROM1989}, é que uma maneira simples de garantir a identificabilidade de um sistema é:
+
+\begin{itemize} 
+	\item Utilizar uma entrada externa, por exemplo um \textit{setpoint} variante no tempo.
+	\item Utilizar um regulador que alterne entre diferentes configurações durante o experimento de identificação. 
+\end{itemize}
+
+Dessa maneira, ou o regulador deverá ter alta ordem em relação ao sistema, de maneira a fazer oscilar a saída do sistema real, ou um sinal externo deve ser aplicado com o intuito de excitar a planta de maneira que ela forneça informações suficientes para a identificação.
+
+\section{Estimação de Parâmetros com Modelos Polinomiais NARX}
+
+Os sistemas não lineares são todos aqueles que não satisfazem o princípio da superposição. Em princípio todos os sistemas são não lineares. Sua dinâmica normalmente depende da amplitude do sinal de entrada assim como do ponto de operação \cite{Aguirre2007}.
+
+As equações que regem o sistema de separação trifásico e hidrociclones são não lineares, como percebido nos apêndices \ref{APENDICE_A}, \ref{APENDICE_B}, e \ref{APENDICE_C}, e, portanto, é interessante utilizar uma abordagem na identificação que favoreça a representação de tal sistema de maneira a reproduzir sua dinâmica.
+
+Para que seja possível representar um sistema físico além de excitá-lo com um sinal adequado, também é necessária a utilização de um modelo matemático. A estrutura desse modelo representará o comportamento dinâmico do sistema identificado.  Para o caso de sistemas cujo comportamento possui características não lineares, funções lineares são insuficientes para representá-los.
+
+Dentre os modelos para identificação de sistemas não lineares destacam-se as classes de modelos polinomiais não lineares baseadas em auto-regressão com média móvel e entrada exógena (NARMAX). Problemas de sistemas não lineares podem ser adequadamente representados com tais estruturas \cite{Aguirre1998}. Sua estrutura é dada por uma função não linear, seguindo o modelo encontrado em ~\citeonline{Aguirre1998}, que relaciona as entradas, saídas e o erro como mostra a equação \ref{eq:FunçãoNl}.
+
+\begin{equation}
+\begin{array}{rcll}
+ y(k) = F^{l}(y(k-1),y(k-2),...,y(k-n_y),u(k-d),u(k-d-1), ... ,\\
+ & & & \\
+ u(k-d-n_u+1), e(k-1),e(k-2), ... ,e(k-n_e))+e(k)
+\end{array}
+\label{eq:FunçãoNl}
+\end{equation}
+
+Onde:
+
+$F^{l}$ - É uma função não linear qualquer;
+
+u - Função de entradas;
+
+y - Função de saídas;
+
+e - Resíduo;
+
+d - Atraso de transporte do sistema;
+
+$n_u$ - Atraso máximo da entrada que influência o modelo;
+
+$n_y$ - Atraso máximo da saída que influência o modelo;
+
+$n_e$ - Atraso máximo do vetor de resíduos que influência o modelo.\\
+
+A função não linear mostrada na equação \ref{eq:permu} denota um modelo NARX (sem a inclusão do erro de estimação). Ela consiste em um modelo que relaciona todas as entradas e saídas do sistema de maneira que haja $l$ agrupamentos de termos. Em suma ela é uma relação que a partir da quantidade de atrasos em $y$ e em $u$, do atraso de transporte $d$, e do grau de não linearidade $l$, gera combinações de termos não lineares formando um modelo polinomial mais geral possível, dentro das limitações citadas.
+
+\begin{equation}
+\begin{array}{rcll}
+ y(k) = \sum_{m=0}^{l} \sum_{p=0}^{m} \sum_{n_1,n_m}^{n_y,n_u} c_{p,m-p}(n_1,...,n_m) \prod_{i=1}^p y(k-n_i) \prod_{i=p+1}^m u(k-n_i)
+\end{array}
+\label{eq:permu} 
+\end{equation}
+
+Onde:
+
+$l$ - Grau de não linearidade;
+
+$c$ - Parâmetro do modelo;
+
+$p$, $m$ - Termos auxiliares para a combinação entre y e u;
+
+$n_1$, $n_m$ - Índices das constantes que multiplicam o polinômio.\\
+
+Após determinar o modelo, pelo qual se deseja aproximar o sistema, é necessário estimar os parâmetros baseado nos sinais de entrada e saída do sistema. É válido ressaltar que para a estrutura baseada em modelos NARX apenas o modelo é não linear. Ou seja, o modelo, a ser estimado, é linear nos parâmetros e, portanto, pode ser estimado utilizando métodos lineares.
+
+Para estruturar as entradas e saídas de maneira a facilitar a identificação utilizou-se a equação \ref{eq:saidaY} representada na forma matricial conforme a equação \ref{eq:regressores}.
+
+\begin{equation}
+\begin{array}{rcll}
+ Y = P\Theta+\Xi
+\end{array}
+\label{eq:saidaY}
+\end{equation}
+Onde:
+
+$P$ - É a matriz de regressores obtida através da equação \ref{eq:permu};
+
+\begin{equation}
+\begin{array}{rcll}
+P =
+\begin{bmatrix}
+\begin{smallmatrix}
+  y(k-1)  & \cdots & y(k-n_y)&u(k-d)& \cdots & u(k-d-n_u) & y(k-1)u(k-d)& \cdots & y(k-1)^{l_1}u(k-d)^{l_2} \\
+  y(k) & \cdots & y(k-n_y+1)&u(k-d+1)& \cdots & u(k-d-n_u+1& y(k)u(k-d+1))& \cdots & y(k)^{l_1}u(k-d+1)^{l_2} \\
+  \vdots & \ddots & \vdots & \vdots & \ddots & \vdots & \vdots       & \ddots  & \vdots          \\ 
+  y(k-1+n)&\cdots&y(k-n_y+n)&u(k-d+n)&\cdots&  u(k-d-n_u+n)&y(k-n_y+n)u(k-d+n)  &\cdots   & y(k-n_y+n)^{l_1}u(k-d+n)^{l_2}
+\end{smallmatrix}
+\end{bmatrix}
+\end{array}
+\label{eq:regressores}
+\end{equation}
+
+Onde:
+l1 e l2 - Assumem valores de maneira a gerar todas as combinações de não linearidade representadas na equação \ref{eq:permu}.
+
+$Y$ - O vetor composto por todas as saídas do sistema;
+
+\begin{equation}
+\begin{array}{rcll}
+Y =
+\begin{bmatrix}
+ y(1)&y(2)  & \cdots & y(n)\\
+\end{bmatrix}
+\end{array}
+\label{eq:vetY}
+\end{equation}
+
+$\Xi$ - O vetor composto pelos resíduos do sistema;
+
+\begin{equation}
+\begin{array}{rcll}
+\Xi = 
+\begin{bmatrix}
+\xi \left ( 1 \right ) & \xi \left ( 2 \right )\cdots \xi \left ( n \right )\\
+\end{bmatrix}
+\end{array}
+\label{eq:vetXI}
+\end{equation}
+
+N - Número máximo de amostras;
+
+$\Theta$ - O vetor de parâmetros;
+
+\begin{equation}
+\begin{array}{rcll}
+\Theta = 
+\begin{bmatrix}
+\theta \left ( 1 \right ) & \theta \left ( 2 \right )\cdots \theta \left ( N_{\theta}-1 \right )
+\end{bmatrix}
+\end{array}
+\label{eq:vetTeta}
+\end{equation}
+
+$N_{\theta}$ - Número de parâmetros do sistema que é igual ao número de colunas de P.
+
+Na equação \ref{eq:residuo} é definido o símbolo do resíduo, que é a diferença entre a saída real e a saída estimada \ref{eq:residuo}.
+
+\begin{equation}
+\begin{array}{rcll}
+\xi = y\left ( k \right )  - \hat{y}\left( k,\theta \right ) \\
+\end{array}
+\label{eq:residuo}
+\end{equation}
+
+O vetor de saídas estimadas é definido conforme a equação \ref{eq:saidaestimada}.
+
+\begin{equation}
+\begin{array}{rcll}
+\hat{Y}\left( \theta \right )  = P \hat{\Theta} \\
+\end{array}
+\label{eq:saidaestimada}
+\end{equation}
+
+O vetor de parâmetros estimados $\hat{\Theta} $ é definido como:
+
+\begin{equation}
+\begin{array}{rcll}
+\hat{\Theta} = 
+\begin{bmatrix}
+\hat{\theta} \left ( 1 \right ) & \hat{\theta} \left ( 2 \right )\cdots \hat{\theta} \left ( N_{\theta}-1 \right )
+\end{bmatrix}
+\\
+\end{array}
+\label{eq:vetTetaChapeu}
+\end{equation}
+
+Os parâmetros do modelo podem ser estimados de maneira a minimizar a função de custo mostrada na equação \ref{eq:funçãoCusto}.
+
+\begin{equation}
+\begin{array}{rcll}
+J_n (\theta)= \frac{1}{N}\Xi^T\Xi\\
+\end{array}
+\label{eq:funçãoCusto}
+\end{equation}
+
+Onde:
+
+$J_n$ - função a ser minimizada;
+
+$N$ - tamanho do vetor de entrada de dados;
+
+$\theta$ - parâmetros do modelo.
+
+\subsection{ERR - \textit{Error Reduction Ratio}}
+
+É possível perceber que, até então, foram definidos a função não linear que representa um determinado sistema (\ref{eq:permu}), a matriz de regressores $P$ (\ref{eq:regressores}), o vetor de parâmetros $\Theta$ (\ref{eq:vetTeta}) e a função objetivo $J_n$ (\ref{eq:funçãoCusto}), que são os elementos necessários para a realização da estimação de parâmetros. Porém, na configuração disposta, seriam utilizados todos os regressores gerados na equação \ref{eq:permu}, e, para tal caso, é assumido que os regressores determinados são variáveis independentes, ou seja, todos fazem parte do modelo \cite{Aguirre2007}. Nesta subseção será definido o critério chamado taxa de redução de erro, que poderá ser utilizado na determinação dos regressores pertinentes ao modelo.
+
+A taxa de redução do erro, proveniente do inglês \textit{error reduction ratio} ou ERR, é um critério utilizado na detecção de estrutura que pode ser aplicado aos modelos NARX polinomiais. O objetivo desta técnica é reduzir o erro causado por mau condicionamento numérico através da indicação do termo mais pertinente ao modelo e ortogonalizando os demais em relação a estes mais importantes. 
+
+Seguindo os conceitos descritos em ~\citeonline{Aguirre2007} para definição do $ERR$, será considerado o seguinte modelo NARX geral, mostrado na equação \ref{eq:NARMAXgeral}.
+
+\begin{equation}
+\begin{array}{rcll}
+ y(k) = P^T(k-1)\hat{\theta} + \xi(k) & =  \sum_{i=1}^{n_\theta}\hat{\theta}_i p_{k,i}(k-1)  +  \xi(k)\\
+\end{array}
+\label{eq:NARMAXgeral}
+\end{equation}
+
+E o seguinte modelo auxiliar:
+
+\begin{equation}
+\begin{array}{rcll}
+ y(k) = \sum_{i=1}^{n_\theta}\hat{g}_i \omega_i(k-1)  +  \xi(k)\\
+\end{array}
+\label{eq:NARMAXaux}
+\end{equation}
+
+Em que os regressores $\omega_i$, da equação \ref{eq:NARMAXaux}, são ortogonais sobre os dados, ou seja:
+
+\begin{equation}
+\begin{array}{rcll}
+	\left \langle \omega_i\omega_k \right \rangle = \frac{1}{N}\sum_{k=1}^N\omega_i(k)\omega_k(k) = 0, \forall i \neq k\\
+\end{array}
+\label{eq:ortog}
+\end{equation}
+
+A soma dos valores quadráticos de $y(t)$ é $\left \langle  y,y \right \rangle $ ou $y^Ty$, e a partir da equação \ref{eq:NARMAXaux} é possível obter:
+
+\begin{equation}
+\begin{array}{rcll}
+ y(k)^2 = \Bigg(  \sum_{i=1}^{n_\theta}\hat{g}_i \omega_i(k-1)  +  \xi(k) \Bigg) \times \Bigg(  \sum_{i=1}^{n_\theta}\hat{g}_i \omega_i(k-1)  +  \xi(k) \Bigg) \\
+\end{array}
+\label{eq:NARMAXauxquad}
+\end{equation}
+
+Tomando o valor médio de \ref{eq:NARMAXauxquad} é possível obter a equação \ref{eq:NARMAXauxquadFinal}
+
+\begin{equation}
+\begin{array}{rcll}
+  y(k)^2 =  \sum_{i=1}^{n_\theta}\hat{g}_i^2 \left \langle \omega_i,\omega_i \right \rangle  +  \left \langle \xi,\xi\right \rangle  \\
+\end{array}
+\label{eq:NARMAXauxquadFinal}
+\end{equation}
+
+A conclusão sobre a equação \ref{eq:NARMAXauxquadFinal}, ``é a de que a soma dos valores quadráticos de $y(t)$ pode ser explicada, usando uma base ortonormal, como somatório dos valores quadráticos de cada regressor ortogonal respectivamente multiplicado pelos seus parâmetros" \, \cite{Aguirre2007}, e a parcela que não foi explicada pelos regressores é equivalente a soma do quadrado do vetor de resíduos.
+
+De acordo com essa idéia é possível quantificar a importância de cada regressor individualmente e se for acrescido o i-ésimo termo, a $ERR$ pode ser expressa como uma fração da soma dos valores quadráticos dos dados segundo a equação \ref{eq:ERR}. 
+
+\begin{equation}
+\begin{array}{rcll}
+ [ ERR]_i =  \frac{\hat{g}_i^2 \left \langle \omega_i,\omega_i \right \rangle} {\left \langle y,y\right \rangle}  \\
+\end{array}
+\label{eq:ERR}
+\end{equation}
+
+Segundo ~\citeonline{Aguirre2007} um critério para ajudar a escolher os regressores do modelo é incluir aqueles com maior valor de $ERR$, dentre um grande conjunto de regressores candidatos. 
+
+\subsection{AIC - (Akaike information criterion)}
+
+Um problema comum na área de processamento de sinais é determinar um modelo compatível para descrever ou caracterizar uma quantidade de dados experimentais. Essa determinação consiste em duas tarefas, a selação apropriada da estrutura do modelo e a estimação de parâmetros \cite{Seghouane2006}.
+A seleção da estrutura do modelo, por exemplo, estatisticamente é essencial, pois o modelo pode facilmente ser super-parametrizado simplesmente pelo aumento de termos atrasados nas saídas, entradas, erros, ou até pelo aumento do grau das não linearidades. Em geral, esse modelo se torna mais complexo do que o necessário e provavelmente mal condicionado numericamente. Contudo, detectar a estrutura de um modelo não linear não é tão mais complicado do que determinar a de um sistema linear \cite{Mrabet2003}. 
+
+Distribuições de probabilidade são a forma usual de se expressar um modelo na modelagem estatística. Por isso, o modelo pode ser avaliado por similaridades de uma distribuição de probabilidade especificada em relação a verdadeira distribuição de probabilidade que foi gerada nos dados de medição \cite{Yen1998}.  
+
+Seja $y = (y_1,y_2,...,y_n)$ a realização de um vetor aleatório e  $Y = (Y_1,Y_2,...,Y_n)$ o vetor com a verdadeira, porém desconhecida, distribuição $G(y)$. Suponhamos que existe o desejo de se aproximar $G(y)$ por um modelo $F(y,\theta)$, onde $\theta$ é um vetor de dimensões finitas de parâmetros desconhecidos. A possibilidade de adequação do modelo postulado pode ser medida apropriadamente por critérios de informação \cite{Yen1998}.   
+
+Em 1973 o processo de extração de informações foi formalizado por Akaike. Esse processo consiste em uma busca, a partir de um modelo de ordem superior, da representação daquele mais semelhante ao ``verdadeiro modelo'' representado pelos dados de medição \cite{Akaike1973}. O seu modelo foi baseado no critério de Kullback-Leibler e reflete o equilíbrio entre o benefício do modelo calculado e a complexidade do modelo $G(y)$. Ele engenhosamente incorpora duas fontes de informações: a variância do vetor de resíduos e o número de parâmetros do modelo \cite{Yen1998}. A função que representa essa idéia pode ser visualizada em \ref{eq:AIC}
+
+\begin{equation}
+	\begin{array}{rcll}
+	 	AIC = & N ln(\hat{\rho}_p)+ 2\frac{p}{N}  \\
+	\end{array}
+\label{eq:AIC}
+\end{equation}
+
+Onde:
+
+$AIC$ - critério de seleção sugerido por Akaike.
+
+$N$ - Número de amostras;
+
+$p$ - o número de parâmetros do modelo;
+
+$\hat{\rho}_p$ - é a variância estimada do ruído branco de entrada do processo para o modelo de ordem p.\\
+
+Se a distribuição de predições é definida pelo modelo com parâmetros determinados pelo método de máxima verossimilhança, a verossimilhança é dada pela equação \ref{eq:AIC}, o que é equivalente ao critério de informação de AKAIKE. Portanto, o mínimo valor de $AIC$, procedimento que seleciona a ordem do modelo, é um procedimento de seleção por máxima verossimilhança de predição.
+
+
+\subsection{Método dos Mínimos Quadrados Recursivo}
+
+Para que seja possível a minimização de uma função em relação a uma variável $\theta$ qualquer, um método ou algoritmo deve ser utilizado. Em princípio, foi explicado como se estruturam os modelos NARMAX (\ref{eq:FunçãoNl}) e NARX (\ref{eq:permu}). Após, foram definidas formas para minimização do erro causado por mau condicionamento numérico (\ref{eq:ERR}) e, em seguida, critérios para indicar a quantidade de termos pertinentes ao modelo (\ref{eq:AIC}).
+
+Tendo definido a estrutura do modelo é possível estimar os parâmetros do modelo de maneira mais rápida e com boa correlação entre os dados do modelo. Para isso, podem ser utilizados estimadores baseados em mínimos quadrados.
+
+O estimador de mínimos quadrados analisa as propriedades de uma variável aleatória $\theta$ utilizando equação a diferenças do processo \cite{Coelho2004}, semelhante ao definido na equação \ref{eq:permu}. As propriedades mais importantes nesse método são que o estimador é não polarizado, ou seja, os parâmetros estimados convergem para os verdadeiros quando o número de iterações aumenta, a precisão das estimativas é estabelecida pelo valor inicial da matriz de covariância e pelo fato de o resíduo ser branco com média nula \cite{LJUNG1983}.
+
+Os autores ~\citeonline{Coelho2004} descrevem um algoritmo simples para estimação em mínimos quadrados descrito a seguir:
+
+\begin{itemize}
+	\item	Mede-se a saída e entrada do sistema;
+	\item	Atualiza-se o vetor de medidas $p$ (que simboliza cada linha na equação \ref{eq:regressores});
+	\item	Calcula-se o erro de previsão como mostrado na equação \ref{eq:residuo};
+	\item	Calcula-se o ganho do estimador utilizando-se da equação \ref{eq:ganhoEstima};
+	
+	\begin{equation}
+		\begin{array}{rcll}
+		 	K(t) = & \frac {\phi(t-1) p(t)} {\lambda + p^T(t) \phi p(t)}  \\
+		\end{array}
+	\label{eq:ganhoEstima}
+	\end{equation}
+	
+	\item	Calcula-se o vetor de parâmetros estimados $\theta$ como em \ref{eq:estimaTeta};
+	
+	\begin{equation}
+		\begin{array}{rcll}
+		 	\hat{\theta}(t+1) = & \hat{\theta}(t) + K(t)\xi(t)  \\
+		\end{array}
+	\label{eq:estimaTeta}
+	\end{equation}
+	
+	\item	Calcula-se a matriz de covariância como em \ref{eq:covariacia};
+	
+	\begin{equation}
+		\begin{array}{rcll}
+			\phi(t) = & \frac{1}{\lambda}{\phi(t-1) - K(t) [\phi(t-1)p(t)]^T}
+		\end{array}
+	\label{eq:covariacia}
+	\end{equation}
+	
+\end{itemize}
+ 
+
+
+\subsection{Otimização Utilizando PSO}
+
+
+Um dos problemas mais importantes na computação científica é na solução de sistemas de equações. Entre eles é possível citar aproximação de funções, solução de sistemas não lineares, condições de contorno entre outras \cite{Santos2006}. Em problemas de otimização é possível perceber que freqüentemente está envolvida a procura de mínimo ou máximo global. Algumas vezes uma relação matemática pode não ser encontrada e para se obter os valores de uma função é necessário efetuar uma experiência ou uma seqüência de cálculo. Isto significa que, nesse caso, é necessário manter o número de estimativas com erro mínimo \cite{Bajpai1978}.
+
+A seguir será abordado o algoritmo básico de PSO (\textit{Particle Swarm Optimization}) cujo objetivo é a procura de um mínimo e que pode ser aplicado em problemas de identificação, sintonia de controladores e para controlar sistemas. Esses algoritmos serão utilizados neste trabalho para otimizar os resultados obtidos com as técnicas de estimação de parâmetros tradicionais e para a sintonia dos controladores escolhidos.
+
+O PSO é uma técnica estocástica baseada em populações cuja inspiração é o comportamento social dos pássaros e peixes. Ele foi inicialmente introduzido por ~\citeonline{Kennedy1995}. Nesse algoritmo cada partícula ajusta sua trajetória em direção a seu melhor índice, obtido na iteração anterior. As partículas estão dispersas em um espaço de busca multidimensional, onde a posição de cada partícula é ajustada de acordo com sua própria experiência e a de seus vizinhos. A busca do melhor índice é continuada até que seja percebido um estado relativamente estático ou que extrapole os limites computacionais \cite{MALIK2007}.
+
+ O algoritmo básico para otimização utilizando PSO pode ser observado a seguir:
+
+\begin{itemize}
+	\item	Inicializar a população de partículas com posições e velocidades randômicas no d-ésimo espaço de busca do problema.
+	\item	Para cada partícula, avaliar a função com as d-ésimas partículas.
+	\item	Comparar as avaliações escolhendo a partícula com menor índice (M).
+	\item	Comparar a avaliação de cada partícula com sua anterior e substituir pela melhor (PM).
+	\item	Atualizar a velocidade e posição das partículas de acordo com as equações \ref{eq:Vparticula} e \ref{eq:Xparticula} respectivamente:
+\end{itemize}
+
+\begin{equation}
+		\begin{array}{rcll}
+			V_i^{k+1} = & V_i^{k+1} + c_1 r_1 (PM_i^{k} - X_i^{k} ) +  c_2 r_2 (M_i - X_i^{k} ) 
+		\end{array}
+	\label{eq:Vparticula}
+	\end{equation}
+	
+	Onde:
+	
+$V_i^{k+1}$ - Velocidade das i partículas no instante k+1;
+
+$c_1, c_2$ - Constantes de aceleração das partículas;
+
+$r_1, r_2$ - Números aleatórios pertencentes ao intervalo de 0 a 1;
+
+M - Partícula cuja função objetivo retorna o menor ou maior valor;
+
+$X_i^{k}$ - i Partículas dispersas num espaço multidimensional e no instante k; 
+
+PM - Vetor com as melhores partículas encontradas desde o instante 0 até o k, representando o melhor valor de cada partícula, ou seja um mínimo ou máximo local.  
+
+\begin{equation}
+		\begin{array}{rcll}
+			X_i^{k+1} = & X_i^{k} + V_i^{k+1}  
+		\end{array}
+	\label{eq:Xparticula}
+	\end{equation}
+
+Através das equações mostradas é possível perceber que o algoritmo relaciona cada partícula dispersa em um espaço, suas velocidades, melhores locais e globais com certa aleatoriedade. Em suma, as partículas estão dispersas no espaço, e através da equação \ref{eq:Vparticula} pode-se encontrar a direção que cada partícula deve se mover, para minimizar ou maximizar a função objetivo. Após encontradas as velocidades, elas são integradas, ou somadas, às posições reposicionando as partículas como na equação \ref{eq:Xparticula}.
+
+Nas técnicas encontradas na literatura é possível perceber desenvolvimentos para aprimorar a busca. Algumas dessas técnicas incorporam ao algoritmo coeficientes de inércia, divisão celular, mudanças na atualização da velocidade o que pode especializar o algoritmo para determinados tipos de funções como identificação, buscando minimizar o erro quadrático médio, sintonia de parâmetros PID, maximizando desempenho com restrições, e controle preditivo, minimizando os erros futuros e variações nos sinais de controle.
+

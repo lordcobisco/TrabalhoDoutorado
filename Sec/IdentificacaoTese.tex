@@ -1,0 +1,1057 @@
+\noindent\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+\\
+\chapter{\large IDENTIFICAÇÃO DE SISTEMAS}
+\noindent\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+\\
+\label{cap:Identificacao}
+
+
+O algoritmo de otimização por nuvem de partículas pode ser aplicado nas mais variadas áreas, sempre o objetivo de encontrar a melhor solução de determinado processo. Uma das partes fundamentais deste trabalho é a aplicação do novo algoritmo de otimização, com a análise de convergência. A primeira área do conhecimento na qual serão realizadas análises e comparações é na área de identificação. O objetivo é realizar a modelagem de sistema através da minimização do erro de estimação, utilizando o algoritmo. 
+
+\section{Introdução}
+
+
+Modelos de sistemas reais são de fundamental importância. Eles podem ser úteis para a análise como, por exemplo, para obter conhecimento sobre determinado sistema. A modelagem dos processos torna possível predizer ou simular o seu comportamento. Além disso, técnicas avançadas para projeto de controladores, otimização, supervisão, detecção de falhas, e diagnóstico de componentes são também baseadas em modelos de processos \cite{Nelles2001}.
+ 
+Modelos matemáticos podem ser desenvolvidos de duas maneiras, que podem ser combinadas. Uma maneira é desmembrando o sistema em outros subsistemas cujas propriedades são conhecidas. Isso basicamente significa confiar em conhecimentos como as leis da natureza e outras relações baseadas em trabalhos experimentais anteriores. Esses subsistemas, ao final, são agrupados matematicamente resultando em um modelo geral. Essa maneira de relacionar matematicamente um sistema é conhecida como modelagem e não necessariamente se utiliza de informações de dados coletados experimentalmente no sistema em questão. Nesse caso, o procedimento de modelar é praticamente dependente do sistema modelado e normalmente se limita a técnicas específicas na área de aplicação em questão. A outra maneira de obter um modelo, que descreve determinado sistema, é baseado em ensaios experimentais. Nesse caso, sinais de entrada e saída do sistema são armazenados e sujeitos a uma análise de dados com o objetivo de inferir o modelo. Isso consiste em identificar um sistema \cite{LJUNG1987}.
+ 		
+		Identificação de sistemas ou identificação de processos é o campo da modelagem matemática de sistemas (processos) cujos parâmetros são obtidos a partir de testes ou dados experimentais. Em termos técnicos pode ser definido como a determinação de um modelo dentro de uma classe específica de sistemas baseada em dados de entrada e saída no qual o sistema excitado é equivalente \cite{Zhu2001}.
+		
+		Uma das importantes características das técnicas de identificação de sistemas, segundo ~\citeonline{Aguirre2007}, é que pouca ou nenhuma informação prévia é necessária. Devido a isso, em muitos casos será preferível usar técnicas de identificação de sistemas para modelar.
+		 
+		 Segundo ~\citeonline{Zhu2001} existem 4 entidades básicas envolvidas em identificação de sistemas que são:
+		 
+\begin{itemize}
+
+			\item Entrada e Saída;
+
+			\item Escolha do modelo;
+
+			\item Estimação do modelo;
+			
+			\item Validação do modelo.
+			
+ \end{itemize}
+ 
+Os dados de entrada e saída são normalmente coletados a partir de um teste ou experimento de identificação, que é projetado de maneira que os dados medidos sejam suficientemente informativos, isto é, de maneira que seja extraído o máximo de informação possível sobre as propriedades do sistema de interesse \cite{Zhu2001}. Uma consideração que deve ser realizada, quando se trata da escolha do modelo, é que não existe uma única maneira de se modelar um sistema, e sim, uma família de modelos com características e desempenhos variados, que proporcionam representações aproximadas do processo a ser aprendido. Isto significa que decidir qual desses modelos melhor se adequa é um dos problemas não triviais a ser enfrentado \cite{Aguirre2007}. 
+ 
+ Um conjunto de modelos candidatos pode ser obtido especificando propriedades comuns do sistema a ser estudado. É nesse estágio que o conhecimento a \textit{priori} e a intuição devem ser combinados com as propriedades formais do sistema. Após obtidos os dados experimentais e escolhido o modelo que melhor se adéqua ao sistema, os parâmetros desse modelo escolhido devem ser estimados. Para que seja possível essa estimação, um critério, comumente chamado de função objetivo, é especificado, e o valor dos parâmetros é encontrado, objetivando a minimização dessa função. Finalizada a etapa de estimação, o próximo passo é sua validação. Nesse estágio é avaliado se o modelo é suficientemente bom e se ele interpola os dados adequadamente \cite{Zhu2001}. A figura \ref{fig:DiagramaIdentificacao} mostra um diagrama representando a sequência de passos necessários para realizar a identificação de um processo.
+ 
+ \begin{figure}[H]
+   \inserirListaFiguras
+   \centering
+   \caption{Procedimento básico para identificação. Fonte: Adaptado de ~\citeonline{LJUNG1987}}
+   %\FONTE{\cite{franca}}
+   \includegraphics[scale = 0.3]{Figuras/DiagramaIdentificacao.png}
+   \label{fig:DiagramaIdentificacao}
+\end{figure}
+ 
+	A figura \ref{fig:DiagramaIdentificacao} mostra o fluxo lógico e natural de um procedimento de identificação padrão. Primeiramente deve-se realizar, baseado no conhecimento do sistema (a \textit{priori}), um projeto de sinais, cujo objetivo é obter a maior quantidade de informações possível do sistema. Esse passo faz parte do projeto experimental. Após, obtidos os dados do projeto experimental, esses dados, juntamente com o modelo escolhido, a partir do conhecimento a \textit{priori}, servirão de base para a estimação de parâmetros, cujo objetivo é minimizar uma função custo (ou objetivo) que é uma relação do erro entre o modelo e os dados do processo. Finalmente, após estimados os parâmetros, o modelo deve ser avaliado. Caso ele não seja adequado, esse conhecimento poderá ser utilizado para a realização de outros projetos experimentais, ou levar à escolha de um outro modelo mais adequado, ou, ainda, levar à escolha de uma função objetivo mais apropriada \cite{LJUNG1987}.    
+ 
+\section{Projeto de Sinais de Excitação}
+		 
+		 Ao fornecer a um sistema, que se deseja analisar sinais de entrada, é possível realizar um experimento de identificação. Esses sinais de teste devem ser aplicados quando os sinais operacionais (quando a planta está em operação) não são o suficiente para excitar as dinâmicas do sistema. Os sinais mais favoráveis para a excitação de sistemas segundo ~\citeonline{Isermann2011} devem seguir alguns critérios tais como: devem ser simples de se reproduzir, com ou sem um gerador de sinais, possuir uma simples descrição matemática e suas propriedades correspondentes ao método de identificação, devem ser aplicáveis ao atuador do processo e ao processo como um todo, além de excitar as dinâmicas de interesse.
+		 	 
+		 No projeto de sinais de excitação são elaboradas as entradas para o sistema em análise que, segundo ~\citeonline{Aguirre2007}, devem observar três aspectos: 
+		 
+		 \begin{itemize}
+
+				\item Onde excitar a planta;
+	
+				\item Que tipo de sinal utilizar de modo que estes sejam representativos o suficiente;
+	
+				\item Como amostrar os dados.
+			
+ 		 \end{itemize}
+ 
+ 		 Com respeito a esses tópicos existem algumas diferenças entre modelos lineares e não lineares. Porém, a ideia principal listada é aplicável em ambos os casos \cite{Aguirre2007}. A ideia de projetos de sinais de excitação, neste trabalho, seguirá o seguinte fluxo: Primeiramente, haverá uma breve descrição de como escolher entre eles o sinal que melhor se adequa ao processo desejado e como realizar a coleta desses sinais. Em seguida, será abordada a escolha do período de amostragem do sistema. Nesse sentido, será apresentada uma metodologia para coleta de dados sobre-amostrados e uma solução para uma adequada re-amostragem.
+		 
+		 \subsection{Escolha e Coleta de Sinais}
+		 
+		 Os principais sinais utilizados em identificação são os sinais baseados em ruído. Sinais de teste baseados em ruído branco ou colorido podem ser utilizados para identificação e permitem obter a resposta ao impulso de um processo (sua função de transferência). Para o caso de um ruído branco, a resposta ao impulso é diretamente proporcional a sua função de correlação cruzada. Como a correlação cruzada de um sinal estacionário automaticamente separa o sinal desejado do ruído, é possível utilizar esses métodos mesmo na presença de grandes perturbações e relações sinal-ruído desfavoráveis. Nesse caso é apenas necessário que o tempo de medição dos dados seja longo o suficiente. O uso de ruídos naturais como sinal de teste é possível apenas sob certas circunstâncias. Por isso, na prática, é normalmente melhor utilizar sinais de excitações artificiais \cite{Isermann2011}. 
+		 
+		 Os sinais pseudo aleatórios binários (PRBS) têm sido largamente utilizados devido a serem facilmente gerados computacionalmente, além de permitirem a identificação de respostas ao impulso diretamente. Porém, esse sinal não é recomendado para excitação de sistemas não lineares, pois, para que as não linearidades sejam identificadas, é necessário excitar mais níveis de sinal \cite{Isermann2011}. No caso de sistemas não lineares, muitas vezes será necessário ou até desejável excitar várias amplitudes na faixa onde essa não linearidade é mais percebida com o objetivo de observar melhor as características estáticas e dinâmicas,ou seja, será interessante combinar as propriedades do PRBS em excitar várias frequências e ao mesmo tempo excitar várias amplitudes de sinal \cite{Aguirre2007}.
+		 
+		 A seleção de uma sequência de sinais de entrada está associada diretamente à faixa de operação a ser excitada. Além disso, normalmente é interessante manter a excitação do sistema em baixas frequências, com o intuito de evitar excitar dinâmicas indesejadas para a identificação. Duas das estratégias mais utilizadas estão relacionadas nos itens a seguir \cite{Meleiro2002}.
+		 
+		 
+\begin{itemize}
+	\item Seja v(t) um sinal correspondente a um ruído branco. O sinal de entrada utilizando o ruído pode ser definida como mostra a equação \ref{eq:PRS1}.
+	
+			\begin{equation}
+			\begin{array}{lllllll}
+				u(k) = v(k) \left ( int \left [ \frac{k-1}{N} \right ] \right ), k=1, 2, \cdots  
+			\end{array}
+			\label{eq:PRS1}
+			\end{equation}
+			
+			Onde k é um índice correspondente ao tempo, N é o número máximo de amostras, o operador int é a parte inteira dos elementos no seu interior e u é o sinal resultante da operação.
+	
+	\item Uma extensão do método para geração de PRS pode ser obtida introduzindo-se uma variável aleatória adicional que determine quando o sinal de entrada deve ser alterado. A introdução desse conceito pode ser observada na equação \ref{eq:PRS2}.
+		
+		\begin{equation}
+			\begin{array}{lllllll}
+				u(k) = \left\{
+				\begin{matrix} 
+				
+				u(k-1) & com &probabilidade &\alpha \\ v(k) & com &probabilidade &1-\alpha
+				
+				\end{matrix}\right.
+				  
+			\end{array}			
+			\label{eq:PRS2}
+			\end{equation}
+	
+\end{itemize}
+		 
+		 %\subsection{Escolha do Período de Amostragem}
+		 %
+		 %Grande parte dos processos reais são contínuos no tempo. Porém, em aplicações reais é necessário registrar as variáveis de entrada e saída de forma discreta no tempo. Por isso, para que seja possível a coleta de dados de um determinado sistema, essas variáveis devem ser amostradas \cite{Aguirre2007}. 
+		 %
+		 %O tempo de espera entre a coleta de duas amostras é chamado de período de amostragem ($T_s$). Esse período é de grande importância para a identificação de sistemas, pois a escolha dele influi diretamente na estrutura e na estimação dos parâmetros do modelo escolhido e, consequentemente, na consistência do modelo final, ou seja, na capacidade que o modelo possuirá de representar as características reais do sistema. 
+		 %
+		 %A escolha do período de amostragem foi estudada por ~\citeonline{Aguirre1995a}. Os aspectos analisados envolvem os efeitos da sobre-parametrização (excesso de parâmetros nos modelos matemáticos escolhidos) de sistemas com análises que, dentre outras, relacionam o período de amostragem como problemas na identificação de parâmetros. Algumas conclusões acerca da influência do período de amostragem são:
+		 %
+		 %\begin{itemize}
+%
+				%\item A escolha de um período de amostragem baixo pode tornar a estimação mal-condicionada;
+%
+	%
+				%\item A escolha de um período de amostragem alto impede que as dinâmicas de interesse do processo sejam capturadas.
+			%
+ 		 %\end{itemize}
+%
+		 %
+		  %\subsection{Regra heurística para seleção do tempo de amostragem}
+		  %
+		  %A seleção do período de amostragem é de vital importância pois, se o intervalo de amostragem for muito curto a estimação poderá estar malcondicionada. Na prática, o critério de se escolher a frequência de amostragem 5 a 10 vezes maior que a frequência de interesse no sinal nem sempre retorna resultados satisfatórios, devido a nem sempre esse conhecimento existir a \textit{priori}. Além disso também é interessante verificar se a amostragem escolhida é satisfatória e por isso a regra heurística para seleção do período de amostragem é apresentada em ~\citeonline{Aguirre2007}.
+		  %
+%O procedimento mostrado em ~\citeonline{Aguirre2007}, para determinação do tempo de amostragem, inicia-se assumindo que os sinais de entrada e saída de um processo são coletados e registrados utilizando um período de amostragem muito pequeno. Observando por essa perspectiva é possível perceber que a seleção do período de amostragem ideal será obtido a partir da taxa de re-amostragem do sinal observado. Para escolher a taxa de re-amostragem do sinal observado é necessário verificar o grau de correlação (ou redundância) entre as observações. De maneira a quantificar os efeitos causados pela sobre-amostragem são definidas as funções de autocorrelação linear, mostrada na equação \ref{eq:Lincorr} e autocorrelação não-linear, na equação \ref{eq:NLincorr}. 
+%
+			%\begin{equation}
+			%\begin{array}{lllllll}
+					%r_{y^*}(\tau) = E \left [ (y^*(k) - \overline{y^*(k)}) (y^*(k-\tau) - \overline{y^*(k)}) \right ]
+			%\end{array}
+			%\label{eq:Lincorr}
+			%\end{equation}
+			%
+			%\begin{equation}
+			%\begin{array}{lllllll}
+					%r_{{y^*}^2}(\tau) = E \left [ ({y^*}^2(k) - \overline{{y^*}^2(k)}) ({y^*}^2(k-\tau) - \overline{{y^*}^2(k)}) \right ]
+			%\end{array}
+			%\label{eq:NLincorr}
+			%\end{equation}
+			%
+			%Onde:			
+			%
+%\begin{itemize}
+	%\item $r_{y^*}(\tau)$ é a resposta da função de auto-covariância linear;
+	%\item $r_{{y^*}^2}$ é a resposta da função de auto-covariância não linear;
+	%\item $E[.]$ é o operador esperança;
+	%\item $y^*(k)$ é o sinal a ser re-amostrado;
+	%\item $\overline{y^*(k)}$ é a média do sinal a ser re-amostrado;
+%\end{itemize}
+%
+%A escolha da taxa de re-amostragem $\Delta$ pode ser obtida a partir da expressão \ref{eq:reamostra}.
+%
+			%\begin{equation}
+			%\begin{array}{lllllll}
+				%10 \Delta \leq \tau_m^* \leq 20 \Delta
+			%\end{array}
+			%\label{eq:reamostra}
+			%\end{equation}
+			%
+			%Onde:
+			%
+			%\begin{itemize}
+				%\item $\tau_{y^*}$ é o primeiro mínimo da função de auto-covariância $r_{y^*}$;
+				%\item $\tau_{{y^*}^2}$ é o primeiro mínimo da função de auto-covariância $r_{{y^*}^2}$;
+				%\item \begin{equation}
+						%\begin{array}{lllllll}
+							%\tau_m^* = min[\tau_{y^*},\tau_{{y^*}^2}]
+						%\end{array}
+						%\label{eq:taumin}
+						%\end{equation}
+						%
+						%\item $\Delta$ é a amostragem atual dos dados.
+						%\end{itemize}
+				%
+				%Portanto, a nova amostragem dos dados pode ser escolhida de acordo com a estrutura definida na equação \ref{eq:taumin}.
+	
+
+\section{Modelos Polinomiais Lineares}
+
+	Após escolher o sinal a ser aplicado no sistema e o período de amostragem mais adequado (o que equivale ao item Entrada e Saída) o próximo passo é escolher o modelo.  
+	
+	Há diversas formas de representar modelos lineares. Uma das mais utilizadas é a forma de funções de transferência definida como a transformada da resposta ao impulso do sistema modelado, para condições iniciais nulas. Se a resposta ao impulso for contínua no tempo, então, utiliza-se a transformada de \textit{Laplace}. Se a resposta ao impulso for discreta no tempo, a respectiva função de transferência é, por definição, a transformada Z \cite{Aguirre2007}. 
+		
+		Nas representações a seguir definiremos  $A(z^{-1})$, $B(z^{-1})$ $C(z^{-1})$ e $D(z^{-1})$ conforme as equações \ref{eq:A} e \ref{eq:B} respectivamente.
+		
+		\begin{equation}
+			\begin{array}{lllllll}
+					A(z^{-1})= 1 + a_1z^{-1} + a_2z^{-2} +  ... + a_{n_a}z^{-n_a}
+			\end{array}
+			\label{eq:A}
+			\end{equation}
+			
+			\begin{equation}
+			\begin{array}{lllllll}
+					B(z^{-1})= 1 + b_1z^{-1} + b_2z^{-2} +  ... + b_{n_b}z^{-n_b}
+			\end{array}
+			\label{eq:B}
+			\end{equation}
+			
+			\begin{equation}
+			\begin{array}{lllllll}
+					C(z^{-1})= 1 + c_1z^{-1} + c_2z^{-2} +  ... + c_{n_c}z^{-n_c}
+			\end{array}
+			\label{eq:C}
+			\end{equation}
+			
+			\begin{equation}
+			\begin{array}{lllllll}
+					D(z^{-1})= 1 + d_1z^{-1} + d_2z^{-2} +  ... + d_{n_d}z^{-n_d}
+			\end{array}
+			\label{eq:D}
+			\end{equation}
+		
+		Isto significa que os polinômios $A(z^{-1})$, $B(z^{-1})$ $C(z^{-1})$ e $D(z^{-1})$ representarão sistemas discretos no tempo.
+		
+		O modelo que representará o sistema utilizado neste trabalho será o ARX (\textit{Autoregressive with eXogenous Input}).
+		
+		%\subsection{OE}
+		%
+		%Considere o sistema LIT (Linear e invariante no tempo) descrito no diagrama de blocos da figura  \ref{fig:OE}.
+	%
+		%\begin{figure}[H]
+   	%\inserirListaFiguras
+   	%\centering
+   	%\caption{Diagrama de Blocos do Modelo OE. Fonte: ~\citeonline{Isermann2011}}
+   	%%\FONTE{\cite{franca}}
+  	%\includegraphics[scale = 0.4]{Figuras/OE.png}
+   	%\label{fig:OE}
+		%\end{figure}	
+	%
+	%Se v(k) representa medidas de ruído estatisticamente independentes das entradas u(k). Então, a formulação do modelo OE pode ser descrita pela equação \ref{Eq:OE}.
+	%
+		%\begin{equation}
+			%\begin{array}{lllllll}
+					%y(k)=\frac{B(z^{-1})}{A(z^{-1})}u(k)+ v(k)
+			%\end{array}
+			%\label{Eq:OE}
+			%\end{equation}
+		
+		
+		\subsection{ARX}
+		
+		Sendo $A(z^{-1})$ e $B(z^{-1})$ polinômios arbitrários, o modelo ARX assume a forma da equação \ref{Eq:ARX}.
+
+		\begin{equation}
+			\begin{array}{lllllll}
+					y(k)=\frac{B(z^{-1})}{A(z^{-1})}u(k)+\frac{1}{A(z^{-1})}v(k)
+			\end{array}
+			\label{Eq:ARX}
+			\end{equation}
+		
+		O modelo ARX (\textit{AutoRegressive with eXogenous inputs})apresentado no diagrama de blocos da figura \ref{fig:ARX}, pode ser obtido a partir de um modelo polinomial linear mais geral de entradas e saídas resultando na equação  \ref{Eq:ARX} \cite{Aguirre2007}.
+		
+		\begin{figure}[H]
+   	\inserirListaFiguras
+   	\centering
+   	\caption{Diagrama de Blocos do Modelo ARX. Fonte: ~\citeonline{Isermann2011}}
+   	%\FONTE{\cite{franca}}
+  	\includegraphics[scale = 0.3]{Figuras/ARX.png}
+   	\label{fig:ARX}
+		\end{figure}
+		
+		%\subsection{ARMAX}
+		%
+		 %De maneira a melhor descrever o termo relativo às perturbações externas, em lugar de utilizar os modelos ARX, o modelo ARMAX é normalmente preferido. Nessa nova estrutura a função de transferência relacionada com a perturbação será a razão entre dois polinômios de acordo com a relação \ref{Eq:ARMAX} \cite{Corriou2004};
+		 %
+		  %\begin{equation}
+			%\begin{array}{lllllll}
+					%y(k)=\frac{B(z^{-1})}{A(z^{-1})}u(k)+\frac{C(z^{-1})}{A(z^{-1})}v(k)
+			%\end{array}
+			%\label{Eq:ARMAX}
+			%\end{equation}
+%
+%O diagrama de blocos da figura \ref{fig:ARMAX} mostra uma forma alternativa de representar a equação \ref{Eq:ARMAX}.
+%
+	 	%\begin{figure}[H]
+   	%\inserirListaFiguras
+   	%\centering
+   	%\caption{Diagrama de Blocos do Modelo ARMAX. Fonte: ~\citeonline{Isermann2011}}
+   	%%\FONTE{\cite{franca}}
+   	%\includegraphics[scale = 0.4]{Figuras/ARMAX.png}
+   	%\label{fig:ARMAX}
+		%\end{figure}
+		
+	
+%\section{Modelos Não Lineares Polinomiais}
+		%
+		%Antes de pensarmos no desenvolvimento de um modelo não linear, um modelo linear deveria ser considerado primeiramente. Se o modelo linear não atingir um desempenho satisfatório uma das possíveis explicações é que existe um comportamento não linear no processo. Para se ter a confirmação de que este é o caso, deve ser realizada uma cuidadosa comparação entre o processo e o modelo linear e/ou um teste de não linearidades. \cite{Nelles2001}
+		%
+		%Os sistemas não lineares são todos aqueles que não satisfazem o princípio da superposição. Em princípio todos os sistemas são não lineares. Sua dinâmica normalmente depende da amplitude do sinal de entrada assim como do ponto de operação \cite{Aguirre2007}.
+%
+%\subsection{NARMAX}
+%
+%Dentre os modelos para identificação de sistemas não lineares destacam-se as classes de modelos polinomiais não lineares baseadas em auto-regressão com média móvel e entrada exógena (NARMAX). Problemas de sistemas não lineares podem ser adequadamente representados com tais estruturas \cite{Aguirre1998}. Sua estrutura é dada por uma função não linear, seguindo o modelo encontrado em ~\citeonline{Aguirre1998}, que relaciona as entradas, saídas e o erro como mostra a equação \ref{eq:FunçãoNl}.
+%
+%\begin{equation}
+%\begin{array}{rcll}
+ %y(k) = F^{l}(y(k-1),y(k-2),...,y(k-n_y),u(k-d),u(k-d-1), ... ,\\
+ %& & & \\
+ %u(k-d-n_u+1), e(k-1),e(k-2), ... ,e(k-n_e))+e(k)
+%\end{array}
+%\label{eq:FunçãoNl}
+%\end{equation}
+%
+%Onde:
+%
+%$F^{l}$ - É uma função não linear qualquer;
+%
+%u - Função de entradas;
+%
+%y - Função de saídas;
+%
+%e - Resíduo;
+%
+%d - Atraso de transporte do sistema;
+%
+%$n_u$ - Atraso máximo da entrada que influência o modelo;
+%
+%$n_y$ - Atraso máximo da saída que influência o modelo;
+%
+%$n_e$ - Atraso máximo do vetor de resíduos que influência o modelo.\\
+%
+%A função não linear mostrada na equação \ref{eq:permu} denota um modelo NARX (sem a inclusão do erro de estimação). Ela consiste em um modelo que relaciona todas as entradas e saídas do sistema de maneira que haja $l$ agrupamentos de termos. Em suma ela é uma relação que a partir da quantidade de atrasos em $y$ e em $u$, do atraso de transporte $d$, e do grau de não linearidade $l$, gera combinações de termos não lineares formando um modelo polinomial mais geral possível, dentro das limitações citadas.
+%
+%\begin{equation}
+%\begin{array}{rcll}
+ %y(k) = \sum_{m=0}^{l} \sum_{p=0}^{m} \sum_{n_1,n_m}^{n_y,n_u} c_{p,m-p}(n_1,...,n_m) \prod_{i=1}^p y(k-n_i) \prod_{i=p+1}^m u(k-n_i)
+%\end{array}
+%\label{eq:permu} 
+%\end{equation}
+%
+%Onde:
+%
+%$l$ - Grau de não linearidade;
+%
+%$c$ - Parâmetro do modelo;
+%
+%$p$, $m$ - Termos auxiliares para a combinação entre y e u;
+%
+%$n_1$, $n_m$ - Índices das constantes que multiplicam o polinômio.\\
+
+\section{Dificuldades Relacionadas à Identificação}
+
+	O conceito de identificabilidade é um dos problemas centrais em identificação. Esse conceito consiste em se analisar em quais condições o procedimento de identificação retornará uma solução única para os parâmetros do modelo escolhido, e, qual modelo resultante é igual, ou mais semelhante, ao sistema real. Isso envolve aspectos como que tipo de sinais de entrada são suficientemente informativos para distinguir se diferentes modelos são adequados ou não para descrever as dinâmicas do processo.
+	
+	É possível que um método de estimação não retorne um modelo capaz de representar adequadamente um sistema. Uma das possíveis razões é a presença de perturbações externas, que podem inviabilizar a obtenção de um conjunto único de parâmetros que garantam uma representação fiel do sistema de interesse. Além disso, algumas abordagens podem não ser eficazes em problemas práticos, pois, estes podem conter ruído e/ou dinâmicas não modeladas \cite{Campello2007}. 
+	
+	Segundo ~\citeonline{Rohrs1982} sinais coletados de plantas reais sempre conterão dinâmicas não modeladas de alta frequência e pequenos atrasos e, portanto, não existe um limite superior no número de zeros e polos de uma planta. Também, os sistemas reais sempre estarão sujeitos a perturbações aditivas, não medidas, presentes na saída, mesmo que muito pequenas. Ou seja, potencialmente um sistema pode ter a obtenção de um conjunto único de parâmetros que possam representar fielmente o sistema real escolhido.
+	
+	Para que seja possível contornar tais problemas é necessário estudar os efeitos de cada um desses problemas buscando minimizá-los. 
+	 
+% Falar sobre as vantagens de cada algoritmo apresentado
+
+		\subsection{Presença de Ruídos}
+		
+			Os sinais de saída de vários processos não contém apenas a resposta ao sinal de teste (sinal desenvolvido no projeto experimental), mas também neles pode conter ruído \cite{Ruscio1995} como mostrado no diagrama \ref{fig:ProcessoComRuido}.
+			
+			\begin{figure}[H]
+   	\inserirListaFiguras
+   	\centering
+   	\caption{Diagrama de blocos de um processo sujeito a ruído. Fonte: Adaptado de ~\citeonline{Isermann2011}}
+   	%\FONTE{\cite{franca}}
+   	\includegraphics[scale = 0.4]{Figuras/ProcessoComRuido.png}
+   	\label{fig:ProcessoComRuido}
+		\end{figure}
+		
+		Esse ruído interfere no sinal de saída por algumas razões particulares. O ruído pode ser causado por perturbações externas atuando no processo ou por perturbações internas localizadas dentro dos limites do processo. Identificar um processo utilizando um sinal de teste só é normalmente possível se o ruído for de pequena amplitude comparado ao sinal projetado e se o ruído possuir média constante. Caso um ruído de propriedades desconhecidas esteja atuando no sistema é praticamente impossível obter qualquer modelo útil resultante de uma identificação em um tempo relativamente curto de aquisição de dados. Nesse caso, é necessário esperar um período de tempo no qual a média do sinal de ruído seja percebida constante ou buscar métodos mais avançados de identificação \cite{Isermann2011}.
+			
+		\subsection{Presença de Dinâmicas Não Modeladas}
+		
+		Os modelos nominais, ou simplificados, não representam as plantas com total fidelidade, ou por diferenças nas medições do comportamento do sinal de saída do sistema na etapa de modelagem, ou por simplificações no modelo que não comportam comportamentos não lineares nem variância no tempo. É importante distinguir incertezas nos valores dos parâmetros do modelo principalmente quando o modelo é utilizado para controle. As incertezas agregadas aos parâmetros do modelo podem ser características de alta frequência, efeitos de componentes parasitas, e a classificação de tais características permitiram uma série de trabalhos associados a robustez de controladores baseados em modelos \cite{Oliveira2007}.
+		
+
+\section{Estimação de Parâmetros}
+		
+		Com o objetivo de predizer as respostas futuras de um processo dinâmico ou manipular suas saídas para seguir trajetórias desejadas, um modelo matemático que descreve as dinâmicas desse sistema é necessário. A estimação de parâmetros pode ser realizada utilizando vários métodos tais como mínimos quadrados (\cite{Aguirre2007}), mínimos quadrados recursivo (~\citeonline{LINDOFF1999}), mínimos quadrados estendido (~\citeonline{ettaleb1998}, ~\citeonline{Yam1997}, ~\citeonline{Wenxiao2007}, ~\citeonline{Cohen1995}), mínimos quadrados com compensação de polarização (~\citeonline{Soderstrom2005}, ~\citeonline{Ding2006}, ~\citeonline{Mahata2007}, ~\citeonline{Zhang2011} e ~\citeonline{Ding2011}). Um importante aspecto das técnicas que utilizam mínimos quadrados é o tratamento apropriado de dados discrepantes \cite{Cohen1995}. Esses algoritmos de estimação de parâmetros em sua essência resolvem o problema de minimização do erro quadrático. Eles serão mostrados nas seguintes subseções.
+		
+		\subsection{Estimador de Mínimos Quadrados - MQ}
+		
+		O método dos mínimos quadrados foi desenvolvido por Gauss em 1795 e é um método largamente utilizado na solução de problemas de otimização linear. Quando esse método é aplicado em identificação de sistemas o seu objetivo é encontrar a saída do modelo que melhor se aproxime dos dados coletados da saída do processo minimizando a função de custo da soma do erro quadrático médio (erro entre a saída real e a estimada) \cite{Nelles2001}. Nesta seção será descrito o algoritmo de mínimos quadrados utilizando modelos ARX entendendo que é possível expandir tal modelo para as formas ARMAX, OE, NARX, NARMAX.
+		
+		A partir do mostrado na figura \ref{fig:ARX} e na equação \ref{Eq:ARX} e utilizando as equações \ref{eq:A}, e \ref{eq:B} é possível definir o modelo ARX em sua forma de regressores conforme a equação \ref{eq:regARX}.
+		
+		\begin{equation}
+			\begin{array}{lllllll}
+					y(k)= \varphi^T(k)\theta+e(k)
+			\end{array}
+			\label{eq:regARX}
+			\end{equation}
+		
+		Onde:
+		
+		\begin{equation}
+			\begin{array}{lllllll}
+					\varphi(k)= [-y(k-1),-y(k-2),...,-y(k-n_a),u(k-1),u(k-2),...,u(k-n_b)]^T
+			\end{array}
+			\label{eq:regARXMQ}
+			\end{equation}
+			
+			E:
+			
+			\begin{equation}
+			\begin{array}{lllllll}
+					\theta = [a_1,a_2,...,a_{n_a},b_1,b_2,...,b_{n_b}]^T
+			\end{array}
+			\label{eq:thetaMQ}
+			\end{equation}
+			
+			A partir da equação \ref{eq:regARX} definimos:
+			
+			\begin{equation}
+			\begin{array}{lllllll}
+					\Psi= & \begin{bmatrix}\varphi^T(1) \\ \varphi^T(2)\\ \vdots \\ \varphi^T(N)  \end{bmatrix}
+			\end{array}
+			\label{eq:PsiMQ}
+			\end{equation}
+			
+			\begin{equation}
+			\begin{array}{lllllll}
+					Y= & \begin{bmatrix}y(1) \\ y(2)\\ \vdots \\ y(N)  \end{bmatrix}
+			\end{array}
+			\label{eq:Yvec}
+			\end{equation}
+			
+			\begin{equation}
+			\begin{array}{lllllll}
+					\Xi = & \begin{bmatrix}e(1) \\ e(2)\\ \vdots \\ e(N)  \end{bmatrix}
+			\end{array}
+			\label{eq:XIvec}
+			\end{equation}
+			
+			Onde N  é o número de amostras coletadas.
+			
+			Com isso é possível representar a equação \ref{eq:regARX} na forma matricial da equação \ref{eq:regARXMat}:
+			
+			\begin{equation}
+			\begin{array}{lllllll}
+					Y= \Psi\theta+\Xi
+			\end{array}
+			\label{eq:regARXMat}
+			\end{equation}
+		
+		A partir da equação \ref{eq:regARXMat} é possível obter a solução de mínimos quadrados dada pela equação \ref{eq:SMQ}.
+		
+		\begin{equation}
+			\begin{array}{lllllll}
+					\hat{\theta}_{MQ}=(\Psi^T\Psi)^{-1}\Psi^T Y
+			\end{array}
+			\label{eq:SMQ}
+			\end{equation}
+			
+			Na equação \ref{eq:SMQ} a expressão apresentada é chamada de pseudo-inversa da matriz $\Psi$. Se $\Psi$	for uma matriz de posto completo, o que implica que pelo menos ela possui tantas medidas quanto parâmetros a encontrar, a matriz pode ser invertida e a solução de mínimos quadrados encontrada.
+		
+		\subsection{Estimador de Mínimos Quadrados Recursivo - MQR}
+		
+		Identificação de parâmetros em sistemas estocásticos constantemente fazem uso de técnicas de estimação de parâmetros recursivas. Isso acontece principalmente quando o sistema que se deseja estudar é não linear ou variante no tempo, ou, ainda, quando a estimação \textit{off-line} demanda muito tempo de processamento computacional ou memória. A solução de mínimos quadrados recursiva é um algoritmo genérico. Suas propriedades já são bem consolidadas quando utilizado em sistemas variantes no tempo e nesse caso se utliza uma penalização ou fator de esquecimento. \cite{LINDOFF1999}.
+		
+		O estimador de mínimos quadrados analisa as propriedades de uma variável aleatória $\theta$ utilizando equações a diferenças do processo \cite{Coelho2004}. As propriedades mais importantes nesse método são que o estimador é não polarizado, ou seja, os parâmetros estimados convergem para os verdadeiros quando o número de iterações aumenta, a precisão das estimativas é estabelecida pelo valor inicial da matriz de covariância e pelo fato de o resíduo ser branco com média nula \cite{LJUNG1983}.
+		
+		Os autores ~\citeonline{Coelho2004} descrevem um algoritmo simples para estimação em mínimos quadrados descrito a seguir:
+		
+		\begin{itemize}
+			\item	Mede-se a saída e entrada do sistema;
+			\item	Atualiza-se o vetor de medidas $\phi(t-1)$;
+			\item	Calcula-se o erro de previsão $\xi(t)=y(t)-\theta\phi(t-1)$;
+			\item	Calcula-se o ganho do estimador utilizando-se da equação \ref{eq:ganhoEstima};
+			
+			\begin{equation}
+				\begin{array}{rcll}
+				 	K(t) = & \frac {\phi(t-1) p(t)} {\lambda + p^T(t) \phi p(t)}  \\
+				\end{array}
+			\label{eq:ganhoEstima}
+			\end{equation}
+			
+			\item	Calcula-se o vetor de parâmetros estimados $\theta$ como em \ref{eq:estimaTeta};
+			
+			\begin{equation}
+				\begin{array}{rcll}
+				 	\hat{\theta}(t+1) = & \hat{\theta}(t) + K(t)\xi(t)  \\
+				\end{array}
+			\label{eq:estimaTeta}
+			\end{equation}
+			
+			\item	Calcula-se a matriz de covariância como em \ref{eq:covariacia};
+			
+			\begin{equation}
+				\begin{array}{rcll}
+					\phi(t) = & \frac{1}{\lambda}{\phi(t-1) - K(t) [\phi(t-1)p(t)]^T}
+				\end{array}
+			\label{eq:covariacia}
+			\end{equation}
+			
+		\end{itemize}
+
+		
+		\subsection{Estimador de Mínimos Quadrados Estendido - MQE}
+		
+		O algoritmo para estimar o modelo do processo utilizando o MQE pode ser visualizado a seguir.
+		
+				\begin{algorithm}[H]
+				\caption{Estimador de Mínimos Quadrados Estendido}
+				\begin{algorithmic}[1]
+						\State Montar a matriz de regressores $\Psi$ como na equação \ref{eq:PsiMQ}, e determinar a solução de mínimos quadrados mostrada na equação \ref{eq:SMQ}.
+						
+						\State Calcular o vetor de resíduos $\Xi$ como na equação \ref{eq:resMQ}.
+						
+								\begin{equation}
+								\begin{array}{lllllll}
+										\Xi=Y-\Psi\hat{\theta}_{MQ}
+								\end{array}
+								\label{eq:resMQ}
+								\end{equation}
+						
+						\State Utilizando o vetor de resíduos calculado, utilizá-lo para montar a matriz estendida de regressores mostrada na equação \ref{eq:PsiMQE}.
+						
+								\begin{equation}
+								\begin{array}{lllllll}
+										\Psi_{MQE}= & \begin{bmatrix}\varphi_{MQE}(1) \\ \varphi_{MQE}(2)\\ \vdots \\ \varphi_{MQE}(N)  \end{bmatrix}^T
+								\end{array}
+								\label{eq:PsiMQE}
+								\end{equation}
+				
+								Onde:
+								
+								\begin{equation}
+								\begin{array}{ll}
+										\varphi_{MQE}(k)= [-y(k-1),-y(k-2),...,-y(k-n_a),u(k-1),u(k-2),...,&\\  u(k-n_b),e(k-1),e(k-2),...,e(k-n_c)]^T
+								\end{array}
+								\label{eq:regARXMQ2}
+								\end{equation}
+				
+						\State Estimar os parâmetros $\hat{\theta}_{MQE}$ a partir da equação \ref{eq:MQE}.
+						
+								\begin{equation}
+								\begin{array}{lllllll}
+										\hat{\theta}_{MQE}=(\Psi_{MQE}^T\Psi_{MQE})^{-1}\Psi_{MQE}^T Y
+								\end{array}
+								\label{eq:MQE}
+								\end{equation}
+								
+								Onde os parâmetros de ${\theta}_{MQE}$ são correspondentes aos polinômios $A(z^{-1})$, $B(z^{-1})$ e $C(z^{-1})$ conforme a equação \ref{eq:thetaMQE}.
+								
+								\begin{equation}
+								\begin{array}{lllllll}
+										\theta_{MQE} = [a_1,a_2,...,a_{n_a},b_1,b_2,...,b_{n_b},c_1,c_2,...,c_{n_c}]^T
+								\end{array}
+								\label{eq:thetaMQE}
+								\end{equation}
+						
+						\State Recalcular o vetor de resíduos utilizando a equação \ref{eq:resMQE}
+						
+								\begin{equation}
+								\begin{array}{lllllll}
+										\Xi=Y-\Psi\hat{\theta}_{MQE}
+								\end{array}
+								\label{eq:resMQE}
+								\end{equation}
+						
+						\State Volte para $3$ e repita até que um critério de convergência (em relação ao resíduo) seja satisfeito.
+							
+					\end{algorithmic}
+					\end{algorithm}
+		
+		\subsection{Estimador de Mínimos Quadrados Recursivo com Compensação de Polarização - BCRLS}
+		
+		Em aplicações reais como em controle de processos, as saídas observadas estão sujeitas a perturbações no processo e erros de observação os quais, consequentemente, podem resultar em ruídos coloridos \cite{Ding2011}. Como analisado por ~\citeonline{LINDOFF1999}, e ~\citeonline{Aguirre2007} algoritmos que utilizam mínimos quadrados recursivo e mínimos quadrados puro são sensíveis a ruídos e resultam em parâmetros polarizados. Por isso, métodos que visam eliminar essa polarização foram estudados por ~\citeonline{Soderstrom2005}, ~\citeonline{Ding2006}, ~\citeonline{Mahata2007}, ~\citeonline{Zhang2011} e ~\citeonline{Ding2011}. 
+		
+		Sabe-se que os métodos de correção e eliminação de polarização são maneiras efetivas de obter parâmetros não polarizados em sistemas estocáticos (sujeitos a incertezas variantes no tempo). Consequentemente, essas técnicas são de grande importância quando utilizadas em sistemas práticos \cite{Zhang2011}.
+		 
+		Dentre os métodos listados na bibliografia será descrito neste trabalho o método mais recente, que trabalha com algoritmos recursivos de compensação de polarização encontrado em ~\citeonline{Ding2011}. Esse método foi escolhido devido a atualização dos parâmetros ser iterativa. Isso faz com que os algoritmos recursivos tenham vantagem em relação aos métodos não recursivos quando aplicados na prática.
+		
+		Consideremos polinômios $A(z^{-1})$, $B(z^{-1})$ e $D(z^{-1})$ das equações \ref{eq:A}, \ref{eq:B}, \ref{eq:D}:
+				
+		Utilizando-os na forma de um sistema descrito por um modelo OE com ruído colorido temos:
+		
+			\begin{equation}
+			\begin{array}{lllllll}
+					y(t)=\frac{B(z^{-1})}{A(z^{-1})}u(t)+ e(t)
+			\end{array}
+			\label{eq:OE2}
+			\end{equation}
+			
+			Onde:
+			
+			
+			\begin{itemize}
+				\item $u(t)$ é a sequência de entradas;
+				\item $y(t)$ é a sequência de saídas;
+				\item $e(t)$ é a saída do resíduo colorido com média zero e variância desconhecida.
+			\end{itemize}
+		
+		A variável $e(t)$ pode ser descrita como um processo de média móvel da seguinte maneira:
+		
+		\begin{equation}
+			\begin{array}{lllllll}
+					e(t)=D(z^{-1})v(t)
+			\end{array}
+			\label{eq:MA2}
+			\end{equation}
+			
+			Onde $v(t)$ é um ruído branco com média zero e variância desconhecida $\sigma^2$
+			
+			Além das variáveis descrita seja o modelo do ruído colorido dado por:
+			
+			\begin{equation}
+			\begin{array}{lllllll}
+					w(t)= A(z^{-1})e(t)=A(z^{-1})D(z^{-1})v(t)
+			\end{array}
+			\label{eq:Rcol}
+			\end{equation}
+			
+			Então, a partir das equações \ref{eq:OE2}, \ref{eq:MA2} e \ref{eq:Rcol} e possível obter as formas regressivas do modelo da saída $y(t)$ do processo, do modelo do ruído branco $e(t)$ e do modelo do ruído colorido $w(t)$, respectivamente, como mostrado nas equações \ref{eq:regOE2}, \ref{eq:regMA2} e \ref{eq:regRcol}.
+			
+			\begin{equation}
+			\begin{array}{lllllll}
+					y(k)= \varphi^T(k)\theta+w(k)
+			\end{array}
+			\label{eq:regOE2}
+			\end{equation}
+			
+			\begin{equation}
+			\begin{array}{lllllll}
+					e(k)= \varphi^T_n(k)\theta_n+v(k)
+			\end{array}
+			\label{eq:regMA2}
+			\end{equation}
+			
+			\begin{equation}
+			\begin{array}{lllllll}
+					w(k)= \psi^T(k)\theta+e(k)
+			\end{array}
+			\label{eq:regRcol}
+			\end{equation}
+			
+			Onde os vetores de parâmetro do sistema são dados por:
+			
+			\begin{equation}
+			\begin{array}{lllllll}
+					\theta = [a_1,a_2,...,a_{n_a},b_1,b_2,...,b_{n_b}]^T
+			\end{array}
+			\label{eq:theta}
+			\end{equation}
+			
+			\begin{equation}
+			\begin{array}{lllllll}
+					\theta_n = [d_1,d_2,...,d_{n_d}]^T
+			\end{array}
+			\label{eq:thetan}
+			\end{equation}
+			
+			E os vetores de informação são:
+			
+			\begin{equation}
+			\begin{array}{llll}
+					\varphi(k) = [-y(k-1),-y(k-2),...,-y(k-n_a),u(k-1),u(k-2),...,u(k-n_b)]^T
+			\end{array}
+			\label{eq:varphi}
+			\end{equation}
+			
+			\begin{equation}
+			\begin{array}{llll}
+					\psi(k) = [e(k-1),e(k-2),...,e(k-n_a),\vec{0}_{1 X n_b}]^T
+			\end{array}
+			\label{eq:psi}
+			\end{equation}
+			
+			\begin{equation}
+			\begin{array}{llll}
+					\varphi_n(k) = [v(k-1),v(k-2),...,v(k-n_d)]^T
+			\end{array}
+			\label{eq:psin}
+			\end{equation}
+		
+		A partir dessas informações podemos sintetizar as equações necessárias para executar o algoritmo de compensação de polarização. 
+		
+		A estimação recursiva não polarizada, como mostrado por ~\citeonline{Ding2011}, é sintetizado no seguinte algoritmo:
+		
+		\begin{algorithm}[H]
+				\caption{Estimador de Mínimos Quadrados Recursivo com Compensação de Polarização - Parte 1}
+				\begin{algorithmic}[1]
+					
+					\State Coletar os dados de entrada e saída e escolher os valores de $n_a$, $n_b$ e $n_d$.
+					
+					\State Inicializar a matriz de covariância $P(0) = p_0I$, os valores $p_0 = 10^6$, $\hat{\theta}_{LS}(0)= \hat{\theta}_c(0) = \frac{\overrightarrow{1}}{p_0}$ e o valor inicial do cálculo da função objetivo $J(0) = 0$. 
+	
+					\State Montar o vetor a partir dos dados de medida formando a equação \ref{eq:varphi}.
+					
+					\State Calcular o valor da função objetivo como na equação \ref{eq:Fobj} .
+							
+							\begin{equation}
+							\begin{array}{llll}
+								J(k) = J(k-1) + \frac{[y(k)-\varphi^T(k)\hat{\theta}_{LS}(k-1)]^2}{1+\varphi^T(k)P(k-1)\varphi^T(k)} 
+							\end{array}
+							\label{eq:Fobj}
+							\end{equation}
+							
+						
+					\State Calcular $P(k)$ e $\widehat{\theta}_{LS}(k)$ utilizando as equações \ref{eq:P} e  \ref{eq:thetals} respectivamente.
+							
+							\begin{equation}
+							\begin{array}{llll}
+								P(k) = & \frac{1}{\lambda}[P(k-1) -  \frac{P(k-1)\varphi(k)\varphi^T(k)P(k-1)}{\lambda+\varphi^T(k)P(k-1)\varphi(k)}]
+							\end{array}
+							\label{eq:P}
+							\end{equation}
+							
+							\begin{equation}
+							\begin{array}{llll}
+										\hat{\theta}_{LS}(k) = \hat{\theta}_{LS}(k-1)+  P(k)\varphi(k)[ y(k)-\varphi^T(k) \hat{\theta}_{LS}(k-1)]
+							\end{array}
+							\label{eq:thetals}
+							\end{equation}
+							
+							
+					\State	Montar os vetores de ruído branco estimado $\hat{\varphi_n(k)}$ e ruído colorido estimado segundo as relações \ref{eq:RBvec} e \ref{eq:RCvec} respectivamente.
+					
+							\begin{equation}
+							\begin{array}{llll}
+									\varphi_n(k) = [\hat{v}(k-1),\hat{v}(k-2),...,\hat{v}(k-n_d)]^T
+							\end{array}
+							\label{eq:RBvec}
+							\end{equation}
+													
+							
+							\begin{equation}
+							\begin{array}{llll}
+									\psi(k) = [\hat{e}(k-1),e(k-2),...,\hat{e}(k-n_a),\vec{0}_{1 X n_b}]^T
+							\end{array}
+							\label{eq:RCvec}
+							\end{equation}
+							
+							
+					\State Computar os valores estimados para o ruído branco e colorido dado nas equações \ref{eq:RBE}, \ref{eq:RCE} respectivamente.
+						
+							\begin{equation}
+							\begin{array}{lllllll}
+									\hat{v}(k)= \hat{e}(k)-\varphi^T_n(k)\hat{\theta}_n
+							\end{array}
+							\label{eq:RBE}
+							\end{equation}
+	
+							\begin{equation}
+							\begin{array}{lllllll}
+									\hat{e}(k)= y(k) - \varphi^T(k)\hat{\theta}_{LS}(k) - \hat{\psi}^T(k) \hat{\theta}_{LS}(k)
+							\end{array}
+							\label{eq:RCE}
+							\end{equation}
+									
+					\State Estimar os parâmetros do ruído utilizando as equações \ref{eq:Pn} e  \ref{eq:LSc}.
+
+							\begin{equation}
+							\begin{array}{llll}
+								P_n(k) = & \frac{1}{\lambda_n}[P_n(k-1) -  \frac{P_n(k-1)\hat{\varphi}_n(k)\hat{\varphi}_n^T(k)P_n(k-1)}{\lambda_n+\hat{\varphi}_n^T(k)P_n(k-1)\hat{\varphi}_n(k)}]
+							\end{array}
+							\label{eq:Pn}
+							\end{equation}		
+									
+							\begin{equation}
+							\begin{array}{llll}
+									\hat{\theta}_n(k) = \hat{\theta}_n(k-1)+  P_n(k)\hat{\varphi}_n(k)[ \hat{e}(k)- \hat{\varphi}^T_n(k) \hat{\theta}_n(k-1)]
+							\end{array}
+							\label{eq:LSc}
+							\end{equation}
+							
+					\algstore{myalg}
+				\end{algorithmic}
+				\end{algorithm}
+									
+									
+		\begin{algorithm}[H]
+				\caption{Estimador de Mínimos Quadrados Recursivo com Compensação de Polarização - Parte 2}
+				\begin{algorithmic}[1]
+					\algrestore{myalg}
+									
+					\State Usando \ref{eq:ri}, \ref{eq:M}, \ref{eq:Fobj}, \ref{eq:zeta}, \ref{eq:eta} e $\hat{\theta}_n(k)$, computar $\hat{\sigma}^2(k)$ usando \ref{eq:var}
+			
+							\begin{equation}
+							\begin{array}{llll}
+									\frac{\hat{r}_i}{\hat{\sigma}^2} = \hat{\theta}_n^T(i:n_d)\begin{bmatrix}
+1 \\ 
+\hat{\theta}_n^T(i:n_d-i)
+\end{bmatrix}, i=1,2,\cdots,n_d
+							\end{array}
+							\label{eq:ri}
+							\end{equation}
+							
+							\begin{equation}
+							\begin{array}{llll}
+							\hat{M}(k) = 
+							\begin{bmatrix}
+						  \begin{bmatrix}
+						     1+\hat{\theta}_n^T\hat{\theta}_n & \frac{\hat{r}_1}{\hat{\sigma}^2} & \cdots & \frac{\hat{r}_{n_a-1}}{\hat{\sigma}^2} \\
+						
+						 \frac{\hat{r}_1}{\hat{\sigma}^2}& 1+\hat{\theta}_n^T\hat{\theta}_n & \cdots & \frac{\hat{r}_{n_a-2}}{\hat{\sigma}^2} \\
+						
+						 \vdots & \vdots & \ddots & \vdots \\
+						
+						 \frac{\hat{r}_{n_a-1}}{\hat{\sigma}^2} & \frac{\hat{r}_{n_a-2}}{\hat{\sigma}^2} & \cdots  & 1+\hat{\theta}_n^T\hat{\theta}_n \\
+						  \end{bmatrix} & 0_{(n_aXn_b)} \\
+						
+						0_{(n_bXn_a)} & 0_{(n_bXn_b)}
+						
+						\end{bmatrix}
+						\end{array}
+						\label{eq:M}
+						\end{equation}
+						
+						
+						\begin{equation}
+							\begin{array}{llll}
+									\hat{\zeta}= [\frac{\hat{r}_1}{\hat{\sigma}^2}, \frac{\hat{r}_2}{\hat{\sigma}^2}, \cdots, \frac{\hat{r}_{n_a}}{\hat{\sigma}^2},\overrightarrow{0}_{(1Xn_b)} ]^T
+							\end{array}
+							\label{eq:zeta}
+							\end{equation}
+							
+						
+						\begin{equation}
+							\begin{array}{llll}
+									\hat{\eta}(k)= \hat{\theta}^T_c(k)\hat{M}(k)\hat{\theta}_{LS}(k) + 1 +  \hat{\theta}_n^T(k)\hat{\theta}_n(k) + \hat{\zeta}^T(k)[\hat{\theta}_c(k) + \hat{\theta}_{LS}(k)]
+							\end{array}
+							\label{eq:eta}
+							\end{equation}
+							
+							\begin{equation}
+							\begin{array}{llll}
+									\hat{\sigma}^2(k)= \frac{\frac{1}{k}J(k)}{\hat{\eta}(k)}
+							\end{array}
+							\label{eq:var}
+							\end{equation}
+						
+					\State Então, a estimativa da matriz de autocorrelação do ruído pode ser realizada sendo $R$ mostrada na equação 	\ref{eq:R}
+					
+							\begin{equation}
+							\begin{array}{llll}
+							
+							\hat{R}(k) = \hat{\sigma}^2(k)\hat{M}(k)
+							
+							\end{array}
+							\label{eq:R}
+							\end{equation}
+						
+					
+					 \State E, com isso, $\hat{\gamma}(k)$ pode ser obtido como na equação \ref{eq:gamma} e finalmente calculado $\hat{\theta}_c(k)$ utilizando a equação \ref{eq:thetac}
+					 
+					 		\begin{equation}
+							\begin{array}{llll}
+									\hat{\gamma}(k) = \hat{\sigma}^2(k)\hat{\zeta}(k)
+							\end{array}
+							\label{eq:gamma}
+							\end{equation}
+					 
+					 		\begin{equation}
+							\begin{array}{llll}
+									\hat{\theta}_c(k) = \hat{\theta}_{LS}(k)+ k P(k)[ \hat{R}(k)\hat{\theta}_c(k-1) + \hat{\gamma}(k)]
+							\end{array}
+							\label{eq:thetac}
+							\end{equation}
+						
+					\State Caso K seja maior que a quantidade de iterações desejadas, finalizar a estimação, sendo o vetor final de estimativas não polarizadas $\hat{\theta}_c(k)$. Em caso contrário, incrementar k e retornar a $3$.
+		
+		 \end{algorithmic}
+\end{algorithm}
+			
+
+%\section{Detecção de Estrutura de Modelos}
+			%
+%Do ponto de vista de identificação de sistemas, utilizando modelos polinomiais, o problema de detecção de estrutura se resume a saber quais e quantos termos se deve incluir em um modelo, quando se identifica um determinado sistema. O problema é justamente escolher, entre os termos candidatos os mais adequados. Para que isso seja realizado é necessária a utilização de detecção de estrutura \cite{Freitas2001}. 
+%
+%Várias técnicas podem ser utilizada para realizar a detecção de estrutura tais como o ERR \cite{Freitas2001}, e o método do teste de independência do resíduo do modelo \cite{Hsia1977}. Estas técnicas podem ser combinadas com os critérios de informação (como Akaike (AIC), Bayes (BIC), e erro final de predição (FPE))\cite{Aguirre2007}, além de ser possível realizá-las utilizando até algoritmos heurísticos tais como GA e PSO utilizando os mesmos princípios.
+%
+%Os métodos de detecção de estruturas que serão abordados neste trabalho são os descritos em ~\citeonline{Hsia1977} (Teste de Independência dos Resíduos do Modelo) e em ~\citeonline{Aguirre2007} (ERR-\textit{Error Reduction Ratio}).
+%
+%
+%\subsection{Teste de Independência dos Resíduos do Modelo}
+%
+%Idealmente, se a ordem do modelo está correta, o resíduo, que é dado pela equação $\xi(t)=y(t)-\theta\phi(t-1)$, um processo aleatório é estatisticamente independente. Portanto, a função de autocorrelação da equação \ref{eq:autocorr} para $\tau \neq 0$ é razoavelmente próxima de zero caso a ordem do modelo seja correta. 
+%
+							%\begin{equation}
+							%\begin{array}{llll}
+								%\phi(\tau) = \frac{1}{N-\tau} \sum_{k=1}^{N-\tau}{e(k)e(k-\tau)}
+							%\end{array}
+							%\label{eq:autocorr}
+							%\end{equation}
+%
+%Ou seja, basta variar a ordem do modelo de maneira que, quando o modelo atingir a ordem correta a função de autocorrelação indicará, e, consequentemente, o algoritmo escolherá a ordem que possuir as características necessárias.
+%
+%O algoritmo identificador de estrutura offline apresentado por ~\citeonline{Hsia1977} visa encontrar a ordem adequada para o sistema em questão a partir de dados de medição (entrada e saída). A técnica é baseada em cálculos recursivos com modelos que tem a sua quantidade de parâmetros incrementada a cada iteração, e que minimizam o erro quadrático médio, após o incremento do número de parâmetros. Assim, é necessário realizar os testes de autocorrelação com os diferentes modelos, objetivando encontrar a equação que melhor se adeque aos dados coletados. Os cálculos podem ser resumido da maneira a seguir.
+%
+%Seja um sistema representado pela seguinte equação:
+%
+							%\begin{equation}
+							%\begin{array}{lr}
+								%y(k) + a_1y(k-1) + a_2y(k-2) + \cdots + a_n(k-n) = b_1u(k-1) + b_2u(k-2)+& \\ + \cdots + b_nu(k-n)
+							%\end{array}
+							%\label{eq:defIdEstrutura}
+							%\end{equation}
+%
+%O cálculo do vetor de parâmetros $\theta_{id}$ para uma ordem superior à ordem atual e que aproveita os cálculos anteriores pode ser definido. O vetor de parâmetros pode ser divido em duas partes, os parâmetros já estimados e àqueles que serão estimados semelhante ao definido na equação \ref{eq:thetaIdEstrutura}.
+%
+							%\begin{equation}
+							%\begin{array}{llll}
+								%\theta_{id}=[a_1 \, b_1 ... a_n \, b_n | a_{n+1} \, b_{n+1} ]
+							%\end{array}
+							%\label{eq:thetaIdEstrutura}
+							%\end{equation}
+%
+%A matriz de regressores X é definida como uma concatenação entre duas outras matrizes $X_1$ e $X_2$:
+%
+ 							%\begin{equation}
+							%\begin{array}{llll}
+								%X_1 = 
+								%\begin{bmatrix}
+%-y(0) \, u(0) & \cdots  & -y(-n) \, u(-n)\\ 
+ %\vdots & \ddots  & \vdots \\ 
+%-y(N) \, u(N) & \cdots  & -y(N-n) \, u(N-n) 
+%\end{bmatrix} 
+							%\end{array}
+							%\label{eq:X1IdEstrutura}
+							%\end{equation}
+							%
+							%\begin{equation}
+							%\begin{array}{llll}
+								%X_2 = 
+								%\begin{bmatrix}
+%-y(-n+1) \, u(-n+1) & \cdots  & -y(-n) \, u(-n)\\ 
+ %\vdots & \ddots  & \vdots \\ 
+%-y(N) \, u(N) & \cdots  & -y(N-n+1) \, u(N-n+1) 
+%\end{bmatrix} 
+							%\end{array}
+							%\label{eq:X2IdEstrutura}
+							%\end{equation}
+							%
+								%\begin{equation}
+							%\begin{array}{llll}
+								%X=[X_1 | X_2 ]
+							%\end{array}
+							%\label{eq:XIdEstrutura}
+							%\end{equation}
+%
+%Tendo definido os termos das equações  \ref{eq:thetaIdEstrutura}, \ref{eq:X1IdEstrutura}, \ref{eq:X2IdEstrutura}, e \ref{eq:XIdEstrutura} é possível obter a estimativa dos parâmetros a ser adicionados no sistema a partir dos dados e dos parâmetros já calculados da seguinte maneira:
+%
+								%\begin{equation}
+							%\begin{array}{llll}
+								%\hat{\theta}_1= \hat{\theta}_1 - A X_2^T (y-X_1\hat{\theta}_1)
+							%\end{array}
+							%\label{eq:Theta1IdEstrutura}
+							%\end{equation}
+							%
+							%\begin{equation}
+							%\begin{array}{llll}
+								%\hat{\theta}_2= B X_2^T (y-X_1\hat{\theta}_1) 
+							%\end{array}
+							%\label{eq:Theta2IdEstrutura}
+							%\end{equation}
+%
+%Onde:
+%
+							%\begin{equation}
+							%\begin{array}{llll}
+								%A = ( X_1^T X_1 )^-1 X_1^T X_1 B 
+							%\end{array}
+							%\label{eq:AIdEstrutura}
+							%\end{equation}
+							%
+							%\begin{equation}
+							%\begin{array}{llll}
+								%B = [X_2^T X_2 - X_2^T X_1 ( X_1^T X_1 )^-1 X_1^T X_2 ]^-1  
+							%\end{array}
+							%\label{eq:BIdEstrutura}
+							%\end{equation}
+							%
+%Além disso, o valor inicial de $\theta_1$ é expresso pela equação \ref{eq:thethaiIdEstrutura}.
+%
+						%\begin{equation}
+							%\begin{array}{llll}
+								%\hat{\theta}_1= ( X_1^T X_1 )^-1 X_1^T y
+							%\end{array}
+							%\label{eq:thethaiIdEstrutura}
+							%\end{equation}
+							%
+%A estrutura mostrada exige que na inicialização dos cálculos sejam passadas as ordens máximas e mínimas para saber em qual faixa de quantidade de parâmetros procurar.
+%
+%\subsection{ERR-\textit{Error Reduction Ratio}}
+%
+%
+%A taxa de redução do erro, é um critério utilizado na detecção de estrutura. Enquanto o método anterior utiliza um acréscimo de parâmetros até encontrar a ordem correta, este, indica quais os termos mais pertinentes de um modelo sobreparametrizado. O objetivo desta técnica é reduzir o erro causado por mau condicionamento numérico através da indicação do termo mais pertinente ao modelo e ortogonalizando os demais em relação a estes mais importantes. Ou seja, neste método a ordem do modelo é reduzida a partir de um modelo de ordem superior.
+%
+%Seguindo os conceitos descritos em ~\citeonline{Aguirre2007} para definição do $ERR$, será considerado o seguinte modelo NARX geral, mostrado na equação \ref{eq:NARMAXgeral}.
+%
+%\begin{equation}
+%\begin{array}{rcll}
+ %y(k) = P^T(k-1)\hat{\theta} + \xi(k) & =  \sum_{i=1}^{n_\theta}\hat{\theta}_i p_{k,i}(k-1)  +  \xi(k)\\
+%\end{array}
+%\label{eq:NARMAXgeral}
+%\end{equation}
+%
+%Onde:
+%\begin{itemize}
+	%\item $P^T$ é o vetor de regressores não lineares formada com o polinômio NARX;
+	%\item $p_{k,i}$ é um elemento do vetor de regressores.
+%\end{itemize}
+%
+%
+%E o seguinte modelo auxiliar:
+%
+%\begin{equation}
+%\begin{array}{rcll}
+ %y(k) = \sum_{i=1}^{n_\theta}\hat{g}_i \omega_i(k-1)  +  \xi(k)\\
+%\end{array}
+%\label{eq:NARMAXaux}
+%\end{equation}
+%
+%Onde os regressores $\omega_i$, da equação \ref{eq:NARMAXaux}, são ortogonais sobre os dados, ou seja:
+%
+%\begin{equation}
+%\begin{array}{rcll}
+	%\left \langle \omega_i\omega_k \right \rangle = \frac{1}{N}\sum_{k=1}^N\omega_i(k)\omega_k(k) = 0, \forall i \neq k\\
+%\end{array}
+%\label{eq:ortog}
+%\end{equation}
+%
+%A soma dos valores quadráticos de $y(t)$ é $\left \langle  y,y \right \rangle $ ou $y^Ty$, e a partir da equação \ref{eq:NARMAXaux} é possível obter:
+%
+%\begin{equation}
+%\begin{array}{rcll}
+ %y(k)^2 = \Bigg(  \sum_{i=1}^{n_\theta}\hat{g}_i \omega_i(k-1)  +  \xi(k) \Bigg) \times \Bigg(  \sum_{i=1}^{n_\theta}\hat{g}_i \omega_i(k-1)  +  \xi(k) \Bigg) \\
+%\end{array}
+%\label{eq:NARMAXauxquad}
+%\end{equation}
+%
+%Tomando o valor médio de \ref{eq:NARMAXauxquad} é possível obter a equação \ref{eq:NARMAXauxquadFinal}
+%
+%\begin{equation}
+%\begin{array}{rcll}
+  %y(k)^2 =  \sum_{i=1}^{n_\theta}\hat{g}_i^2 \left \langle \omega_i,\omega_i \right \rangle  +  \left \langle \xi,\xi\right \rangle  \\
+%\end{array}
+%\label{eq:NARMAXauxquadFinal}
+%\end{equation}
+%
+%A conclusão sobre a equação \ref{eq:NARMAXauxquadFinal}, ``é a de que a soma dos valores quadráticos de $y(t)$ pode ser explicada, usando uma base ortonormal, como somatório dos valores quadráticos de cada regressor ortogonal respectivamente multiplicado pelos seus parâmetros" \, \cite{Aguirre2007}, e a parcela que não foi explicada pelos regressores é equivalente a soma do quadrado do vetor de resíduos.
+%
+%De acordo com essa ideia é possível quantificar a importância de cada regressor individualmente e se for acrescido o i-ésimo termo, a $ERR$ pode ser expressa como uma fração da soma dos valores quadráticos dos dados segundo a equação \ref{eq:ERR}. 
+%
+%\begin{equation}
+%\begin{array}{rcll}
+ %[ ERR]_i =  \frac{\hat{g}_i^2 \left \langle \omega_i,\omega_i \right \rangle} {\left \langle y,y\right \rangle}  \\
+%\end{array}
+%\label{eq:ERR}
+%\end{equation}
+%
+%Segundo ~\citeonline{Aguirre2007} um critério para ajudar a escolher os regressores do modelo é incluir aqueles com maior valor de $ERR$, dentre um grande conjunto de regressores candidatos. 
+%
+%

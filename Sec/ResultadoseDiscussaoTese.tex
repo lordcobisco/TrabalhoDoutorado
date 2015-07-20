@@ -1,0 +1,94 @@
+\noindent\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+\\
+\chapter{Análise dos Resultados}
+\noindent\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+\\
+\label{Cap:ResultDis}
+
+Neste capítulo serão discutidos os resultados obtidos, para os experimentos mostrados no capítulo \ref{cap:Metodologia}. Os principais aspectos a serem discutidos são as capacidades de cada algoritmo em encontrar os parâmetros corretos e a capacidade de busca do PSO para os parâmetros simulados, segundo o formato matricial proposto.
+
+\section{Identificação Linear sob condição ideal}
+
+		Na seção \ref{sub:LinIdConIdeal} foram apresentados resultados de identificação utilizando os algoritmos MQ, MQE, BCRLS, PSO, PSOMQE e PSOBCRLS. Nela foi possível observar que os algoritmos de identificação não conseguem encontrar os parâmetros corretos, que são a solução da equação a diferença. Isso mostra a ineficácia das estimações quando o sinal de excitação não é adequado para o sistema, sendo necessário, portanto, projetar o sinal de entrada de maneira que resulte em identificações satisfatórias.
+		
+		Por esse motivo, foi projetado um sinal PRS com as especificações mostradas. Após, o sistema foi excitado com tal sinal e utilizados os algoritmos MQ, MQE, BCRLS, PSO, PSOMQE e PSOBCRLS para identificar os parâmetros que são a solução da equação.
+		
+		Os resultados mostram que a identificação, utilizando os algoritmos tradicionais, se aproximou dos parâmetros corretos. Porém, como a quantidade de dados simulados foi de 400 amostras apenas não houve precisão de 100\%. Além disso, é possível perceber, nos resultados da tabela \ref{tab:ResultIdLinIdealPRS}, que foi possível atingir desempenhos de EMQ melhores sem que os parâmetros tenham se distanciado dos parâmetros corretos (ePar) utilizando os algoritmos de PSOM híbridos, com MQE e BCRLS. Outra consideração a ser realizada é que, para os parâmetros do PSO escolhidos, que resultam nos autovalores das partes em autovalores menores que 1, o desempenho foi baixo, ou seja, houve um alto EMQ em comparação com os outros algoritmos.
+		
+		O terceiro teste executado na seção \ref{sub:LinIdConIdeal} foi realizado utilizando os parâmetros para o PSO que resultam em autovalores, de cada parte, maiores que 1, onde o maior autovalor equivale a 2,85, e onde os autovalores do conjunto permanece no interior do ciclo de raio unitário. Nesse teste foi mostrado que o desempenho dos algoritmos, tanto do PSOM híbrido quanto do PSO tradicional, foi superior ao caso onde os parâmetros escolhidos resultam em autovalores menores que 1. A justificativa é que essa estrutura permite o espalhamento das partículas em regiões adequadas para encontrar melhores desempenhos.
+		
+		Outra análise a ser realizada quanto ao terceiro teste é que, apesar de o desempenho (EMQ menor) dos algoritmos utilizando PSO ter sido aumentado em relação ao teste anterior e, até em relação aos algoritmos tradicionais, isso não necessariamente resultou no menor erro dos parâmetros. Na pática os algoritmos tradicionais além de minimizar o erro ainda garantem encontrar os parâmetros corretos do modelo matemático, característica que no PSOM foi incorporada. Ou seja, não basta minimizar o erro, também é importante que o modelo encontrado se aproxime do correto e seja aplicável a qualquer teste experimental (modelo geral).
+		
+		\section{Identificação Linear Aproximando o sistema dado por uma função de $2^a$ ordem}
+		
+		Na subseção \ref{sub:LinId2ordem} foi analisado o caso onde a função real é desconhecida, e a estimação dos dados reais é obtida supondo que os dados coletados podem ser representados por uma função de $2^a$ ordem. 
+		
+		\subsection{Teste 1 - Autovalores menores que 1}
+		
+		Os testes realizados levaram em consideração, no primeiro teste, que os parâmetros utilizados nos algoritmos que utilizam o PSO foram:
+		
+	\begin{itemize}
+	\item Para os algoritmos que utilizam o PSO tradicional foram inicializados os valores $\phi_1 = 0,3$, $\phi_2 = 0,7$, $\omega = 0,4$, número de partículas 80, número de iterações 1000 e definido o intervalo de busca dos parâmetros em $[-3,3]$;
+	\item Para os Matriciais (PSOMQE e PSOBCRLS), além dos valores citados no PSO tradicional foi utilizado o fator de esquecimento $\lambda_{esq} = 0,99$;
+	\end{itemize}
+	
+	Isso significa que  os parâmetros escolhidos para o PSOM resultam em autovalores menores que 1 para as partes analisadas e que os autovalores do sistema como um todo também são menores que 1, e os do PSO tradicional são iguais ao do PSOM exceto pelo fator de esquecimento. 
+	
+	Após a padronização dos parâmetros, foram realizadas as identificações utilizando os algoritmos implementados. Os resultados apresentados foram o erro quadrático médio entre a saída real e a estimada e o erro quadrático médio entre o módulo e a fase obtidos a partir da função real e o módulo e a fase obtidos a partir da função estimada.
+	
+	Os resultados apresentados mostram que, com a configuração de parâmetros utilizadas, os valores dos erros (EMQ) foram próximos, porém, como esperado, o erro do PSO tradicional foi maior que os demais. De igual forma, o erro em relação ao diagrama de Bode ($E_{Bode}$), diagrama que premite analisar a resposta real no domínio da frequência, foi também o maior de todos. Isso significa que, dentre os resultados apresentados, o modelo obtido com o PSO tradicional utilizando os parâmetros escolhidos é o que menos representa o sistema.
+	
+	Em contrapartida, ao observar os algoritmos híbridos foi possível perceber que, mesmo que os parâmetros escolhidos não seja a melhor combinação de parâmetros para garantir o melhor resultado, foram obtidos resultados melhores que os das técnicas tradicionais MQE e BCRLS. Além disso, a melhoria aconteceu sem que o erro no diagrama de Bode ($E_{Bode}$) aumentasse. Isso significa que além de obter menores erros, os algoritmos híbridos permitiram que os parâmetros dos modelos permanecessem em uma região próxima aos dos modelos do MQE e BCRLS. Como consequência disso, as respostas em frequência foram próximas e as que melhor representam o sistema real.
+	
+	
+	\subsection{Teste 2 - Autovalores das partes maiores que 1}
+	
+	No segundo teste realizado foi analisado o desempenho dos algoritmos baseados na estrutura do PSO quando os parâmetros escolhidos resultam numa estrutura aparentemente não convergente, quando analisadas as partes, porém convergentes segundo o \textit{Teorema 1}, para o PSOM, ou seja.
+	
+	Para esse teste, os resultados apresentados mostram que o PSO tradicional obteve o menor EMQ, resultado que é compactível com o teste realizado para o caso ideal. Porém, ao analizar, tanto os gráficos do diagrama de Bode, quanto o erro obtido, é possível perceber que as estruturas híbridas (PSOMQE e PSOBCRLS) obtiveram os menores erros. Isso significa que os erros médios quadráticos no diagrama de Bode são os menores para a maior quantidade de frequências. Por isso, entende-se que esses seriam os melhores parâmetros a se escolher, pois, além de o erro ser mais baixo que os do MQE e BCRLS (cerca de 9 vezes menores), esse sistema melhor representa a resposta em frequência do sistema real. Outro fato importante a ser ressaltado é que além de os erros conjuntos apresentados (EMQ e $E_{Bode}$) serem menores, é possível garantir que o desempenho mínimo resultante dos algoritmos híbridos não será inferior aos desempenhos dos algoritmos tradicionais. 
+
+
+%
+%
+%\section{Identificação Simulada}
+%
+%		\subsection{Projeto do Sinal de Excitação}
+%		
+%		Serão apresentados os gráficos resultantes no capítulo \ref{cap:Metodologia}.
+%		
+%		\subsection{Identificação com MQE e Algorítmos de Redução de Ordem}
+%		
+%		
+%		Aqui o que será realizado é a presentar os gráficos desta subseção referente a metodologia de \ref{subsecao:Id} 
+%		
+%		
+%			   
+%		\subsection{Identificação com PSO com e sem auxílio e Algorítmos de Redução de Ordem}
+%			Aqui o que será realizado é a presentar os gráficos desta subseção referente a metodologia de \ref{subsecao:IdPSO} 
+%
+%\section{Sintonia Simulada}
+%
+%Aqui o que será realizado é a presentar os gráficos desta subseção referente a metodologia de \ref{secao:Sintonia}
+%		 	
+%\section{Controle Simulado}
+%
+%		Aqui o que será realizado é a presentar os gráficos desta subseção referente a metodologia de \ref{secao:ControleS}
+%		
+%		
+%\section{Identificação, Sintonia e Controle de Válvula Eletro-Pneumática com Histerese}
+%
+%		\subsection{Identificação}
+%	
+%		
+%		
+%		 	
+%		 	
+%		\subsection{Sintonia}
+%		
+%		 	
+%		 	
+%		\subsection{Controle}
+%	
+%		
+%\section{Conclusão do Capítulo}
+

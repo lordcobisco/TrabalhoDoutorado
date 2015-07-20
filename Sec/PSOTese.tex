@@ -1,0 +1,990 @@
+\noindent\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+\\
+\chapter{\large OTIMIZAÇÃO POR NUVEM DE PARTÍCULAS (PSO)}
+\noindent\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+\\
+\label{cap:PSO}
+
+
+No presente capítulo serão apresentados o algoritmo PSO tradicional e sua principal variação. Em sequência, a PSO será reformulada na forma matricial (PSOM) simplificada e exata, ambos como um sistema linear por partes, em que as partes do algoritmo serão avaliadas tanto de maneira separada como conjunta. Em seguida, serão apresentados os algoritmos, ou seja, como utilizar as formulações matriciais. Posteriormente, será verificada a necessidade de uma modificação de maneira a manter os autovalores dentro do círculo de raio unitário. Adicionalmente às análises realizadas, será apresentada uma análise baseada no decrescimento do erro quadrático iterativo, visando mostrar condições necessárias para que ocorra a convergência do erro de otimização em direção à partícula correta. Após realizadas as modificações no algoritmo será proposta uma adequação na inicialização das partículas para que a PSOM possa ser hibridizado com algoritmos de identificação.
+
+
+\section{Origem e Descrição}
+
+Entre as décadas de 1970 e 1990, cientistas como ~\citeonline{Heppner1990},  ~\citeonline{Reynolds1987} e ~\citeonline{Millonas1994} debruçavam-se sobre o estudo do comportamento psicológico e social de determinadas espécies. Tais pesquisadores estavam fascinados com as interações entre bandos de aves e cardumes de peixes em suas atividades cotidianas \cite{Kennedy1995}. Tais grupos de animais, ao procurar por comida ou ao fugir de predadores, possuem um tipo de consciência coletiva. Cada elemento do grupo aprende com o comportamento dos seus demais componentes e tendo em vista esse comportamento, diversos pesquisadores buscaram sintetizar essas interações por intermédio de modelos matemáticos. Nesse contexto, o algoritmo PSO foi desenvolvido por ~\citeonline{Kennedy1995}, e foi posteriormente modificado por ~\citeonline{Shi:98}. 
+
+O PSO é similar a outras técnicas evolutivas, como por exemplo, algoritmo genético \cite{Najjarzadeh2008}. Porém, na PSO, cada indivíduo ou partícula possui uma velocidade de adaptação (mudança de posição), que é alterada à medida que a partícula se move dentro do espaço de busca. Além disso, cada indivíduo tem memória sobre a melhor posição pela qual passou. Seu deslocamento é direcionado para a melhor posição já visitada e para a melhor partícula de uma vizinhança. O PSO é eficaz na otimização de problemas não contínuos em diversas áreas de conhecimento \cite{Shi:98}. Atualmente vem sendo aplicado a problemas de otimização, além dos já citados, em projetos de antenas \cite{Robinson2002}, planejamento de trajetórias de robôs \cite{Sierakowski2005} e sistemas de distribuição de energia elétrica \cite{Fukuyama2001}.
+
+Existe uma teoria muito simples que está por trás do PSO. Nessa teoria, cada indivíduo de uma população possui sua própria experiência quantizada na forma de uma função objetivo. Para incorporar às partículas um comportamento social, cada indivíduo
+possui conhecimento sobre como seus vizinhos se comportam. Essas duas informações correspondem à aprendizagem individual (cognitiva) e à transmissão cultural (social), respectivamente. Portanto, cada decisão estará associado a seu desempenho passado e de alguns de seus vizinhos \cite{Serapiao2009}.
+
+ ~\citeonline{Kennedy2001} utilizaram três princípios para resumir o processo de adaptação incorporada ao algoritmo de PSO:
+
+ \begin{itemize}
+			\item Avaliar - é a tendência de classificar se algo é positivo ou negativo, atrativo ou repulsivo, característica natural dos seres vivos;
+
+			\item Comparar - é a capacidade de julgar algo utilizando outros indivíduos como referência comparativa;
+
+			\item Imitar - é a habilidade que apenas os seres humanos e alguns pássaros são capazes de utilizar. A imitação incorporada ao algoritmo não é apenas fazer algo porque outro indivíduo reagiu de tal forma mas é a capacidade de entender o propósito ou o caminho percorrido e utilizá-lo quando apropriado.
+ \end{itemize}
+ 
+ Com isso é possível entender que, assim como em outras abordagens de inteligência coletiva, o algoritmo PSO incorpora capacidades a uma população de indivíduos de interagir entre si e com o meio ambiente. Com base nos conceitos de avaliação, comparação e imitação, esse algoritmo é capaz de, assim como os indivíduos são capazes de lidar com um número de possíveis situações que o ambiente lhes apresenta, resolver problemas de otimização em diversas áreas do conhecimento \cite{Serapiao2009}.
+
+\section{Algoritmo Base e Principal Variação}
+
+
+Como já referido, os algoritmos de PSO empregam os princípios de avaliar, comparar e imitar \cite{Kennedy2001}. Esses princípios são modelados na forma de aprendizagem individual (cognitiva) e a transmissão cultural (social), ideias importantes no processo de decisão. O transmissão cultural ($P_G$) conecta conceitualmente todos os membros de uma população entre si. Como consequência, o comportamento de cada partícula é influenciado pelo comportamento de todas as outras. A aprendizagem individual ($P^i_B$) cria uma vizinhança para cada indivíduo composta por ele próprio e seus vizinhos mais próximos. Ambas as métricas são respostas de uma função de avaliação $J_{PSO}$, também chamada de função objetivo ou de aptidão (\textit{fitness}), que corresponde aos valores, capacidade, ou qualidade de cada indivíduo na solução do problema  \cite{Kennedy2001}.
+
+
+
+Seguindo as ideias das transmissões cultural e individual, e aplicando-as a um modelo matemático, podemos entender que uma partícula $X^i(k)$, em um determinado passo $k$, irá se mover segundo uma função que relaciona a posição atual da partícula $X^i(k)$ no instante $k$ e a velocidade $V^i(k+1)$ conforme mostrado na equação \ref{eq:Ppso}. 
+
+			\begin{equation}
+			\begin{array}{ll}
+					X^i(k + 1) = X^i(k) + V^i(k + 1)	
+			\end{array}
+			\label{eq:Ppso}
+			\end{equation}
+	
+	Sendo que o índice i representa a i-ésima partícula ou indivíduo. 
+	
+A velocidade $V^i(k + 1)$, por sua vez, é uma função formada por sua experiência anterior $V^i(k)$, a distância entre a posição atual da partícula $X^i(k)$ e a melhor experiência (função de avaliação $J_{PSO}$ com menor valor, para função de custo, ou maior valor, para função de maximização) que essa partícula possuiu $P^i_B(k)$ e a distância entre a posição atual da partícula $X^i(k)$ e a melhor experiência $P_G(k)$ que todas as partículas já possuíram em todos os $k$ eventos passados. A relação descrita pode ser melhor entendida visualizando a equação \ref{eq:Vpso}.
+
+			\begin{equation}
+			\begin{array}{ll}
+					V^i(k + 1) = V^i(k)+ \phi_1(P^i_B(k)-X^i(k))+ \phi_2(P_G(k)-X^i(k))	
+			\end{array}
+			\label{eq:Vpso}
+			\end{equation}								 
+
+Em que $\phi_1$ e $\phi_2$ são números aleatórios positivos com distribuição uniforme, geralmente denominados respectivamente como componentes ``cognitivo'' e ``social''.
+
+A partir dessas duas funções é possível descrever o algoritmo básico do PSO \cite{Serapiao2009} conforme mostrado:
+
+
+\begin{algorithm}
+\caption{PSO - Algoritmo Base}
+\begin{algorithmic}[1]
+
+	\item Criar populações de agentes distribuídos uniformemente ao longo dos planos X (as i partículas de $X^i(0)$), V (as i partículas de $V^i(0)$) e $P_B$ (as i partículas de $P^i_B(0)$);
+	
+	\item Avaliar a posição de cada partícula ($X^i(0)$) de acordo com a função ($J_{PSO}$) escolhida que se deseja minimizar ou maximizar;
+	
+	\item Se $J_{PSO}(X^i(k))$ for ``melhor'' que $J_{PSO}(P^i_B(k))$, atribuir a $P^i_B(k+1)$ o valor contido em $X^i(k)$, assim como a $J_{PSO}(P^i_B(k+1))$ o valor contido em $J_{PSO}(X^i(k))$;
+	
+	\item Encontrar utilizando $J_{PSO}(P^i_B(k))$ a ``melhor'' partícula colocando-a em $P_G(k)$ associando a sua avaliação a $J_{PSO}(P_G(k))$;
+	
+	\item Atualizar as i velocidades de acordo com a equação \ref{eq:Vpso};
+	
+	\item Mover as partículas para novas posições segundo a equação \ref{eq:Ppso}
+	
+	\item Se o critério de avaliação não for atingido volte ao item $1$. Caso contrário finalizar o algoritmo.
+	
+\end{algorithmic}
+\end{algorithm}
+
+ A maioria das modificações realizadas no algoritmo de PSO são variantes que, de alguma maneira, interferem direta ou indiretamente na lei de adaptação da velocidade das partículas. Como utilizado por ~\citeonline{Shi:98} que insere um coeficiente de inércia, ~\citeonline{ZHENG2012} que realiza uma mudança linear e não linear no coeficiente de inércia, ~\citeonline{Malik2007} que realiza atualizações no coeficiente de inércia utilizando funções sigmoidais e ~\citeonline{Tang2008} que realiza uma busca local por uma melhor partícula global ($P_G$).
+ 
+ Como mostrado, muitas modificações dentre as que são realizadas na velocidade das partículas inserem coeficientes de inércia dos mais variados (estáticos e dinâmicos). Uma das modificações mais tradicionais é a desenvolvida por ~\citeonline{Shi:98} que modificou a PSO original introduzindo um coeficiente de inércia ($\omega$) na equação \ref{eq:Vpso}. A equação modificada pode ser visualizada na equação \ref{eq:VpsoOmega}
+
+	\begin{equation}
+			\begin{array}{ll}
+					V^i(k + 1) = \omega V^i(k)+ \phi_1(P^i_B(k)-X^i(k))+ \phi_2(P_G(k)-X^i(k))	
+			\end{array}
+			\label{eq:VpsoOmega}
+			\end{equation}
+
+De acordo com testes numéricos, realizados por ~\citeonline{Shi:98,Shi:99}, ao adotar o coeficiente $\omega$ a performance do PSO aumenta consideravelmente de tal forma que a junção das equações \ref{eq:VpsoOmega} e \ref{eq:Ppso} é sempre considerada como o PSO padrão por muitos pesquisadores.
+
+		
+\section{PSO Matricial Simplificado}
+		
+		Apesar de muitas evidências empíricas acumuladas mostrarem que o PSO é uma excelente ferramenta de otimização, até então, pouco se pesquisou sobre o seu funcionamento e convergência \cite{Clerc2002}. Com base nessa motivação o algoritmo para a atualização das partículas, velocidade, melhor local e melhor global, é reorganizado em uma forma que a análise de convergência seja possível. A forma encontrada para a reescrita do algoritmo foi colocando-o na forma um sistema dinâmico discreto.
+		
+		Para que seja possível organizar o PSO na forma matricial algumas definiçõoes são necessárias. Primeiramente é necessário reescrever a condição de atualização das melhores partículas locais conforme as equações \ref{eq:Condicao2} e \ref{eq:Condicao3}. 
+		
+		\begin{equation}
+		\left\{\begin{matrix}
+		Se ( J_{PSO}(X^i(k)) < J_{PSO}(P^i_B(k)) ) \Rightarrow Verdadeiro = 1 \\ \\
+		s_1^i(k) = \frac{-sign (J_{PSO}(X^i(k)) - J_{PSO}(P^i_B(k)))+1}{2}\\ \\
+				\end{matrix}\right.
+	\label{eq:Condicao2}
+\end{equation}
+
+		E,
+		
+		\begin{equation}
+		\left\{\begin{matrix}
+		Se ( J_{PSO}(X^i(k)) < J_{PSO}(P^i_B(k)) ) \Rightarrow Falso = 0\\ \\
+		1-s_1^i(k) = \frac{sign (J_{PSO}(X^i(k)) - J_{PSO}(P^i_B(k)))+1}{2}\\ \\
+		\end{matrix}\right.
+	\label{eq:Condicao3}
+\end{equation}
+		
+		Sendo que $J_{PSO}(L)$ é a função custo, que é uma função de $L$, e que são as melhores partículas locais, ou as melhores experiências locais das partículas. A função $sign$, ou sinal, é representada de acordo com a equação \ref{eq:sinal}.
+	
+	\begin{equation}
+			\begin{array}{ll}
+					sign(x) = \left\{\begin{matrix} 1, If \ x\geqslant 0 
+\\-1, If \ x< 0 \end{matrix}\right.
+			\end{array}
+			\label{eq:sinal}
+			\end{equation}
+			
+			Isso significa que podemos escrever as condições \ref{eq:Condicao2} e \ref{eq:Condicao3} na forma da equação \ref{eq:Mlocal}.
+			
+			\begin{equation}
+			\begin{array}{ll}
+				P^i_B(k+1) = X^i(k)s_1^i(k) + P^i_B(k)(1-s_1^i(k))
+			\end{array}
+			\label{eq:Mlocal}
+			\end{equation}
+		
+		%\begin{equation}
+		%\left\{\begin{array}{llcc}
+		%se ( J_{PSO}(X^i(k)) < J_{PSO}(P^i_B(k)) ) \Rightarrow Verdadeiro = 1; & P^i_B(k+1) = X^i(k) \\
+		%se ( J_{PSO}(X^i(k)) < J_{PSO}(P^i_B(k)) ) \Rightarrow Falso = 0; & P^i_B(k+1) = P^i_B(k) \\
+	%\end{array}\right.
+	%\label{eq:Condicao1}
+%\end{equation}
+
+%Onde $J_{PSO}(L)$ é a função custo, que é uma função de L, ou seja, das partículas, melhores locais ou global.
+		
+		%Define-se:
+		%
+%\begin{equation}
+		%\left\{\begin{matrix}
+		%Se ( J_{PSO}(X^i(k)) < J_{PSO}(P^i_B(k)) ) \Rightarrow Verdadeiro = 1 \\ \\
+		%s_1^i(k) = \frac{-sign (J_{PSO}(X^i(k)) - J_{PSO}(P^i_B(k)))+1}{2}\\ \\
+				%\end{matrix}\right.
+	%\label{eq:Condicao2}
+%\end{equation}
+%
+%
+		%e,
+		%
+		%\begin{equation}
+		%\left\{\begin{matrix}
+		%se ( J_{PSO}(X^i(k)) < J_{PSO}(P^i_B(k)) ) \Rightarrow Falso = 0\\ \\
+		%1-s_1^i(k) = \frac{sign (J_{PSO}(X^i(k)) - J_{PSO}(P^i_B(k)))+1}{2}\\ \\
+		%\end{matrix}\right.
+	%\label{eq:Condicao3}
+%\end{equation}
+		%
+		%Onde a função sinal é representada conforme a equação \ref{eq:sinal}.
+	%
+	%\begin{equation}
+			%\begin{array}{ll}
+					%sign(x)= s_1^i(k) = s_2(k) = \left\{\begin{matrix} 1, se \ x\geqslant 0 
+%\\-1, se \ x< 0 \end{matrix}\right.
+			%\end{array}
+			%\label{eq:sinal}
+			%\end{equation}
+			%
+			%Isso significa que é possível escrever as condiçõoes \ref{eq:Condicao2} e \ref{eq:Condicao3} na forma da equação \ref{eq:Mlocal}.
+			%
+			%\begin{equation}
+			%\begin{array}{ll}
+				%P^i_B(k+1) = X^i(k)s_1^i(k) + P^i_B(k)(1-s_1^i(k))
+			%\end{array}
+			%\label{eq:Mlocal}
+			%\end{equation}
+			
+	
+		Tendo reescrito a condição de atualização das melhores partículas locais, a segunda condição para construir a variação matricial do PSO é reescrever a condição de atualização da melhor partícula global. Para isso, foi buscada uma solução, em princípio baseada na simplificação desenvolvida por ~\cite{Mendes2004}. Na simplificação realizada pelos autores utiliza-se um conceito de média entre as melhores partículas locais e globais com o intuito de melhorar o algoritmo. Percebendo a possibilidade de utilização de tal conceito para a sintetização de uma relação semelhante a da equação \ref{eq:Mlocal}, foi definido que a atualização da partícula global seria realizada a partir da média das partículas locais, conforme a equação \ref{eq:Pmedia}.
+					
+			\begin{equation}
+			\begin{array}{ll}
+				P_m(k) = \frac{\sum^{n_I}_{i=1}{P^i_B(k)}}{n_I}
+			\end{array}
+			\label{eq:Pmedia}
+			\end{equation}
+			
+			Sendo que $n_I$ é o número de partículas, ou seja, número de indivíduos da população.
+			
+			Com isso, é possível a partir da condição \ref{eq:CondicaoPg} obter a equação \ref{eq:MGlobal}:
+			
+			\begin{equation}
+			\left\{\begin{array}{llcc}
+				se ( J_{PSO}(P_m(k)) < J_{PSO}(P_G(k)) ) \Rightarrow Verdadeiro = 1; & P_G(k+1) = P_m(k) \\
+				se ( J_{PSO}(P_m(k)) < J_{PSO}(P_G(k)) ) \Rightarrow Falso = 0; & P_G(k+1) = P_G(k) \\
+			\end{array}\right.
+			\label{eq:CondicaoPg}
+			\end{equation}
+		 
+		 \begin{equation}
+			\begin{array}{ll}
+				P_G(k+1) = P_m(k)s_2(k) + P_G(k)(1-s_2(k))
+			\end{array}
+			\label{eq:MGlobal}
+			\end{equation}
+			
+			Definindo $T(k)$ como o vetor ``aumentado'', ou vetor de partículas $1d$ (significando que $i = 1$) na forma da equação \ref{eq:vetorT}:
+			
+			\begin{equation}
+			\begin{array}{ll}
+			T(k) = 
+			\begin{bmatrix}
+			X^i(k)\\ V^i(k)\\ P_B^i(k) \\ P_{G}(k)
+			\end{bmatrix}
+			\end{array}
+			\label{eq:vetorT}
+			\end{equation}
+			 
+			 É possível, utilizando as equações \ref{eq:Ppso}, \ref{eq:VpsoOmega}, \ref{eq:Mlocal}, \ref{eq:Pmedia} e \ref{eq:MGlobal}, e \ref{eq:vetorT}, escrever uma matriz ``A'' dada na equação \ref{eq:matA}, de forma a atualizar o vetor $T(k+1)$ a partir do vetor $T(k)$ conforme a equação \ref{eq:aT}.
+
+\begin{equation}
+		A(k) = 
+	\begin{bmatrix}
+		1-(\phi_1+\phi_2) & \omega & \phi_1 & \phi_2 \\ \\
+		-(\phi_1+\phi_2) & \omega & \phi_1 & \phi_2 \\ \\
+		s_1^i(k) & 0 & 1-s_1^i(k) & 0\\ \\
+		 0& 0 &  \frac{s_2(k)}{n_I}& 1-s_2(k)\\
+	\end{bmatrix}
+	\label{eq:matA}
+\end{equation}
+
+			\begin{equation}
+				T(k+1) = A(k)\,T(k) 
+			\label{eq:aT}
+			\end{equation}
+
+A solução otimizada com PSO, ou seja, a melhor partícula da iteração k pode ser obtida a partir da equação \ref{eq:SolPSO}.
+
+			\begin{equation}
+			S = [0\, 0\, 0\, 1]
+			T(k) = P_G(K)
+			\label{eq:SolPSO}
+			\end{equation}
+
+Devido a simplicidade da equação \ref{eq:aT} tanto o algoritmo do PSO se torna simplificado quanto é possível realizar a análise dos autovalores de forma a verificar a convergência das particulas em certas condições. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+		O algoritmo da PSOM, versão simplificada é descrito conforme mostrado:
+
+\begin{algorithm}
+\caption{PSOM - Versão Simplificada}
+\begin{algorithmic}[1]
+
+	\State  Criar populações de agentes distribuídos uniformemente ao longo dos planos $X$ , $V$, e $P_B$;
+	
+	\State  Montar a matriz ``A'', conforme equação \ref{eq:matA};
+	
+	\State  Atualizar as partículas conforme equação \ref{eq:aT};
+	
+	\State  Se o critério de avaliação não for atingido volte ao passo 2. Caso contrário finalizar o algoritmo.
+	
+\end{algorithmic}
+\end{algorithm}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		
+		\section{PSO Matricial - Versão sem simplificações}
+		
+		A diferença básica entre a variação matricial exata e a variação simplificada está na forma como a melhor partícula global $P_{G}(k)$ é atualizada. Isso significa que a organização no formato matricial segue a mesma sequência das equações \ref{eq:Condicao2} até a \ref{eq:Mlocal} e na sequência será apresentada a síntese da equação que calcula a atualização de $P_{G}(k)$, desenvolvida neste trabalho.
+		
+		Tendo reescrito a condição de atualização das melhores partículas locais (equações de \ref{eq:Condicao2} até \ref{eq:Mlocal}), a segunda condição para construir a variação matricial do PSO é reescrever a condição de atualização da melhor partícula global. Para que isso seja possível serão definidas quatro novas variáveis conforme as equações \ref{eq:EPG}, \ref{eq:MEPG}, \ref{eq:GD},\ref{eq:SDG} que são: 
+		
+		\begin{equation}
+			E_{P_G}^i(k)= J_{PSO} (P_G)- J_{PSO} (P_B^i(k))
+			\label{eq:EPG}
+			\end{equation}
+			
+			\begin{equation}
+			ME_{P_G}^i(k)= \| J_{PSO} (P_B(k) ) \|_\propto - \| - J_{PSO} (P_B^i(k)) + \| J_{PSO}(P_B (k) \|_\propto \|_\propto
+			\label{eq:MEPG}
+			\end{equation}
+			
+			\begin{equation}
+			G_{D}^i(k)= \frac{[s(E_{P_G}^i(k)) + s(ME_{P_G}^i(k))] + [s(E_{P_G}^i(k))\,s(ME_{P_G}^i(k))] + 1}{4}
+			\label{eq:GD}
+			\end{equation}
+			
+			\begin{equation}
+			s_{DG}(k)= \frac{s_3( \sum_{i=1}^N{G_D^i(k)} )+1}{2}\sum_{i=1}^N{G_D^i(k)} + \frac{-s_3( \sum_{i=1}^N{G_D^i(k)}) + 1}{2}
+			\label{eq:SDG}
+			\end{equation}
+		
+		Em que $s_{3}(x)$ é a função sinal, definida como:
+		
+		\begin{equation}
+			s_{3}(x)= \left\{\begin{matrix}
+\,\,\,\,1, \, se\,\, x>0 \\ 
+-1, \, se\,\, x\leqslant 0
+\end{matrix}\right. 
+			\label{eq:s3}
+			\end{equation}
+			
+			e N é o número de partículas.
+
+Utilizando as formulações apresentadas é possível obter a equação que atualiza as melhores partículas globais conforme \ref{eq:Pgexato}.
+
+\begin{equation}
+			P_G(k+1)= \frac{G_{D}^i(k)}{s_{DG}(k)}P_B^i(k) + (1-\sum_{i=1}^N{\frac{G_D^i(k)}{s_{DG}(k)}})P_G(k)
+			\label{eq:Pgexato}
+			\end{equation}
+
+Utilizando as formulações é possível reescrever a matriz A(k) para o PSOM exato na forma da equação \ref{eq:Aexata}.
+
+\begin{equation}
+		A(k) = 
+\begin{bmatrix}
+		1-(\phi_1+\phi_2) & \omega & \phi_1 & \phi_2 \\ \\
+		-(\phi_1+\phi_2) & \omega & \phi_1 & \phi_2 \\ \\
+		s_1^i(k) & 0 & 1-s_1^i(k) & 0\\ \\
+		 0& 0 &  \frac{G_{D}^i(k)}{s_{DG}(k)}& (1-\sum_{i=1}^N{\frac{G_D^i(k)}{s_{DG}(k)}})\\
+	\end{bmatrix}
+\label{eq:Aexata}
+\end{equation}
+
+Com isso é possível organizar o sistema conforme apresentado na seção anterior nas equações \ref{eq:aT}, e \ref{eq:SolPSO} que retornam a solução otimizada do sistema.
+
+O algoritmo da PSOM, versão sem simplificações é descrito conforme mostrado:
+
+\begin{algorithm}
+\caption{PSOM - Versão não Simplificada}
+\begin{algorithmic}[1]
+
+	\State  Criar populações de agentes distribuídos uniformemente ao longo dos planos $X$ , $V$, e $P_B$;
+	
+	\State  Montar a matriz ``A'', conforme equação \ref{eq:Aexata};
+	
+	\State  Atualizar as partículas conforme equação \ref{eq:aT};
+	
+	\State  Se o critério de avaliação não for atingido volte ao passo 2. Caso contrário finalizar o algoritmo.
+	
+\end{algorithmic}
+\end{algorithm}
+
+\subsection{Análise de Estabilidade do Algoritmo}
+\label{sec:Estabilidade}
+
+%A partir da estrutura proposta é possível realizar uma modificação que permita escolher autovalores, para a estrutura matricial, que estejam no interior do ciclo de raio unitário. Tal modificação consiste em inserir um fator de esquecimento como é mostrado na equação \ref{eq:AexataEsq}.
+%
+%\begin{equation}
+%		\begin{bmatrix}
+%X^i(k+1)\\ 
+%V^i(k+1)\\ 
+%P_B^i(k+1)\\ 
+%P_G(k+1)
+%\end{bmatrix} = 
+%\begin{bmatrix}
+%		1-(\phi_1+\phi_2) & \omega & \phi_1 & \phi_2 \\ \\
+%		-(\phi_1+\phi_2) & \omega & \phi_1 & \phi_2 \\ \\
+%		s_1^i(k) & 0 & 1-s_1^i(k) & 0\\ \\
+%		 0& 0 &  \frac{G_(D)^i(k)}{s_{DG}(k)}& (1-\sum_{i=1}^N{\frac{G_D^i(k)}{s_{DG}(k)}})\\
+%	\end{bmatrix}
+%
+%\begin{bmatrix}
+%X^i(k)\\ 
+%V^i(k)\\ 
+%P_B^i(k)\\ 
+%P_G(k)
+%\end{bmatrix}
+%
+%\label{eq:AexataEsq}
+%\end{equation}
+
+		
+		
+		Alguns trabalhos na literatura buscaram analisar a convergência e estabilidade do algoritmo PSO de várias maneiras. Dentre estas é possível citar a primeira análise de estabilidade do PSO proposta por ~\citeonline{Clerc2002}, a análise de estabilidade utilizando o conceito de estabilidade absoluta proposta por ~\citeonline{Kadirkamanathan2006}, a análise de convergência do PSO utilizando funções multi-objetivo proposta por ~\citeonline{Chakraborty2010} e a análise de estabilidade não linear variante no tempo do PSO proposta por ~\citeonline{Fan2010}. Pode-se concluir, então, que a análise de estabilidade vem sendo profundamente estudada por vários autores. 
+		
+		Assim como foi analisada a estabilidade de algoritmos baseados em enxame de partículas pelos autores será realizada uma análise de estabilidade dividindo o algoritmo PSO, proposto, em sistemas lineares.
+		
+		Nas ultimas duas décadas aumentou-se o interesse no estudo de sistemas híbridos. Esses sistemas são utilizados para reduzir a complexidade na modelagem de sistemas não lineares. Muitos deles podem ser modelados como um conjunto de sistemas lineares com chaves selecionadoras entre eles. Essa abordagem caracteriza uma classe de sistemas híbridos conhecidos como sistemas lineares por partes. Mesmo havendo progressos importantes na análise de estabilidade de sistemas lineares por partes, sua análise ainda é um grande desafio. Pois, a estabilidade de sistemas lineares por partes não pode ser inferida apenas pela estabilidade dos sistemas que o compõe, porque mesmo no caso em que todas as partes são estáveis a estrutura de chaveamento pode fazer com que o sistema se instabilize \cite{Barijough2010}. Como a estabilidade de um sistema linear por partes depende não só de todas as partes do sistema serem estáveis, mas também da estrutura de chaveamento, será proposta uma análise que leve em consideração ambos os acontecimentos, ou seja, cada parte em separado e o sistema como um todo.
+		
+	Suponhamos que a equação \ref{eq:aT} possa ser reescrita na forma da equação \ref{eq:aT2}.
+		
+		\begin{equation}
+				T(k+1) = A\,T(k) 
+			\label{eq:aT2}
+			\end{equation}
+			
+		Ou seja,em princípio será assumindo que os seus parâmetros são constantes (lembrando que o sistema mostrado é aplicável tanto à estrutura do PSOM simplificado quanto para o exato).
+		
+		A partir do conceito de autovalores é possível provar que a estabilidade assintótica do ponto fixo do sistema linear depende do m\'odulo dos autovalores de ``A'', matriz da equação \ref{eq:aT2}. Isto é, o ponto de equilíbrio é assintóticamente estável quando o m\'odulo de todos os seus autovalores é menor que 1, para um sistema discreto. Em consequ\^encia, quando, pelo menos, o m\'odulo de um autovalor é maior que 1 o sistema é instável \cite{Monteiro2002}. Isto significa que:
+
+\begin{itemize}
+	\item A equação \ref{eq:aT2} é marginalmente estável se, e somente se, todos os autovalores de A têm magnitudes menores ou iguais a 1 e aqueles que tiverem magnitudes iguais a 1 forem raízes simples do polinômio mínimo de A;
+	\item A equação \ref{eq:aT2} é assintoticamente estável se, e somente se, todos os autovalores de A têm magnitudes menores que 1;
+	\item A equação \ref{eq:aT2} é instável quando pelo menos o módulo de um autovalor for maior que 1;
+\end{itemize}
+		
+		Para aplicar os conceitos apresentados é necessário supor que o sistema é linear e invariante no tempo. Dessa maneira, serão assumidas tais hipóteses de maneira a analisar parte do algoritmo. 
+				
+		Devido a $s_1^i(k)$ e $s_2(k)$ (onde $ \sum_{i=1}^N{\frac{G_D^i(k)}{s_{DG}(k)}}$ é semelhante a $s_2(k)$) serem funções que variam em apenas dois valores é possível reestruturar o PSO matricial em 4 diferentes partes principais. Os valores que $s_1^i(k)$ e $s_2(k)$ podem assumir são:
+
+\begin{itemize}
+	\item Para $s_1^i(k)=0$ e $s_2(k)=0$ temos:
+	
+			\begin{equation}
+		A_1 = 
+	\begin{bmatrix}
+		1-(\phi_1+\phi_2) & \omega & \phi_1& \phi_2 \\ \\
+		-(\phi_1+\phi_2) & \omega & \phi_1 & \phi_2 \\ \\
+		0 & 0 & 1 & 0\\ \\
+		 0& 0 &  0& 1\\
+	\end{bmatrix}
+	\label{eq:matA1}
+\end{equation}
+
+	\item Para $s_1^i(k)=1$ e $s_2(k)=0$ temos:
+	
+	\begin{equation}
+		A_2 = 
+	\begin{bmatrix}
+		1-(\phi_1+\phi_2) & \omega & \phi_1& \phi_2 \\ \\
+		-(\phi_1+\phi_2) & \omega & \phi_1 & \phi_2 \\ \\
+		1 & 0 & 0 & 0\\ \\
+		 0& 0 &  0& 1\\
+	\end{bmatrix}
+	\label{eq:matA2}
+\end{equation}
+
+\item Para $s_1^i(k)=0$ e $s_2(k)=1$ temos:
+	
+	\begin{equation}
+		A_3 = 
+	\begin{bmatrix}
+		1-(\phi_1+\phi_2) & \omega & \phi_1& \phi_2 \\ \\
+		-(\phi_1+\phi_2) & \omega & \phi_1 & \phi_2 \\ \\
+		0 & 0 & 1 & 0\\ \\
+		 0& 0 &  1& 0\\
+	\end{bmatrix}
+	\label{eq:matA3}
+\end{equation}
+
+\item Para $s_1^i(k)=1$ e $s_2(k)=1$ temos:
+	
+	\begin{equation}
+		A_4 = 
+	\begin{bmatrix}
+		1-(\phi_1+\phi_2) & \omega & \phi_1& \phi_2 \\ \\
+		-(\phi_1+\phi_2) & \omega & \phi_1 & \phi_2 \\ \\
+		1 & 0 & 0 & 0\\ \\
+		 0& 0 &  1& 0\\
+	\end{bmatrix}
+	\label{eq:matA4}
+\end{equation}
+
+\end{itemize}
+
+Como o comportamento de $s_1^i(k)$ e $s_2(k)$ é equivalente a uma chave, ou seja, assume valores ``0'' ou ``1'', as possibilidades formam o conjunto que calcula as novas partículas, o valor das melhores locais e a melhor partícula global para o algoritmo de PSO matricial. Com isso, é possível reorganizar o sistema da seguinte maneira:
+
+			\begin{equation}
+				T(k+1) = (\delta_1\,A_1\, +\cdots +\, \delta_n\,A_n)\,T(k) 
+			\label{eq:aT3}
+			\end{equation}
+			
+			Sendo que:
+			
+			
+\begin{itemize}
+	\item $\delta_i {\in \{0,1\}}$, $\sum^{n}_{i=1}{\delta_i}=1$ e $P(\delta_i = 1) = \frac{1}{k}$. Onde não necessariamente as probabilidades devem ser uniformemente distribuídas na forma $\frac{1}{k}$. Porém, isso simplifica a notação e é a distribuição mais comumente utilizada \cite{HANLON2011}. 
+	\item $A_l$ corresponde à matriz $A$ gerada com todas as possibilidades de $s_1^i(k)$ e $s_2(k)$. Ou seja:
+	
+	$l=1 \rightarrow s_1^i(k)=0\,e\, s_2(k)=0$
+	
+	$l=2 \rightarrow s_1^i(k)=1\, e\, s_2(k)=0$
+	
+	$l=3 \rightarrow s_1^i(k)=0\, e\, s_2(k)=1$
+	
+	$l=4 \rightarrow s_1^i(k)=1\, e\, s_2(k)=1$
+	
+\end{itemize}
+
+Como os sistemas apresentados nas equações \ref{eq:matA1}, \ref{eq:matA2}, \ref{eq:matA3}, \ref{eq:matA4} estão na forma linear, é possível obter os autovalores de cada matriz, mostrados nas equações \ref{eq:avA1}, \ref{eq:avA2}, \ref{eq:avA3}, \ref{eq:avA4}.
+
+\begin{itemize}
+	\item Para $A_1$ temos:
+	
+			\begin{equation}
+			\left(\begin{array}{c} 1\\ 1\\ \frac{\omega}{2} - \frac{\mathrm{\phi_2}}{2} - \frac{\mathrm{\phi_1}}{2} - \frac{\sqrt{{\mathrm{\phi_1}}^2 + 2\, \mathrm{\phi_1}\, \mathrm{\phi_2} - 2\, \mathrm{\phi_1}\, \omega - 2\, \mathrm{\phi_1} + {\mathrm{\phi_2}}^2 - 2\, \mathrm{\phi_2}\, \omega - 2\, \mathrm{\phi_2} + \omega^2 - 2\, \omega + 1}}{2} + \frac{1}{2}\\ \frac{\omega}{2} - \frac{\mathrm{\phi_2}}{2} - \frac{\mathrm{\phi_1}}{2} + \frac{\sqrt{{\mathrm{\phi_1}}^2 + 2\, \mathrm{\phi_1}\, \mathrm{\phi_2} - 2\, \mathrm{\phi_1}\, \omega - 2\, \mathrm{\phi_1} + {\mathrm{\phi_2}}^2 - 2\, \mathrm{\phi_2}\, \omega - 2\, \mathrm{\phi_2} + \omega^2 - 2\, \omega + 1}}{2} + \frac{1}{2} \end{array}\right)
+			\label{eq:avA1}
+			\end{equation}
+
+\item Para $A_2$ temos:
+	
+			\begin{equation}
+			\left(\begin{array}{c} 0\\ 1\\ \frac{\omega}{2} - \frac{\mathrm{\phi_2}}{2} - \frac{\mathrm{\phi_1}}{2} - \frac{\sqrt{{\mathrm{\phi_1}}^2 + 2\, \mathrm{\phi_1}\, \mathrm{\phi_2} - 2\, \mathrm{\phi_1}\, \omega + 2\, \mathrm{\phi_1} + {\mathrm{\phi_2}}^2 - 2\, \mathrm{\phi_2}\, \omega - 2\, \mathrm{\phi_2} + \omega^2 - 2\, \omega + 1}}{2} + \frac{1}{2}\\ \frac{\omega}{2} - \frac{\mathrm{\phi_2}}{2} - \frac{\mathrm{\phi_1}}{2} + \frac{\sqrt{{\mathrm{\phi_1}}^2 + 2\, \mathrm{\phi_1}\, \mathrm{\phi_2} - 2\, \mathrm{\phi_1}\, \omega + 2\, \mathrm{\phi_1} + {\mathrm{\phi_2}}^2 - 2\, \mathrm{\phi_2}\, \omega - 2\, \mathrm{\phi_2} + \omega^2 - 2\, \omega + 1}}{2} + \frac{1}{2} \end{array}\right)
+			\label{eq:avA2}
+			\end{equation}
+
+\item Para $A_3$ temos:
+
+			\begin{equation}
+			\left(\begin{array}{c} 0\\ 1\\ \frac{\omega}{2} - \frac{\mathrm{\phi_2}}{2} - \frac{\mathrm{\phi_1}}{2} - \frac{\sqrt{{\mathrm{\phi_1}}^2 + 2\, \mathrm{\phi_1}\, \mathrm{\phi_2} - 2\, \mathrm{\phi_1}\, \omega - 2\, \mathrm{\phi_1} + {\mathrm{\phi_2}}^2 - 2\, \mathrm{\phi_2}\, \omega - 2\, \mathrm{\phi_2} + \omega^2 - 2\, \omega + 1}}{2} + \frac{1}{2}\\ \frac{\omega}{2} - \frac{\mathrm{\phi_2}}{2} - \frac{\mathrm{\phi_1}}{2} + \frac{\sqrt{{\mathrm{\phi_1}}^2 + 2\, \mathrm{\phi_1}\, \mathrm{\phi_2} - 2\, \mathrm{\phi_1}\, \omega - 2\, \mathrm{\phi_1} + {\mathrm{\phi_2}}^2 - 2\, \mathrm{\phi_2}\, \omega - 2\, \mathrm{\phi_2} + \omega^2 - 2\, \omega + 1}}{2} + \frac{1}{2} \end{array}\right)
+			\label{eq:avA3}
+			\end{equation}
+
+\item Para $A_4$ temos:
+
+			\begin{equation}
+			\left(\begin{array}{c} 0\\ 1\\ \frac{\omega}{2} - \frac{\mathrm{\phi_2}}{2} - \frac{\mathrm{\phi_1}}{2} - \frac{\sqrt{{\mathrm{\phi_1}}^2 + 2\, \mathrm{\phi_1}\, \mathrm{\phi_2} - 2\, \mathrm{\phi_1}\, \omega + {\mathrm{\phi_2}}^2 - 2\, \mathrm{\phi_2}\, \omega - 4\, \mathrm{\phi_2} + \omega^2}}{2}\\ \frac{\omega}{2} - \frac{\mathrm{\phi_2}}{2} - \frac{\mathrm{\phi_1}}{2} + \frac{\sqrt{{\mathrm{\phi_1}}^2 + 2\, \mathrm{\phi_1}\, \mathrm{\phi_2} - 2\, \mathrm{\phi_1}\, \omega + {\mathrm{\phi_2}}^2 - 2\, \mathrm{\phi_2}\, \omega - 4\, \mathrm{\phi_2} + \omega^2}}{2} \end{array}\right)
+			\label{eq:avA4}
+			\end{equation}
+			
+\end{itemize}
+
+É possível perceber que em todas as equações (\ref{eq:avA1}, \ref{eq:avA2}, \ref{eq:avA3}, \ref{eq:avA4}), assumindo os parâmetros $\omega$, $\phi_1$, e $\phi_2$ constantes, existe pelo menos um autovalor em ``1''. Isso significa que separadamente cada matriz é, no mínimo, marginalmente estável, podendo ser instável dependendo da escolha dos parâmetros $\omega$, $\phi_1$, e $\phi_2$.  Neste caso, não há convergência garantida analisando as partes lineares. 
+
+Para que seja possível reposicionar os autovalores das matrizes tanto para o caso simplificado quanto exato é necessário realizar uma modificação nas matrizes A. Para o caso específico do PSOM, será proposta uma modificação de maneira que seja possível posicionar os autovalores no interior do círculo de raio unitário (para que essa parte do sistema deixe de ser marginalmente estável e se torne assintoticamente estável), quando ocorrer $s_1^i=1$ e $s_2=1$, momento onde $P_B$ recebe o valor de X  e $P_G$ recebe o valor de $P_B$. A modificação proposta para satisfazer tal objetivo é inserir um fator de esquecimento ($\lambda_{esq}$) na equação de atualização da partícula. Dessa maneira, é possível reescrever a matriz ``A'' como apresentado nas equações \ref{eq:matMAs} ou \ref{eq:matMAE}.
+
+			\begin{equation}
+		A_{esq1}(k) = 
+	\begin{bmatrix}
+		\lambda_{esq}-(\phi_1+\phi_2) & \omega & \phi_1& \phi_2 \\ \\
+		-(\phi_1+\phi_2) & \omega & \phi_1 & \phi_2 \\ \\
+		s_1^i & 0 & 1-s_1^i & 0\\ \\
+		 0& 0 &  \frac{s_2}{n_I}& 1-s_2\\
+	\end{bmatrix}
+	\label{eq:matMAs}
+\end{equation}
+
+			\begin{equation}
+		A_{esq2}(k) = 
+	\begin{bmatrix}
+		\lambda_{esq}-(\phi_1+\phi_2) & \omega & \phi_1 & \phi_2 \\ \\
+		-(\phi_1+\phi_2) & \omega & \phi_1 & \phi_2 \\ \\
+		s_1^i(k) & 0 & 1-s_1^i(k) & 0\\ \\
+		 0& 0 &  \frac{G_{D}^i(k)}{s_{DG}(k)}& (1-\sum_{i=1}^N{\frac{G_D^i(k)}{s_{DG}(k)}})\\
+	\end{bmatrix}
+	\label{eq:matMAE}
+\end{equation}
+
+
+Ao substituir as quatro possibilidades de $s_1^i(k)$ e $s_2(k)$, onde $ \sum_{i=1}^N{\frac{G_D^i(k)}{s_{DG}(k)}}$ é semelhante a $s_2(k)$, é possível encontrar os autovalores das equações \ref{eq:avMA1}, \ref{eq:avMA2}, \ref{eq:avMA3}, \ref{eq:avMA4}.
+
+		Para $s_1^i(k)=0$ e $s_2(k)=0$ temos:
+	
+			\begin{equation}
+			\left(\begin{array}{c} 1\\ 1\\ \frac{\lambda_{esq}}{2} - \frac{\mathrm{\phi_1}}{2} - \frac{\mathrm{\phi_2}}{2} + \frac{\omega}{2} - \frac{\sqrt{\lambda_{esq}^2 - 2\, \lambda_{esq}\, \mathrm{\phi_1} - 2\, \lambda_{esq}\, \mathrm{\phi_2} - 2\, \lambda_{esq}\, \omega + {\mathrm{\phi_1}}^2 + 2\, \mathrm{\phi_1}\, \mathrm{\phi_2} - 2\, \mathrm{\phi_1}\, \omega + {\mathrm{\phi_2}}^2 - 2\, \mathrm{\phi_2}\, \omega + \omega^2}}{2}\\ \frac{\lambda_{esq}}{2} - \frac{\mathrm{\phi_1}}{2} - \frac{\mathrm{\phi_2}}{2} + \frac{\omega}{2} + \frac{\sqrt{\lambda_{esq}^2 - 2\, \lambda_{esq}\, \mathrm{\phi_1} - 2\, \lambda_{esq}\, \mathrm{\phi_2} - 2\, \lambda_{esq}\, \omega + {\mathrm{\phi_1}}^2 + 2\, \mathrm{\phi_1}\, \mathrm{\phi_2} - 2\, \mathrm{\phi_1}\, \omega + {\mathrm{\phi_2}}^2 - 2\, \mathrm{\phi_2}\, \omega + \omega^2}}{2} \end{array}\right)
+			\label{eq:avMA1}
+			\end{equation}
+
+Para $s_1^i(k)=1$ e $s_2(k)=0$ temos:
+	
+			\begin{equation}
+			\left(\begin{array}{c} 0\\ 1\\ \frac{\lambda_{esq}}{2} - \frac{\mathrm{\phi_1}}{2} - \frac{\mathrm{\phi_2}}{2} + \frac{\omega}{2} - \frac{\sqrt{\lambda_{esq}^2 - 2\, \lambda_{esq}\, \mathrm{\phi_1} - 2\, \lambda_{esq}\, \mathrm{\phi_2} - 2\, \lambda_{esq}\, \omega + {\mathrm{\phi_1}}^2 + 2\, \mathrm{\phi_1}\, \mathrm{\phi_2} - 2\, \mathrm{\phi_1}\, \omega + 4\, \mathrm{\phi_1} + {\mathrm{\phi_2}}^2 - 2\, \mathrm{\phi_2}\, \omega + \omega^2}}{2}\\ \frac{\lambda_{esq}}{2} - \frac{\mathrm{\phi_1}}{2} - \frac{\mathrm{\phi_2}}{2} + \frac{\omega}{2} + \frac{\sqrt{\lambda_{esq}^2 - 2\, \lambda_{esq}\, \mathrm{\phi_1} - 2\, \lambda_{esq}\, \mathrm{\phi_2} - 2\, \lambda_{esq}\, \omega + {\mathrm{\phi_1}}^2 + 2\, \mathrm{\phi_1}\, \mathrm{\phi_2} - 2\, \mathrm{\phi_1}\, \omega + 4\, \mathrm{\phi_1} + {\mathrm{\phi_2}}^2 - 2\, \mathrm{\phi_2}\, \omega + \omega^2}}{2} \end{array}\right)
+			\label{eq:avMA2}
+			\end{equation}
+
+Para $s_1^i(k)=0$ e $s_2(k)=1$ temos:
+
+			\begin{equation}
+			\left(\begin{array}{c} 0\\ 1\\ \frac{\lambda_{esq}}{2} - \frac{\mathrm{\phi_1}}{2} - \frac{\mathrm{\phi_2}}{2} + \frac{\omega}{2} - \frac{\sqrt{\lambda_{esq}^2 - 2\, \lambda_{esq}\, \mathrm{\phi_1} - 2\, \lambda_{esq}\, \mathrm{\phi_2} - 2\, \lambda_{esq}\, \omega + {\mathrm{\phi_1}}^2 + 2\, \mathrm{\phi_1}\, \mathrm{\phi_2} - 2\, \mathrm{\phi_1}\, \omega + {\mathrm{\phi_2}}^2 - 2\, \mathrm{\phi_2}\, \omega + \omega^2}}{2}\\ \frac{\lambda_{esq}}{2} - \frac{\mathrm{\phi_1}}{2} - \frac{\mathrm{\phi_2}}{2} + \frac{\omega}{2} + \frac{\sqrt{\lambda_{esq}^2 - 2\, \lambda_{esq}\, \mathrm{\phi_1} - 2\, \lambda_{esq}\, \mathrm{\phi_2} - 2\, \lambda_{esq}\, \omega + {\mathrm{\phi_1}}^2 + 2\, \mathrm{\phi_1}\, \mathrm{\phi_2} - 2\, \mathrm{\phi_1}\, \omega + {\mathrm{\phi_2}}^2 - 2\, \mathrm{\phi_2}\, \omega + \omega^2}}{2} \end{array}\right)
+			\label{eq:avMA3}
+			\end{equation}
+
+Para $s_1^i(k)=1$ e $s_2(k)=1$ temos:
+
+			\begin{equation}
+			\left ( \begin{array}{c} 
+			0\\
+			\frac{\lambda_{esq}}{3}+\frac{\omega}{3}-\frac{\phi_1}{3}-\frac{\phi_2}{3}+\sigma_1+\frac{\sigma_2}{\sigma_1}\\
+			\frac{\lambda_{esq}}{3}+\frac{\omega}{3}-\frac{\phi_1}{3}-\frac{\phi_2}{3} - \frac{\sigma_1}{2}-\frac{\sigma_2}{2\sigma_1} - \frac{\sqrt{3}(\sigma_1- \frac{\sigma_2}{\sigma_1})i}{2}\\
+			\frac{\lambda_{esq}}{3}+\frac{\omega}{3}-\frac{\phi_1}{3}-\frac{\phi_2}{3} - \frac{\sigma_1}{2}-\frac{\sigma_2}{2\sigma_1} + \frac{\sqrt{3}(\sigma_1- \frac{\sigma_2}{\sigma_1})i}{2}
+			\end{array} \right )
+			\label{eq:avMA4}
+			\end{equation}
+			
+			Sendo:
+			
+			\begin{equation}
+			 \sigma_1 = \left ( \begin{array}{cc} 
+			 \frac{\phi_2}{2} + \frac{(\lambda_{esq} + \omega - \phi_1 -\phi_2)^3}{27} + \cdots \\ + \frac{ (\phi_1 - \lambda_{esq} + \omega) (\lambda_{esq} + \omega - \phi_1 -\phi_2)}{6} + \cdots \\ + \sqrt{ \left (  \frac{\phi_2}{2} + \frac{(\lambda_{esq} + \omega - \phi_1 -\phi_2)^3}{27} + \frac{ (\phi_1 - \lambda_{esq} + \omega) (\lambda_{esq} + \omega - \phi_1 -\phi_2)}{6} \right )^2 - \sigma_2^3} 
+			\end{array} \right  )^\frac{1}{3}
+			\label{eq:avMA4s1}
+			\end{equation}
+			
+			\begin{equation}
+			 \sigma_2 = \begin{array}{cc} 
+			 \frac{\phi_1}{3} + \frac{(\lambda_{esq} + \omega - \phi_1 -\phi_2)^2}{9} -  \frac{ \lambda_{esq} \omega}{3}
+			\end{array} 
+			\label{eq:avMA4s2}
+			\end{equation}
+			
+			Como pode-se observar na equação \ref{eq:avMA4}, dependendo da forma como são escolhidos os parâmetros, é possível encontrar valores constantes para as variáveis $\phi_1$, $\phi_2$, $\omega$ e $\lambda_{esq}$ onde o módulo dos autovalores seja menor que ``1'', e, para as outras possibilidades, sejam no máximo igual a ``1''. 
+
+Contudo, a estabilidade dos sistemas lineares por partes não pode ser inferida apenas pela estabilidade dos sistemas que os compõe, porque mesmo no caso em que todas as partes são estáveis a estrutura de chaveamento pode fazer com que o sistema se instabilize \cite{Barijough2010}. Por isso, como a estabilidade de um sistema linear por partes depende não só de todas as partes do sistema serem estáveis, mas também da estrutura de chaveamento. A seguir, será proposta uma forma de analisar a estabilidade da estrutura da equação \ref{eq:aT3}.
+
+A teoria de sistemas chaveados tem recebido uma atenção especial na literatura de teoria de sistemas lineares nas últimas duas décadas, apresentando resultados sólidos no que concerne a estabilidade e estabilização desses sistemas. Um desses resultados, que pode ser visualizado em \cite{HANLON2011}, apresenta o seguinte teorema:
+
+\textit{Teorema 1}: O sistema \ref{eq:aT3} converge para zero quase certamente se e somente se todos os autovalores da matriz $\frac{\sum^{n}_{i=1}{A_i}}{n} $ se encontram no interior do ciclo de raio unitário.
+
+Baseado no teorema apresentado a matriz da equação \ref{eq:matMAs}, substituídas com as 4 possibilidades, resultariam numa nova matriz $\bar{A}$, que pode ser visualizada na equação \ref{eq:matMAbs} cujos autovalores determinam a estabilidade quase certa das partículas.
+
+	\begin{equation}
+		\bar{A} = \sum_{l=1}^n{\frac{A_l}{n}}
+	\label{eq:matMAbs}
+\end{equation}
+
+Assim, é possível reescrever a matriz \ref{eq:matMAbs} na forma da equação \ref{eq:matMAbs2}.
+
+	\begin{equation}
+		\bar{A} = 
+	\begin{bmatrix}
+		\lambda_{esq}- (c_1+c_2) & \omega & c_1& c_2 \\ \\
+		-(c_1+c_2  & \omega & c_1& c_2\\ \\
+		\frac{1}{2} & 0 & \frac{1}{2} & 0\\ \\
+		 0& 0 &  \frac{1}{2}& \frac{1}{2}\\
+	\end{bmatrix}
+	\label{eq:matMAbs2}
+\end{equation}
+
+Em que:
+
+\begin{itemize}
+	\item $c_1 = \frac{\phi_{1\,in}+\phi_{1\,f}}{2}$;
+	\item $\phi_{1\,in}$ = 0;
+	\item $c_2 = \frac{\phi_{2\,in}+\phi_{2\,f}}{2}$;
+	\item $\phi_{2\,in}$ = 0.
+	\item $\phi_{i\,in}$ e $\phi_{i\,f}$ são os valores inicial e final dos intervalos onde as variáveis $\phi_1$ e $\phi_2$ estão distribuídas.
+\end{itemize}
+
+Com base na matriz da equação \ref{eq:matMAbs2} é possível realizar uma simulação em busca de regiões estáveis, que são as possíveis escolhas de parâmetros que resultam em uma estabilidade quase certa. A figura \ref{fig:EstabilidadeQuaseCerta} apresenta uma região formada com os parâmetros no $R^4$ ($\phi_1$, $\phi_2$, $\omega$ e $\lambda_{esq}$), porém, apresentada em pares, onde os parâmetros que não são apresentados em cada gráfico foram fixados iguais a 1.
+
+
+\begin{figure}[!htb]
+\inserirListaFiguras
+\centering
+   %\FONTE{\cite{franca}}
+   \includegraphics[scale=0.485]{Figuras/EstabilidadeQuaseCerta.png}
+      \caption{Gráficos com regiões de estabilidade no $R^4$ com os parâmetros não apresentados iguais a 1}
+   \label{fig:EstabilidadeQuaseCerta}
+\end{figure}
+
+
+Portanto, é possível determinar uma região de estabilidade quase certa para o sistema linear por partes, apresentado na equação \ref{eq:aT3}. Isso significa que a comutação entre as matrizes que geram esse sistema quase certamente resultará na convergência do estado T(k), e, em consequência, na convergência das partículas ($X$), das velocidades ($V$), das melhores locais ($P_B$) e das melhores globais ($P_G$).
+		
+		\subsection{Análise de Convergência do Erro Quadrático Iterativo}
+		
+		O critério de estabilidade utilizado na seção \ref{sec:Estabilidade} apenas garante que as partículas dentro do PSO tenderão a convergir para um valor finito, não significando que essa convergência acontecerá na direção da minimização ou maximização da função custo. Por isso, com o objetivo de analisar a convergência no sentido de otimizar a função custo, deve-se analisar se o erro diminui a cada iteração. Neste caso podemos utilizar o critério da inequação \ref{eq:ErroIterativoQuadratico}.
+		
+	\begin{equation}
+		E(k)^2 - E(k-1)^2 < 0
+	\label{eq:ErroIterativoQuadratico}
+\end{equation}	
+		
+		Em que:
+		
+		\begin{itemize}
+			\item $E(k) = y - S\,A(k)\,T(k)$, isto é, $E(k) = y - S\,A(k)\,A(k-1)\,T(k-1)$;
+			\item $E(k-1) = y - S\,A(k-1)\,T(k-1)$
+		\end{itemize}
+		
+		Através da inequação \ref{eq:ErroIterativoQuadratico} é possível perceber que sempre que a mesma é verdadeira o erro diminui, e, portanto, o sistema fica mais próximo da solução correta.
+		
+		Para que seja possível perceber quais são as condições necessárias para que o erro diminua a inequação pode ser expandida. Conforme as inequações \ref{eq:DeducaoErro1}, \ref{eq:DeducaoErro2}, \ref{eq:DeducaoErro3}, \ref{eq:DeducaoErro4}, \ref{eq:DeducaoErro5}, \ref{eq:DeducaoErro6}, \ref{eq:DeducaoErro7}:
+		
+		\begin{equation}
+			\begin{matrix}
+				y^2 - 2\,y\,S\,A(k)\,A(k-1)\,T(k-1) + (S\,A(k)\,A(k-1)\,T(k-1))^2 - \\(y^2 -2\,y\,S\,A(k-1)\,T(k-1) + (S\,A(k-1)\,T(k-1))^2) < 0
+			\end{matrix}
+		\label{eq:DeducaoErro1}
+	  \end{equation}
+		
+		\begin{equation}
+			\begin{matrix}
+				- 2\,y\,S\,A(k)\,A(k-1)\,T(k-1) + (S\,A(k)\,A(k-1)\,T(k-1))^2 +2\,y\,S\,A(k-1)\,T(k-1) - \\(S\,A(k-1)\,T(k-1))^2 < 0
+			\end{matrix}
+		\label{eq:DeducaoErro2}
+	  \end{equation}
+		
+		\begin{equation}
+			\begin{matrix}
+				- 2\,y\,S\,A(k)\,A(k-1)\,T(k-1) + (S\,A(k)\,A(k-1)\,T(k-1)\,S\,A(k)\,A(k-1)\,T(k-1)) +\\2\,y\,S\,A(k-1)\,T(k-1) - (S\,A(k-1)\,T(k-1)\,S\,A(k-1)\,T(k-1)) < 0
+			\end{matrix}
+		\label{eq:DeducaoErro3}
+	  \end{equation}
+		
+		\begin{equation}
+			\begin{matrix}
+				(2\,y\,S\,I - 2\,y\,S\,A(k))\,A(k-1)\,T(k-1) + \\(S\,A(k)\,A(k-1)\,T(k-1)\,S\,A(k)\,A(k-1)\,T(k-1)) - \\(S \, A(k-1) \, T(k-1) \, S \, A(k-1)\,T(k-1)) < 0
+			\end{matrix}
+		\label{eq:DeducaoErro4}
+	  \end{equation}
+		
+		\begin{equation}
+			\begin{matrix}
+				2\,y\,S\,(I-A(k))\,A(k-1)\,T(k-1) + (S\,A(k)\,A(k-1)\,T(k-1)\,S\,A(k)\,A(k-1)\,T(k-1)) - \\(S\,A(k-1)\,T(k-1)\,S\,A(k-1)\,T(k-1)) < 0
+			\end{matrix}
+		\label{eq:DeducaoErro5}
+	  \end{equation}
+		
+		\begin{equation}
+			\begin{matrix}
+				2\,y\,S\,(I-A(k))\,A(k-1)\,T(k-1) + ((S\,A(k)\,A(k-1)\,T(k-1)\,S\,A(k)) - \\(S\,A(k-1)\,T(k-1)\,S))\,A(k-1)\,T(k-1) < 0
+			\end{matrix}
+		\label{eq:DeducaoErro6}
+	  \end{equation}
+		
+		\begin{equation}
+			\begin{matrix}
+				2\,y\,S\,(I-A(k))\,A(k-1)\,T(k-1) + S\,((A(k)\,A(k-1)\,T(k-1)\,S\,A(k)) - \\(A(k-1)\,T(k-1)\,S))\,A(k-1)\,T(k-1) < 0
+			\end{matrix}
+		\label{eq:DeducaoErro7}
+	  \end{equation}
+		
+		Ao analisar a inequação \ref{eq:DeducaoErro7} conjuntamente com a forma como as matrizes $A(k)$ e $A(k-1)$ são montadas (tendo como base a equação 	\ref{eq:matA}), é possível perceber que existem $4*4$ possibilidades, $4$ para $A(k)$ e $4$ para $A(k-1)$. Dessa maneira temos:
+		
+		\begin{itemize}
+		%1
+			\item Para $s_1(k-1) = 0$, $s_2(k-1) = 0$, $s_1(k) = 0$, $s_2(k) = 0$; 
+				
+				\begin{equation}
+					\begin{matrix}
+						2\,y\,S\,(I-A(k))\,A(k-1)\,T(k-1) + S\,((A(k)\,A(k-1)\,T(k-1)\,S\,A(k)) - \\(A(k-1)\,T(k-1)\,S))\,A(k-1)\,T(k-1) = 0
+						\label{eq:IneqSol1}
+					\end{matrix}
+				\end{equation}
+		%2		
+			\item Para $s_1(k-1) = 0$, $s_2(k-1) = 0$, $s_1(k) = 0$, $s_2(k) = 1$; 
+				
+				\begin{equation}
+					\begin{matrix}
+						2\,y\,S\,(I-A(k))\,A(k-1)\,T(k-1) + \\S\,((A(k)\,A(k-1)\,T(k-1)\,S\,A(k)) - \\(A(k-1)\,T(k-1)\,S))\,A(k-1)\,T(k-1) = \\-(G(k-1) - P(k-1))\,(G(k-1) + P(k-1) - 2\,y)
+					\end{matrix}
+					\label{eq:IneqSol2}
+				\end{equation}
+			%3	
+			\item Para $s_1(k-1) = 0$, $s_2(k-1) = 0$, $s_1(k) = 1$, $s_2(k) = 0$; 
+				
+				\begin{equation}
+					\begin{matrix}
+						2\,y\,S\,(I-A(k))\,A(k-1)\,T(k-1) + S\,((A(k)\,A(k-1)\,T(k-1)\,S\,A(k)) - \\(A(k-1)\,T(k-1)\,S))\,A(k-1)\,T(k-1) = 0
+					\end{matrix}
+					\label{eq:IneqSol3}
+				\end{equation}
+				%4
+			\item Para $s_1(k-1) = 0$, $s_2(k-1) = 0$, $s_1(k) = 1$, $s_2(k) = 1$; 
+				
+				\begin{equation}
+					\begin{matrix}
+						2\,y\,S\,(I-A(k))\,A(k-1)\,T(k-1) + \\S\,((A(k)\,A(k-1)\,T(k-1)\,S\,A(k)) - \\(A(k-1)\,T(k-1)\,S))\,A(k-1)\,T(k-1) =\\ -(G(k-1) - P(k-1))\,(G(k-1) + P(k-1) - 2\,y)
+					\end{matrix}
+					\label{eq:IneqSol4}
+				\end{equation}
+		%5
+			\item Para $s_1(k-1) = 0$, $s_2(k-1) = 1$, $s_1(k) = 0$, $s_2(k) = 0$; 
+				
+				\begin{equation}
+					\begin{matrix}
+						2\,y\,S\,(I-A(k))\,A(k-1)\,T(k-1) + S\,((A(k)\,A(k-1)\,T(k-1)\,S\,A(k)) - \\(A(k-1)\,T(k-1)\,S))\,A(k-1)\,T(k-1) = 0
+					\end{matrix}
+					\label{eq:IneqSol5}
+				\end{equation}
+		%6
+			\item Para $s_1(k-1) = 0$, $s_2(k-1) = 1$, $s_1(k) = 0$, $s_2(k) = 1$; 
+				
+				\begin{equation}
+					\begin{matrix}
+						2\,y\,S\,(I-A(k))\,A(k-1)\,T(k-1) + S\,((A(k)\,A(k-1)\,T(k-1)\,S\,A(k)) - \\(A(k-1)\,T(k-1)\,S))\,A(k-1)\,T(k-1) = 0
+					\end{matrix}
+					\label{eq:IneqSol6}
+				\end{equation}
+		%7	
+			\item Para $s_1(k-1) = 0$, $s_2(k-1) = 1$, $s_1(k) = 1$, $s_2(k) = 0$; 
+				
+				\begin{equation}
+					\begin{matrix}
+						2\,y\,S\,(I-A(k))\,A(k-1)\,T(k-1) + S\,((A(k)\,A(k-1)\,T(k-1)\,S\,A(k)) - \\(A(k-1)\,T(k-1)\,S))\,A(k-1)\,T(k-1) = 0
+					\end{matrix}
+					\label{eq:IneqSol7}
+				\end{equation}
+		%8	
+			\item Para $s_1(k-1) = 0$, $s_2(k-1) = 1$, $s_1(k) = 1$, $s_2(k) = 1$; 
+				
+				\begin{equation}
+					\begin{matrix}
+						2\,y\,S\,(I-A(k))\,A(k-1)\,T(k-1) + S\,((A(k)\,A(k-1)\,T(k-1)\,S\,A(k)) - \\(A(k-1)\,T(k-1)\,S))\,A(k-1)\,T(k-1) = 0
+					\end{matrix}
+					\label{eq:IneqSol8}
+				\end{equation}
+		%9	
+			\item Para $s_1(k-1) = 1$, $s_2(k-1) = 0$, $s_1(k) = 0$, $s_2(k) = 0$; 
+				
+				\begin{equation}
+					\begin{matrix}
+						2\,y\,S\,(I-A(k))\,A(k-1)\,T(k-1) + S\,((A(k)\,A(k-1)\,T(k-1)\,S\,A(k)) - \\(A(k-1)\,T(k-1)\,S))\,A(k-1)\,T(k-1) = 0
+					\end{matrix}
+					\label{eq:IneqSol9}
+				\end{equation}
+		%10	
+			\item Para $s_1(k-1) = 1$, $s_2(k-1) = 0$, $s_1(k) = 0$, $s_2(k) = 1$; 
+				
+				\begin{equation}
+					\begin{matrix}
+						2\,y\,S\,(I-A(k))\,A(k-1)\,T(k-1) +\\ S\,((A(k)\,A(k-1)\,T(k-1)\,S\,A(k)) - \\(A(k-1)\,T(k-1)\,S))\,A(k-1)\,T(k-1) = \\-(G(k-1) - X(k-1))\,(G(k-1) + X(k-1) - 2\,y)
+					\end{matrix}
+					\label{eq:IneqSol10}
+				\end{equation}
+			%11
+			\item Para $s_1(k-1) = 1$, $s_2(k-1) = 0$, $s_1(k) = 1$, $s_2(k) = 0$; 
+				
+				\begin{equation}
+					\begin{matrix}
+						2\,y\,S\,(I-A(k))\,A(k-1)\,T(k-1) + S\,((A(k)\,A(k-1)\,T(k-1)\,S\,A(k)) - \\(A(k-1)\,T(k-1)\,S))\,A(k-1)\,T(k-1) = 0
+					\end{matrix}
+					\label{eq:IneqSol11}
+				\end{equation}
+			%12
+			\item Para $s_1(k-1) = 1$, $s_2(k-1) = 0$, $s_1(k) = 1$, $s_2(k) = 1$; 
+				
+				\begin{equation}
+					\begin{matrix}
+						2\,y\,S\,(I-A(k))\,A(k-1)\,T(k-1) + \\S\,((A(k)\,A(k-1)\,T(k-1)\,S\,A(k)) - \\(A(k-1)\,T(k-1)\,S))\,A(k-1)\,T(k-1) = \\-(G(k-1) - X(k-1))\,(G(k-1) + X(k-1) - 2\,y)
+					\end{matrix}
+					\label{eq:IneqSol12}
+				\end{equation}
+			%13
+			\item Para $s_1(k-1) = 1$, $s_2(k-1) = 1$, $s_1(k) = 0$, $s_2(k) = 0$; 
+				
+				\begin{equation}
+					\begin{matrix}
+						2\,y\,S\,(I-A(k))\,A(k-1)\,T(k-1) + S\,((A(k)\,A(k-1)\,T(k-1)\,S\,A(k)) - \\(A(k-1)\,T(k-1)\,S))\,A(k-1)\,T(k-1) = 0
+					\end{matrix}
+					\label{eq:IneqSol13}
+				\end{equation}
+			%14
+			\item Para $s_1(k-1) = 1$, $s_2(k-1) = 1$, $s_1(k) = 0$, $s_2(k) = 1$; 
+				
+				\begin{equation}
+					\begin{matrix}
+						2\,y\,S\,(I-A(k))\,A(k-1)\,T(k-1) + \\S\,((A(k)\,A(k-1)\,T(k-1)\,S\,A(k)) - \\(A(k-1)\,T(k-1)\,S))\,A(k-1)\,T(k-1) = \\-(P(k-1) - X(k-1))\,(P(k-1) + X(k-1) - 2\,y)
+					\end{matrix}
+					\label{eq:IneqSol14}
+				\end{equation}
+			%15
+			\item Para $s_1(k-1) = 1$, $s_2(k-1) = 1$, $s_1(k) = 1$, $s_2(k) = 0$; 
+				
+				\begin{equation}
+					\begin{matrix}
+						2\,y\,S\,(I-A(k))\,A(k-1)\,T(k-1) + S\,((A(k)\,A(k-1)\,T(k-1)\,S\,A(k)) - \\(A(k-1)\,T(k-1)\,S))\,A(k-1)\,T(k-1) = 0
+					\end{matrix}
+					\label{eq:IneqSol15}
+				\end{equation}
+			%16
+			\item Para $s_1(k-1) = 1$, $s_2(k-1) = 1$, $s_1(k) = 1$, $s_2(k) = 1$; 
+				
+				\begin{equation}
+					\begin{matrix}
+						2\,y\,S\,(I-A(k))\,A(k-1)\,T(k-1) + \\S\,((A(k)\,A(k-1)\,T(k-1)\,S\,A(k)) - \\(A(k-1)\,T(k-1)\,S))\,A(k-1)\,T(k-1) = \\-(P(k-1) - X(k-1))\,(P(k-1) + X(k-1) - 2\,y)
+					\end{matrix}
+					\label{eq:IneqSol16}
+				\end{equation}
+			
+		\end{itemize}
+		
+		Como pode ser percebido, existem apenas $3$ possibilidades de ocorrer a diminuição do erro em direção ao zero, descritos pelas condições expressas nas inequações \ref{eq:ConvErro1}, \ref{eq:ConvErro2} e \ref{eq:ConvErro3}.
+
+			\begin{equation}
+				-(G(k-1) - P(k-1))\,(G(k-1) + P(k-1) - 2\,y) < 0
+			\label{eq:ConvErro1}
+			\end{equation}
+			
+			\begin{equation}
+				-(G(k-1) - X(k-1))\,(G(k-1) + X(k-1) - 2\,y) < 0
+				\label{eq:ConvErro2}
+			\end{equation}
+			
+			\begin{equation}
+				-(P(k-1) - X(k-1))\,(P(k-1) + X(k-1) - 2\,y) < 0
+				\label{eq:ConvErro3}
+			\end{equation}
+			
+			Isso significa que para que as inequações  \ref{eq:ConvErro1}, \ref{eq:ConvErro2} e \ref{eq:ConvErro3} sejam satisfeitas é necessário que as condições \ref{eq:Cond1}, \ref{eq:Cond2} e \ref{eq:Cond3} aconteçam.
+			
+			
+			\begin{equation}
+				\left.\begin{matrix}
+				(G(k-1) - P(k-1))> 0    \\ 
+				E \\
+				(G(k-1) + P(k-1) - 2\,y) > 0
+				\end{matrix}\right\} 
+				ou 
+				\left\{\begin{matrix}
+				-(G(k-1) - P(k-1))> 0    \\ 
+				E \\
+				-(G(k-1) + P(k-1) - 2\,y) > 0
+				\end{matrix}\right.
+				\label{eq:Cond1}
+			\end{equation}
+			
+			\begin{equation}
+				\left.\begin{matrix}
+				(G(k-1) - X(k-1))> 0    \\ 
+				E \\
+				(G(k-1) + X(k-1) - 2\,y) > 0
+				\end{matrix}\right\} 
+				ou 
+				\left\{\begin{matrix}
+				-(G(k-1) - X(k-1))> 0    \\ 
+				E \\
+				-(G(k-1) + X(k-1) - 2\,y) > 0
+				\end{matrix}\right.
+				\label{eq:Cond2}
+			\end{equation}
+			
+			\begin{equation}
+				\left.\begin{matrix}
+				(P(k-1) - X(k-1))> 0    \\ 
+				E \\
+				(P(k-1) + X(k-1) - 2\,y) > 0
+				\end{matrix}\right\} 
+				ou 
+				\left\{\begin{matrix}
+				-(P(k-1) - X(k-1))> 0    \\ 
+				E \\
+				-(P(k-1) + X(k-1) - 2\,y) > 0
+				\end{matrix}\right.
+				\label{eq:Cond3}
+			\end{equation}
+			
+			Algo que é possível perceber com isso é que a partir da forma como as partículas se movimentam é possível estimar quando as partículas estão abaixo do ponto de equilíbrio ou acima dele.
+		
+		%\subsection{Inserção do Passo Múltiplo}
+		%
+		%Uma outra possibilidade alternativa para a utilização do PSO matricial advém do fato de ser possível a sua resolução como um sistema linear. Como pode ser percebido nas equações \ref{eq:aT} e \ref{eq:SolPSO}. Para um sistema linear é possível resolvê-lo utilizando as expressões \ref{eq:aTPM} e \ref{eq:SolPSOpm}.
+		%
+			%\begin{equation}
+				%T(n_{pm}) = A\,T^{n_{pm}}(0) 
+			%\label{eq:aTPM}
+			%\end{equation}
+%
+%
+			%\begin{equation}
+			%S = 
+			%\begin{bmatrix}
+					%\mathbf{0_{(n_d\, X\,n_p+n_p+n_p)}} \mathbf{\overrightarrow{1}_{(n_d\, X\,1)}} 
+			%\end{bmatrix}
+			%T(n_{pm})
+			%\label{eq:SolPSOpm}
+			%\end{equation}
+			%
+			%Isto significa que pode ser possível aproveitar, por exemplo, a estrutura convergente da matriz \ref{eq:matMAs}, quando s1=1 e s2=1, para calcular mais de um passo por vez. O objetivo seria a convergência do algoritmo utilizando menos custo computacional, visto que quando o passo múltiplo é calculado não seriam calculadas as avaliações em proporção a quantidade de passos.
+		
+		\subsection{PSOM - Híbrido}			
+					
+			Após a PSO ser reescrito na forma matricial e realizada uma análise de convergências das partículas e da otimização, foi pensado em uma maneira de combinar a PSO com algoritmos de otimização determinísticos, quando a PSO é aplicada a processos com incertezas. O objetivo desta combinação é eliminar a possibilidade de uma inicialização ruim, que não permita a convergência das partículas para uma solução aceitável na PSO. Além disso, intenciona-se obter desempenhos melhores que os algoritmos tradicionais. Ou seja, associando algoritmos determinísticos com o PSO espera-se obter resultados tão bons ou melhores que os algoritmos deterministicos, eliminando a possibilidade de não encontrar um bom indivíduo devido à aleatoriedade do PSO.
+			
+			Neste trabalho a hibridização consistirá em utilizar o resultado obtido com o uso de algoritmos determinísticos como base para a inicialização das melhores partículas locais ($P_B$) e melhor global do PSO ($P_G$) conforme apresentado nas equações \ref{eq:InitPB} e \ref{eq:InitPG}.
+			
+			 	\begin{equation}
+			\begin{array}{ll}
+					 P^i_{B}(0) = P_D + C\,Rand_{(1,n_{var})}\,P_D
+			\end{array}
+			\label{eq:InitPB}
+			\end{equation}
+			
+			\begin{equation}
+			\begin{array}{ll}
+					 P^0_{G}(0) = P_D
+			\end{array}
+			\label{eq:InitPG}
+			\end{equation}
+			
+			Onde $P_D$ é o resultado obtido pelo algoritmo determinístico, C é uma constante que determina a região onde serão dispersadas as melhores partículas locais e Rand é um vetor de números aleatórios com distribuição uniforme no intervalo [-1,1].
+		
+		Nesses termos será possível aplicar o algoritmo de PSO para otimização de processos em que as técnicas tradicionais não alcançam o melhor desempenho, porém possuem desempenho suficiente para garantir resultados aceitáveis. Com isso será possível otimizar tal desempenho objetivando o melhor desempenho global dentro dos sistemas que serão utilizados.

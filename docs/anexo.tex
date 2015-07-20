@@ -1,0 +1,284 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Anexos
+\hypertarget{estilo:anexo}{} %% uso para este manual
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{APÊNDICE - EQUAÇÕES QUE RELACIONAM AS ENTRADAS E SAÍDAS DO SEPARADOR TRIFÁSICO} %% Título do anexo sempre em maiúsculas.
+\label{APENDICE_A} %% Rótulo aplicado caso queira referir-se a este tópico em qualquer lugar do texto.
+
+%Este anexo foi incluido para explicar como incluir um apêndice no estilo, não existia no original desta tese.
+
+
+
+A variação da altura total na câmara de separação é dada pela equação 1:
+
+\begin{equation}
+\begin{array}{rcll}
+\frac{dh_t}{dt} = & \frac{W_{in} + L_{in} - L_{weir}- W_{out}}{C_{cs}  [  2 \sqrt{(D- h_t ) h_t }]}
+\end{array}
+\label{eq:alturaTotal}
+\end{equation}
+
+
+Onde:
+
+$C_{cs}$ - comprimento da câmara de separação;
+
+D - diâmetro do separador.\\
+
+A Variação da altura da fase oleosa na câmara de óleo:
+
+\begin{equation}
+\begin{array}{rcll}
+\frac{dh_l}{dt} = & \frac{L_{weir}- W_{out}}{C_{cl}  [  2 \sqrt{(D- h_l ) h_l }]}
+\end{array}
+\label{eq:alturaFaseOleo}
+\end{equation}
+
+Onde:
+
+$C_{cl}$ - comprimento da câmara de óleo;
+
+$L_{weir}$ - vazão da fase oleosa pelo vertedouro que é dada pela equação \ref{eq:vazaoOleo}.
+
+
+\begin{equation}
+\begin{array}{rcll}
+L_{weir} = & \frac{110,2046}{60}[C_{chic} - 0.2 (h_t- h_{chic} )](h_t- h_{chic} )^(1,5)
+\end{array}
+\label{eq:vazaoOleo}
+\end{equation}
+
+$h_{chic}$- altura da chicana;
+
+$C_{chic}$ - Comprimento da chicana.
+
+O segundo comportamento observado acontece quando a altura de óleo supera a altura da chicana. Para esse sistema:
+\begin{itemize}
+	\item A variação da altura total na câmara de separação:
+	
+	\begin{equation}
+	\begin{array}{rcll}
+	\frac{dh_t}{dt} = & \frac{W_{in} + L_{in} - L_{out}- W_{out}}{(C_{cs} + C_{cl}  [  2 \sqrt{(D- h_t ) h_t }]}
+	\end{array}
+	\label{eq:alturaTotalSep}
+	\end{equation}
+	
+	\item E a variação da altura da fase oleosa na câmara de óleo:
+	
+	\begin{equation}
+	\begin{array}{rcll}
+	\frac{dh_l}{dt} = \frac{dh_t}{dt}
+	\end{array}
+	\label{eq:alturaOleoSep}
+	\end{equation}
+\end{itemize}
+
+Como a quantidade de água que entra permanece apenas em um lado do reservatório, separado pela chicana:
+
+\begin{itemize}
+	\item A variação da altura da fase aquosa na câmara de separação é comum e, portanto, pode ser expressa pela equação \ref{eq:alturaFaseAgua}:
+\end{itemize}
+
+\begin{equation}
+\begin{array}{rcll}
+\frac{dh_W}{dt} = & \frac{W_{in} (1 - TOG EFLW)- W_{out} + (L_{in} BSW EFWL)} {C_{cs}  [  2 \sqrt{(D- h_w ) h_w }]}
+\end{array}
+\label{eq:alturaFaseAgua}
+\end{equation}
+	
+	Onde:
+	
+	BSW - concentração volumétrica de água na fase oleosa na alimentação;
+		
+	EFLW - eficiência global de separação do óleo da fase aquosa;
+	
+	EFWL - eficiência global de separação da água da fase oleosa;
+	
+	TOG - concentração volumétrica de óleo na fase aquosa na alimentação.
+	
+	\begin{itemize}
+	\item A Variação do volume de água na fase oleosa da câmara de separação:	
+	\end{itemize}
+	
+	\begin{equation}
+	\begin{array}{rcll}
+	\frac{dV_{wflcs}}{dt} = L_{in} BSW (1 - EFLW) - L_{weir} X_{wflcs}
+	\end{array}
+	\label{eq:VolumeAgua}
+	\end{equation}
+	
+	Onde:
+	
+	$X_{wflcs}$ - fração volumétrica de água na fase oleosa da câmara de separação que é dada pela equação \ref{eq:FracaoVolume}:
+	
+	\begin{equation}
+	\begin{array}{rcll}
+	X_{wflcs} = \frac{V_{wflcs}}{V_{cs} - V_{fwcs}}
+	\end{array}
+	\label{eq:FracaoVolume}
+	\end{equation}
+
+	$V_{cs}$ - volume da câmera de separação:
+	
+	\begin{equation}
+	\begin{array}{rcll}
+	V_{cs} = \frac{C_{cs} D^2}{4} {\theta_t - \sin\!\left(\theta_t\right) \cos\!\left(\theta_t\right)}
+	\end{array}
+	\label{eq:VolumeSep}
+	\end{equation}
+	
+	$V_{wflcs}$ - volume da fase aquosa na câmera de separação:
+	
+	\begin{equation}
+	\begin{array}{rcll}
+	V_{fwcs} = \frac{C_{cs} D^2}{4} {\theta_w - \sin\!\left(\theta_w\right) \cos\!\left(\theta_w\right)}
+	\end{array}
+	\label{eq:FracaoSepAgua}
+	\end{equation}
+	
+	Com:
+	
+	\begin{equation}
+	\begin{array}{rcll}
+	\theta_{t} = \arccos\!\left([ 1 - 2\frac{h_t}{D}]\right) 
+	\end{array}
+	\label{eq:tetaT}
+	\end{equation}
+	
+	e:
+	
+		\begin{equation}
+	\begin{array}{rcll}
+	\theta_{w} = \arccos\!\left([ 1 - 2\frac{h_w}{D}]\right) 
+	\end{array}
+	\label{eq:tetaW}
+	\end{equation}
+	
+	
+\begin{itemize}
+	\item Variação do volume de óleo na fase aquosa da câmara de separação:
+\end{itemize}
+
+\begin{equation}
+\begin{array}{rcll}
+\frac{dV_{lfwcs}}{dt} = & W_{in} TOG (1 - EFLW)- W_{out} X_{lfwcs} 
+\end{array}
+\label{eq:VarVolumeOleo}
+\end{equation}
+
+Onde:
+
+$X_{lfwcs}$ - fração volumétrica de óleo na fase aquosa da câmara de separação:
+
+
+	\begin{equation}
+	\begin{array}{rcll}
+	X_{lfwcs} = \frac{V_{lwcs}}{V_{wcs}}
+	\end{array}
+	\label{eq:FracaoVolumeOleo}
+	\end{equation}
+	
+	
+\begin{itemize}
+	\item Variação do volume de água na fase oleosa da câmara de óleo:
+\end{itemize}
+
+
+\begin{equation}
+\begin{array}{rcll}
+\frac{dV_{wflcl}}{dt} = & L_{weir} X_{lfwcl} - L_{out} X_{lfwcl}
+\end{array}
+\label{eq:VarVolumeAguaOleo}
+\end{equation}
+
+Onde:
+
+$X_{wflcl}$ - fração volumétrica de água na fase oleosa da câmara de óleo:
+
+	\begin{equation}
+	\begin{array}{rcll}
+	X_{wflcl} = \frac{V_{wflcl}}{V_{cl}}
+	\end{array}
+	\label{eq:FracaoVolumeAguaOleo}
+	\end{equation}
+	
+	$V_{cl}$ - volume da câmara de óleo:
+	
+		\begin{equation}
+	\begin{array}{rcll}
+	V_{cl} = & \frac{C_{cl} D^2}{4} \left \{\arccos\!\left( 1 - 2\frac{h_l}{D}\right) - \sin\!\left[\arccos\!\left( 1 - 			2\frac{h_l}{D}\right) \right ] \cos\!\left[\arccos\!\left( 1 - 2\frac{h_l}{D}\right)\right ] \right \}
+	\end{array}
+	\label{eq:VolumeOleo}
+	\end{equation}
+	
+\begin{itemize}
+	\item Variação da pressão no vaso
+\end{itemize}
+
+\begin{equation}
+	\begin{array}{rcll}
+	\frac{d_{p}}{d_{t}} = & \frac{(W_{in} +  L_{in} +  G_{in} - W_{out} - L_{out} - G_{out}) p }{V_t- V_{cs} - V_{cl}}
+	\end{array}
+	\label{eq:VarPressaoVaso}
+	\end{equation}
+	
+	Onde:
+
+ $V_t$ - volume total do separador;
+ 
+ $V_{cs}$ - volume da câmara de separação;
+ 
+ $V_{cl}$ - volume da câmara de óleo;
+
+As vazões de saída de água, óleo e gás são respectivamente:
+
+ \begin{equation}
+	\begin{array}{rcll}
+	W_{out} = & \frac{ Cv_{máxw} s_w \sqrt{d_w (p-p_jus) + \gamma_w h_w + \gamma_l(h_t - h_w)}} {0,0693 60 \rho_fw}
+	\end{array}
+	\label{eq:VazaoSaidaAgua}
+	\end{equation}
+	
+	\begin{equation}
+	\begin{array}{rcll}
+	L_{out} = & \frac{ Cv_{máxl} s_l \sqrt{d_l (p-p_jus) + \gamma_l h_l }}{0,0693 60 \rho_fl}
+	\end{array}
+	\label{eq:VazaoSaidaOleo}
+	\end{equation}
+	
+	\begin{equation}
+	\begin{array}{rcll}
+	G_{out} = & \frac{ Cv_{máxg} s_g \sqrt{d_g (p-p_comp) (p+p_comp)} }{\frac{2,832 60 p MWg}{R T}}
+	\end{array}
+	\label{eq:VazaoSaidaGas}
+	\end{equation}
+
+
+Onde:
+
+$Cv_{máxg}$ - coeficiente de descarga máximo da válvula de gás;
+
+$Cv_{máxl}$ - coeficiente de descarga máximo da válvula de óleo;
+
+$Cv_{máxw}$ - coeficiente de descarga máximo da válvula de água;
+
+$d_g$ - densidade específica do gás;
+
+$d_l$ - densidade específica do óleo;
+
+$d_w$ - densidade específica do água;
+
+$MWg$ - peso molecular do gás;
+
+$p_{comp}$ - pressão da unidade de compressão, após a válvula de gás;
+
+$p_{jus}$ - pressão a jusante das válvulas de óleo e água;
+
+R - constante dos gases;
+
+T - temperatura da carga;
+
+$\gamma_l$ - peso específico do óleo;
+
+$\gamma_w$ - peso específico da água.

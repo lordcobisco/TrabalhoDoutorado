@@ -1,0 +1,471 @@
+\noindent\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+\\
+\chapter{Controle de Processos}
+\noindent\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+\\
+
+\label{cap:Controle}
+
+Até então, foram apresentadas a teoria e convergência do PSO, e as técnicas de identificação mais convencionais que serão comparadas com a identificação utilizando o PSO. Neste capítulo será dada sequência ao conjunto de possíveis aplicações para o PSO. Nesse contexto, pretende-se aplicar o algoritmo para realizar a sintonia de controladores e a síntese do sinal de controle e, consequentemente, realizar a comparação do controle realizado com o PSO e técnicas convencionais de controle.
+
+
+\subsection{Introdução}
+
+A teoria de controle objetiva desenvolver métodos para análise e projeto de sistemas de controle. Um sistema simples de controle consiste em um controlador e uma planta. O controlador obtém informações da planta, ou processo em questão, através de um sensor. A informação é então processada e um sinal de controle é calculado, de maneira a influenciar o comportamento dinâmico do processo. O objetivo em controlar é manter o valor da variável controlada $y(t)$ dentro de uma região de tolerância, próxima a variável de referência $r(t)$, mesmo na presença de perturbações $\delta(t)$ atuando na planta \cite{Jamshidi2002}. Um diagrama de sistemas de controle pode ser observado na figura \ref{fig:Siscontrol}.	
+
+\begin{figure}[H]
+   \inserirListaFiguras
+   \centering
+   \caption{Diagrama de blocos de um sistema de controle em malha fechada.
+   Fonte: \cite{Landau2006}}
+   %\FONTE{\cite{franca}}
+   \includegraphics[scale = 0.7]{Figuras/Siscontrol.png}
+   \label{fig:Siscontrol}
+\end{figure}
+
+No diagrama é possível perceber que o sistema de controle apresenta uma estrutura em malha fechada, ou seja, o sinal de controle é uma função da diferença entre o valores medidos e a referência. Nesse sistema estão contidos pelo menos duas dinâmicas que são a da planta e a do controlador \cite{Landau2006}.
+
+Muitas são as estratégias de controle utilizadas para regular ou seguir uma referência semelhante ao mostrado na figura \ref{fig:Siscontrol}. Dentre os vários algoritmos existentes é possível citar os controladores PID \cite{Han2009,Su2010,Kim2010,Yamamoto2009}, preditivo \cite{Mahfouf1992}, e adaptativo \cite{Unbehauen2000}. 
+
+Além das estratégias tradicionais para realizar o controle de um processo, também é possível citar as estratégias que incorporam inteligência aos sistemas de controle tradicionais (utilizando lógica \textit{fuzzy} \cite{Li2007,Rubaai2008}, algoritmos genéticos \cite{Juang2008} e PSO \cite{Wai2011} por exemplo) e os algoritmos de controle híbridos, ou seja, que realizam uma união de duas ou mais leis de controles extraindo as melhores propriedades de cada algoritmo \cite{Chang2010}. Essas estratégias mais avançadas visam principalmente aumentar o desempenho dos controladores e garantir robustez aos sistemas, mesmo na presença de não linearidades e instabilidade \cite{Wai2011}.
+
+Baseado na teoria de controle é possível manipular sistemas diversos tais como, motores de indução trifásicos \cite{Negm2006}, sistemas robóticos com 1, 2 e 6 graus de liberdade \cite{Duchaine2007,Cheng2004}, sistemas de levitação magnética \cite{Lin2011}, sistemas de controle de torque em drivers eletromecânicos \cite{Sourkounis2012}, controle de Diabetes tipo 1 \cite{Marchetti2008} e sistemas de controle de temperatura \cite{Wang2012}. Esses controles são realizados utilizando diversas leis de controle diferentes. Esses algoritmos serão melhor descritos na seção \ref{sec:Algoritmos}.
+
+
+\section{Algoritmos de Controle Mais Comuns}
+\label{sec:Algoritmos}
+
+Dentre os algoritmos de controle citados os controladores PID e Preditivo se destacam por sua simplicidade e popularidade tanto na academia quanto na industria \cite{Chang2010,Rubaai2008}. Por isso, serão dedicadas as seções \ref{subsec:PID}, \ref{subsec:Preditivo} e \ref{subsec:sintonia} para fundamentar os conceitos que envolvem tais controladores, os métodos de sintonia e ideias de hibridizações com outras estratégias com objetivo de agregar mais capacidade as estruturas conhecidas.
+
+		\subsection{Controle PID}
+		
+		\label{subsec:PID}
+		
+		Desde algum tempo o uso de técnicas convencionais de controle é bastante comum no meio industrial. ~\citeonline{Astom1995} estimaram que 90\% das malhas de controle encontradas em processos industriais operavam com controladores PI. Além disso, em ~\citeonline{Rubaai2008} é citado que 96\% dos controladores utilizados são PID. 
+		
+		Mesmo com o surgimento de novas técnicas de controle ( utilizando lógica \textit{fuzzy}, sistemas adaptativos, preditivos) percebe-se que, ainda hoje, é predominante o uso deste tipo de controlador nas malhas industriais. Em aplicações industriais, o controle PID é uma estratégia muito popular devido a sua arquitetura simples e sua sintonia ser realizada por métodos simples e consolidados. Mesmo com o seu grande uso, e possuindo uma grande história e bibliografia, a sintonia de controladores PID ainda é uma área ativa de pesquisa, tanto acadêmica quanto industrial \cite{Cong2009}. 
+		
+De acordo com ~\citeonline{Dorf2009}, a combinação das ações proporcional, integral, e derivativa, gera um sinal de controle capaz de conduzir um sistema para a referência através de um controle regulatório ou seguidor de referência. Este é chamado de Controlador Proporcional-Integral-Derivativo ou simplesmente PID. O controlador PID é capaz de eliminar erros de regime permanente, a partir da ação integral, bem como antecipar o comportamento do processo, graças à ação derivativa. O sinal de controle gerado por um PID é dado pela equação \ref{Eq:PID}.
+
+ 			\begin{equation}
+			\begin{array}{lllllll}
+					u(t)=K_p ( e(t) + \frac{1}{\tau_i}\int_{0}^{t} e(\tau)d\tau + \tau_d \frac{de(\tau)}{dt})
+			\end{array}
+			\label{Eq:PID}
+			\end{equation}
+			
+É possível perceber, observando a equação \ref{Eq:PID}, que três parâmetros são desconhecidos no sistema e, por isso, precisam ser sintonizados para que o sistema seja bem controlado, estes parâmetros são: 
+\begin{itemize}
+	\item o ganho proporcional $K_p$;
+	\item o tempo integral $\tau_i$;
+	\item o tempo derivativo $\tau_d$;
+\end{itemize}
+
+São inúmeras as técnicas de sintonia automática de controladores PID. O método proposto por ~\citeonline{Ziegler1942} é o pioneiro e ainda largamente empregado. Eles propuseram duas alternativas de sintonia: uma para sistemas que apresentam respostas monotônicas, quando sujeitos a uma entrada do tipo degrau, e outra para sistemas que apresentam comportamento instável, para ganhos elevados em uma malha de realimentação unitária. Esta metodologia, embora de concepção simples, revela-se, na prática, imprecisa em muitas situações ~\citeonline{Astom1988,Hang2002}). 
+
+De maneira a fortalecer as bases do controlador PID foram desenvolvidos os métodos de sintonia automática. Estes, conferiram capacidades aos controladores PID de melhorar o controle dos processos e facilitaram a otimização do controle em relação aos controladores sintonizados com o método mais clássico \cite{Hang2002}. 
+
+Dentre os métodos de sintonia automática mais conhecidos se destaca o método do relé. O método de sintonia automática com realimentação a relé, proposto por ~\citeonline{Astrom1984}, foi um dos primeiros a ser comercializados e têm permanecido atrativos devido a sua simplicidade e robustez. Muitas pesquisas tem sido realizadas no sentido de modificar o método incluindo melhor capacidade de identificação e eficiência. Além disso, as fórmulas de sintonia PID tem sido refinadas de maneira a melhorar a performance do controlador para diversos processos como àqueles com tempo morto e oscilatórios.
+
+
+\subsection{Métodos de Sintonia de Controladores PID}
+\label{subsec:sintonia}
+
+ A chave para as aplicações que utilizam controladores PID é realizar uma criteriosa e eficiente sintonia dos parâmetros. Na prática, o sistema controlado normalmente possui características como não linearidades no processo, dentre elas o atraso de transporte, as quais tornam o processo de sintonia muito mais complexo e as vezes impreciso. Apesar desses acontecimentos práticos, o objetivo da sintonia de parâmetros PID é determinar parâmetros que, para o sistema em malha fechada, atinjam as especificações de desempenho mesmo na presença de perturbações, e mudança nas condições de operação do sistema \cite{Han2012}. 
+ 
+ Uma questão fundamental é como projetar os controladores. Geralmente um modelo da planta é necessário para este projeto \cite{Jamshidi2002}. Por isso, um modelo é obtido com o intuito de, direta ou indiretamente, sintonizar os controladores. Os métodos de sintonia mais conhecidos são os propostos por ~\citeonline{Ziegler1942}, que é o método clássico de projeto de controladores PID. Outro método bastante utilizado na literatura é o método do relé, proposto por ~\citeonline{Astrom1984}. Estes métodos passaram por melhorias, como mostrado por ~\citeonline{Hang2002,BI1997}, de maneira a melhor projetar controladores para plantas de primeira e segunda ordem com atraso de transporte.
+ 
+ Além dos métodos tradicionais de sintonia de controladores, recentemente, como uma forma alternativa a esses métodos, técnicas de otimização heurísticas tem se destacado entre as pesquisas de sintonia de controladores PID. Isso tem acontecido devido a habilidade destes algoritmos em buscar uma solução ótima para o problema de sintonia \cite{Huidang2010}. Nas subseções seguintes serão descritos, com detalhes, os métodos de sintonia clássico, o método do relé com suas modificações, e métodos heurísticos de sintonia de controladores.
+ 
+		\subsection{Ziegler and Nichols}
+		
+		O projeto e sintonia de controladores PID tem sido bastante pesquisado desde ~\citeonline{Ziegler1942} \cite{Astrom2001}. As regras de Ziegler-Nichols (ZN), para sintonia de controladores PID, tem sido bastante influenciadoras. Eles apresentaram basicamente dois métodos, um para a resposta ao degrau, e outra para a resposta em frequência. As regras de sintonia desenvolvidas foram obtidas simulando um grande número de diferentes processos, e correlacionando os parâmetros dos controladores, com as características da resposta ao degrau. O critério chave do projeto foi de um quarto da amplitude de amortecimento. As dinâmicas do processo foram caracterizadas por dois parâmetros obtidos a partir da resposta ao degrau. Uma boa característica desse método é que ele permite uma troca entre robustez e performance. O principal resultado é que é possível encontrar regras simples de sintonia para uma grande classe de processos \cite{Astrom2004}.
+		
+		No método de resposta ao degrau de ZN os processos estáveis são aproximados pelo modelo da equação \ref{eq:ZN}.
+		
+			\begin{equation}
+			\begin{array}{lllllll}
+					G_p(s)= \frac{K_{pl}}{1+sT} e^{-sL}
+			\end{array}
+			\label{eq:ZN}
+			\end{equation}
+			
+			Onde: 
+			
+			\begin{itemize}
+				\item $K_{pl}$ é o ganho estático;
+				\item $T$ é a constante de tempo do processo;
+				\item $L$ é o atraso de transporte.
+			\end{itemize}
+	
+	Processos integrativos são aproximados pelo modelo da equação \ref{eq:ZN2}.
+	
+			\begin{equation}
+			\begin{array}{lllllll}
+					G_p(s)= \frac{K_{v}}{s} e^{-sL}
+			\end{array}
+			\label{eq:ZN2}
+			\end{equation}
+	
+	Onde $K_{v}$ é o ganho do modelo integrativo de primeira ordem.
+	
+	Os parâmetros das funções \ref{eq:ZN} e \ref{eq:ZN2} podem ser encontrados simplesmente obtendo a resposta ao degrau de um processo. Após encontrados os parâmetros da função de transferência do processo desejado o próximo passo é encontrar o controlador que melhor se adeque ao sistema em questão, ou seja, o passo é sintonizar o controlador. Segundo ~\citeonline{Astrom2004} não é possível encontrar uma regra de sintonia ótima para os modelos das equações \ref{eq:ZN} e \ref{eq:ZN2}. Porém, é possível encontrar soluções conservadoras e robustas com baixos desempenhos. As regras de sintonia sugeridas para controladores PID, utilizando a equação \ref{eq:ZN}, são:
+	
+	 \begin{equation}
+			\begin{array}{lllllll}
+					K = \frac{1}{K_{pl}} (0,2+0,45 \frac{T}{L})
+			\end{array}
+			\label{eq:KP}
+			\end{equation}
+			
+			\begin{equation}
+			\begin{array}{lllllll}
+					T_i= \frac{0,4L+0,8T}{L+0,1T} L
+			\end{array}
+			\label{eq:TI}
+			\end{equation}
+			
+			\begin{equation}
+			\begin{array}{lllllll}
+					T_d= \frac{0,5LT}{0,3L+T}
+			\end{array}
+			\label{eq:Td}
+			\end{equation}
+			
+			E, para o modelo integrativo (equação \ref{eq:ZN2}) são:
+			
+			\begin{equation}
+			\begin{array}{lllllll}
+					K =  \frac{0,45}{K_v}
+			\end{array}
+			\label{eq:KPI}
+			\end{equation}
+			
+			\begin{equation}
+			\begin{array}{lllllll}
+					T_i= 8L
+			\end{array}
+			\label{eq:TII}
+			\end{equation}
+			
+			\begin{equation}
+			\begin{array}{lllllll}
+					T_d= 0,5L
+			\end{array}
+			\label{eq:TdI}
+			\end{equation}
+			
+			Além das regras de sintonia para controladores PID ~\citeonline{Astrom20042} apresentam as regras de sintonia sugeridas para controladores PI, como mostrado nas equações \ref{eq:KPPI}, e \ref{eq:TIPI} para o modelo da equação \ref{eq:ZN} e nas equações \ref{eq:KPPII} e \ref{eq:TIPII} para o modelo integrativo.
+	
+			\begin{equation}
+			\begin{array}{lllllll}
+					K = \frac{0,15}{K_{pl}}+ \left(0,35 - \frac{LT}{(L+T)^2} \right) \frac{T}{K_{pl}L}
+			\end{array}
+			\label{eq:KPPI}
+			\end{equation}
+			
+			\begin{equation}
+			\begin{array}{lllllll}
+					T_i= 0,35L + \frac{6,7LT^2}{T^2+2LT+10L^2}
+			\end{array}
+			\label{eq:TIPI}
+			\end{equation}
+			
+			\begin{equation}
+			\begin{array}{lllllll}
+					K = \frac{0,35}{K_{v}L}
+			\end{array}
+			\label{eq:KPPII}
+			\end{equation}
+			
+			\begin{equation}
+			\begin{array}{lllllll}
+					T_i = 7L
+			\end{array}
+			\label{eq:TIPII}
+			\end{equation}
+			
+			Dentre esses dois métodos de sintonia será utilizado o método de sintonia PI devido um fator principal, os processos que serão tratados neste trabalho contemplarão a presença de ruídos nos sensores o que no caso do PID ocasionaria uma necessidade de filtragem do sinal de entrada, mas, no controlador PI, não seria necessário o aumento da quantidade de parâmetros. 
+		
+		\subsection{Método do Relé}
+		
+	As limitações do método de ZN levaram ~\citeonline{Astrom1984} a propor a utilização de um relé na realimentação do sistema a ser sintonizado, o que deu origem ao método do relé para ajuste de PID como mostra a figura \ref{fig:MetodoRele} \cite{Astom1988}.	
+	
+		\begin{figure}[H]
+   	\inserirListaFiguras
+   	\centering
+   	\caption{Diagrama do ensaio do relé realimentado. Fonte: Adaptado de ~\citeonline{Hang2002}}
+   	%\FONTE{\cite{franca}}
+  	\includegraphics[scale = 0.95]{Figuras/MetodoRele.png}
+   	\label{fig:MetodoRele}
+		\end{figure}
+		
+		Na configuração da figura \ref{fig:MetodoRele}, quando o relé está operando, aparecem oscilações na saída do sistema em uma frequência muito próxima à frequência crítica. Uma vez conhecido este ponto de oscilação (ganho e fase), derivam-se expressões para os ganhos do PID. Esta metodologia foi uma das primeiras a ser comercializada com sucesso devido à sua simplicidade e robustez \cite{HAGGLUND1991}. 
+		
+		A técnica de sintonia automática utilizando realimentação a relé tem várias vantagens. Primeiramente, o diagrama mostrado na figura \ref{fig:MetodoRele} possibilita extrair a resposta em frequência do processo a uma frequência particularmente importante. Essa informação é usualmente suficiente para sintonizar os controladores PID, para uma grande variedade de processos. A segunda grande vantagem é que o procedimento ocorre com o sistema sob controle em malha fechada, e, devido a isso, o processo pode ser mantido próximo ao valor de referência. Isso mantém o processo em uma região linear que excita a frequência de interesse, o que precisamente explica o porquê de o método funcionar. Uma outra vantagem do método de realimentação a relé é que ele pode ser modificado para tratar ruídos e perturbações no processo \cite{Hang2002}. 
+		
+		Existem várias extensões que foram incorporadas ao método do relé, o que resulta em uma variedade de técnicas para a estimação de funções de transferência \cite{Arruda2003}. Dos métodos utilizando estimação e sintonia de controladores é possível citar o método clássico, desenvolvido por ~\citeonline{Astrom1984}, o método do relé com relé parasita \cite{BI1997}, o método do \textit{relay apparatus} \cite{Wang1999}, e o método do relé com modificações na estrutura do diagrama de blocos \cite{Arruda2003,Arruda20032,Arruda2000}. Neste trabalho será abordado o método do relé para sintonia de controladores PI apresentado em ~\citeonline{Arruda20032}. O diagrama de blocos modificado do experimento com relé pode ser obserado na figura \ref{fig:ReleMalhafechada}.
+		
+		\begin{figure}[H]
+   	\inserirListaFiguras
+   	\centering
+   	\caption{Diagrama do ensaio do relé realimentado. Fonte: ~\citeonline{Arruda20032}}
+   	%\FONTE{\cite{franca}}
+  	\includegraphics[scale = 0.6]{Figuras/ReleMalhafechada.png}
+   	\label{fig:ReleMalhafechada}
+		\end{figure}
+		
+		
+		No método apresentado pelos autores é possível projetar um controlador PI para o sistema desejado de maneira iterativa. Esse método requer a estimação de duas frequências e das margens de ganho e fase a cada iteração. O algoritmo para o projeto do controlador PI pode ser observado a seguir.
+		
+		
+		\begin{enumerate}
+			\item Inicie um controlador PI inicial $C^0(s)$;
+			
+			\item Utilize a estrutura da figura \ref{fig:ReleMalhafechada2} como uma função G(s)=T(s), e realize o ensaio da figura \ref{fig:MetodoRele} para estimar a frequência crítica ($\hat{\omega}_u^k$) e a margem de ganho $\hat{G}M^k$. 
+			
+			\begin{figure}[H]
+	   	\inserirListaFiguras
+	   	\centering
+	   	\caption{Diagrama do ensaio do relé realimentado. Fonte: ~\citeonline{Arruda20032}}
+	   	%\FONTE{\cite{franca}}
+	  	\includegraphics[scale = 0.3]{Figuras/ReleMalhafechada2.png}
+	   	\label{fig:ReleMalhafechada2}
+			\end{figure}
+		
+		
+		Onde a margem de ganho é dada por:
+		
+		\begin{equation}
+			\begin{array}{lllllll}
+					\hat{G}M^k = 1 + \frac{4d}{\pi a}
+			\end{array}
+			\label{eq:GM}
+			\end{equation}
+			
+			\item Verifique se $\left| \hat{G}M^k - A_m \right| \leq \epsilon_1$ e a iteração não é a primeira. Se sim, finalize o algoritmo. Senão, continue.
+			
+			\item Utilizando o valor de $\hat{G}M^k$, compute o ganho proporcional ($\bar{K}_p^{k+1}$) segundo a equação \ref{eq:KPit} e em seguida, calcule um controlador intermediário segundo	a equação \ref{eq:Cit}.
+			
+				\begin{equation}
+			\begin{array}{lllllll}
+					\bar{K}_p^{k+1} = \frac{K_p^{k+1}\hat{G}M^k}{A_m}
+			\end{array}
+			\label{eq:KPit}
+			\end{equation}
+			
+			\begin{equation}
+			\begin{array}{lllllll}
+					\bar{C}^{k+1}(s) = \bar{K}_p^{k+1} \left ( \frac{s+ \frac{1}{T_i^k}}{s} \right )
+			\end{array}
+			\label{eq:Cit}
+			\end{equation}
+			
+			\item Utilize o diagrama da figura \ref{fig:ReleMalhafechada} com r=1 e estime a frequência $\hat{\omega}_g^k$ e a margem de fase $\hat{P}M^k$ utilizando a equação \ref{eq:PM}.
+			
+			\begin{equation}
+			\begin{array}{lllllll}
+				\hat{P}M^k = \pi + \angle \hat{L}(e^{j\hat{\omega}_g}) 
+			\end{array}
+			\label{eq:PM}
+			\end{equation}
+			
+			Onde:
+			
+			\begin{equation}
+			\begin{array}{lllllll}
+				\hat{L}(e^{j\hat{\omega}_g}) = \frac{\hat{T}(e^{j\hat{\omega}_g})}{1-\hat{T}(e^{j\hat{\omega}_g})}
+			\end{array}
+			\label{eq:PM2}
+			\end{equation}
+			
+			e,
+			
+			\begin{equation}
+			\begin{array}{lllllll}
+				\hat{T}(e^{j\hat{\omega}_g}) = \frac{Y_n(\omega)}{Y_{rn}(\omega)}
+			\end{array}
+			\label{eq:PM3}
+			\end{equation}
+			
+				\item Verifique se $\left| \hat{P}M^k - \phi_m \right| \leq \epsilon_2$ e a iteração não é a primeira. Se sim, finalize o algoritmo e atualize o controlador do sistema. Senão, continue.
+				
+				\item Determine o valor de $T_i^{k+1}$ que satisfaça a equação \ref{eq:Tiit}.
+			
+			\begin{equation}
+			\begin{array}{lllllll}
+			T_i^{k+1} = \frac{tan \left [ \phi_m - \hat{P}M^k + tan^-1 (\hat{\omega}_g^k T_i^{k}) \right ]}{\hat{\omega}_g^k}
+			\end{array}
+			\label{eq:Tiit}
+			\end{equation}
+			
+			\item Verifique se a condição a seguir é satisfeita. 
+			
+			\begin{equation}
+			\begin{array}{lllllll}
+			\pi + \phi_m < \angle \hat{G}(j\hat{\omega}_g^k)< -\frac{\pi}{2} + \phi_m
+			\end{array}
+			\label{eq:condicao1IT}
+			\end{equation}
+			
+			Se a condição for verificada verdadeira continue a iteração. Caso ela for falsa finalize a iteração e retorne ao controlador inicial $C^0(s)$.
+			
+			\item Atualize o ganho proporcional utilizando a equação \ref{eq:KPit2}.
+			
+			\begin{equation}
+			\begin{array}{lllllll}
+					K_p^{k+1} = \bar{K}_p^{k+1}\frac{\sqrt{ \left ( \frac{1}{T_i^k} \right )^2 + (\hat{\omega}_g^k)^2}}{\sqrt{ \left ( \frac{1}{T_i^{k+1}} \right )^2 + (\hat{\omega}_g^k)^2}}
+			\end{array}
+			\label{eq:KPit2}
+			\end{equation}
+			
+			\item Atualize o controlador utilizando a equação \ref{eq:controlIT}.
+			
+					\begin{equation}
+			\begin{array}{lllllll}
+					C^{k+1}(s) = K_p^{k+1} \left ( \frac{s+ \frac{1}{T_i^k+1}}{s} \right )
+			\end{array}
+			\label{eq:controlIT}
+			\end{equation}
+			
+			\item Incremente o valor de k e retorne ao passo b.
+			
+\end{enumerate}				
+
+O algoritmo mostrado será comparado com outros métodos de sintonia heurísticas de maneira a fazer uma avaliação de qual o método mais aplicável para cada caso.		
+	
+\subsection{Métodos heurísticos para sintonia de controladores}	
+
+Para uma grande quantidade de controladores os métodos clássicos de sintonia funcionam com desempenho adequado. Porém, em alguns casos a sintonia não encontra parâmetros com bons desempenhos e tendem a possuir um desempenho em malha fechada com uma porcentagem alta de sobre-sinal. Para solucionar essas deficiências nas sintonias de parâmetros tradicionais, vários algoritmos inteligentes têm sido pesquisados tais como os que sintonizam controladores PID utilizando algoritmos genéticos (GA) \cite{Ota1996}, otimização por nuvem de partículas (PSO) \cite{Huidang2010,Oi2008}, otimização por colônia de formigas (ACO) \cite{Nagara2010}, e \textit{Fruit Fly Optimization} (FFO) \cite{Han2012}. 
+
+As técnicas de otimização heurísticas tem recebido bastante atenção devido a sua habilidade em buscar uma solução ótima na sintonia de controladores PID \cite{Huidang2010}. No diagrama de blocos da figura \ref{fig:Sintoniaheuristica} é possível perceber como ocorre a sintonia de parâmetros baseado em heurísticas.
+
+	\begin{figure}[H]
+   	\inserirListaFiguras
+   	\centering
+   	\caption{Diagrama de sintonia de controladores PID utilizando heurísticas. Fonte: Adaptado de ~\citeonline{Hang2002}}
+   	%\FONTE{\cite{franca}}
+  	\includegraphics[scale = 0.5]{Figuras/Sintoniaheuristica.png}
+   	\label{fig:Sintoniaheuristica}
+		\end{figure}
+ 
+ É possível visualizar na figura a maneira como ocorre a sintonia de controladores utilizando heurísticas. Primeiramente um controlador deve ser simulado. Em seguida o erro deve ser extraído e utilizado para indicar a qualidade, ou desempenho, do controlador. Baseado nessa função de avaliação, os algoritmos heurísticos trabalharão de maneira a minimizar o erro e maximizar o desempenho do controlador. 
+ 
+ Nessa estratégia de sintonia de controladores é possível perceber que o desempenho final do sistema depende diretamente da função de avaliação e da maneira como o processo é simulado. Por isso, a utilização de uma função de custo apropriada é essencial. 
+ 
+ Os principais índices de avaliação de controladores utilizados na atualidade segundo ~\citeonline{Campos2006} são:
+ 
+\begin{itemize}
+	\item ISE - que é a integral do erro quadrático;
+	\item ITSE - que é a integral do erro quadrático vezes o tempo;
+	\item IAE - que é a integral do módulo do erro;
+	\item ITAE - que é a integral do módulo do erro vezes o tempo;
+	\item Variabilidade - Normalmente definida como o dobro do desvio padrão do erro dividido pela média da variável do processo;
+	\item Variância na saída do controlador - Está associada ao desgaste do atuador utilizado no sistema;
+	\item Haris	- Índice baseado em controle de variância mínima.
+\end{itemize}
+
+ Nos índices mostrados acima, o erro é a diferença entre o valor medido da variável Y, da figura \ref{fig:Sintoniaheuristica}, e $Y_sp$.
+ 
+ Além dos critérios de desempenhos mostrados, também podem ser utilizados, para a sintonia de controladores PID, os seguintes parâmetros:
+ 
+ 
+\begin{itemize}
+	\item O menor valor de sobre-sinal (\textit{overshoot});
+	\item O menor tempo de subida;
+	\item O menor tempo de estabilização;
+	\item Mínima energia, ou mínima atuação na variável manipulada;
+\end{itemize}
+ 
+  Na prática, nem todos os critérios podem ser satisfeitos ao mesmo tempo e, por isso, é necessário existir uma relação de compromisso entre os vários critérios que podem ser adotados. Isto é, o sistema deve satisfazer aos critérios da melhor maneira possível e, ao mesmo tempo, deve ser robusto para incertezas no processo \cite{Campos2006}.
+ 
+
+		\subsection{Controle Preditivo}
+		\label{subsec:Preditivo}
+		
+		Mesmo sendo utilizado em cerca de 96\% dos processos industriais, os controladores PID em muitos casos não apresentam desempenho desejado e não satisfatório. Devido a isso, outras alternativas de controle vem sendo pesquisadas para superar suas desvantagens. O baixo desempenho do PID ocorre em situações onde as plantas são não lineares, principalmente se, além de não lineares eles forem multivariáveis.
+		
+		No caso de sistemas não lineares normalmente o PID é aplicado controlando o sistema em um ponto de operação. Nesse caso, há uma dificuldade de controlar sistemas cujo valor de referência varia com o tempo, pois, sendo fixos os ganhos do controlador PID, não há garantia de ótimo desempenho, já que a sintonia é adequada apenas para uma faixa próxima ao ponto de operação \cite{Santana2007}. 
+		
+		Dentre as propostas alternativas a utilização de controladores PID há o controle preditivo. O controle preditivo remete a uma classe de controladores que tem por característica principal a utilização de modelos com o objetivo de prever comportamentos futuros de suas variáveis controladas. O controlador se utiliza dessa informação para buscar uma resposta otimizada de acordo com um critério pré-definido \cite{NUNES2001}.
+		
+A principal característica do controlador preditivo é a utilização de um modelo de processo utilizado para prever futuras saídas dentro de determinado horizonte de previsão. A figura \ref{fig:Preditivo} mostra um esquema de como funciona um controlador preditivo.
+
+\begin{figure}[H]
+   \inserirListaFiguras
+   \centering
+   \caption{Estratégia de Controle Preditivo.
+   Fonte: \cite{NUNES2001}}
+   %\FONTE{\cite{franca}}
+   \includegraphics[scale = 0.7]{Figuras/Preditivo.png}
+   \label{fig:Preditivo}
+\end{figure}
+
+No gráfico são apresentados dois sinais em função do tempo, um correspondente ao controle u(t) e o outro a saída do sistema. No instante t são realizadas $\hat{y}(t+i|t)$ previsões futuras, que é o horizonte de previsão. A partir das previsões são calculados os sinais de controle futuros, que é o horizonte de controle u(t+i).
+
+Segundo ~\citeonline{Santana2007} o algoritmo básico de qualquer estratégia de controle preditivo baseado em modelo (MBPC) pode ser resumido nos seguintes estágios:
+
+\begin{itemize}
+	\item Predição - É baseada no modelo da planta utilizado para encontrar as entradas futuras mais adequadas para se aplicar no processo.
+	\item Obtenção do sinal de controle futuro - Este é o resultado da minimização do erro de predição e a referência futura. Além disso, nessa função geralmente é incluído um termo de penalização do sinal de controle como mostrado na equação \ref{eq:preditivo}.
+	
+	\begin{equation}
+			\begin{array}{lllllll}
+					J_{pred}= \sum^{j=n_{yp}}_{j=n_1}{(\hat{y}(k+j|k)-w(k+j))^2} + \sum^{j=n_{up}}_{j=1}{\lambda_c\Delta u^2(k+j-1|k)}
+			\end{array}
+			\label{eq:preditivo}
+			\end{equation}
+	
+	Onde:
+	
+	$n_1$ é o horizonte inicial de predição das saídas;
+	
+	$n_{yp}$ é o horizonte final de predição das saídas;
+	
+  $n_{up}$ o horizonte de controle;
+  
+	$\lambda_c$ é a ponderação no sinal de controle;
+	
+	$\hat{y}(k+j|k)$ é a predição da saída j passos adiante, calculada no instante discreto k;
+	
+  $w(k + j)$ é o sinal de referência futura e;
+  
+	$\Delta u(k + j - 1|k)$ é a variação no sinal de controle, calculado no instante k.
+	
+\end{itemize}
+
+Ainda segundo ~\citeonline{Santana2007} é possível citar algumas estratégias de controle preditivo populares, estas estratégias são:
+
+\begin{itemize}
+	\item Controle Preditivo Funcional;
+	\item Controlador de Matriz Dinâmica;
+	\item Controlador Preditivo Generalizado.
+\end{itemize}
+
+Porém, elas podem apresentar falta de desempenho em casos específicos como em restrições nos atuadores ou comportamento não linear da planta e, devido a isso, outras técnicas tem sido estudadas \cite{Santana2007}.
+
+O controle preditivo, segundo ~\citeonline{BAI2008}, é uma das estratégias de controle mais largamente aplicadas devido a utilização de um modelo de processo que prediz as respostas futuras de uma planta agregada a capacidade de trabalhar com restrições no sinal de controle aplicado e na saída. Porém, os sistemas encontrados nas aplicações de controle são frequentemente não lineares. Por isso, a maioria dos sistemas de controle preditivo deveriam trabalhar com modelos não lineares. 
+
+O controle de sistemas não lineares tem sido destaque nas recentes pesquisas. Os métodos regulares, que tratam os sistemas não lineares, consistem em aproximar tais sistemas a um ponto de operação através do qual o problema pode ser convertido em um sistema linear \cite{SHI2007}. Contudo, nos casos onde o sistema possui não linearidades fortes, as previsões muitos passos a frente podem divergir dos valores reais (devido aos modelos serem lineares e a planta não linear), além de ser necessário linearizar novamente o modelo caso haja a mudança de ponto de operação. Quando ocorrem situações onde as não linearidades são fortes o suficiente para prejudicar as previsões o controle preditivo baseado em modelos não lineares deveria ser considerado \cite{Su2009}.
+
+Os controladores preditivos baseados em modelos não lineares (NMPC) além de possuírem as vantagens de utilizar um modelo, para prever o comportamento do processo em um horizonte de previsão futuro, também são capazes de gerar as ações de controle, que levam o processo a atingir um determinado objetivo de maneira ótima. As técnicas NMPC podem ser aplicadas em várias classes de processos não lineares caso modelos empíricos possam se identificados a partir dos dados de entrada e saída do sistema \cite{Su2009}. O diagrama de blocos da figura \ref{fig:PredOtimizado} mostra o funcionamento de um controlador preditivo.
+
+		\begin{figure}[H]
+   	\inserirListaFiguras
+   	\centering
+   	\caption{Diagrama de blocos do controle preditivo. Fonte: Adaptado de ~\citeonline{Duwaish2001}}
+   	%\FONTE{\cite{franca}}
+  	\includegraphics[scale = 0.7]{Figuras/PredOtimizado.png}
+   	\label{fig:PredOtimizado}
+		\end{figure}
+
+No diagrama é possível perceber a presença de um processo a ser controlado, um preditor onde se encontra o modelo (não linear no caso do NMPC), um bloco de otimização onde se encontra a função objetivo dada na equação \ref{eq:preditivo} e as restrições. No trabalho de ~\citeonline{Duwaish2001}, que realiza o controle preditivo utilizando algoritmos genéticos, a sequência de passos realizados para controlar o sistema é:
+
+\begin{itemize}
+	\item Avaliar o processo utilizando o modelo;
+	\item Utilizar o otimizador (no caso o algoritmo genético) para encontrar o sinal de controle ótimo;
+	\item Aplicar os sinais encontrados ao processo;
+	\item Repetir até que o sistema seja desligado.
+\end{itemize}
+ 
+Seguindo as ideias utilizadas nos trabalhos de ~\citeonline{Duwaish2001}, que realizam controle preditivo com redes neurais e calcula o sinal de controle ótimo com AG, ~\citeonline{Shin1998} cuja síntese do sinal de controle é utilizando AG com funções de diferentes classes e ~\citeonline{Su2009} que utiliza o PSO no controle preditivo baseado em modelos neurais, será utilizado o controle preditivo utilizando modelos NARX e a otimização realizada utilizando o PSO para a comparação com o controlador PID sintonizado com o método do relé e otimizada a sintonia com PSO.

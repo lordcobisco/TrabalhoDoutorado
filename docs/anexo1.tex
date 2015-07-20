@@ -1,0 +1,76 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Anexos
+\hypertarget{estilo:anexo}{} %% uso para este manual
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{APÊNDICE - EQUAÇÕES QUE RELACIONAM AS ENTRADAS E SAÍDAS DOS HIDROCICLONES} %% 
+\label{APENDICE_B} %% 
+
+A descrição do modelo matemático hidrodinâmico do hidrociclone se inicia a partir das seguintes equações:
+
+\begin{equation}
+\begin{array}{rcll}
+\Delta P_0 = & \alpha_1 W_0
+\end{array}
+\label{eq:VarPressaoZero}
+\end{equation}
+
+\begin{equation}
+\begin{array}{rcll}
+\Delta P_u = & \alpha_2 W_u
+\end{array}
+\label{eq:VarPressaoU}
+\end{equation}
+
+Onde:
+
+$W_0$ - vazão na linha superior de topo;
+
+$W_u$ - vazão na linha de fundo do hidrociclone;
+
+$\alpha_1$ e $\alpha_2$ - parâmetros de ajuste do modelo para perda de carga;
+
+$\Delta P_0$ - diferença de pressão entre a corrente de alimentação e a corrente de descarga superior do hidrociclone;
+
+$\Delta P_u$ - diferença de pressão entre a corrente de alimentação e a corrente de descarga inferior do hidrociclone.\\
+
+
+Resolvendo o sistema de equações mostrado em \ref{eq:VarPressaoZero} e \ref{eq:VarPressaoU} é possível encontrar a seguinte relação que envolve as vazões nas linhas superior e inferior do hidrociclone como pode ser visto nas equações \ref{eq:WZero} e \ref{eq:WU}.
+
+\begin{equation}
+\begin{array}{rcll}
+W_0 = & \frac{Cv_{max,0} . S_0}{0,0693   60   \rho_{fl}} \sqrt{ d_l (P_1 - \Delta P_0 - P_0)}
+\end{array}
+\label{eq:WZero}
+\end{equation}
+
+\begin{equation}
+\begin{array}{rcll}
+W_u = & \frac{Cv_{max,u} . S_u}{0,0693 . 60  . \rho_{fw}} \sqrt{ d_w (P_1 - \Delta P_u - P_u)}
+\end{array}
+\label{eq:WU}
+\end{equation}
+
+Onde:
+
+$Cv_{max,0}$ - coeficiente de descarga máximo da válvula de topo;
+
+$Cv_{max,u}$ - coeficiente de descarga máximo da válvula de fundo;
+
+$d_l$ - densidade específica do óleo;
+
+$d_w$ - densidade específica da água;
+
+$P_0$ - pressão na descarga da linha de topo;
+
+$P_u$ - pressão na descarga da linha de fundo;
+
+$P_1$ - pressão na alimentação do hidrociclone;
+
+$S_o$ - abertura da válvula de topo;
+
+$S_u$ - abertura da válvula de fundo;
+
+$\rho_{fl}$ - massa específica da fase oleosa;
+
+$\rho_{fw}$ - massa específica da fase aquosa.

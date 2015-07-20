@@ -1,0 +1,473 @@
+\providecommand{\abntreprintinfo}[1]{%
+ \citeonline{#1}}
+\setlength{\labelsep}{0pt}\begin{thebibliography}{}
+\providecommand{\abntrefinfo}[3]{}
+\providecommand{\abntbstabout}[1]{}
+\abntbstabout{1.45.2.1 }
+
+\bibitem[Aguirre 2007]{Aguirre2007}
+\abntrefinfo{Aguirre}{AGUIRRE}{2007}
+{AGUIRRE, L.~A. \textbf{Introdução à Identificação de Sistemas}: Técnicas
+  lineares e não-lineares aplicadas a sistemas reais. Belo Horizonte: UFMG,
+  2007.}
+
+
+\bibitem[Arruda et al. 2011]{ARRUDA2011}
+\abntrefinfo{Arruda et al.}{ARRUDA et al.}{2011}
+{ARRUDA, L. V.~R.; ISFER, L. A.~D.; LOPES, H.~S. Identificação de parâmetros
+  por enxame de partículas através do compromisso entre variância e
+  polarização. In:  \textbf{X SBAI - Simpósio Brasileiro de Automação
+  Inteligente}. São João del-Rei - MG - Brasil: SBAI, 2011. X.}
+
+
+\bibitem[Barijough e Lee 2010]{Barijough2010}
+\abntrefinfo{Barijough e Lee}{BARIJOUGH; LEE}{2010}
+{BARIJOUGH, S.~M.; LEE, J.~W. On stability characterization of discrete-time
+  piecewise linear systems. In:  \textbf{American Control Conference}. Marriott
+  Waterfront, Baltimore, MD, USA: [s.n.], 2010. p. 916--921.}
+
+
+\bibitem[Bhattacharya et al. 2008]{Bhattacharya2008}
+\abntrefinfo{Bhattacharya et al.}{BHATTACHARYA et al.}{2008}
+{BHATTACHARYA, S.; KONAR, A.; NAGAR, A. A lyapunov-based extension to pso
+  dynamics for continuous function optimization. In:  \textbf{Second UKSIM -
+  European Symposium on Computer Modeling and Simulation}. Liverpool, England:
+  IEEE, 2008. p. 28--33.}
+
+
+\bibitem[Bishop e Richards 1990]{Bishop1990}
+\abntrefinfo{Bishop e Richards}{BISHOP; RICHARDS}{1990}
+{BISHOP, R.~R.; RICHARDS, G.~G. Identifying induction machine parameters using
+  a genetic optimization algorithm. In:  \textbf{Southeastcon 1990}.
+  Piscataway, NJ: IEEE, 1990. v.~2, p. 476--479.}
+
+
+\bibitem[Campello et al. 2007]{Campello2007}
+\abntrefinfo{Campello et al.}{CAMPELLO et al.}{2007}
+{CAMPELLO, R. J. G.~B.; OLIVEIRA, G. H.~C.; AMARAL, W.~C. Identificação e
+  controle de processos via desenvolvimentos em séries ortonormais. parte a:
+  identificação.
+\textbf{Controle \& Automação}, v.~18, 2007.}
+
+
+\bibitem[Chakraborty et al. 2010]{Chakraborty2010}
+\abntrefinfo{Chakraborty et al.}{CHAKRABORTY et al.}{2010}
+{CHAKRABORTY, P.; DAS, S.; ABRAHAM, A.; SNASEL, V.; ROY, G. On convergence of
+  multi-objective particle swarm optimizers. In:  \textbf{IEEE Congress on
+  Evolutionary Computation}. Barcelona, Spain: [s.n.], 2010. p.~1--8.}
+
+
+\bibitem[Chen e Li 2007]{Chen2007}
+\abntrefinfo{Chen e Li}{CHEN; LI}{2007}
+{CHEN, X.; LI, Y. A modified pso structure resulting in high exploration
+  ability with convergence guaranteed.
+\textbf{IEEE TRANSACTIONS ON SYSTEMS, MAN, AND CYBERNETICS}, IEEE, v.~37, p.
+  1271--1289, 2007.}
+
+
+\bibitem[Chen et al. 2008]{Chen2008}
+\abntrefinfo{Chen et al.}{CHEN et al.}{2008}
+{CHEN, Z.; ZHONG, Y.; LI, J. Parameter identification of induction motors using
+  ant colony optimization. In:  \textbf{Evolutionary Computation, 2008}. Hong
+  Kong, China: IEEE, 2008. p. 1611--1616.}
+
+
+\bibitem[Clerc e Kennedy 2002]{Clerc2002}
+\abntrefinfo{Clerc e Kennedy}{CLERC; KENNEDY}{2002}
+{CLERC, M.; KENNEDY, J. The particle swarm-explosion, stability, and
+  convergence in a multidimensional complex space.
+\textbf{IEEE TRANSACTIONS ON EVOLUTIONARY COMPUTATION}, IEEE, v.~6, p. 58--73,
+  2002.}
+
+
+\bibitem[Coelho e Coelho 2004]{Coelho2004}
+\abntrefinfo{Coelho e Coelho}{COELHO; COELHO}{2004}
+{COELHO, A. A.~R.; COELHO, L.~S. \textbf{Identificação de Sistemas din\^amicos
+  Lineares}. Florian\'opolis: UFSC, 2004.}
+
+
+\bibitem[Cohen e Tuninsky 1995]{Cohen1995}
+\abntrefinfo{Cohen e Tuninsky}{COHEN; TUNINSKY}{1995}
+{COHEN, E.~R.; TUNINSKY, V.~S. The extended-least-squares treatment of
+  correlated data.
+\textbf{IEEE TRANSACTIONS ON INSTRUMENTATION AND MEASUREMENT}, IEEE, v.~44, p.
+  475--478, 1995.}
+
+
+\bibitem[Dantas et al. 2012]{Dantas2011}
+\abntrefinfo{Dantas et al.}{DANTAS et al.}{2012}
+{DANTAS, A. F. d.~A.; LINHARES, L. L. d.~S.; PINTO, J. E. M.~G.; ARAÚJO, F. M.
+  U.~d.; MAITELLI, A.~L. Evaluation and optimization of three-phase separator
+  vessel controlled by pi controls applying particle swarm optmization. In:
+  \textbf{10th Portuguese Conference on Automatic Control - CONTROLO'12}.
+  Funchal, Madeira Island: CONTROLO'12, 2012.}
+
+
+\bibitem[Ding et al. 1999]{Ding2006}
+\abntrefinfo{Ding et al.}{DING et al.}{1999}
+{DING, F.; CHEN, T.; QIU, L. Bias compensation based recursive least-squares
+  identification algorithm for miso systems.
+\textbf{IEEE TRANSACTIONS ON CIRCUITS AND SYSTEMS}, IEEE, v.~53, p. 349--353,
+  1999.}
+
+
+\bibitem[Ding e Ding 2011]{Ding2011}
+\abntrefinfo{Ding e Ding}{DING; DING}{2011}
+{DING, J.; DING, F. Bias compensation-based parameter estimation for output
+  error moving average systems.
+\textbf{INTERNATIONAL JOURNAL OF ADAPTIVE CONTROL AND SIGNAL PROCESSING}, Wiley
+  Online Library, v.~25, p. 1100--1111, 2011.}
+
+
+\bibitem[Emara e Fattah 2004]{Emara2004}
+\abntrefinfo{Emara e Fattah}{EMARA; FATTAH}{2004}
+{EMARA, H.~M.; FATTAH, H. A.~A. Continuous swarm optimization technique with
+  stability analysis. In:  \textbf{American Control Conference}. Boston,
+  MassachUsen8: IEEE, 2004. p. 2811--2817.}
+
+
+\bibitem[Ettaleb et al. 1998]{ettaleb1998}
+\abntrefinfo{Ettaleb et al.}{ETTALEB et al.}{1998}
+{ETTALEB, L.; DUMONTL, G.~A.; DAVIES, M.~S. An extended off-line least-squares
+  method for parameter identification and time delay estimation. In:
+  \textbf{Conference on Decision \& Control}. Tampa, Florida USA: IEEE, 1998.
+  v.~37th, p. 3423--3428.}
+
+
+\bibitem[Fan et al. 2010]{Fan2010}
+\abntrefinfo{Fan et al.}{FAN et al.}{2010}
+{FAN, W.; CUI, Z.; CHEN, Y.; TAN, Y. Nonlinear time-varying stability analysis
+  of particle swarm optimization. In:  \textbf{International Conference on
+  Computational Aspects of Social Networks}. Taiyuan, China: [s.n.], 2010.
+  p.~3--6.}
+
+
+\bibitem[Fukuyama e Yoshida 2001]{Fukuyama2001}
+\abntrefinfo{Fukuyama e Yoshida}{FUKUYAMA; YOSHIDA}{2001}
+{FUKUYAMA, Y.; YOSHIDA, H. A particle swarm optimization for reactive power and
+  voltage control in electric power systems. In:  \textbf{Proceedings of the
+  Congress on Evolutionary Computation}. Seoul, Korea: [s.n.], 2001. v.~1, p.
+  87--93.}
+
+
+\bibitem[HANLON et al. 2011]{HANLON2011}
+\abntrefinfo{HANLON et al.}{HANLON et al.}{2011}
+{HANLON, B.; WANG, N.; EGERSTEDT, M.; MARTIN, C. Switched linear systems:
+  Stability and the convergence of random products.
+\textbf{COMMUNICATIONS IN INFORMATION AND SYSTEMS}, International Press, v.~11,
+  p. 327--342, 2011.}
+
+
+\bibitem[Heppner e Grenander 1990]{Heppner1990}
+\abntrefinfo{Heppner e Grenander}{HEPPNER; GRENANDER}{1990}
+{HEPPNER, F.; GRENANDER, U. A stochastic nonlinear model for coordinated bird
+  flocks.
+In: S . Krasner, Ed., The Ubiquity of Chaos. AAAS Publications, Washington, DC,
+  USA, 1990.}
+
+
+\bibitem[Huang et al. 2002]{Huang2002}
+\abntrefinfo{Huang et al.}{HUANG et al.}{2002}
+{HUANG, K.~S.; WU, Q.~H.; TURNER, D.~R. Effective identification of induction
+  motor parameters based on fewer measurements.
+\textbf{IEEE TRANSACTIONS ON ENERGY CONVERSION}, IEEE, v.~17, p. 55--60, 2002.}
+
+
+\bibitem[Huynh e Dunnigan 2010]{Huynh2010}
+\abntrefinfo{Huynh e Dunnigan}{HUYNH; DUNNIGAN}{2010}
+{HUYNH, D.~C.; DUNNIGAN, M.~W. Parameter estimation of an induction machine
+  using advanced particle swarm optimization algorithms.
+\textbf{IET Electric Power Applications}, IEEE, v.~4, p. 748--760, 2010.}
+
+
+\bibitem[Isermann e Munchhof 2011]{Isermann2011}
+\abntrefinfo{Isermann e Munchhof}{ISERMANN; MUNCHHOF}{2011}
+{ISERMANN, R.; MUNCHHOF, M. \textbf{Identification of Dynamic Systems}: An
+  introduction with applications. Berlin: Springer, 2011.}
+
+
+\bibitem[Kadirkamanathan et al. 2006]{Kadirkamanathan2006}
+\abntrefinfo{Kadirkamanathan et al.}{KADIRKAMANATHAN et al.}{2006}
+{KADIRKAMANATHAN, V.; SELVARAJAH, K.; FLEMING, P.~J. Stability analysis of the
+  particle dynamics in particle swarm optimizer.
+\textbf{IEEE TRANSACTIONS ON EVOLUTIONARY COMPUTATION}, IEEE, v.~10, p.
+  245--255, 2006.}
+
+
+\bibitem[Kampisios et al. 2008]{Kampisios2008}
+\abntrefinfo{Kampisios et al.}{KAMPISIOS et al.}{2008}
+{KAMPISIOS, K.; ZANCHETTA, P.; GERADA, C.; TRENTIN, A. Identification of
+  induction machine electrical parameters using genetic algorithms
+  optimization. In:  \textbf{Industry Applications Society Annual Meeting}.
+  Edmonton, Alberta,Canadá: IEEE, 2008. v.~8, p.~1--7.}
+
+
+\bibitem[Kennedy e Eberhart 1995]{Kennedy1995}
+\abntrefinfo{Kennedy e Eberhart}{KENNEDY; EBERHART}{1995}
+{KENNEDY, J.; EBERHART, R.~C. Particle swarm optimization. In:
+  \textbf{Proceedings Of the IEEE International Conference in Neural Networks}.
+  Western Australia: IEEE, 1995. p. 1942--1948.}
+
+
+\bibitem[Kennedy et al. 2001]{Kennedy2001}
+\abntrefinfo{Kennedy et al.}{KENNEDY et al.}{2001}
+{KENNEDY, J.~F.; EBERHART, R.~C.; SHI, Y. \textbf{Swarm Inteligence}. United
+  States of America: Academic Press, 2001.}
+
+
+\bibitem[Khosla et al. 2007]{Khosla2007}
+\abntrefinfo{Khosla et al.}{KHOSLA et al.}{2007}
+{KHOSLA, A.; KUMAR, S.; GHOSH, K. A comparison of computational efforts between
+  particle swarm optimization and genetic algorithm for identification of fuzzy
+  models. In:  \textbf{NAFIPS}. San Diego, California, USA: IEEE, 2007. p.
+  245--250.}
+
+
+\bibitem[Lindoff e Holst 1999]{LINDOFF1999}
+\abntrefinfo{Lindoff e Holst}{LINDOFF; HOLST}{1999}
+{LINDOFF, B.; HOLST, J. Convergence analysis of the rls identification
+  algorithm with exponential forgetting in stationary arx-structures.
+\textbf{INTERNATIONAL JOURNAL OF ADAPTIVE CONTROL AND SIGNAL PROCESSING}, Wiley
+  Online Library, v.~13, p. 1--22, 1999.}
+
+
+\bibitem[Ljung 1987]{LJUNG1987}
+\abntrefinfo{Ljung}{LJUNG}{1987}
+{LJUNG, L. \textbf{System identification}: Theory for the user. Upper Saddle
+  River, NJ: Prentice Hall, 1987.}
+
+
+\bibitem[Ljung e Söderström 1983]{LJUNG1983}
+\abntrefinfo{Ljung e Söderström}{LJUNG; SöDERSTRöM}{1983}
+{LJUNG, L.; SöDERSTRöM, T. \textbf{Theory and Practice of Recursive
+  Identification}. Massachusetts, USA: MIT press, 1983.}
+
+
+\bibitem[Lu et al. 2008]{Lu2008}
+\abntrefinfo{Lu et al.}{LU et al.}{2008}
+{LU, L.; LUO, Q.; LIU, J.~y.; LONG, C. An improved particle swarm optimization
+  algorithm. In:  \textbf{International Conference on Granular Computing}.
+  Hangzhou, China: IEEE, 2008. p. 486--490.}
+
+
+\bibitem[Mahata 2007]{Mahata2007}
+\abntrefinfo{Mahata}{MAHATA}{2007}
+{MAHATA, K. An improved bias-compensation approach for errors-in-variables
+  model identification.
+\textbf{Automatica}, ScienceDirect, v.~8, p. 1339--1354, 2007.}
+
+
+\bibitem[Malik et al. 2007]{Malik2007}
+\abntrefinfo{Malik et al.}{MALIK et al.}{2007}
+{MALIK, R.~F.; RAHMAN, T.~A.; HASHIM, S. Z.~M.; NGAH, R. New particle swarm
+  optimizer with sigmoid increasing inertia weight.
+\textbf{The International Journal of Computer Science and Security (IJCSS)},
+  v.~1, p. 43--52, 2007.}
+
+
+\bibitem[Meleiro 2002]{Meleiro2002}
+\abntrefinfo{Meleiro}{MELEIRO}{2002}
+{MELEIRO, L. A.~C.
+\textbf{Projeto e Aplicação de Controladores Baseados em Modelos Lineares,
+  Neurais e Nebulosos}.
+125~p.
+Tese (Engenharia Química) --- Universidade Estadual de Campinas, Campinas,
+  2002.}
+
+
+\bibitem[Mendes et al. 2004]{Mendes2004}
+\abntrefinfo{Mendes et al.}{MENDES et al.}{2004}
+{MENDES, R.; KENNEDY, J.; NEVES, J. The fully informed particle swarm: Simpler,
+  maybe better.
+\textbf{IEEE TRANSACTIONS ON EVOLUTIONARY COMPUTATION}, IEEE, v.~8, p.
+  204--210, 2004.}
+
+
+\bibitem[Millonas 1994]{Millonas1994}
+\abntrefinfo{Millonas}{MILLONAS}{1994}
+{MILLONAS, M.~M. Swarms, phase transitions, and collective intelligence. In:
+  \textbf{C. G. Langton, Ed., Artificial Life III}. MA: Addison Wesley, 1994.}
+
+
+\bibitem[Monteiro 2002]{Monteiro2002}
+\abntrefinfo{Monteiro}{MONTEIRO}{2002}
+{MONTEIRO, L. H.~A. \textbf{Sistemas Dinâmicos}. Brasil: Editora Livraria da
+  Física, 2002.}
+
+
+\bibitem[Najjarzadeh e Ayatollahi 2008]{Najjarzadeh2008}
+\abntrefinfo{Najjarzadeh e Ayatollahi}{NAJJARZADEH; AYATOLLAHI}{2008}
+{NAJJARZADEH, M.; AYATOLLAHI, A. A comparison between genetic algorithm and pso
+  for linear phase fir digital filter design. In:  \textbf{ICSP}. Beijing,
+  China: IEEE, 2008. v.~9, p. 2134--2137.}
+
+
+\bibitem[Nelles 2001]{Nelles2001}
+\abntrefinfo{Nelles}{NELLES}{2001}
+{NELLES, O. \textbf{Nonlinear system identification}: From classical approaches
+  to neural networks and fuzzy models. Verlag Berlin Heidelberg New York:
+  Springer, 2001.}
+
+
+\bibitem[Oliveira 2002]{Oliveira2007}
+\abntrefinfo{Oliveira}{OLIVEIRA}{2002}
+{OLIVEIRA, J.~B.
+\textbf{Estabilidade e Robustez de um Controlador Adaptativo Indireto por
+  Modelo de Referência e Estrutura Variável}.
+171~p.
+Tese (Engenharia Elétrica) --- Universidade Federal do Rio Grande do Norte,
+  Natal, 2002.}
+
+
+\bibitem[Reynolds 2007]{Reynolds1987}
+\abntrefinfo{Reynolds}{REYNOLDS}{2007}
+{REYNOLDS, C.~W. Flocks, herds and schools: a distributed behavioral model. In:
+   \textbf{Computer Graphic}. [S.l.: s.n.], 2007. v.~21, p. 25--34.}
+
+
+\bibitem[Robinson et al. 1994]{Robinson2002}
+\abntrefinfo{Robinson et al.}{ROBINSON et al.}{1994}
+{ROBINSON, J.; SINTON, S.; RAHMAT-SAMII, Y. Particle swarm, genetic algorithm,
+  and their hybrids: optimization of a profiled corrugated horn antenna. In:
+  \textbf{Antennas and Propagation Society International Symposium}. Texas,
+  USA: IEEE, 1994. v.~1, p. 314--317.}
+
+
+\bibitem[Rohrs et al. 1982]{Rohrs1982}
+\abntrefinfo{Rohrs et al.}{ROHRS et al.}{1982}
+{ROHRS, C.~E.; VALAVANI, L.; ATHANS, M.; STEIN, G. Robustness of adaptive
+  control algorithms in the presence of unmodeled dynam. In:
+  \textbf{Conference on Decision and Control}. [S.l.]: IEEE, 1982. v.~21, p.
+  3--11.}
+
+
+\bibitem[Ruscio 1995]{Ruscio1995}
+\abntrefinfo{Ruscio}{RUSCIO}{1995}
+{RUSCIO, D.~D. \textbf{SUBSPACE SYSTEM IDENTIFICATION}: Theory and
+  applications. Porsgrunn, Norway: Telemark Institute of Technology, 1995.}
+
+
+\bibitem[Söderström et al. 2005]{Soderstrom2005}
+\abntrefinfo{Söderström et al.}{SöDERSTRöM et al.}{2005}
+{SöDERSTRöM, T.; HONG, M.; ZHENG, W.~X. Convergence properties of
+  bias-eliminating algorithms for errors-in-variables identification.
+\textbf{INTERNATIONAL JOURNAL OF ADAPTIVE CONTROL AND SIGNAL PROCESSING}, Wiley
+  Online Library, v.~19, p. 703--722, 2005.}
+
+
+\bibitem[SerapiÃo 2009]{Serapiao2009}
+\abntrefinfo{SerapiÃo}{SERAPIÃO}{2009}
+{SERAPIÃO, A. B.~S. Fundamentos de otimizaÇÃo por inteligÊncia de enxames: Uma
+  visÃo geral.
+\textbf{Revista Controle \& Automação}, v.~20, n.~3, p. 271--304, 2009.}
+
+
+\bibitem[Sharifi et al. 2012]{Sharifi2012}
+\abntrefinfo{Sharifi et al.}{SHARIFI et al.}{2012}
+{SHARIFI, A.; NOROOZI, V.; BASHIRI, M.; HASHEMI, A.~B.; MEYBODI, M.~R. Two
+  phased cellular pso: A new collaborative cellular algorithm for optimization
+  in dynamic environments. In:  \textbf{World Congress on Computational
+  Intelligence}. Brisbane, Australia: IEEE, 2012. p.~1--8.}
+
+
+\bibitem[Shi e Eberhart 1998]{Shi:98}
+\abntrefinfo{Shi e Eberhart}{SHI; EBERHART}{1998}
+{SHI, Y.; EBERHART, R. A modified particle swarm optimizer. In:
+  \textbf{Proceedings of IEEE International Conference on Evolutionary
+  Computation}. Anchorage, Alaska: IEEE, 1998. v.~2, p. 66--73.}
+
+
+\bibitem[Shi e Eberhart 1999]{Shi:99}
+\abntrefinfo{Shi e Eberhart}{SHI; EBERHART}{1999}
+{\underline{\ \ \ \ \ \ \ \ }. Empirical study of particle swarm optimization.
+  In:  \textbf{Proceedings of IEEE International Conference on Evolutionary
+  Computation}. EDS Indianapolis Technol. Center, Carmel, IN: IEEE, 1999. v.~3,
+  p. 1945--1950.}
+
+
+\bibitem[Sierakowski C. A.;~Coelho 2005]{Sierakowski2005}
+\abntrefinfo{Sierakowski C. A.;~Coelho}{SIERAKOWSKI C. A.;~COELHO}{2005}
+{SIERAKOWSKI C. A.;~COELHO, L.~S. Study of two swarm intelligence techniques
+  for path planning of mobile robots. In:  \textbf{IFAC World Congress}.
+  Prague, República Checa: [s.n.], 2005.}
+
+
+\bibitem[Song et al. 2007]{Song2007}
+\abntrefinfo{Song et al.}{SONG et al.}{2007}
+{SONG, Y.; CHEN, Z.; YUAN, Z. New chaotic pso-based neural network predictive
+  control for nonlinear process.
+\textbf{IEEE TRANSACTIONS ON NEURAL NETWORKS}, v.~18, n.~2, p. 595--600, 2007.}
+
+
+\bibitem[Tang et al. 2008]{Tang2008}
+\abntrefinfo{Tang et al.}{TANG et al.}{2008}
+{TANG, H.; ZHANG, W.; FAN, C.; XUE, S. Parameter estimation using a clpso
+  strategy. In:  \textbf{CEC}. Washington, DC, USA: IEEE, 2008. p. 70--74.}
+
+
+\bibitem[Ueno et al. 2005]{Ueno2005}
+\abntrefinfo{Ueno et al.}{UENO et al.}{2005}
+{UENO, G.; YASUDA, K.; IWASAKI, N. Robust adaptive particle swarm optimization.
+  In:  \textbf{International Conference on Systems, Man and Cybernetics}.
+  Hawaii, USA: IEEE, 2005. v.~4, p. 3915--3920.}
+
+
+\bibitem[Wenxiao 2007]{Wenxiao2007}
+\abntrefinfo{Wenxiao}{WENXIAO}{2007}
+{WENXIAO, Z. Identification for hammerstein systems using extended least
+  squares algorithm. In:  \textbf{Chinese Control Conference}. Zhangjiajie,
+  Hunan, China: IEEE, 2007. v.~26th, p. 241--245.}
+
+
+\bibitem[Yam e Chow 1997]{Yam1997}
+\abntrefinfo{Yam e Chow}{YAM; CHOW}{1997}
+{YAM, J. Y.~F.; CHOW, T. W.~S. Extended least squares based algorithm for
+  training feedforward networks.
+\textbf{IEEE Transactions on Neural Networks}, IEEE, v.~8, p. 806--810, 1997.}
+
+
+\bibitem[Zeng G. end~Jiang 2010]{Zeng2010}
+\abntrefinfo{Zeng G. end~Jiang}{ZENG G. END~JIANG}{2010}
+{ZENG G. END~JIANG, Y. A modified pso algorithm with line search. In:
+  \textbf{International Conference on Computational Intelligence and Software
+  Engineering (CiSE)}. Wuhan, China: IEEE, 2010. p.~1--4.}
+
+
+\bibitem[Zhan et al. 2009]{Zhan2009}
+\abntrefinfo{Zhan et al.}{ZHAN et al.}{2009}
+{ZHAN, Z.~H.; ZHANG, J.; LI, Y.; CHUNG, H. S.~H. Adaptive particle swarm
+  optimization.
+\textbf{IEEE TRANSACTIONS ON SYSTEMS, MAN, AND CYBERNETICS}, IEEE, v.~39, p.
+  1362--1381, 2009.}
+
+
+\bibitem[Zhang e Cui 2011]{Zhang2011}
+\abntrefinfo{Zhang e Cui}{ZHANG; CUI}{2011}
+{ZHANG, Y.; CUI, G. Bias compensation methods for stochastic systems with
+  colored noise.
+\textbf{Applied Mathematical Modelling}, ELSERVIER, v.~35, p. 1709--1716,
+  2011.}
+
+
+\bibitem[Zheng et al. 2012]{ZHENG2012}
+\abntrefinfo{Zheng et al.}{ZHENG et al.}{2012}
+{ZHENG, J.; ZHANG, G.; ZUO, H. Hybrid linear and nonlinear weight particle
+  swarm optimization algorithm. In:  \textbf{International Conference on
+  Machine Learning and Cybernetics}. Xian, China: IEEE, 2012. v.~1, p.
+  1237--1241.}
+
+
+\bibitem[Zhou e Cheng 2004]{Zhou2004}
+\abntrefinfo{Zhou e Cheng}{ZHOU; CHENG}{2004}
+{ZHOU, X.; CHENG, H. The induction motor parameter estimation through an
+  adaptive genetic algorithm. In:  \textbf{Universities Power Engineering
+  Conference}. Hong Kong, China: IEEE, 2004. v.~39, p. 494--498.}
+
+
+\bibitem[Zhu 2001]{Zhu2001}
+\abntrefinfo{Zhu}{ZHU}{2001}
+{ZHU, Y. \textbf{Multivariable System Identification for Process Control}.
+  Eindhoven: Elsevier Science \& Technology Books, 2001.}
+
+
+\end{thebibliography}

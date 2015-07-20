@@ -1,0 +1,813 @@
+
+
+
+
+
+
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<script> var ts1 = new Date().getTime(); </script>
+<!-- static const char articletmpl_sccsId[] = "%W%  %G% %U%  Retrieved: %H% %T%"; -->
+<meta name="robots" content="NOARCHIVE">
+<meta name="robots" content="noodp" />
+<meta name="robots" content="noydir" />
+<link rel="canonical" href="http://www.sciencedirect.com/science/article/pii/S0005109802002054">
+
+
+<link rel="shortcut icon" href="http://cdn.els-cdn.com/sd/faviconSD.ico" type="image/x-icon">
+<title>ScienceDirect.com - Automatica - Relay-based closed loop transfer function frequency points estimation</title>
+
+<link type="text/css" rel="StyleSheet" href="http://www.sciencedirect.com/gadgetservices/gadgets/v3_1/css/gadgets_ext,gadgets,toolbar,SDArticleGadgetOverRide,jquery-ui-1.8.4.custom.css">
+<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/themes/base/jquery-ui.css" type="text/css">
+<link rel="stylesheet" Title="Default Styles" href="http://cdn.els-cdn.com/sd/css/article_123R6.css" type="text/css">
+<link rel="stylesheet" Title="Default Styles" href="http://cdn.els-cdn.com/sd/css/articleSprite_123R6.css" type="text/css">
+
+<script>
+if( typeof(ts1) == "undefined" ){ ts1= new Date().getTime(); }
+Array.prototype.rt = function(label,ts){this.push( "{lbl:"+label+",ts:"+(ts||ts==0?ts:new Date().getTime())+"}" );}
+var prs = [];
+prs.rt( "head", ts1 );
+function loadPDF(){}
+</script>
+
+</head>
+
+<body>
+
+
+<script>prs.rt('body_start');</script>
+<script>
+var refLinkURL = "http://www.sciencedirect.com/science/relLink/ajaxReq?_eid=1-s2.0-S0005109802002054";
+var updatedCitedBy = "http://www.sciencedirect.com/science/referenceResolution/ajaxRefResol?_updateCitedBy=";
+var refResolvePath = "http://www.sciencedirect.com/science/referenceResolution/ajaxRefResol?_eid=1-s2.0-S0005109802002054&_refCnt=14&_docType=converted-article";
+
+// these variables handle the reference resolution. Please ignore the naming.
+// the first variable myMap will hold an associative array of links by bibID
+// the second variable myXabsCounts holds the scopus counts.
+var myMap = []; // html of links for references.
+var myXabsCounts = []; // scopus counts
+</script>
+<div id="header-area">
+  <div id="header" class="outerWrapper">
+<div style="background-color:#FFFFFF;position:relative;" class="outerWrapper" >
+<div id="masthead" >
+
+<!-- INSERTS THE TEMPLATE VARIABLES POPULATED FROM DB for SCIVERSE and PRODUCT labels -->
+
+<div class="logoSciVerseBlk"> <a href="http://www.sciencedirect.com/" <span class="logoSciVerseImg">&nbsp;</span></a> </div> <div class="logoScienceDirectBlk"><a href="http://www.sciencedirect.com/" title="ScienceDirect -The world's leading full-text scientific database"><span class="logoScienceDirectImg" >&nbsp;</span></a></div>
+
+</div >
+<div id="suites" class="clearfix" aria-label="SciVerse" role="navigation" >
+<ul class="suites"><li><a href="http://www.hub.sciverse.com/action/home" title="Hub - SciVerse's integrated search">Hub</a></li><li><a title="ScienceDirect - the world's leading full-text scientific database" class="selected">ScienceDirect</a></li><li><a href="http://www.scopus.com" title="Scopus - the largest abstract and citation database of research literature and quality web sources">Scopus</a></li><li><a href="http://www.applications.sciverse.com/action/userhome" title=" Applications - SciVerse Applications" class="last">Applications</a></li></ul>
+</div>
+</div>		
+
+     <!-- if not logged in -->
+	   
+
+			
+
+    <div id="login" class="clearfix">
+    	<ul>
+		<li>
+    
+      <a href="https://www.sciencedirect.com/science?_ob=RegistrationURL&_method=display&_type=ip&_returnURL=http%3A%2F%2Fwww.sciencedirect.com%2Fscience%2Flogin&_acct=C000037878&_version=1&_userid=687335&md5=aff4840e29457bce116b285c389a86e8" target="_top" title="Register a ScienceDirect username and password for using alerts and other personal features" >Register</a>
+    
+  </li>
+  <!--top right widget-->
+  <li class="login " id="loginPlus"><a href="javascript:LoginBox.flipLogin('loginBox',null);" title="Login to ScienceDirect" class="novisit plus nojs" id="loginPlusScript" >Login</a><noscript><a href="http://www.sciencedirect.com/science?_ob=HomePageURL&_method=userHomePage&_fl=y&_acct=C000037878&_version=1&_urlVersion=0&_userid=687335&md5=35a026c41ac0a3dd8157897d40f8b11c" title="Open the Login Box" class="plus" id="loginPlusNoScript" >Login</a></noscript>
+  </li>
+           
+           <li class="last"><a href="http://www.scival.com" title="Go to SciVal Suite" >Go to SciVal Suite</a></li> 
+        </ul>
+    </div>
+    
+	<div id="loginBox" style="display:none;">
+        <div class="padding" style="padding-top:10px;">
+            <form name="sdLogin" method="POST" action="https://www.sciencedirect.com/science/login" id="login-box-form" style="margin:0;">
+			<input type="hidden" name="login" value="login">
+            <div>
+			<label for="username"><span style="text-align:right;">Username:</span>
+            <input id="username" type="text" name="userid" title="Please enter your username here" /></label>
+            </div>
+            
+            <div style="margin-top:2px;">
+            <label for="password"><span style="text-align:right;">Password:</span>
+            <input id="password" type="password" name="password" maxlength="20" title="Please enter your password here" onkeypress="if(13==event.keyCode)this.form.submit();if (13==event.keyCode)return false;"/></label>
+            </div>
+                   
+                       
+			
+			<div class="remember">
+			<input type="checkbox" checked name="rememberid" id="rememberMe" value="Y" class="allCheck top2fix" title="Checking this option will log you in automatically next time you visit ScienceDirect"/>
+			<label for="rememberMe" title="Checking this option will log you in automatically next time you visit ScienceDirect">Remember me</label>
+			</div>
+            
+			<input type="hidden" name="_ob" value="MiamiLogonURL">
+			<input type="hidden" name="targetURL" value="http://www.sciencedirect.com/science/article/pii/S0005109802002054" >
+			<input type="hidden" name="returnURL" value="http://www.sciencedirect.com/science/article/pii/S0005109802002054" >
+            <div class="submit" >
+			
+			<div style="float:left;padding-left:0px;"><input class="button" type="Submit" name="arrow" alt="Login to ScienceDirect" title="Login to ScienceDirect" value="Login"/></div>
+        
+			
+			<div class="notRegistered"><span class="astPad">| </span><span><a href="https://www.sciencedirect.com/science?_ob=RegistrationURL&_method=display&_type=ip&_returnURL=http%3A%2F%2Fwww.sciencedirect.com%2Fscience%2Flogin&_acct=C000037878&_version=1&_userid=687335&md5=aff4840e29457bce116b285c389a86e8" title="" target="_top">Not Registered?</a></span></div>
+			
+			
+			
+            </div>
+			<div style="clear:both;"></div>
+            </form>
+            <div class="forgotpass">
+			<a href="http://www.sciencedirect.com/science?_ob=ReminderURL&_method=display&_acct=C000037878&_version=1&_userid=687335&md5=ab47a5ff75588d362fad47f176f93ef9" target="passwd" onClick="var remindWin;remindWin=window.open('','passwd','scrollbars=yes,resizable=yes,directories=no,toolbar=n,menubar=no,status=no,width=650,height=300');" title="Click here for help in recovering your ScienceDirect access">Forgotten your username or password?</a>
+            </div>
+        </div>
+	
+        <div class="institutiontext">
+		
+		
+		<a href="/science?_ob=FederationURL&_method=display&_type=f&_acct=C000037878&_version=1&_userid=687335&md5=85c609b8c92582b00228cb6990f70d6d"title="Go to Athens/ Institution login">Go to Athens / Institution login</a>
+		
+        </div>
+	
+				
+		
+                  
+                
+        </div>
+
+	<!-- logged in -->
+	     
+
+
+
+<div id="navigationTop" class="clearfix" aria-label="ScienceDirect" role="navigation">
+        <ul class="nav main">
+           <li class="last"><a class=" canonHomeLink" href="http://www.sciencedirect.com" method="userHomePage" btn="Y" zone="TopNavBar" origin="home" target="_top" name="Home" title="Home" >Home</a></li>
+	    <li>
+            <!--<h1>-->
+		<a  href="http://www.sciencedirect.com/science/browse" type="all" auth="y" zone="TopNavBar" origin="article" target="_top" name="Publications"  title="Publications">Publications</a>
+		    <!--</h1>-->
+            </li>
+			
+			<li><a  href="http://www.sciencedirect.com/science?_ob=MiamiSearchURL&_method=requestForm&_btn=Y&_zone=TopNavBar&_origin=article&_acct=C000037878&_version=1&_urlVersion=1&_userid=687335&md5=6213a19a7a41c4b5925670fb1f962e43" target="_top" name="Search" title="Search" >Search</a></li>
+
+
+      <li><a  href="http://www.sciencedirect.com/science?_ob=UserSubscriptionURL&_method=begin&_btn=Y&_zone=TopNavBar&_origin=article&_acct=C000037878&_version=1&_urlVersion=1&_userid=687335&md5=2cc695c68edb9dc3a569093e25bab950" target="_top" name="account" title="My settings" >My settings</a></li>
+
+
+      
+
+      <li><a  href="http://www.sciencedirect.com/science?_ob=MiamiSDIURL&_method=listAlerts&_btn=Y&_zone=TopNavBar&_origin=article&_acct=C000037878&_version=1&_urlVersion=0&_userid=687335&md5=813808ec92d3a1e5c54edff331cf4852" target="_top" name="alert" title="Alerts" >My alerts</a></li>
+
+        	           
+
+        </ul>
+        
+        <ul class="nav misc">
+                 <li><span id="ChatHeader"></span></li>          
+                 <li class="last" style="margin-right:247px;" ><a href="http://www.sciencedirect.com/science?_ob=HelpURL&_file=browse_open_doc.htm&_btn=Y&_zone=TopNavBar&_origin=article&_acct=C000037878&_version=1&_urlVersion=0&_userid=687335&md5=d35ec0be0eddff1bff0bb7f8cf589cc3" target="sdhelp" title="Help (Opens new window)" onClick="var helpWin; helpWin=window.open('http://www.sciencedirect.com/science?_ob=HelpURL&_file=browse_open_doc.htm&_btn=Y&_zone=TopNavBar&_origin=article&_acct=C000037878&_version=1&_urlVersion=0&_userid=687335&md5=d35ec0be0eddff1bff0bb7f8cf589cc3','sdhelp','scrollbars=yes,resizable=yes,directories=no,toolbar=no,menubar=no,status=no,width=760,height=570'); helpWin.focus(); return false" >Help</a></li>      
+         
+        </ul> 
+                                
+    
+        
+                            
+        <div id="bannerTop">                        
+                
+                    <a href="http://www.capes.gov.br" onclick="openNS('http://www.capes.gov.br'); return false;">
+                        <img src="http://www.capes.gov.br/imagens/capeslogo.gif" border="0" />
+                    </a>
+                
+        </div>
+            
+        
+               
+</div>
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+<div id="page-area">
+  <div id="articleToolbar">
+    <div id="articleNav">
+  <ul aria-label="Article options" role="navigation">
+    <li>
+      <!-- return to gateway -->
+       
+      
+    </li>
+
+
+
+
+
+<li>
+      <div class="icon_exportarticlesci_dir" title="Export citation">
+        <div class="icon"></div>
+        <a href="/science?_ob=DownloadURL&_method=confirm&_eidkey=1-s2.0-S0005109802002054&count=1&_docType=FLA&zone=toolbar&_acct=C000037878&_version=1&_userid=687335&md5=41aa386a93fc366f41fa3e88ca7cc225" 
+        >Export citation</a>
+      </div>
+</li>
+  
+
+
+
+
+<li>
+  <div class="icon_pdf">
+    <div class="icon"></div>
+    <a id="pdfLink"  href="http://pdn.sciencedirect.com/science?_ob=MiamiImageURL&_cid=271426&_user=687335&_pii=S0005109802002054&_check=y&_origin=article&_zone=toolbar&_coverDate=2003--28&view=c&originContentFamily=serial&wchp=dGLzVlB-zSkWb&md5=91e10c1a804f0d538c1e2a4b2d540ad6&pid=1-s2.0-S0005109802002054-main.pdf" target="newPdfWin"  pdfurl="http://pdn.sciencedirect.com/science?_ob=MiamiImageURL&_cid=271426&_user=687335&_pii=S0005109802002054&_check=y&_origin=article&_zone=toolbar&_coverDate=2003--28&view=c&originContentFamily=serial&wchp=dGLzVlB-zSkWb&md5=91e10c1a804f0d538c1e2a4b2d540ad6&pid=1-s2.0-S0005109802002054-main.pdf" suggestedArtURL="http://www.sciencedirect.com/science/suggestedArt/citeList/pii/S0005109802002054/eid/1-s2.0-S0005109802002054/serial" class="big pdf ext_sdlink" style="cursor:pointer" title="Download PDF" >PDF  (219 K)</a>
+  </div>
+</li>
+ 
+ 
+
+
+
+<li class="optionsPos">
+      <div id="moreOptionsButton" title="Show article options">
+        <a href="#">More options...</a>
+        <div class="down_sci_dir"></div>
+      </div>
+
+<!-- More Options Starts-->
+<div id="moreOptionsMenu" class="articleOptions articleOptionssci_dir">
+<ul>
+
+
+
+
+
+<li>
+    <div class="emailsci_dir">
+        <div></div>
+        <a title="Email this article" href="/science?_ob=EmailFriendURL&_method=gatherInfo&refSource=html&count=1&_eidkey=1-s2.0-S0005109802002054&_acct=C000037878&_version=1&_userid=687335&md5=e8e5969519c3237344ea5571dc29f452"  >Email article</a>
+    </div>
+</li>
+
+  
+
+
+
+
+   
+       <li>
+          <div id="alertOn" style="display:none;" class="alertsci_dir">
+            <div></div>
+            <span>
+            Signed up for journal alerts&nbsp;[<a href="/science?_ob=PublicationURL&newIssueAlert=2&_cid=271426&_pubType=J&_auth=y&originContentFamily=serial&_pii=S0005109802002054&_acct=C000037878&_version=1&_urlVersion=0&_userid=687335&md5=bc660c639f5356e79b671dcd929afb41">remove</a>]</span>
+          </div>
+          <div id="alertOff" style="display:inline;"  class="alertsci_dir">
+            <div></div>
+            <a title="Set new Volumes / Issues alert" href="/science?_ob=PublicationURL&newIssueAlert=2&_cid=271426&_pubType=J&_auth=y&originContentFamily=serial&_pii=S0005109802002054&_acct=C000037878&_version=1&_urlVersion=0&_userid=687335&md5=bc660c639f5356e79b671dcd929afb41"
+               >
+            Alert me about new articles in this journal
+            </a>
+          </div>
+          <div id="rsltInd" style="display:none;">
+            <div class="imgIcon"><h3><img src="http://cdn.els-cdn.com/sd/errorIcon.gif" alt="Failure" title="Failure"/></h3></div>
+            <div class="confirmMsgText">Your selection(s) could not be saved due to an internal error. Please try again.</div>
+          </div>          
+      </li>
+    
+
+
+<li>
+    <div class="thumbnailsci_dir">
+        <div></div>
+        <a href="javascript:void(0);" id="optImgToggle" title="">Show thumbnail images</a>
+    </div>
+</li>
+
+</ul>
+<div id="articleOptionsAd" role="banner" class="ad"></div>
+</div>
+<!-- More options Ends -->
+</li>
+
+
+</ul>
+</div>
+
+<div class="sdSearch" aria-label="Quick search" role="search">
+    <fieldset>
+        <div class="left">
+            <input  id="quickSearch" type="text" name="quickSearch" value="" size="30" maxlength="450" title="Perform a quick search on ScienceDirect"><button class="submit"  title="Submit quick search">Search</button>
+        </div>
+        <div id="quickSearchButton" class="right" title="Show more quick search options">
+            <div  class="down_sci_dir"></div>
+        </div>
+    </fieldset>
+</div>
+<div class="clear"></div>
+<div class="quickSearch" id="sdQuickSearch" aria-label="Extended search" role="search">
+<div class="extSearch" role="search" aria-label="Quick Search">
+
+
+<form name="qkSrch" method="get" target="_top" action="/science" style="margin:0px;">
+<input type="hidden" name="_ob" value="QuickSearchURL">
+<input type="hidden" name="_method" value="submitForm">
+<input type="hidden" name="_acct" value="C000037878">
+<input type="hidden" name="_origin" value="article">
+<input type="hidden" name="_zone" value="qSearch">
+<input type="hidden" name="md5" value="7d3ef23e18437b671ac859440f451f6f">
+
+<table border="0" width="100%" cellpadding="0" cellspacing="0" style="margin: 0;">
+<tr valign="middle">
+
+<!-- JS enabled. Code for Articles -->
+
+<td align="center" nowrap="nowrap" >
+<label for="Articles" style="cursor:pointer;padding-right:0;margin-left:2px;" class="nojs">Articles</label>
+<input type="radio" class="qsRadio nojs" name="searchtype" id="Articles" value="a" checked="checked" style="" class="nojs artRadio"/>
+<noscript>
+<!-- JS disabled. Code for Articles -->
+<span style="margin-left:13px;">Articles</span>
+</noscript>
+</td>
+
+
+<!-- Code related for toggling labels -->
+
+
+<td align="right"><label for="qs_all" id="fieldLabel">&nbsp;&nbsp;&nbsp;&nbsp;All fields</label></td>
+<td align="left"><input class="textbox qsinput xpstyle qsImgBlurFocus" type="text" name="qs_all" id="qs_all" value="" size="30" maxlength="450" title="For example: heart attack AND behavior?"></td>
+
+
+
+
+<td align="right"><label for="qs_author">&nbsp;&nbsp;&nbsp;&nbsp;Author</label></td>
+<td align="left" colspan="5"><input class="textbox qsinput xpstyle" type="text" name="qs_author" id="qs_author" value="" size="33" maxlength="450" title="e.g. J S Smith or John Smith or Smith JS" style="_width:100%"></td>
+<td nowrap="nowrap">
+
+</td><td></td><td></td>
+<td align="right" nowrap="nowrap" width="90%" valign="middle">
+<a href="http://www.sciencedirect.com/science?_ob=MiamiSearchURL&_method=requestForm&_btn=Y&_acct=C000037878&_version=1&_urlVersion=1&_userid=687335&md5=d99f96495febff1fa5e61cc299438385" style="vertical-align:bottom;font-size:0.92em;" >Advanced search</a>
+</td>
+</tr>
+<tr>
+
+<!-- JS enabled. Code for images -->
+
+<td align="center" nowrap="nowrap" >
+<label for="Images" style="cursor:pointer;padding-right:0;" class="nojs">Images</label>
+<input class="qsRadio nojs" type="radio" name="searchtype" id="Images" value="i" class="nojs artImages"/>
+<noscript>
+<!-- JS disabled. Code for Images -->
+<span style="margin-left:13px;"><a href="?imgSel=Y" >Images</a></span>
+</noscript>
+</td>
+
+
+<td align="right"><label for="qs_title">&nbsp;&nbsp;&nbsp;&nbsp;Journal/Book&nbsp;title</label></td>
+<td align="left"><input class="textbox qsinput xpstyle" type="text" id="qs_title" name="qs_title" value="" size="30" maxlength="450" title="For example: journal of molecular biology"></td>
+
+
+<td align="right" class="toggleQukSrch2"><label for="qs_vol" id="volField">&nbsp;&nbsp;&nbsp;&nbsp;Volume</label></td>
+<td align="left" class="toggleQukSrch"><input class="textbox qsinput xpstyle" type="text" name="qs_vol" id="qs_vol" value="" size="3" maxlength="10" style="width:30px;"></td>
+<td align="right" class="toggleQukSrch2"><label for="qs_issue" id="issueField">&nbsp;&nbsp;Issue</label></td>
+<td align="left" class="toggleQukSrch"><input class="textbox qsinput xpstyle" type="text" name="qs_issue" id="qs_issue" value="" size="3" maxlength="10" style="width:30px"></td>
+<td align="right" class="toggleQukSrch2"><label for="qs_pages" id="pageField">&nbsp;&nbsp;Page</label></td>
+<td align="right" class="toggleQukSrch"><input class="textbox qsinput xpstyle" type="text" name="qs_pages" id="qs_pages" value="" size="3" maxlength="10" title="For example: 14-27" style="width:30px"></td>
+
+
+<td  align="right" nowrap="nowrap">
+<input class="button" id="submit_search" type="Submit" alt="Submit Quick Search" title="Submit Quick Search" value="Search" name="sdSearch">
+</td> 
+<td align="right" nowrap="nowrap" colspan="8"  valign="bottom">
+<a class="icon_qmarkHelpsci_dir" href="http://www.sciencedirect.com/science?_ob=HelpURL&_origin=srch_form&_zone=TopNavBar&_file=qs_tips.htm&_acct=C000037878&_version=1&_urlVersion=0&_userid=687335&md5=0fccc2d7e915d20022059ad784130ed5" target="sdhelp" onMouseOver="window.status='Help is Available';return true" onMouseOut="window.status='';return true" onClick="var helpWin;helpWin=window.open('http://www.sciencedirect.com/science?_ob=HelpURL&_file=qs_tips.htm&_acct=C000037878&_version=1&_urlVersion=0&_userid=687335&md5=77759b6cd66f2cdd3588cc6d9d341dcf','sdhelp','scrollbars=yes,resizable=yes,directories=no,toolbar=no,menubar=no,status=no,width=760,height=570');helpWin.focus();return false" style="font-size:0.92em;padding-right:0;" >Search tips</a>
+</td>
+</tr>
+</table>
+</form>
+</div>
+
+
+
+ 
+</div>
+
+<div style="color : #FF0000; font-weight : bold;border:0px solid red;">
+  
+  
+  
+  
+</div>
+
+
+
+
+
+  </div>
+  <div style="clear:both;"></div>
+  <div id="leftCloseBar">
+      <div class="closed" title="Open to view article outline"></div>
+  </div>
+  <div id="leftPane" class="column" aria-label="table of contents" role="navigation">
+  <div id="leftPaneInner">
+    <div id="outline" class="outline">
+      <div class="outlineMsg">Article outline is loading...</div>
+      <noscript><div class="outlineMsg">JavaScript required for article outline</div></noscript>
+    </div>
+      <div id="leftOpenBar">
+        <div class="open" title="Open to view article outline"></div>
+      </div>
+  </div>
+  </div>
+  <div id="centerPane" class="column">
+    <div id="centerInner" class="centerInner svBigBox" aria-label="Article" role="main">
+      
+<script>prs.rt('data_start');</script>
+      <div class="head"><div class="publisherLogo"><img alt="" src="http://cdn.els-cdn.com/sd/elsevier.gif"></div><div class="publicationHead"><div class="title"><a title="Go to Automatica on SciVerse ScienceDirect" href="http://www.sciencedirect.com/science/journal/00051098" queryStr="?zone=centerPane" class="cLink"><span>Automatica</span></a></div><p class="volIssue"><a title="Go to table of contents for this volume/issue" href="http://www.sciencedirect.com/science/journal/00051098/39/2">Volume 39, Issue 2</a>, February 2003, Pages 309&ndash;315</p></div><div class="publicationCover"><a queryStr="?zone=publicationLogo" class="cLink" href="http://www.sciencedirect.com/science/journal/00051098/39/2"><img alt="Cover image" src="http://ars.els-cdn.com/content/image/S00051098.gif" class="toprightlogo"></a></div></div><div id="" class="publicationType"><span id="">Brief Paper</span></div><h1 class="svTitle" id="">Relay-based closed loop transfer function frequency points estimation <sup><a href="#item1" id="bitem1" class="intra_ref">☆</a></sup></h1><ul class="authorGroup noCollab" id=""><li><a style="white-space:nowrap" id="authname_N33be46b8N363448c0" data-t="a" class="authorName" href="#" data-authurl="/science/ScopusAuthorCountsURL/6603647810/G.H.M.,de%20Arruda">G.H.M. de Arruda</a> <a href="mailto:arruda@dee.ufpb.br"><img src="http://cdn.els-cdn.com/sd/entities/REemail.gif" alt="E-mail the corresponding author"></a><span><a class="authorVitaeLink" href="#AUT1">Author Vitae</a></span>, </li><li><a style="white-space:nowrap" id="authname_N33be46b8N36344938" data-t="a" class="authorName" href="#" data-authurl="/science/ScopusAuthorCountsURL/7006055191/P.R.,Barros">P.R. Barros</a><a title="Corresponding author contact information" href="#CORAST" id="bCORAST" class="intra_ref"><img alt="Corresponding author contact information" src="http://cdn.els-cdn.com/sd/entities/REcor.gif"></a><sup>, </sup><a href="mailto:prbarros@dee.ufpb.br"><img src="http://cdn.els-cdn.com/sd/entities/REemail.gif" alt="E-mail the corresponding author"></a><span><a class="authorVitaeLink" href="#AUT2">Author Vitae</a></span></li></ul><ul class="affiliation"><li> <span id="">Departamento de Engenharia El&eacute;trica, Universidade Federal de Campina Grande, Caixa Postal 10105, 58109 - 970 Campina Grande, PB, Brazil</span></li></ul><div id="AUT1hidden" class="authorVitaeHidden"><span><img height="114" border="0" align="middle" width="86" style="vertical-align: bottom;" alt="Image" title="Image" src="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-fx1.sml"></span><p id=""><strong class="boldFont">Gustavo H. M. de Arruda</strong> received the B.Sc. and M.Sc. degrees in Electrical Engineering from the Universidade Federal da Paraı́ba (now Universidade Federal de Campina Grande), Brazil, in 1998 and 2000, where he is also currently working towards the D.Sc. degree in Electrical Engineering. His main research interests are applications of relay feedback structures to identification and automatic controller tuning, and analysis of nonlinear phenomena in piecewise linear systems.</p></div><div id="AUT2hidden" class="authorVitaeHidden"><span><img height="114" border="0" align="middle" width="86" style="vertical-align: bottom;" alt="Image" title="Image" src="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-fx2.sml"></span><p id=""><strong class="boldFont">P&eacute;ricles R. Barros</strong> received the Bachelor's degree in Electrical Engineering (1979) and the M.Sc. degrees (1985) from the Universidade Federal da Paraı́ba &mdash; Brazil, and Ph.D. degree (1990) from The Newcastle University &mdash; Australia. In 1981 he was a trainee at the Philips International Institute &mdash; The Netherlands. From 1982 to 1985 he worked as engineer, lecturer and systems analyst within Brazil. In 1986 he was appointed Lecturer at the Departamento de Engenharia El&eacute;trica, Universidade Federal da Paraı́ba &mdash; Brazil (now Universidade Federal de Campina Grande), where he is a Professor in Control Systems since 1997. In 1996/1997 he spent his sabatical year at the Uppsala University &mdash; Sweden and at the Lund Institute of Technology &mdash; Sweden. His main research areas are system identification, controller design and tuning and adaptive control.</p></div><dl class="correspondenceHidden" id="CORASThidden"><dt class="label topPadd"><a href="#bCORAST" class="intra_ref"><sup><img border="0" src="http://cdn.els-cdn.com/sd/entities/REcor.gif" alt="Corresponding author contact information" title="Corresponding author contact information"></sup></a></dt><dd>Corresponding author. Tel.: +55-083-3101147; fax: +55-083-3101418</dd></dl><!--VALIDHTML--><!--comment--><dl class="articleDates"><dd>Received 5 April 2001</dd><dd>Revised 16 April 2002</dd><dd>Accepted 16 September 2002</dd><dd>Available online 24 December 2002</dd></dl><!--VALIDHTML--><ul class="articleDoi"><li><a id="ddDoi" href="http://dx.doi.org/10.1016/S0005-1098(02)00205-4" target="doilink" onclick="var doiWin; doiWin=window.open('http://dx.doi.org/10.1016/S0005-1098(02)00205-4','doilink','scrollbars=yes,resizable=yes,directories=yes,toolbar=yes,menubar=yes,status=yes'); doiWin.focus()">http://dx.doi.org/10.1016/S0005-1098(02)00205-4</a>, <a href="http://www.sciencedirect.com/science/help/doi.htm" target="sdhelp" onmouseover="window.status='Help is Available';return true" onclick="var helpWin; helpWin=window.open('http://www.sciencedirect.com/science/help/doi.htm','sdhelp','scrollbars=yes,resizable=yes,directories=no,toolbar=no,menubar=no,status=no,width=760,height=570'); helpWin.focus()">How to Cite or Link Using DOI</a></li></ul><!--VALIDHTML--><ul class="articleInfo"><li class="permissions" id="permissions"></li></ul><!--VALIDHTML--><!--VALIDHTML--><div id="refersToAndReferredToBy"><!--comment--></div><!--VALIDHTML--><hr id="author1"><div class="abstract svAbstract "><h2 class="secHeading" id="section_abstract">Abstract</h2><p id="">In this paper, the following frequency response estimation problem is addressed: <em>Given a closed loop transfer function</em>, <em>such as the loop transfer function or the sensitivity function</em>, <em>find a frequency for which it achieves a user-defined magnitude</em>. The procedure presented here is based on a relay feedback, which makes it suitable to apply to actual systems. In addition to the frequency, the system phase at that frequency is computed simultaneously. The procedure can be used to evaluate and redesign controllers.</p></div><!--VALIDHTML--><script>prs.rt("abs_end");</script><div id="SD_BA1P" class="sgfNoTitleBar sgfNoGadgetBorder svDoNotLink"></div><!--VALIDHTML--><h2 id="kwd_1">Keywords</h2><ul class="keyword" id=""><li id=""><span id="">Relay feedback</span>; </li><li id=""><span id="">Transfer function estimation</span>; </li><li id=""><span id="">Frequency-domain identification</span></li></ul><!--VALIDHTML--><hr><h2 class="svArticle" id="section_lbl1">1. Introduction</h2><p class="svArticle section" id="">In practical applications, sometimes it is desirable to determine the frequency at which a given closed loop system achieves a certain magnitude or phase. For instance, the phase and frequency at which the loop transfer function has unitary magnitude yields the phase margin. Although many loop-shaping techniques assume that the process transfer function is known, there also exist several loop-shaping techniques which use a few points of the frequency response of the loop transfer function to design, for instance, PID controllers (see <span id="bBIB2"><a href="#BIB2" id="ancbBIB2" class="intra_ref">&Aring;str&ouml;m &amp; H&auml;gglund, 1995</a></span>). By estimating a few frequency points, one can gather enough information to redesign a controller using loop shaping techniques (<span id="bBIB6"><a href="#BIB6" id="ancbBIB6" class="intra_ref">Doyle, Francis, &amp; Tannenbaum, 1995</a></span>). The sensitivity function brings relevant information on the closed loop such as disturbance attenuation level and stability margins (<span id="bBIB6"><a href="#BIB6" id="ancbBIB6" class="intra_ref">Doyle et al., 1995</a></span>). With a few frequency points, sensitivity function shaping can be used for controller design (<span id="bBIB6"><a href="#BIB6" id="ancbBIB6" class="intra_ref">Doyle et al., 1995</a></span>; <span id="bBIB8"><a href="#BIB8" id="ancbBIB8" class="intra_ref">Langer &amp; Landau, 1999</a></span>; <span id="bBIB3"><a href="#BIB3" id="ancbBIB3" class="intra_ref">Barros &amp; Wittenmark, 1997</a></span>).</p><!--VALIDHTML--><p class="svArticle section" id="">In this paper, a relay experiment that yields a controlled (stable) limit cycle at the frequency where a closed loop transfer function magnitude is equal to a defined value, <em>r</em>, is presented. The use of a relay feedback makes it possible to perform the experiments under well-defined operating conditions.</p><!--VALIDHTML--><p class="svArticle section" id="">The relay experiment was introduced in <span id="bBIB1"><a href="#BIB1" id="ancbBIB1" class="intra_ref">&Aring;str&ouml;m and H&auml;gglund (1984)</a></span> and is widely used as an estimation tool for controller tuning. There exist several extensions to the original experiment which resulted in a variety of techniques for process transfer function estimation (see <span id="bBIB2"><a href="#BIB2" id="ancbBIB2" class="intra_ref">&Aring;str&ouml;m &amp; H&auml;gglund, 1995</a></span>; <span id="bBIB13"><a href="#BIB13" id="ancbBIB13" class="intra_ref">Tan, Wang, Hang, &amp; H&auml;gglund, 1999</a></span>, and references therein). Relay tests related to the results presented here are <a href="#BIB11" id="bBIB11" class="intra_ref">Schei 1992</a>&#xA0;and&#xA0;<a href="#BIB12" id="bBIB12" class="intra_ref">Schei 1994</a> and <span id="bBIB13"><a href="#BIB13" id="ancbBIB13" class="intra_ref">Tan et al. (1999)</a></span>. In <span id="bBIB12"><a href="#BIB12" id="ancbBIB12" class="intra_ref">Schei (1994)</a></span>, a new relay experiment is presented such that the closed loop system oscillates approximately at the crossover frequency. This turns out to be a particular case when <em>r</em>=1. Finally, in <span id="bBIB13"><a href="#BIB13" id="ancbBIB13" class="intra_ref">Tan et al. (1999)</a></span>, new relay-based experiments were introduced in order to estimate a frequency point of the process transfer function where an arbitrary phase lag is achieved.</p><!--VALIDHTML--><p class="svArticle section" id="">In <span id="bSEC2"><a href="#SEC2" id="ancbSEC2" class="intra_ref">Section 2</a></span> the problem is formally stated and solved. In the sequel the basic procedure is applied to the following transfer functions: loop transfer function (<span id="bSEC3"><a href="#SEC3" id="ancbSEC3" class="intra_ref">Section 3</a></span>) and sensitivity function (<span id="bSEC4"><a href="#SEC4" id="ancbSEC4" class="intra_ref">Section 4</a></span>). Practical aspects such as signal magnitude and experiment stability are discussed here. The potential for application of the method to actual processes is in fact quite wide. Finally, simulation results are presented in <span id="bSEC5"><a href="#SEC5" id="ancbSEC5" class="intra_ref">Section 5</a></span>.</p><!--VALIDHTML--><h2 class="svArticle" id="SEC2">2. Transfer function frequency response estimation</h2><p class="svArticle section" id="">In this section the problem is formally stated and its general solution is presented. Stability conditions and improvement of the estimate are discussed.</p><!--VALIDHTML--><h3 class="svArticle" id="section_lbl2.1">2.1. Problem statement</h3><p class="svArticle section" id="">In this paper, and without loss of generality, the closed loop shown in <span id="bFIG1"><a href="#FIG1" id="ancbFIG1" class="intra_ref">Fig. 1</a></span> is considered. The unknown time-invariant SISO process transfer function is given by <em>G</em>(<em>s</em>) while the controller is given by <em>C</em>(<em>s</em>). For this closed loop configuration, the loop transfer function is defined as <em>L</em>(<em>s</em>)=<em>G</em>(<em>s</em>)<em>C</em>(<em>s</em>). The closed loop transfer function from reference <em>y</em><sub><em>r</em></sub>(<em>t</em>) to output <em>y</em>(<em>t</em>) is given by<div class="formula" id="EQ1"><div class="label">(1)</div><div class="mathml"><span id="mmlsi15" class="mathmlsrc" onclick="submitCitation('/science?_ob=MathURL&amp;_method=retrieve&amp;_eid=1-s2.0-S0005109802002054&amp;_mathId=si15.gif&amp;_pii=S0005109802002054&amp;_issn=00051098&amp;_acct=C000053881&amp;_version=1&amp;_userid=1583010&amp;md5=985ef1ac4331ebc901ff4d845ac582f1')" style="cursor:pointer;" alt="Click to view the MathML source" title="Click to view the MathML source"><img class="imgLazyJSB" height="39" border="0" style="vertical-align:bottom" width="188" alt="View the MathML source" title="View the MathML source" src="/sd/grey_pxl.gif" data-inlimgsrc="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-si15.gif"><noscript><img height="39" border="0" style="vertical-align:bottom" width="188" alt="View the MathML source" title="View the MathML source" src="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-si15.gif"></noscript></span><!--Comment--></div></div>where <em>T</em>(<em>s</em>) is also known as the complementary sensitivity function. Finally,<div class="formula" id=""><div class="label">(2)</div><div class="mathml"><span id="mmlsi16" class="mathmlsrc" onclick="submitCitation('/science?_ob=MathURL&amp;_method=retrieve&amp;_eid=1-s2.0-S0005109802002054&amp;_mathId=si16.gif&amp;_pii=S0005109802002054&amp;_issn=00051098&amp;_acct=C000053881&amp;_version=1&amp;_userid=1583010&amp;md5=0eb173c3824be91dd31445f48a0b9445')" style="cursor:pointer;" alt="Click to view the MathML source" title="Click to view the MathML source"><img class="imgLazyJSB" height="39" border="0" style="vertical-align:bottom" width="181" alt="View the MathML source" title="View the MathML source" src="/sd/grey_pxl.gif" data-inlimgsrc="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-si16.gif"><noscript><img height="39" border="0" style="vertical-align:bottom" width="181" alt="View the MathML source" title="View the MathML source" src="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-si16.gif"></noscript></span><!--Comment--></div></div>is the sensitivity function.</p><!--VALIDHTML--><div class="figTblUpiOuter svArticle" id="figure_FIG1"><div class="&#10;                    textboxdefault&#10;                "><dl class="figure" id="FIG1" data-t="f"><dt class="autoScroll" data-style="height:53px;width:191px;"><a class="figureLink" href="#gr1" title="Full-size image (1 K)"><img class="imgLazyJSB figure large" border="0" alt="Full-size image (1 K)" src="/sd/grey_pxl.gif" data-thumbsrc="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-gr1.sml" data-fullsrc="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-gr1.gif" height="53" width="191" data-thumbheight="35" data-thumbwidth="125" data-fullheight="53" data-fullwidth="191"><noscript class="figure large" border="0" alt="Full-size image" data-thumbsrc="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-gr1.sml" data-fullsrc="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-gr1.gif"><img class="figure large" border="0" alt="Full-size image (1 K)" src="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-gr1.gif" data-thumbsrc="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-gr1.sml" data-fullsrc="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-gr1.gif"></noscript></a></dt><dd id="labelCaptionFIG1"><p class="caption">Fig. 1.&#xA0;<span id="">Closed loop system.<!--Comment--></span><!--caption--></p></dd><dd class="menuButtonLinks"><div class="btnHolder"><a class="menuTitle" href="#">Figure options</a><div class="down_Btn"></div></div><ul class="menuButton"><li><a href="#FIG1" class="viewWS" title="View in workspace">View in workspace</a></li><li><a onclick="openStrippedNS('/science?_ob=MiamiCaptionURL&amp;_method=retrieve&amp;_eid=1-s2.0-S0005109802002054&amp;_image=1-s2.0-S0005109802002054-gr1.gif&amp;_ba=&amp;_fmt=full&amp;_orig=na&amp;_issn=00051098&amp;_pii=S0005109802002054&amp;_acct=C000053881&amp;_version=1&amp;_urlVersion=0&amp;_userid=1583010&amp;md5=79d61ff190c304462aaa5c41844782ed','labelCaptionFIG1','','S0005109802002054'); return false;" href="#gr1" title="View full-size image - Opens in new window">Download full-size image</a></li><li><a class="ppt" title="Download as PowerPoint slide" href="http://services.elsevier.com/SDWebExport/export/figure/S0005109802002054/1-s2.0-S0005109802002054-gr1.sml/ppt">Download as PowerPoint slide</a></li></ul></dd></dl></div></div><!--VALIDHTML--><p class="svArticle section" id="">The problem posed in this paper can be stated as: Given a closed loop transfer function of interest <em>H</em>(<em>s</em>), find a frequency where the magnitude of <em>H</em>(j<em>ω</em>) achieves a defined gain <em>r</em>.</p><!--VALIDHTML--><p class="svArticle section" id="">It should be noticed that this problem, although related, is not equivalent to the general frequency response estimation problems as presented in <span id="bBIB14"><a href="#BIB14" id="ancbBIB14" class="intra_ref">Wang, Hang, and Bi (1999)</a></span> and <span id="bBIB7"><a href="#BIB7" id="ancbBIB7" class="intra_ref">Guillaume, Pintelon, and Schoukens (1992)</a></span>. In fact, with the data generated by the experiment presented here, one can apply the frequency estimation techniques therein to extract additional information on other frequency points.</p><!--VALIDHTML--><h3 class="svArticle" id="section_lbl2.2">2.2. General problem solution</h3><p class="svArticle section" id="">A general solution to the problem posed in this paper can be obtained by using a relay feedback with an integrator, if the transfer function <em>F</em>(<em>s</em>) has a particular form. This is shown in the following proposition.<div class="enunciation" id="PROP1"><p><strong class="boldFont"><dt class="label">Proposition 1</dt>.
+                    </strong><em>Consider the closed loop system shown in Fig.</em><span id="bFIG2"><a href="#FIG2" id="ancbFIG2" class="intra_ref">2</a></span>.<em>Assume that for a stable transfer function</em><em>H</em>(<em>s</em>) <em>and for a real positive number</em><em>r</em>, <em>transfer function</em><em>F</em>(<em>s</em>,<em>r</em>) <em>is defined as</em><div class="formula" id="EQ3"><div class="label">(3)</div><div class="mathml"><span id="mmlsi17" class="mathmlsrc" onclick="submitCitation('/science?_ob=MathURL&amp;_method=retrieve&amp;_eid=1-s2.0-S0005109802002054&amp;_mathId=si17.gif&amp;_pii=S0005109802002054&amp;_issn=00051098&amp;_acct=C000053881&amp;_version=1&amp;_userid=1583010&amp;md5=2fa6871a9261222baddfbd9d245ff7d2')" style="cursor:pointer;" alt="Click to view the MathML source" title="Click to view the MathML source"><img class="imgLazyJSB" height="39" border="0" style="vertical-align:bottom" width="140" alt="View the MathML source" title="View the MathML source" src="/sd/grey_pxl.gif" data-inlimgsrc="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-si17.gif"><noscript><img height="39" border="0" style="vertical-align:bottom" width="140" alt="View the MathML source" title="View the MathML source" src="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-si17.gif"></noscript></span><!--Comment--></div></div><em>which</em>, <em>in addition</em>, <em>is also assumed stable. Then if a limit cycle is present the oscillation occurs at a frequency</em><em>ω</em><sub>0</sub><em>such that</em><div class="formula" id=""><div class="label">(4)</div><div class="mathml"><span id="mmlsi18" class="mathmlsrc" onclick="submitCitation('/science?_ob=MathURL&amp;_method=retrieve&amp;_eid=1-s2.0-S0005109802002054&amp;_mathId=si18.gif&amp;_pii=S0005109802002054&amp;_issn=00051098&amp;_acct=C000053881&amp;_version=1&amp;_userid=1583010&amp;md5=1f79cac023df27509e15d949270ab957')" style="cursor:pointer;" alt="Click to view the MathML source" title="Click to view the MathML source"><img class="imgLazyJSB" height="18" border="0" style="vertical-align:bottom" width="92" alt="View the MathML source" title="View the MathML source" src="/sd/grey_pxl.gif" data-inlimgsrc="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-si18.gif"><noscript><img height="18" border="0" style="vertical-align:bottom" width="92" alt="View the MathML source" title="View the MathML source" src="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-si18.gif"></noscript></span><!--Comment--></div></div><div class="figTblUpiOuter svArticle" id="figure_FIG2"><div class="&#10;                    textboxdefault&#10;                "><dl class="figure" id="FIG2" data-t="f"><dt class="autoScroll" data-style="height:95px;width:221px;"><a class="figureLink" href="#gr2" title="Full-size image (3 K)"><img class="imgLazyJSB figure large" border="0" alt="Full-size image (3 K)" src="/sd/grey_pxl.gif" data-thumbsrc="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-gr2.sml" data-fullsrc="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-gr2.gif" height="95" width="221" data-thumbheight="54" data-thumbwidth="125" data-fullheight="95" data-fullwidth="221"><noscript class="figure large" border="0" alt="Full-size image" data-thumbsrc="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-gr2.sml" data-fullsrc="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-gr2.gif"><img class="figure large" border="0" alt="Full-size image (3 K)" src="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-gr2.gif" data-thumbsrc="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-gr2.sml" data-fullsrc="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-gr2.gif"></noscript></a></dt><dd id="labelCaptionFIG2"><p class="caption">Fig. 2.&#xA0;<span id="">Relay feedback structure for <span id="FIG2bPROP1"><a href="#PROP1" id="ancFIG2bPROP1" class="intra_ref">Proposition 1</a></span>.<!--Comment--></span><!--caption--></p></dd><dd class="menuButtonLinks"><div class="btnHolder"><a class="menuTitle" href="#">Figure options</a><div class="down_Btn"></div></div><ul class="menuButton"><li><a href="#FIG2" class="viewWS" title="View in workspace">View in workspace</a></li><li><a onclick="openStrippedNS('/science?_ob=MiamiCaptionURL&amp;_method=retrieve&amp;_eid=1-s2.0-S0005109802002054&amp;_image=1-s2.0-S0005109802002054-gr2.gif&amp;_ba=&amp;_fmt=full&amp;_orig=na&amp;_issn=00051098&amp;_pii=S0005109802002054&amp;_acct=C000053881&amp;_version=1&amp;_urlVersion=0&amp;_userid=1583010&amp;md5=4065f2fa1bfcd0d19cd570d694cad2d8','labelCaptionFIG2','PROP1','S0005109802002054'); return false;" href="#gr2" title="View full-size image - Opens in new window">Download full-size image</a></li><li><a class="ppt" title="Download as PowerPoint slide" href="http://services.elsevier.com/SDWebExport/export/figure/S0005109802002054/1-s2.0-S0005109802002054-gr2.sml/ppt">Download as PowerPoint slide</a></li></ul></dd></dl></div></div></p></div><div class="enunciation"><p><strong class="boldFont"><dt class="label">Proof</dt>.
+                    </strong>If a limit cycle is present in the relay closed loop system, then from <span id="bBIB2"><a href="#BIB2" id="ancbBIB2" class="intra_ref">&Aring;str&ouml;m and H&auml;gglund (1995)</a></span> &ang;<em>F</em>(j<em>ω</em><sub>0</sub>,<em>r</em>)&asymp;&minus;90&deg; at the frequency of the oscillation. Thus,<div class="formula" id=""><div class="label">(5)</div><div class="mathml"><span id="mmlsi19" class="mathmlsrc" onclick="submitCitation('/science?_ob=MathURL&amp;_method=retrieve&amp;_eid=1-s2.0-S0005109802002054&amp;_mathId=si19.gif&amp;_pii=S0005109802002054&amp;_issn=00051098&amp;_acct=C000053881&amp;_version=1&amp;_userid=1583010&amp;md5=0e630b68d75ce4ac3e4afac404f6743d')" style="cursor:pointer;" alt="Click to view the MathML source" title="Click to view the MathML source"><img class="imgLazyJSB" height="39" border="0" style="vertical-align:bottom" width="215" alt="View the MathML source" title="View the MathML source" src="/sd/grey_pxl.gif" data-inlimgsrc="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-si19.gif"><noscript><img height="39" border="0" style="vertical-align:bottom" width="215" alt="View the MathML source" title="View the MathML source" src="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-si19.gif"></noscript></span><!--Comment--></div></div>for some real <em>k</em>&gt;0. Rewrite this expression in order to obtain<div class="formula" id=""><div class="label">(6)</div><div class="mathml"><span id="mmlsi20" class="mathmlsrc" onclick="submitCitation('/science?_ob=MathURL&amp;_method=retrieve&amp;_eid=1-s2.0-S0005109802002054&amp;_mathId=si20.gif&amp;_pii=S0005109802002054&amp;_issn=00051098&amp;_acct=C000053881&amp;_version=1&amp;_userid=1583010&amp;md5=a49be09cf93eade56a136b1bc35d0f36')" style="cursor:pointer;" alt="Click to view the MathML source" title="Click to view the MathML source"><img class="imgLazyJSB" height="38" border="0" style="vertical-align:bottom" width="282" alt="View the MathML source" title="View the MathML source" src="/sd/grey_pxl.gif" data-inlimgsrc="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-si20.gif"><noscript><img height="38" border="0" style="vertical-align:bottom" width="282" alt="View the MathML source" title="View the MathML source" src="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-si20.gif"></noscript></span><!--Comment--></div></div></p></div> The structure with <em>F</em>(<em>s</em>,<em>r</em>) given by <span id="bEQ3"><a href="#EQ3" id="ancbEQ3" class="intra_ref">Eq. (3)</a></span>, shown in <span id="bFIG2"><a href="#FIG2" id="ancbFIG2" class="intra_ref">Fig. 2</a></span>, is named in this paper <em>the frequency response estimation relay test</em>.</p><!--VALIDHTML--><p class="svArticle section" id="">Now consider the transfer function <em>H</em>(j<em>ω</em>) and its <span id="mmlsi21" class="mathmlsrc" onclick="submitCitation('/science?_ob=MathURL&amp;_method=retrieve&amp;_eid=1-s2.0-S0005109802002054&amp;_mathId=si21.gif&amp;_pii=S0005109802002054&amp;_issn=00051098&amp;_acct=C000053881&amp;_version=1&amp;_userid=1583010&amp;md5=86c9d3a42887434b9d98a42c1c66364c')" style="cursor:pointer;" alt="Click to view the MathML source" title="Click to view the MathML source"><img class="imgLazyJSB" height="15" border="0" style="vertical-align:bottom" width="35" alt="View the MathML source" title="View the MathML source" src="/sd/grey_pxl.gif" data-inlimgsrc="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-si21.gif"><noscript><img height="15" border="0" style="vertical-align:bottom" width="35" alt="View the MathML source" title="View the MathML source" src="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-si21.gif"></noscript></span> norm, ||<em>H</em>(j<em>ω</em>)||<sub>&infin;</sub>. What would happen if <em>r</em>&gt;||<em>H</em>(j<em>ω</em>)||<sub>&infin;</sub>? This question is addressed in the sequel.<div class="enunciation"><p><strong class="boldFont"><dt class="label">Proposition 2</dt>.
+                    </strong><em>Consider a stable transfer function</em><em>H</em>(<em>s</em>) <em>and define</em><em>F</em>(<em>s</em>,<em>r</em>) <em>as in Eq.</em> (3). <em>If</em><em>r</em>&gt;||<em>H</em>(j<em>ω</em>)||<sub>&infin;</sub>, <em>then the describing function method points out no conditions for the relay feedback in Fig.</em> 2 <em>to develop a limit cycle</em>.</p></div><div class="enunciation"><p><strong class="boldFont"><dt class="label">Proof</dt>.
+                    </strong>The condition for oscillation is &ang;<em>F</em>(j<em>ω</em>)=&minus;90&deg;, which means that <em>F</em>(j<em>ω</em><sub>0</sub>)=&minus;j<em>k</em> for some <em>k</em> and <em>ω</em><sub>0</sub>.Thus, the Nyquist plot of <em>F</em>(j<em>ω</em>) should cross the negative imaginary axis at the frequency <em>ω</em><sub>0</sub>. The aim of the proof is to show that this situation never happens if <em>r</em>&gt;||<em>H</em>(j<em>ω</em>)||<sub>&infin;</sub>. Write<div class="formula" id=""><div class="label">(7)</div><div class="mathml"><span id="mmlsi22" class="mathmlsrc" onclick="submitCitation('/science?_ob=MathURL&amp;_method=retrieve&amp;_eid=1-s2.0-S0005109802002054&amp;_mathId=si22.gif&amp;_pii=S0005109802002054&amp;_issn=00051098&amp;_acct=C000053881&amp;_version=1&amp;_userid=1583010&amp;md5=772a69e62790561e50100e74067dd246')" style="cursor:pointer;" alt="Click to view the MathML source" title="Click to view the MathML source"><img class="imgLazyJSB" height="42" border="0" style="vertical-align:bottom" width="262" alt="View the MathML source" title="View the MathML source" src="/sd/grey_pxl.gif" data-inlimgsrc="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-si22.gif"><noscript><img height="42" border="0" style="vertical-align:bottom" width="262" alt="View the MathML source" title="View the MathML source" src="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-si22.gif"></noscript></span><!--Comment--></div></div>where <em>ρ</em>(<em>ω</em>)=|<em>H</em>(j<em>ω</em>)| and <em>φ</em>(<em>ω</em>)=&ang;<em>H</em>(j<em>ω</em>). As <span id="mmlsi23" class="mathmlsrc" onclick="submitCitation('/science?_ob=MathURL&amp;_method=retrieve&amp;_eid=1-s2.0-S0005109802002054&amp;_mathId=si23.gif&amp;_pii=S0005109802002054&amp;_issn=00051098&amp;_acct=C000053881&amp;_version=1&amp;_userid=1583010&amp;md5=3304f1653a1673186a69d6470c466851')" style="cursor:pointer;" alt="Click to view the MathML source" title="Click to view the MathML source"><img class="imgLazyJSB" height="19" border="0" style="vertical-align:bottom" width="212" alt="View the MathML source" title="View the MathML source" src="/sd/grey_pxl.gif" data-inlimgsrc="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-si23.gif"><noscript><img height="19" border="0" style="vertical-align:bottom" width="212" alt="View the MathML source" title="View the MathML source" src="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-si23.gif"></noscript></span>, then<div class="formula" id="EQ8"><div class="label">(8)</div><div class="mathml"><span id="mmlsi24" class="mathmlsrc" onclick="submitCitation('/science?_ob=MathURL&amp;_method=retrieve&amp;_eid=1-s2.0-S0005109802002054&amp;_mathId=si24.gif&amp;_pii=S0005109802002054&amp;_issn=00051098&amp;_acct=C000053881&amp;_version=1&amp;_userid=1583010&amp;md5=6cedf6bad1951c8a06bd546a9f22b9f5')" style="cursor:pointer;" alt="Click to view the MathML source" title="Click to view the MathML source"><img class="imgLazyJSB" height="41" border="0" style="vertical-align:bottom" width="281" alt="View the MathML source" title="View the MathML source" src="/sd/grey_pxl.gif" data-inlimgsrc="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-si24.gif"><noscript><img height="41" border="0" style="vertical-align:bottom" width="281" alt="View the MathML source" title="View the MathML source" src="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-si24.gif"></noscript></span><!--Comment--></div></div>The real part of <em>F</em>(j<em>ω</em>) is zero only if <em>ρ</em><sup>2</sup>(<em>ω</em>)&minus;<em>r</em><sup>2</sup>=0&rArr;<em>ρ</em>(<em>ω</em>)=<em>r</em>, for some <em>ω</em>, as <em>r</em>&gt;0 and <em>ρ</em>(<em>ω</em>)&gt;0. Since <span id="mmlsi25" class="mathmlsrc" onclick="submitCitation('/science?_ob=MathURL&amp;_method=retrieve&amp;_eid=1-s2.0-S0005109802002054&amp;_mathId=si25.gif&amp;_pii=S0005109802002054&amp;_issn=00051098&amp;_acct=C000053881&amp;_version=1&amp;_userid=1583010&amp;md5=9f862eb0e7708574febe97e95052a564')" style="cursor:pointer;" alt="Click to view the MathML source" title="Click to view the MathML source"><img class="imgLazyJSB" height="18" border="0" style="vertical-align:bottom" width="104" alt="View the MathML source" title="View the MathML source" src="/sd/grey_pxl.gif" data-inlimgsrc="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-si25.gif"><noscript><img height="18" border="0" style="vertical-align:bottom" width="104" alt="View the MathML source" title="View the MathML source" src="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-si25.gif"></noscript></span>, there is no solution in <em>ω</em> such that Re <em>F</em>(j<em>ω</em>)=0. Therefore, from the describing function method, no limit cycle is expected.&#xA0;□</p></div><div class="enunciation"><p><strong class="boldFont"><dt class="label">Remark 1</dt>.
+                    </strong>Note that from <span id="bEQ8"><a href="#EQ8" id="ancbEQ8" class="intra_ref">Eq. (8)</a></span> the magnitude of <em>F</em>(j<em>ω</em>) at the frequency of the limit cycle, <em>ω</em><sub>0</sub>, depends only on the phase of <em>H</em>(j<em>ω</em>) at that frequency, i.e., <em>φ</em>(<em>ω</em><sub>0</sub>). To see this, assume that at <span id="mmlsi26" class="mathmlsrc" onclick="submitCitation('/science?_ob=MathURL&amp;_method=retrieve&amp;_eid=1-s2.0-S0005109802002054&amp;_mathId=si26.gif&amp;_pii=S0005109802002054&amp;_issn=00051098&amp;_acct=C000053881&amp;_version=1&amp;_userid=1583010&amp;md5=b531fe057c3f83d8fcdea92586a2c919')" style="cursor:pointer;" alt="Click to view the MathML source" title="Click to view the MathML source"><img class="imgLazyJSB" height="17" border="0" style="vertical-align:bottom" width="98" alt="View the MathML source" title="View the MathML source" src="/sd/grey_pxl.gif" data-inlimgsrc="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-si26.gif"><noscript><img height="17" border="0" style="vertical-align:bottom" width="98" alt="View the MathML source" title="View the MathML source" src="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-si26.gif"></noscript></span>, then<div class="formula" id=""><div class="label">(9)</div><div class="mathml"><span id="mmlsi27" class="mathmlsrc" onclick="submitCitation('/science?_ob=MathURL&amp;_method=retrieve&amp;_eid=1-s2.0-S0005109802002054&amp;_mathId=si27.gif&amp;_pii=S0005109802002054&amp;_issn=00051098&amp;_acct=C000053881&amp;_version=1&amp;_userid=1583010&amp;md5=360837ab59bb7c844409998698462b04')" style="cursor:pointer;" alt="Click to view the MathML source" title="Click to view the MathML source"><img class="imgLazyJSB" height="41" border="0" style="vertical-align:bottom" width="344" alt="View the MathML source" title="View the MathML source" src="/sd/grey_pxl.gif" data-inlimgsrc="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-si27.gif"><noscript><img height="41" border="0" style="vertical-align:bottom" width="344" alt="View the MathML source" title="View the MathML source" src="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-si27.gif"></noscript></span><!--Comment--></div></div>It can also be seen that |<em>F</em>(j<em>ω</em><sub>0</sub>)| approaches infinity as &ang;<em>H</em>(j<em>ω</em><sub>0</sub>)&rarr;(2<em>n</em>+1)<em>π</em> and zero as &ang;<em>H</em>(j<em>ω</em><sub>0</sub>)&rarr;2<em>nπ</em>, with <span id="mmlsi28" class="mathmlsrc" onclick="submitCitation('/science?_ob=MathURL&amp;_method=retrieve&amp;_eid=1-s2.0-S0005109802002054&amp;_mathId=si28.gif&amp;_pii=S0005109802002054&amp;_issn=00051098&amp;_acct=C000053881&amp;_version=1&amp;_userid=1583010&amp;md5=fda0fd5fe36f5ca0af7ae538defc58b5')" style="cursor:pointer;" alt="Click to view the MathML source" title="Click to view the MathML source"><span class="formulatext" title="click to view the MathML source">n=0,&plusmn;1,&plusmn;2,&hellip;.</span></span>A related question which arises is what will happen in the case where there are several frequencies for which |<em>H</em>(j<em>ω</em>)|=<em>r</em>. This analysis is considered in detail in the related paper <span id="bBIB5"><a href="#BIB5" id="ancbBIB5" class="intra_ref">de Arruda, Barros, and Bazanella (2002)</a></span> based on Poincar&eacute; maps.</p></div></p><!--VALIDHTML--><h3 class="svArticle" id="section_lbl2.3">2.3. Stability</h3><p class="svArticle section" id="">Consider the feedback structure shown in <span id="bFIG2"><a href="#FIG2" id="ancbFIG2" class="intra_ref">Fig. 2</a></span> with <em>F</em>(<em>s</em>,<em>r</em>) given by <span id="bEQ3"><a href="#EQ3" id="ancbEQ3" class="intra_ref">Eq. (3)</a></span>. It can be easily verified that all signals will be bounded if <em>F</em>(<em>s</em>,<em>r</em>) is stable, i.e., has no right-half-plane poles. Just notice that the input signal to <em>F</em>(<em>s</em>,<em>r</em>) is <em>y</em><sub><em>i</em></sub>(<em>t</em>)=&plusmn;<em>d</em>, which is bounded and nonzero for all <em>t</em>&gt;0. Therefore, if <em>F</em>(<em>s</em>,<em>r</em>) is stable, then the output signal is bounded for all <em>t</em>&gt;0.</p><!--VALIDHTML--><p class="svArticle section" id="">The closed loop stability is given as follows. For simplicity <em>H</em>(<em>s</em>) is assumed to be stable.<div class="enunciation" id="PROP3"><p><strong class="boldFont"><dt class="label">Proposition 3</dt>.
+                    </strong><em>Consider transfer function</em><em>F</em>(<em>s</em>,<em>r</em>) <em>defined in Eq.</em> (3). <em>Suppose that the computation of the critical point of</em><em>H</em>(j<em>ω</em>) (<em>where</em> &ang;<em>H</em>(j<em>ω</em><sub>c</sub><sup><em>H</em></sup>)=&minus;180&deg;) <em>yields</em><div class="formula" id=""><div class="label">(10)</div><div class="mathml"><span id="mmlsi29" class="mathmlsrc" onclick="submitCitation('/science?_ob=MathURL&amp;_method=retrieve&amp;_eid=1-s2.0-S0005109802002054&amp;_mathId=si29.gif&amp;_pii=S0005109802002054&amp;_issn=00051098&amp;_acct=C000053881&amp;_version=1&amp;_userid=1583010&amp;md5=487cfe274d9a060c12aeced4ec6a8b02')" style="cursor:pointer;" alt="Click to view the MathML source" title="Click to view the MathML source"><img class="imgLazyJSB" height="38" border="0" style="vertical-align:bottom" width="117" alt="View the MathML source" title="View the MathML source" src="/sd/grey_pxl.gif" data-inlimgsrc="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-si29.gif"><noscript><img height="38" border="0" style="vertical-align:bottom" width="117" alt="View the MathML source" title="View the MathML source" src="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-si29.gif"></noscript></span><!--Comment--></div></div><em>Then if</em><em>r</em>&gt;1/<em>K</em><sub>c</sub><sup><em>H</em></sup>, <em>transfer function</em><em>F</em>(<em>s</em>,<em>r</em>) <em>has no right-half-plane pole</em>.</p></div><div class="enunciation"><p><strong class="boldFont"><dt class="label">Proof</dt>.
+                    </strong>Follows from direct application of the relay test presented in <span id="bBIB2"><a href="#BIB2" id="ancbBIB2" class="intra_ref">&Aring;str&ouml;m and H&auml;gglund (1995)</a></span>.&#xA0;□</p></div></p><!--VALIDHTML--><h3 class="svArticle" id="section_lbl2.4">2.4. Improving the transfer function estimation</h3><p class="svArticle section" id="">The describing function method applied to a relay feedback system assumes that only the first-order harmonic is present at the process output. If the relay feedback is used to estimate the ultimate gain, the error due to describing function method is relatively small since the limit cycle normally occurs at a frequency larger than the process crossover frequency (<span id="bBIB1"><a href="#BIB1" id="ancbBIB1" class="intra_ref">&Aring;str&ouml;m &amp; H&auml;gglund, 1984</a></span>). But, when high-order harmonics are present, the approximation becomes worse as they become more relevant in the signal formation.</p><!--VALIDHTML--><p class="svArticle section" id="">One way to deal with this problem is to use the discrete Fourier transform (DFT) of the data to get the true gain and phase lag at the frequency of the oscillation. Given the <em>N</em>-point (DFTs) <em>Yo</em><sub><em>N</em></sub>(<em>ω</em>) and <em>Yi</em><sub><em>N</em></sub>(<em>ω</em>) for <em>y</em><sub><em>o</em></sub>(<em>t</em>) and <em>y</em><sub><em>i</em></sub>(<em>t</em>), respectively, the following result can be found in standard textbooks such as <span id="bBIB9"><a href="#BIB9" id="ancbBIB9" class="intra_ref">Ljung (1999)</a></span>.<div class="enunciation"><p><strong class="boldFont"><dt class="label">Proposition 4</dt>.
+                    </strong><em>Suppose that</em><em>y</em><sub><em>o</em></sub>(<em>k</em>) <em>and</em><em>y</em><sub><em>i</em></sub>(<em>k</em>) <em>shown in Fig.</em> 2 <em>have the same period</em><em>N</em><sub>0</sub>. <em>Consider the periodograms</em><em>Yo</em><sub><em>N</em></sub>(<em>ω</em>) <em>and</em><em>Yi</em><sub><em>N</em></sub>(<em>ω</em>) <em>calculated over</em><em>N</em>=<em>sN</em><sub>0</sub><em>samples</em>, <em>respectively. Then the estimate</em><div class="formula" id=""><div class="label">(11)</div><div class="mathml"><span id="mmlsi30" class="mathmlsrc" onclick="submitCitation('/science?_ob=MathURL&amp;_method=retrieve&amp;_eid=1-s2.0-S0005109802002054&amp;_mathId=si30.gif&amp;_pii=S0005109802002054&amp;_issn=00051098&amp;_acct=C000053881&amp;_version=1&amp;_userid=1583010&amp;md5=4d021f9a48689fae3d18368b2d127623')" style="cursor:pointer;" alt="Click to view the MathML source" title="Click to view the MathML source"><img class="imgLazyJSB" height="39" border="0" style="vertical-align:bottom" width="110" alt="View the MathML source" title="View the MathML source" src="/sd/grey_pxl.gif" data-inlimgsrc="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-si30.gif"><noscript><img height="39" border="0" style="vertical-align:bottom" width="110" alt="View the MathML source" title="View the MathML source" src="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-si30.gif"></noscript></span><!--Comment--></div></div><em>satisfies</em><dl class="listitem" id="list_"><dt class="label">&bull;</dt><dd><p id=""><span id="mmlsi31" class="mathmlsrc" onclick="submitCitation('/science?_ob=MathURL&amp;_method=retrieve&amp;_eid=1-s2.0-S0005109802002054&amp;_mathId=si31.gif&amp;_pii=S0005109802002054&amp;_issn=00051098&amp;_acct=C000053881&amp;_version=1&amp;_userid=1583010&amp;md5=39baa3e79d63a9ac5c5fefb505743f22')" style="cursor:pointer;" alt="Click to view the MathML source" title="Click to view the MathML source"><img class="imgLazyJSB" height="21" border="0" style="vertical-align:bottom" width="36" alt="View the MathML source" title="View the MathML source" src="/sd/grey_pxl.gif" data-inlimgsrc="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-si31.gif"><noscript><img height="21" border="0" style="vertical-align:bottom" width="36" alt="View the MathML source" title="View the MathML source" src="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-si31.gif"></noscript></span><em>is defined only for a fixed number of frequencies such that</em><em>Yi</em><sub><em>N</em></sub>(<em>ω</em>)&ne;0, <em>and</em></p></dd><dt class="label">&bull;</dt><dd><p id=""><em>at these frequencies</em>, <em>the estimates are unbiased and its variance decays with</em> 1/<em>N</em>.</p></dd></dl></p></div><div class="enunciation"><p><strong class="boldFont"><dt class="label">Proof</dt>.
+                    </strong>Note that from <span id="bFIG2"><a href="#FIG2" id="ancbFIG2" class="intra_ref">Fig. 2</a></span> the input signal <em>y</em><sub><em>i</em></sub>(<em>t</em>) is a square wave from the relay output, which can be considered uncorrelated with the noise at the output signal, <em>y</em><sub><em>o</em></sub>(<em>t</em>). The rest follows as in <span id="bBIB9"><a href="#BIB9" id="ancbBIB9" class="intra_ref">Ljung (1999)</a></span>.&#xA0;□</p></div> An estimate of <em>H</em>(<em>ω</em>) can now be obtained from <span id="bEQ3"><a href="#EQ3" id="ancbEQ3" class="intra_ref">Eq. (3)</a></span> as<div class="formula" id=""><div class="label">(12)</div><div class="mathml"><span id="mmlsi32" class="mathmlsrc" onclick="submitCitation('/science?_ob=MathURL&amp;_method=retrieve&amp;_eid=1-s2.0-S0005109802002054&amp;_mathId=si32.gif&amp;_pii=S0005109802002054&amp;_issn=00051098&amp;_acct=C000053881&amp;_version=1&amp;_userid=1583010&amp;md5=56b601e125c9b94a796a7e1838dfc955')" style="cursor:pointer;" alt="Click to view the MathML source" title="Click to view the MathML source"><img class="imgLazyJSB" height="46" border="0" style="vertical-align:bottom" width="142" alt="View the MathML source" title="View the MathML source" src="/sd/grey_pxl.gif" data-inlimgsrc="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-si32.gif"><noscript><img height="46" border="0" style="vertical-align:bottom" width="142" alt="View the MathML source" title="View the MathML source" src="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-si32.gif"></noscript></span><!--Comment--></div></div>The DFT can be also used to estimate the gain and phase at the other harmonic frequencies.&#xA0;□<div class="enunciation"><p><strong class="boldFont"><dt class="label">Remark 2</dt>.
+                    </strong>Note that practically the <em>N</em><sub><em>o</em></sub> points are not obtained over exactly one period, which causes a leakage error on the DFT of the signals. However, if the signals are smooth and the sampling period is fast, the error is small. For comments on how to overcome the leakage error, refer to <span id="bBIB10"><a href="#BIB10" id="ancbBIB10" class="intra_ref">Pintelon and Schoukens (1996)</a></span>.</p></div></p><!--VALIDHTML--><h2 class="svArticle" id="SEC3">3. Loop transfer function estimation</h2><p class="svArticle section" id="">Now, the basic procedure is applied to estimate the loop transfer function frequency response at a user-defined magnitude. The novelty in this section is that the experiment is performed without breaking the feedback loop and under controlled operating conditions.</p><!--VALIDHTML--><h3 class="svArticle" id="section_lbl3.1">3.1. The relay structure</h3><p class="svArticle section" id=""><div class="enunciation"><p><strong class="boldFont"><dt class="label">Proposition 5</dt>.
+                    </strong><em>Consider the closed loop system shown in Fig.</em> 2. <em>Assume that for a stable</em><em>T</em>(<em>s</em>) <em>and a real positive number r</em>, <em>transfer function</em><div class="formula" id="EQ13"><div class="label">(13)</div><div class="mathml"><span id="mmlsi33" class="mathmlsrc" onclick="submitCitation('/science?_ob=MathURL&amp;_method=retrieve&amp;_eid=1-s2.0-S0005109802002054&amp;_mathId=si33.gif&amp;_pii=S0005109802002054&amp;_issn=00051098&amp;_acct=C000053881&amp;_version=1&amp;_userid=1583010&amp;md5=7657bfb397dae4fe4e61b7622d619d96')" style="cursor:pointer;" alt="Click to view the MathML source" title="Click to view the MathML source"><img class="imgLazyJSB" height="42" border="0" style="vertical-align:bottom" width="230" alt="View the MathML source" title="View the MathML source" src="/sd/grey_pxl.gif" data-inlimgsrc="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-si33.gif"><noscript><img height="42" border="0" style="vertical-align:bottom" width="230" alt="View the MathML source" title="View the MathML source" src="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-si33.gif"></noscript></span><!--Comment--></div></div><em>is also stable. If a limit cycle is present the oscillation occurs at a frequency</em><em>ω</em><sub>0</sub>, <em>then</em><div class="formula" id=""><div class="label">(14)</div><div class="mathml"><span id="mmlsi34" class="mathmlsrc" onclick="submitCitation('/science?_ob=MathURL&amp;_method=retrieve&amp;_eid=1-s2.0-S0005109802002054&amp;_mathId=si34.gif&amp;_pii=S0005109802002054&amp;_issn=00051098&amp;_acct=C000053881&amp;_version=1&amp;_userid=1583010&amp;md5=59486d58ced800821b155b24da4359ca')" style="cursor:pointer;" alt="Click to view the MathML source" title="Click to view the MathML source"><img class="imgLazyJSB" height="18" border="0" style="vertical-align:bottom" width="89" alt="View the MathML source" title="View the MathML source" src="/sd/grey_pxl.gif" data-inlimgsrc="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-si34.gif"><noscript><img height="18" border="0" style="vertical-align:bottom" width="89" alt="View the MathML source" title="View the MathML source" src="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-si34.gif"></noscript></span><!--Comment--></div></div></p></div><div class="enunciation"><p><strong class="boldFont"><dt class="label">Proof</dt>.
+                    </strong>Replacing <span id="bEQ1"><a href="#EQ1" id="ancbEQ1" class="intra_ref">Eq. (1)</a></span> in <span id="bEQ13"><a href="#EQ13" id="ancbEQ13" class="intra_ref">Eq. (13)</a></span> results in<div class="formula" id=""><div class="label">(15)</div><div class="mathml"><span id="mmlsi35" class="mathmlsrc" onclick="submitCitation('/science?_ob=MathURL&amp;_method=retrieve&amp;_eid=1-s2.0-S0005109802002054&amp;_mathId=si35.gif&amp;_pii=S0005109802002054&amp;_issn=00051098&amp;_acct=C000053881&amp;_version=1&amp;_userid=1583010&amp;md5=10bd2f79934b93f37bb9139a56a44958')" style="cursor:pointer;" alt="Click to view the MathML source" title="Click to view the MathML source"><img class="imgLazyJSB" height="83" border="0" style="vertical-align:bottom" width="352" alt="View the MathML source" title="View the MathML source" src="/sd/grey_pxl.gif" data-inlimgsrc="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-si35.gif"><noscript><img height="83" border="0" style="vertical-align:bottom" width="352" alt="View the MathML source" title="View the MathML source" src="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-si35.gif"></noscript></span><!--Comment--></div></div>Then it follows from Prop. 1 with <em>H</em>(<em>s</em>)=<em>L</em>(<em>s</em>) that |<em>L</em>(j<em>ω</em><sub>0</sub>)|&asymp;<em>r</em>.&#xA0;□</p></div> The closed loop system which implements the procedure is presented in <span id="bFIG3"><a href="#FIG3" id="ancbFIG3" class="intra_ref">Fig. 3</a></span>. Note that the new reference signal, <em>y</em><sub><em>r</em></sub>&prime;, is weighted by 1/<em>r</em> in order to yield unitary gain between <em>y</em><sub><em>r</em></sub>&prime; and <em>y</em>, assuming that <em>T</em>(0)=1.<div class="enunciation"><p><strong class="boldFont"><dt class="label">Remark 3</dt>.
+                    </strong>The relay feedback structure presented in <span id="bBIB12"><a href="#BIB12" id="ancbBIB12" class="intra_ref">Schei (1994)</a></span> can be seen as a particular case of <span id="bPROP1"><a href="#PROP1" id="ancbPROP1" class="intra_ref">Proposition 1</a></span> with <em>r</em>=1, resulting in <em>F</em>(<em>s</em>)=2<em>T</em>(<em>s</em>)&minus;1. The closed loop system oscillates at frequency <em>ω</em><sub>lc</sub> where |<em>G</em>(j<em>ω</em><sub>lc</sub>)<em>C</em>(j<em>ω</em><sub>lc</sub>)|&asymp;1. To see this write<div class="formula" id=""><div class="label">(16)</div><div class="mathml"><span id="mmlsi36" class="mathmlsrc" onclick="submitCitation('/science?_ob=MathURL&amp;_method=retrieve&amp;_eid=1-s2.0-S0005109802002054&amp;_mathId=si36.gif&amp;_pii=S0005109802002054&amp;_issn=00051098&amp;_acct=C000053881&amp;_version=1&amp;_userid=1583010&amp;md5=81accf06651e864c5879387fc90fd79e')" style="cursor:pointer;" alt="Click to view the MathML source" title="Click to view the MathML source"><img class="imgLazyJSB" height="39" border="0" style="vertical-align:bottom" width="213" alt="View the MathML source" title="View the MathML source" src="/sd/grey_pxl.gif" data-inlimgsrc="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-si36.gif"><noscript><img height="39" border="0" style="vertical-align:bottom" width="213" alt="View the MathML source" title="View the MathML source" src="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-si36.gif"></noscript></span><!--Comment--></div></div>and compare to <span id="bEQ3"><a href="#EQ3" id="ancbEQ3" class="intra_ref">Eq. (3)</a></span>. This structure is stable by construction, since the closed loop <em>T</em>(<em>s</em>) is assumed to be stable.</p></div></p><!--VALIDHTML--><div class="figTblUpiOuter svArticle" id="figure_FIG3"><div class="&#10;                    textboxdefault&#10;                "><dl class="figure" id="FIG3" data-t="f"><dt class="autoScroll" data-style="height:75px;width:221px;"><a class="figureLink" href="#gr3" title="Full-size image (2 K)"><img class="imgLazyJSB figure large" border="0" alt="Full-size image (2 K)" src="/sd/grey_pxl.gif" data-thumbsrc="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-gr3.sml" data-fullsrc="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-gr3.gif" height="75" width="221" data-thumbheight="42" data-thumbwidth="125" data-fullheight="75" data-fullwidth="221"><noscript class="figure large" border="0" alt="Full-size image" data-thumbsrc="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-gr3.sml" data-fullsrc="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-gr3.gif"><img class="figure large" border="0" alt="Full-size image (2 K)" src="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-gr3.gif" data-thumbsrc="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-gr3.sml" data-fullsrc="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-gr3.gif"></noscript></a></dt><dd id="labelCaptionFIG3"><p class="caption">Fig. 3.&#xA0;<span id="">Relay feedback for loop transfer function estimation.<!--Comment--></span><!--caption--></p></dd><dd class="menuButtonLinks"><div class="btnHolder"><a class="menuTitle" href="#">Figure options</a><div class="down_Btn"></div></div><ul class="menuButton"><li><a href="#FIG3" class="viewWS" title="View in workspace">View in workspace</a></li><li><a onclick="openStrippedNS('/science?_ob=MiamiCaptionURL&amp;_method=retrieve&amp;_eid=1-s2.0-S0005109802002054&amp;_image=1-s2.0-S0005109802002054-gr3.gif&amp;_ba=&amp;_fmt=full&amp;_orig=na&amp;_issn=00051098&amp;_pii=S0005109802002054&amp;_acct=C000053881&amp;_version=1&amp;_urlVersion=0&amp;_userid=1583010&amp;md5=4e6f17acf2a13fb1d08ddff49ea23121','labelCaptionFIG3','','S0005109802002054'); return false;" href="#gr3" title="View full-size image - Opens in new window">Download full-size image</a></li><li><a class="ppt" title="Download as PowerPoint slide" href="http://services.elsevier.com/SDWebExport/export/figure/S0005109802002054/1-s2.0-S0005109802002054-gr3.sml/ppt">Download as PowerPoint slide</a></li></ul></dd></dl></div></div><!--VALIDHTML--><h3 class="svArticle" id="section_lbl3.2">3.2. Signal boundness and stability</h3><p class="svArticle section" id="">The closed loop experiment should be performed under well-defined operating conditions. The closed loop should be stable, the output <em>y</em>(<em>t</em>) bounded and the limit cycle within feasible limits. <span id="bPROP3"><a href="#PROP3" id="ancbPROP3" class="intra_ref">Proposition 3</a></span> can be used to obtain range for <em>r</em> such that the closed loop relay feedback of <span id="bFIG3"><a href="#FIG3" id="ancbFIG3" class="intra_ref">Fig. 3</a></span> is stable. In this case, <em>H</em>(<em>s</em>)=<em>L</em>(<em>s</em>) so that the critical gain of <em>L</em>(j<em>ω</em>) must be estimated. But this means that the standard relay test must be performed by opening the feedback loop, which is not desirable. However, that can be easily avoided as follows.<div class="enunciation"><p><strong class="boldFont"><dt class="label">Proposition 6</dt>.
+                    </strong><em>Consider the feedback loop shown in Fig.</em> 1 <em>with</em><em>T</em>(<em>s</em>) <em>stable. Perform a standard relay test on</em><em>T</em>(<em>s</em>) <em>and compute the associated critical gain</em><em>K</em><sub>c</sub><sup><em>T</em></sup>. <em>Then</em>, <em>the feedback loop shown in Fig.</em> 3 <em>is stable if</em><div class="formula" id=""><div class="label">(17)</div><div class="mathml"><span id="mmlsi37" class="mathmlsrc" onclick="submitCitation('/science?_ob=MathURL&amp;_method=retrieve&amp;_eid=1-s2.0-S0005109802002054&amp;_mathId=si37.gif&amp;_pii=S0005109802002054&amp;_issn=00051098&amp;_acct=C000053881&amp;_version=1&amp;_userid=1583010&amp;md5=b3f887e0fb8f8aa39a079a1bb4309792')" style="cursor:pointer;" alt="Click to view the MathML source" title="Click to view the MathML source"><img class="imgLazyJSB" height="38" border="0" style="vertical-align:bottom" width="86" alt="View the MathML source" title="View the MathML source" src="/sd/grey_pxl.gif" data-inlimgsrc="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-si37.gif"><noscript><img height="38" border="0" style="vertical-align:bottom" width="86" alt="View the MathML source" title="View the MathML source" src="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-si37.gif"></noscript></span><!--Comment--></div></div></p></div><div class="enunciation"><p><strong class="boldFont"><dt class="label">Proof</dt>.
+                    </strong>Stability of feedback loop shown in <span id="bFIG3"><a href="#FIG3" id="ancbFIG3" class="intra_ref">Fig. 3</a></span> reduces to stability of the feedback loop formed by <em>T</em>(<em>s</em>) and (1&minus;<em>r</em>)/<em>r</em>. The closed loop is stable if the feedback gain, (1&minus;<em>r</em>)/<em>r</em> is smaller than the critical gain of transfer function <em>T</em>(<em>s</em>), namely <em>K</em><sup><em>T</em></sup><sub>c</sub>. Then, for stability<div class="formula" id=""><div class="label">(18)</div><div class="mathml"><span id="mmlsi38" class="mathmlsrc" onclick="submitCitation('/science?_ob=MathURL&amp;_method=retrieve&amp;_eid=1-s2.0-S0005109802002054&amp;_mathId=si38.gif&amp;_pii=S0005109802002054&amp;_issn=00051098&amp;_acct=C000053881&amp;_version=1&amp;_userid=1583010&amp;md5=ec6839ffa636e8f984cfe770007020cf')" style="cursor:pointer;" alt="Click to view the MathML source" title="Click to view the MathML source"><img class="imgLazyJSB" height="38" border="0" style="vertical-align:bottom" width="234" alt="View the MathML source" title="View the MathML source" src="/sd/grey_pxl.gif" data-inlimgsrc="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-si38.gif"><noscript><img height="38" border="0" style="vertical-align:bottom" width="234" alt="View the MathML source" title="View the MathML source" src="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-si38.gif"></noscript></span><!--Comment--></div></div></p></div><div class="enunciation"><p><strong class="boldFont"><dt class="label">Remark 4</dt>.
+                    </strong>If one chooses<div class="formula" id=""><div class="label">(19)</div><div class="mathml"><span id="mmlsi39" class="mathmlsrc" onclick="submitCitation('/science?_ob=MathURL&amp;_method=retrieve&amp;_eid=1-s2.0-S0005109802002054&amp;_mathId=si39.gif&amp;_pii=S0005109802002054&amp;_issn=00051098&amp;_acct=C000053881&amp;_version=1&amp;_userid=1583010&amp;md5=32158384189e6c0862ea6da77ef409cd')" style="cursor:pointer;" alt="Click to view the MathML source" title="Click to view the MathML source"><img class="imgLazyJSB" height="34" border="0" style="vertical-align:bottom" width="109" alt="View the MathML source" title="View the MathML source" src="/sd/grey_pxl.gif" data-inlimgsrc="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-si39.gif"><noscript><img height="34" border="0" style="vertical-align:bottom" width="109" alt="View the MathML source" title="View the MathML source" src="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-si39.gif"></noscript></span><!--Comment--></div></div>that is, the relay amplitude is weighted by 1/<em>r</em>, the output oscillation amplitude remains around the same level for different <em>r</em> (<span id="bBIB4"><a href="#BIB4" id="ancbBIB4" class="intra_ref">de Arruda &amp; Barros, 2000</a></span>).</p></div></p><!--VALIDHTML--><h2 class="svArticle" id="SEC4">4. Sensitivity function estimation</h2><p class="svArticle section" id="">Now the basic procedure of <span id="bSEC2"><a href="#SEC2" id="ancbSEC2" class="intra_ref">Section 2</a></span> is applied for estimating the sensitivity function. Again, the experiment is performed without breaking the feedback loop and under controlled operating conditions.</p><!--VALIDHTML--><h3 class="svArticle" id="section_lbl4.1">4.1. The relay structure</h3><p class="svArticle section" id=""><div class="enunciation"><p><strong class="boldFont"><dt class="label">Proposition 7</dt>.
+                    </strong><em>Consider the closed loop system shown in Fig.</em><span id="bFIG2"><a href="#FIG2" id="ancbFIG2" class="intra_ref">2</a></span>. <em>Assume that for a stable transfer function</em><em>T</em>(<em>s</em>) <em>and a positive real number r</em>, <em>transfer function</em><div class="formula" id=""><div class="label">(20)</div><div class="mathml"><span id="mmlsi40" class="mathmlsrc" onclick="submitCitation('/science?_ob=MathURL&amp;_method=retrieve&amp;_eid=1-s2.0-S0005109802002054&amp;_mathId=si40.gif&amp;_pii=S0005109802002054&amp;_issn=00051098&amp;_acct=C000053881&amp;_version=1&amp;_userid=1583010&amp;md5=d660cdc72a73d84345393e002672b088')" style="cursor:pointer;" alt="Click to view the MathML source" title="Click to view the MathML source"><img class="imgLazyJSB" height="47" border="0" style="vertical-align:bottom" width="204" alt="View the MathML source" title="View the MathML source" src="/sd/grey_pxl.gif" data-inlimgsrc="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-si40.gif"><noscript><img height="47" border="0" style="vertical-align:bottom" width="204" alt="View the MathML source" title="View the MathML source" src="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-si40.gif"></noscript></span><!--Comment--></div></div><em>is also stable. If a limit cycle is present</em>, <em>the oscillation occurs at a frequency</em><em>ω</em><sub>0</sub><em>such that</em><div class="formula" id=""><div class="label">(21)</div><div class="mathml"><span id="mmlsi41" class="mathmlsrc" onclick="submitCitation('/science?_ob=MathURL&amp;_method=retrieve&amp;_eid=1-s2.0-S0005109802002054&amp;_mathId=si41.gif&amp;_pii=S0005109802002054&amp;_issn=00051098&amp;_acct=C000053881&amp;_version=1&amp;_userid=1583010&amp;md5=0e83712482447944238b5119f64347a7')" style="cursor:pointer;" alt="Click to view the MathML source" title="Click to view the MathML source"><img class="imgLazyJSB" height="34" border="0" style="vertical-align:bottom" width="92" alt="View the MathML source" title="View the MathML source" src="/sd/grey_pxl.gif" data-inlimgsrc="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-si41.gif"><noscript><img height="34" border="0" style="vertical-align:bottom" width="92" alt="View the MathML source" title="View the MathML source" src="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-si41.gif"></noscript></span><!--Comment--></div></div></p></div><div class="enunciation"><p><strong class="boldFont"><dt class="label">Proof</dt>.
+                    </strong>Now,<div class="formula" id=""><div class="label">(22)</div><div class="mathml"><span id="mmlsi42" class="mathmlsrc" onclick="submitCitation('/science?_ob=MathURL&amp;_method=retrieve&amp;_eid=1-s2.0-S0005109802002054&amp;_mathId=si42.gif&amp;_pii=S0005109802002054&amp;_issn=00051098&amp;_acct=C000053881&amp;_version=1&amp;_userid=1583010&amp;md5=8e3b947345e71eca3832383450cd5457')" style="cursor:pointer;" alt="Click to view the MathML source" title="Click to view the MathML source"><img class="imgLazyJSB" height="49" border="0" style="vertical-align:bottom" width="346" alt="View the MathML source" title="View the MathML source" src="/sd/grey_pxl.gif" data-inlimgsrc="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-si42.gif"><noscript><img height="49" border="0" style="vertical-align:bottom" width="346" alt="View the MathML source" title="View the MathML source" src="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-si42.gif"></noscript></span><!--Comment--></div></div>It follows from <span id="bPROP1"><a href="#PROP1" id="ancbPROP1" class="intra_ref">Proposition 1</a></span> with <em>H</em>(<em>s</em>)=1+<em>L</em>(<em>s</em>) that<div class="formula" id=""><div class="label">(23)</div><div class="mathml"><span id="mmlsi43" class="mathmlsrc" onclick="submitCitation('/science?_ob=MathURL&amp;_method=retrieve&amp;_eid=1-s2.0-S0005109802002054&amp;_mathId=si43.gif&amp;_pii=S0005109802002054&amp;_issn=00051098&amp;_acct=C000053881&amp;_version=1&amp;_userid=1583010&amp;md5=924b3d22ae2efaf5dbff3945f4a50f85')" style="cursor:pointer;" alt="Click to view the MathML source" title="Click to view the MathML source"><img class="imgLazyJSB" height="39" border="0" style="vertical-align:bottom" width="360" alt="View the MathML source" title="View the MathML source" src="/sd/grey_pxl.gif" data-inlimgsrc="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-si43.gif"><noscript><img height="39" border="0" style="vertical-align:bottom" width="360" alt="View the MathML source" title="View the MathML source" src="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-si43.gif"></noscript></span><!--Comment--></div></div></p></div> The closed loop system used to estimate the sensitivity function is shown in <span id="bFIG4"><a href="#FIG4" id="ancbFIG4" class="intra_ref">Fig. 4</a></span>.</p><!--VALIDHTML--><div class="figTblUpiOuter svArticle" id="figure_FIG4"><div class="&#10;                    textboxdefault&#10;                "><dl class="figure" id="FIG4" data-t="f"><dt class="autoScroll" data-style="height:77px;width:222px;"><a class="figureLink" href="#gr4" title="Full-size image (2 K)"><img class="imgLazyJSB figure large" border="0" alt="Full-size image (2 K)" src="/sd/grey_pxl.gif" data-thumbsrc="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-gr4.sml" data-fullsrc="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-gr4.gif" height="77" width="222" data-thumbheight="43" data-thumbwidth="125" data-fullheight="77" data-fullwidth="222"><noscript class="figure large" border="0" alt="Full-size image" data-thumbsrc="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-gr4.sml" data-fullsrc="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-gr4.gif"><img class="figure large" border="0" alt="Full-size image (2 K)" src="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-gr4.gif" data-thumbsrc="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-gr4.sml" data-fullsrc="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-gr4.gif"></noscript></a></dt><dd id="labelCaptionFIG4"><p class="caption">Fig. 4.&#xA0;<span id="">Relay feedback for sensitivity function estimation.<!--Comment--></span><!--caption--></p></dd><dd class="menuButtonLinks"><div class="btnHolder"><a class="menuTitle" href="#">Figure options</a><div class="down_Btn"></div></div><ul class="menuButton"><li><a href="#FIG4" class="viewWS" title="View in workspace">View in workspace</a></li><li><a onclick="openStrippedNS('/science?_ob=MiamiCaptionURL&amp;_method=retrieve&amp;_eid=1-s2.0-S0005109802002054&amp;_image=1-s2.0-S0005109802002054-gr4.gif&amp;_ba=&amp;_fmt=full&amp;_orig=na&amp;_issn=00051098&amp;_pii=S0005109802002054&amp;_acct=C000053881&amp;_version=1&amp;_urlVersion=0&amp;_userid=1583010&amp;md5=fa0f62ff6f36bbb6df1ccf3122654836','labelCaptionFIG4','','S0005109802002054'); return false;" href="#gr4" title="View full-size image - Opens in new window">Download full-size image</a></li><li><a class="ppt" title="Download as PowerPoint slide" href="http://services.elsevier.com/SDWebExport/export/figure/S0005109802002054/1-s2.0-S0005109802002054-gr4.sml/ppt">Download as PowerPoint slide</a></li></ul></dd></dl></div></div><!--VALIDHTML--><h3 class="svArticle" id="section_lbl4.2">4.2. Signal boundness and stability</h3><p class="svArticle section" id=""><span id="bPROP3"><a href="#PROP3" id="ancbPROP3" class="intra_ref">Proposition 3</a></span> can be used to obtain a range for <em>r</em> such that the closed loop relay feedback of <span id="bFIG4"><a href="#FIG4" id="ancbFIG4" class="intra_ref">Fig. 4</a></span> is stable. In this case, <em>H</em>(<em>s</em>)=1+<em>L</em>(<em>s</em>) so that the critical gain of 1+<em>L</em>(j<em>ω</em>) must be estimated. An alternative procedure to approach this problem is to go back to the closed loop transfer function <em>T</em>(<em>s</em>).<div class="enunciation"><p><strong class="boldFont"><dt class="label">Proposition 8</dt>.
+                    </strong><em>The relay feedback experiment shown in Fig.</em> 4 <em>is stable for all</em> 0⩽<em>k</em>&lt;1,<em>k</em>=<em>r</em>/(1+<em>r</em>), <em>whenever</em><div class="formula" id=""><div class="label">(24)</div><div class="mathml"><span id="mmlsi44" class="mathmlsrc" onclick="submitCitation('/science?_ob=MathURL&amp;_method=retrieve&amp;_eid=1-s2.0-S0005109802002054&amp;_mathId=si44.gif&amp;_pii=S0005109802002054&amp;_issn=00051098&amp;_acct=C000053881&amp;_version=1&amp;_userid=1583010&amp;md5=d7a44820f29f345243326615fcb440c3')" style="cursor:pointer;" alt="Click to view the MathML source" title="Click to view the MathML source"><span class="formulatext" title="click to view the MathML source">1+k(&minus;T(s))=0.</span></span><!--Comment--></div></div><em>has its roots in the complex left half plane.</em></p></div><div class="enunciation"><p><strong class="boldFont"><dt class="label">Proof</dt>.
+                    </strong>Follows from inspection of the closed loop formed by the positive feedback of <em>T</em>(<em>s</em>) and <em>r</em>/(1+<em>r</em>) in <span id="bFIG4"><a href="#FIG4" id="ancbFIG4" class="intra_ref">Fig. 4</a></span>, and the fact that <em>T</em>(<em>s</em>) is stable.&#xA0;□</p></div><div class="enunciation"><p><strong class="boldFont"><dt class="label">Remark 5</dt>.
+                    </strong>As in the loop transfer function case, the relay amplitude should be proportional to 1/<em>r</em>, which is already included in <span id="bFIG4"><a href="#FIG4" id="ancbFIG4" class="intra_ref">Fig. 4</a></span>.</p></div></p><!--VALIDHTML--><h2 class="svArticle" id="SEC5">5. Simulation examples</h2><h3 class="svArticle" id="section_lbl5.1">5.1. First-order transfer function with time delay</h3><p class="svArticle section" id="">In this simulation example all the relay experiments presented in this paper are verified. A first-order plus dead time process is considered and a PI controller is designed for the closed loop system.</p><!--VALIDHTML--><h4 class="svArticle" id="section_lbl5.1.1">5.1.1. Process description</h4><p class="svArticle section" id="">Consider now the process given by<div class="formula" id=""><div class="label">(25)</div><div class="mathml"><span id="mmlsi45" class="mathmlsrc" onclick="submitCitation('/science?_ob=MathURL&amp;_method=retrieve&amp;_eid=1-s2.0-S0005109802002054&amp;_mathId=si45.gif&amp;_pii=S0005109802002054&amp;_issn=00051098&amp;_acct=C000053881&amp;_version=1&amp;_userid=1583010&amp;md5=9688b4ecacf1988aa6506962764b7c2b')" style="cursor:pointer;" alt="Click to view the MathML source" title="Click to view the MathML source"><img class="imgLazyJSB" height="36" border="0" style="vertical-align:bottom" width="133" alt="View the MathML source" title="View the MathML source" src="/sd/grey_pxl.gif" data-inlimgsrc="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-si45.gif"><noscript><img height="36" border="0" style="vertical-align:bottom" width="133" alt="View the MathML source" title="View the MathML source" src="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-si45.gif"></noscript></span><!--Comment--></div></div>The relay test is applied to the process in order to obtain the critical point. For this case,<div class="formula" id=""><div class="label">(26)</div><div class="mathml"><span id="mmlsi46" class="mathmlsrc" onclick="submitCitation('/science?_ob=MathURL&amp;_method=retrieve&amp;_eid=1-s2.0-S0005109802002054&amp;_mathId=si46.gif&amp;_pii=S0005109802002054&amp;_issn=00051098&amp;_acct=C000053881&amp;_version=1&amp;_userid=1583010&amp;md5=2611ad4c7cfeacc67f4887d2a261f833')" style="cursor:pointer;" alt="Click to view the MathML source" title="Click to view the MathML source"><img class="imgLazyJSB" height="24" border="0" style="vertical-align:bottom" width="216" alt="View the MathML source" title="View the MathML source" src="/sd/grey_pxl.gif" data-inlimgsrc="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-si46.gif"><noscript><img height="24" border="0" style="vertical-align:bottom" width="216" alt="View the MathML source" title="View the MathML source" src="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-si46.gif"></noscript></span><!--Comment--></div></div>This estimate is now used to design a controller according to the Ziegler&ndash;Nichols frequency domain table (see <span id="bBIB2"><a href="#BIB2" id="ancbBIB2" class="intra_ref">&Aring;str&ouml;m &amp; H&auml;gglund, 1995</a></span>), yielding<div class="formula" id=""><div class="label">(27)</div><div class="mathml"><span id="mmlsi47" class="mathmlsrc" onclick="submitCitation('/science?_ob=MathURL&amp;_method=retrieve&amp;_eid=1-s2.0-S0005109802002054&amp;_mathId=si47.gif&amp;_pii=S0005109802002054&amp;_issn=00051098&amp;_acct=C000053881&amp;_version=1&amp;_userid=1583010&amp;md5=45f334183c6fcf57372579ec500d5b84')" style="cursor:pointer;" alt="Click to view the MathML source" title="Click to view the MathML source"><img class="imgLazyJSB" height="25" border="0" style="vertical-align:bottom" width="357" alt="View the MathML source" title="View the MathML source" src="/sd/grey_pxl.gif" data-inlimgsrc="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-si47.gif"><noscript><img height="25" border="0" style="vertical-align:bottom" width="357" alt="View the MathML source" title="View the MathML source" src="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-si47.gif"></noscript></span><!--Comment--></div></div>such that,<div class="formula" id=""><div class="label">(28)</div><div class="mathml"><span id="mmlsi48" class="mathmlsrc" onclick="submitCitation('/science?_ob=MathURL&amp;_method=retrieve&amp;_eid=1-s2.0-S0005109802002054&amp;_mathId=si48.gif&amp;_pii=S0005109802002054&amp;_issn=00051098&amp;_acct=C000053881&amp;_version=1&amp;_userid=1583010&amp;md5=54fae3ed87979165171b3af52404e902')" style="cursor:pointer;" alt="Click to view the MathML source" title="Click to view the MathML source"><img class="imgLazyJSB" height="34" border="0" style="vertical-align:bottom" width="184" alt="View the MathML source" title="View the MathML source" src="/sd/grey_pxl.gif" data-inlimgsrc="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-si48.gif"><noscript><img height="34" border="0" style="vertical-align:bottom" width="184" alt="View the MathML source" title="View the MathML source" src="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-si48.gif"></noscript></span><!--Comment--></div></div>This controller is used in the sequel for estimating the loop transfer function and the sensitivity function of the corresponding closed loop.</p><!--VALIDHTML--><h4 class="svArticle" id="section_lbl5.1.2">5.1.2. Loop transfer function estimation</h4><p class="svArticle section" id="">Consider the loop transfer function experiment, shown in <span id="bFIG3"><a href="#FIG3" id="ancbFIG3" class="intra_ref">Fig. 3</a></span>. The relay feedback method as presented in <span id="bBIB2"><a href="#BIB2" id="ancbBIB2" class="intra_ref">&Aring;str&ouml;m and H&auml;gglund (1995)</a></span> is applied to the closed loop in order to obtain the loop critical point. As before, this information is used to define the range for <em>r</em> such that the experiment is stable. The estimates are<div class="formula" id=""><div class="label">(29)</div><div class="mathml"><span id="mmlsi49" class="mathmlsrc" onclick="submitCitation('/science?_ob=MathURL&amp;_method=retrieve&amp;_eid=1-s2.0-S0005109802002054&amp;_mathId=si49.gif&amp;_pii=S0005109802002054&amp;_issn=00051098&amp;_acct=C000053881&amp;_version=1&amp;_userid=1583010&amp;md5=1850b9fef98f6837861a6f667d2b0571')" style="cursor:pointer;" alt="Click to view the MathML source" title="Click to view the MathML source"><img class="imgLazyJSB" height="24" border="0" style="vertical-align:bottom" width="219" alt="View the MathML source" title="View the MathML source" src="/sd/grey_pxl.gif" data-inlimgsrc="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-si49.gif"><noscript><img height="24" border="0" style="vertical-align:bottom" width="219" alt="View the MathML source" title="View the MathML source" src="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-si49.gif"></noscript></span><!--Comment--></div></div>Since the integrator in the controller yields a loop transfer function with infinite gain at zero frequency, this relay test is stable for any value of <em>r</em> such that <em>r</em>&gt;<em>K</em><sub><em>u</em></sub><sup>&minus;1</sup>=0.475. The chosen gains are<div class="formula" id=""><div class="label">(30)</div><div class="mathml"><span id="mmlsi50" class="mathmlsrc" onclick="submitCitation('/science?_ob=MathURL&amp;_method=retrieve&amp;_eid=1-s2.0-S0005109802002054&amp;_mathId=si50.gif&amp;_pii=S0005109802002054&amp;_issn=00051098&amp;_acct=C000053881&amp;_version=1&amp;_userid=1583010&amp;md5=38f7e6025b64ea3b553821707d70b222')" style="cursor:pointer;" alt="Click to view the MathML source" title="Click to view the MathML source"><span class="formulatext" title="click to view the MathML source">r=[0.512481632].</span></span><!--Comment--></div></div>The obtained estimates for a few points are shown in <span id="bTBL1"><a href="#TBL1" id="ancbTBL1" class="intra_ref">Table 1</a></span>. The Bode magnitude plot of these values is shown in <span id="bFIG5"><a href="#FIG5" id="ancbFIG5" class="intra_ref">Fig. 5</a></span>, while the Bode phase plot is shown in <span id="bFIG6"><a href="#FIG6" id="ancbFIG6" class="intra_ref">Fig. 6</a></span>.</p><!--VALIDHTML--><div class="figTblUpiOuter svArticle" id="table_TBL1"><div class="textboxdefault"><dl id="TBL1" data-t="t" class="table " data-label="Table 1"><dd class="lblCap"><p class="caption"><span class="label">Table 1.
+        </span>Loop transfer function estimation results</p></dd><dd class="table"><table><colgroup><col><col><col><col><col><col></colgroup><thead><tr><th rowspan="1" colspan="1"><span id="mmlsi5" class="mathmlsrc" onclick="submitCitation('/science?_ob=MathURL&amp;_method=retrieve&amp;_eid=1-s2.0-S0005109802002054&amp;_mathId=si5.gif&amp;_pii=S0005109802002054&amp;_issn=00051098&amp;_acct=C000053881&amp;_version=1&amp;_userid=1583010&amp;md5=171b2c472308af6ea77627bbf81e38b3')" style="cursor:pointer;" alt="Click to view the MathML source" title="Click to view the MathML source"><img class="imgLazyJSB" height="15" border="0" style="vertical-align:bottom" width="19" alt="View the MathML source" title="View the MathML source" src="/sd/grey_pxl.gif" data-inlimgsrc="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-si5.gif"><noscript><img height="15" border="0" style="vertical-align:bottom" width="19" alt="View the MathML source" title="View the MathML source" src="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-si5.gif"></noscript></span></th><th rowspan="1" colspan="1"><em>r</em></th><th rowspan="1" colspan="1"><span id="mmlsi6" class="mathmlsrc" onclick="submitCitation('/science?_ob=MathURL&amp;_method=retrieve&amp;_eid=1-s2.0-S0005109802002054&amp;_mathId=si6.gif&amp;_pii=S0005109802002054&amp;_issn=00051098&amp;_acct=C000053881&amp;_version=1&amp;_userid=1583010&amp;md5=23a02c688f59145755546d041ac30009')" style="cursor:pointer;" alt="Click to view the MathML source" title="Click to view the MathML source"><img class="imgLazyJSB" height="18" border="0" style="vertical-align:bottom" width="56" alt="View the MathML source" title="View the MathML source" src="/sd/grey_pxl.gif" data-inlimgsrc="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-si6.gif"><noscript><img height="18" border="0" style="vertical-align:bottom" width="56" alt="View the MathML source" title="View the MathML source" src="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-si6.gif"></noscript></span></th><th rowspan="1" colspan="1"><span id="mmlsi7" class="mathmlsrc" onclick="submitCitation('/science?_ob=MathURL&amp;_method=retrieve&amp;_eid=1-s2.0-S0005109802002054&amp;_mathId=si7.gif&amp;_pii=S0005109802002054&amp;_issn=00051098&amp;_acct=C000053881&amp;_version=1&amp;_userid=1583010&amp;md5=a04fd004204ea5dd26dc4dc07f8822f8')" style="cursor:pointer;" alt="Click to view the MathML source" title="Click to view the MathML source"><img class="imgLazyJSB" height="22" border="0" style="vertical-align:bottom" width="56" alt="View the MathML source" title="View the MathML source" src="/sd/grey_pxl.gif" data-inlimgsrc="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-si7.gif"><noscript><img height="22" border="0" style="vertical-align:bottom" width="56" alt="View the MathML source" title="View the MathML source" src="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-si7.gif"></noscript></span></th><th rowspan="1" colspan="1"><span id="mmlsi8" class="mathmlsrc" onclick="submitCitation('/science?_ob=MathURL&amp;_method=retrieve&amp;_eid=1-s2.0-S0005109802002054&amp;_mathId=si8.gif&amp;_pii=S0005109802002054&amp;_issn=00051098&amp;_acct=C000053881&amp;_version=1&amp;_userid=1583010&amp;md5=7d02ef72cffd21137a93c99009229f7c')" style="cursor:pointer;" alt="Click to view the MathML source" title="Click to view the MathML source"><img class="imgLazyJSB" height="17" border="0" style="vertical-align:bottom" width="59" alt="View the MathML source" title="View the MathML source" src="/sd/grey_pxl.gif" data-inlimgsrc="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-si8.gif"><noscript><img height="17" border="0" style="vertical-align:bottom" width="59" alt="View the MathML source" title="View the MathML source" src="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-si8.gif"></noscript></span></th><th rowspan="1" colspan="1"><span id="mmlsi9" class="mathmlsrc" onclick="submitCitation('/science?_ob=MathURL&amp;_method=retrieve&amp;_eid=1-s2.0-S0005109802002054&amp;_mathId=si9.gif&amp;_pii=S0005109802002054&amp;_issn=00051098&amp;_acct=C000053881&amp;_version=1&amp;_userid=1583010&amp;md5=209675d4677ffd1dbe4a4803870ee800')" style="cursor:pointer;" alt="Click to view the MathML source" title="Click to view the MathML source"><img class="imgLazyJSB" height="21" border="0" style="vertical-align:bottom" width="59" alt="View the MathML source" title="View the MathML source" src="/sd/grey_pxl.gif" data-inlimgsrc="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-si9.gif"><noscript><img height="21" border="0" style="vertical-align:bottom" width="59" alt="View the MathML source" title="View the MathML source" src="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-si9.gif"></noscript></span></th></tr></thead><tbody><tr><td rowspan="1" colspan="1">1.3370</td><td rowspan="1" colspan="1">0.5</td><td rowspan="1" colspan="1">0.5144</td><td rowspan="1" colspan="1">0.5135</td><td rowspan="1" colspan="1">&minus;146.74&deg;</td><td rowspan="1" colspan="1">&minus;147.23&deg;</td></tr><tr><td rowspan="1" colspan="1">0.3069</td><td rowspan="1" colspan="1">1</td><td rowspan="1" colspan="1">1.3287</td><td rowspan="1" colspan="1">1.3259</td><td rowspan="1" colspan="1">&minus;88.53&deg;</td><td rowspan="1" colspan="1">&minus;88.52&deg;</td></tr><tr><td rowspan="1" colspan="1">0.1454</td><td rowspan="1" colspan="1">2</td><td rowspan="1" colspan="1">2.4809</td><td rowspan="1" colspan="1">2.4823</td><td rowspan="1" colspan="1">&minus;87.53&deg;</td><td rowspan="1" colspan="1">&minus;87.51&deg;</td></tr><tr><td rowspan="1" colspan="1">0.0714</td><td rowspan="1" colspan="1">4</td><td rowspan="1" colspan="1">4.8801</td><td rowspan="1" colspan="1">4.8733</td><td rowspan="1" colspan="1">&minus;88.54&deg;</td><td rowspan="1" colspan="1">&minus;88.53&deg;</td></tr><tr><td rowspan="1" colspan="1">0.0089</td><td rowspan="1" colspan="1">32</td><td rowspan="1" colspan="1">38.8835</td><td rowspan="1" colspan="1">38.8071</td><td rowspan="1" colspan="1">&minus;89.81&deg;</td><td rowspan="1" colspan="1">&minus;89.78&deg;</td></tr></tbody></table></dd><dd class="fullsizeTable"><a onclick="openStrippedNS('/science?_ob=MiamiCaptionURL&amp;_method=retrieve&amp;_eid=1-s2.0-S0005109802002054&amp;_image=TBL1&amp;_ba=&amp;_fmt=full&amp;_orig=na&amp;_issn=00051098&amp;_pii=S0005109802002054&amp;_isTablePopup=Y&amp;_acct=C000053881&amp;_version=1&amp;_urlVersion=0&amp;_userid=1583010&amp;md5=e3810fdfe5f112f9f70d46b7f44e3f1b','');  return false;" title="Full-size table - Opens new window" href="#">Full-size table</a></dd><dd class="menuButtonLinks"><div class="btnHolder"><a class="menuTitle" href="#">Table options</a><div class="down_Btn"></div></div><ul class="menuButton"><li><a href="#TBL1" class="viewWS" title="View in workspace">View in workspace</a></li><li><div class="downloadCsv"><a title="Download as CSV" href="#">Download as CSV</a></div></li></ul></dd></dl></div></div><!--VALIDHTML--><div class="figTblUpiOuter svArticle" id="figure_FIG5"><div class="&#10;                    textboxdefault&#10;                "><dl class="figure" id="FIG5" data-t="f"><dt class="autoScroll" data-style="height:150px;width:237px;"><a class="figureLink" href="#gr5" title="Full-size image (2 K)"><img class="imgLazyJSB figure large" border="0" alt="Full-size image (2 K)" src="/sd/grey_pxl.gif" data-thumbsrc="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-gr5.sml" data-fullsrc="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-gr5.gif" height="150" width="237" data-thumbheight="79" data-thumbwidth="125" data-fullheight="150" data-fullwidth="237"><noscript class="figure large" border="0" alt="Full-size image" data-thumbsrc="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-gr5.sml" data-fullsrc="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-gr5.gif"><img class="figure large" border="0" alt="Full-size image (2 K)" src="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-gr5.gif" data-thumbsrc="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-gr5.sml" data-fullsrc="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-gr5.gif"></noscript></a></dt><dd id="labelCaptionFIG5"><p class="caption">Fig. 5.&#xA0;<span id="">Bode magnitude plot of the loop transfer function: real curve <span id="mmlsi1" class="mathmlsrc" onclick="submitCitation('/science?_ob=MathURL&amp;_method=retrieve&amp;_eid=1-s2.0-S0005109802002054&amp;_mathId=si1.gif&amp;_pii=S0005109802002054&amp;_issn=00051098&amp;_acct=C000053881&amp;_version=1&amp;_userid=1583010&amp;md5=46dd9e735e0eaeb2a4bb9edac007ef7f')" style="cursor:pointer;" alt="Click to view the MathML source" title="Click to view the MathML source"><span class="formulatext" title="click to view the MathML source">(&minus;),r</span></span> at <span id="mmlsi2" class="mathmlsrc" onclick="submitCitation('/science?_ob=MathURL&amp;_method=retrieve&amp;_eid=1-s2.0-S0005109802002054&amp;_mathId=si2.gif&amp;_pii=S0005109802002054&amp;_issn=00051098&amp;_acct=C000053881&amp;_version=1&amp;_userid=1583010&amp;md5=66a991de1f81d3943918c2e07c50124f')" style="cursor:pointer;" alt="Click to view the MathML source" title="Click to view the MathML source"><img class="imgLazyJSB" height="17" border="0" style="vertical-align:bottom" width="45" alt="View the MathML source" title="View the MathML source" src="/sd/grey_pxl.gif" data-inlimgsrc="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-si2.gif"><noscript><img height="17" border="0" style="vertical-align:bottom" width="45" alt="View the MathML source" title="View the MathML source" src="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-si2.gif"></noscript></span> and estimates using DFT (Δ).<!--Comment--></span><!--caption--></p></dd><dd class="menuButtonLinks"><div class="btnHolder"><a class="menuTitle" href="#">Figure options</a><div class="down_Btn"></div></div><ul class="menuButton"><li><a href="#FIG5" class="viewWS" title="View in workspace">View in workspace</a></li><li><a onclick="openStrippedNS('/science?_ob=MiamiCaptionURL&amp;_method=retrieve&amp;_eid=1-s2.0-S0005109802002054&amp;_image=1-s2.0-S0005109802002054-gr5.gif&amp;_ba=&amp;_fmt=full&amp;_orig=na&amp;_issn=00051098&amp;_pii=S0005109802002054&amp;_acct=C000053881&amp;_version=1&amp;_urlVersion=0&amp;_userid=1583010&amp;md5=00d56f9e49987baa07fd6b9e2d413482','labelCaptionFIG5','','S0005109802002054'); return false;" href="#gr5" title="View full-size image - Opens in new window">Download full-size image</a></li><li><a class="ppt" title="Download as PowerPoint slide" href="http://services.elsevier.com/SDWebExport/export/figure/S0005109802002054/1-s2.0-S0005109802002054-gr5.sml/ppt">Download as PowerPoint slide</a></li></ul></dd></dl></div></div><!--VALIDHTML--><div class="figTblUpiOuter svArticle" id="figure_FIG6"><div class="&#10;                    textboxdefault&#10;                "><dl class="figure" id="FIG6" data-t="f"><dt class="autoScroll" data-style="height:152px;width:237px;"><a class="figureLink" href="#gr6" title="Full-size image (3 K)"><img class="imgLazyJSB figure large" border="0" alt="Full-size image (3 K)" src="/sd/grey_pxl.gif" data-thumbsrc="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-gr6.sml" data-fullsrc="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-gr6.gif" height="152" width="237" data-thumbheight="80" data-thumbwidth="125" data-fullheight="152" data-fullwidth="237"><noscript class="figure large" border="0" alt="Full-size image" data-thumbsrc="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-gr6.sml" data-fullsrc="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-gr6.gif"><img class="figure large" border="0" alt="Full-size image (3 K)" src="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-gr6.gif" data-thumbsrc="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-gr6.sml" data-fullsrc="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-gr6.gif"></noscript></a></dt><dd id="labelCaptionFIG6"><p class="caption">Fig. 6.&#xA0;<span id="">Bode phase plot of the loop transfer function: real curve (&minus;) and estimates using DFT (Δ).<!--Comment--></span><!--caption--></p></dd><dd class="menuButtonLinks"><div class="btnHolder"><a class="menuTitle" href="#">Figure options</a><div class="down_Btn"></div></div><ul class="menuButton"><li><a href="#FIG6" class="viewWS" title="View in workspace">View in workspace</a></li><li><a onclick="openStrippedNS('/science?_ob=MiamiCaptionURL&amp;_method=retrieve&amp;_eid=1-s2.0-S0005109802002054&amp;_image=1-s2.0-S0005109802002054-gr6.gif&amp;_ba=&amp;_fmt=full&amp;_orig=na&amp;_issn=00051098&amp;_pii=S0005109802002054&amp;_acct=C000053881&amp;_version=1&amp;_urlVersion=0&amp;_userid=1583010&amp;md5=8004a2748774c56d4a21a35cd7f3f814','labelCaptionFIG6','','S0005109802002054'); return false;" href="#gr6" title="View full-size image - Opens in new window">Download full-size image</a></li><li><a class="ppt" title="Download as PowerPoint slide" href="http://services.elsevier.com/SDWebExport/export/figure/S0005109802002054/1-s2.0-S0005109802002054-gr6.sml/ppt">Download as PowerPoint slide</a></li></ul></dd></dl></div></div><!--VALIDHTML--><h4 class="svArticle" id="section_lbl5.1.3">5.1.3. Sensitivity function estimation</h4><p class="svArticle section" id="">Application of the relay test results in that the sensitivity experiment is stable for all <em>r</em>&gt;0. In this case, the following set of values is used,<div class="formula" id=""><div class="label">(31)</div><div class="mathml"><span id="mmlsi51" class="mathmlsrc" onclick="submitCitation('/science?_ob=MathURL&amp;_method=retrieve&amp;_eid=1-s2.0-S0005109802002054&amp;_mathId=si51.gif&amp;_pii=S0005109802002054&amp;_issn=00051098&amp;_acct=C000053881&amp;_version=1&amp;_userid=1583010&amp;md5=e20dc8d3fbcad888d7540ac2c5b46de6')" style="cursor:pointer;" alt="Click to view the MathML source" title="Click to view the MathML source"><span class="formulatext" title="click to view the MathML source">r&minus;1=[0.20.40.60.81.01.21.41.61.82.0].</span></span><!--Comment--></div></div>For <em>r</em><sup>&minus;1</sup>=2.0 the limit cycle vanishes at process output, which means that the maximum sensitivity peak is reached. Therefore, no limit cycle is developed for any values of <em>r</em> such that <em>r</em><sup>&minus;1</sup>&gt;2.0. For this closed loop, the maximum sensitivity peak is given by the infinite norm of <em>S</em>(j<em>ω</em>),<div class="formula" id=""><div class="label">(32)</div><div class="mathml"><span id="mmlsi52" class="mathmlsrc" onclick="submitCitation('/science?_ob=MathURL&amp;_method=retrieve&amp;_eid=1-s2.0-S0005109802002054&amp;_mathId=si52.gif&amp;_pii=S0005109802002054&amp;_issn=00051098&amp;_acct=C000053881&amp;_version=1&amp;_userid=1583010&amp;md5=0c5299e3bc049aaa7dbb6a836fcb7060')" style="cursor:pointer;" alt="Click to view the MathML source" title="Click to view the MathML source"><img class="imgLazyJSB" height="23" border="0" style="vertical-align:bottom" width="222" alt="View the MathML source" title="View the MathML source" src="/sd/grey_pxl.gif" data-inlimgsrc="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-si52.gif"><noscript><img height="23" border="0" style="vertical-align:bottom" width="222" alt="View the MathML source" title="View the MathML source" src="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-si52.gif"></noscript></span><!--Comment--></div></div>A few of the obtained estimates are shown in <span id="bTBL2"><a href="#TBL2" id="ancbTBL2" class="intra_ref">Table 2</a></span>, and the Bode magnitude plot of these values and the true curve is shown in <span id="bFIG7"><a href="#FIG7" id="ancbFIG7" class="intra_ref">Fig. 7</a></span>. The Bode phase plot of the estimates and the true curve is shown in <span id="bFIG8"><a href="#FIG8" id="ancbFIG8" class="intra_ref">Fig. 8</a></span>.</p><!--VALIDHTML--><div class="figTblUpiOuter svArticle" id="table_TBL2"><div class="textboxdefault"><dl id="TBL2" data-t="t" class="table " data-label="Table 2"><dd class="lblCap"><p class="caption"><span class="label">Table 2.
+        </span>Sensitivity function estimation results</p></dd><dd class="table"><table><colgroup><col><col><col><col><col><col></colgroup><thead><tr><th rowspan="1" colspan="1"><span id="mmlsi10" class="mathmlsrc" onclick="submitCitation('/science?_ob=MathURL&amp;_method=retrieve&amp;_eid=1-s2.0-S0005109802002054&amp;_mathId=si10.gif&amp;_pii=S0005109802002054&amp;_issn=00051098&amp;_acct=C000053881&amp;_version=1&amp;_userid=1583010&amp;md5=d14e9cfc2a2412822bd9ce27b8deb665')" style="cursor:pointer;" alt="Click to view the MathML source" title="Click to view the MathML source"><img class="imgLazyJSB" height="15" border="0" style="vertical-align:bottom" width="19" alt="View the MathML source" title="View the MathML source" src="/sd/grey_pxl.gif" data-inlimgsrc="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-si10.gif"><noscript><img height="15" border="0" style="vertical-align:bottom" width="19" alt="View the MathML source" title="View the MathML source" src="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-si10.gif"></noscript></span></th><th rowspan="1" colspan="1"><em>r</em><sup>&minus;1</sup></th><th rowspan="1" colspan="1"><span id="mmlsi11" class="mathmlsrc" onclick="submitCitation('/science?_ob=MathURL&amp;_method=retrieve&amp;_eid=1-s2.0-S0005109802002054&amp;_mathId=si11.gif&amp;_pii=S0005109802002054&amp;_issn=00051098&amp;_acct=C000053881&amp;_version=1&amp;_userid=1583010&amp;md5=3a502f987e5b186334f454f7a6f50513')" style="cursor:pointer;" alt="Click to view the MathML source" title="Click to view the MathML source"><img class="imgLazyJSB" height="18" border="0" style="vertical-align:bottom" width="55" alt="View the MathML source" title="View the MathML source" src="/sd/grey_pxl.gif" data-inlimgsrc="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-si11.gif"><noscript><img height="18" border="0" style="vertical-align:bottom" width="55" alt="View the MathML source" title="View the MathML source" src="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-si11.gif"></noscript></span></th><th rowspan="1" colspan="1"><span id="mmlsi12" class="mathmlsrc" onclick="submitCitation('/science?_ob=MathURL&amp;_method=retrieve&amp;_eid=1-s2.0-S0005109802002054&amp;_mathId=si12.gif&amp;_pii=S0005109802002054&amp;_issn=00051098&amp;_acct=C000053881&amp;_version=1&amp;_userid=1583010&amp;md5=4fe809a8e6f2a0f9d27aeb6564094b8b')" style="cursor:pointer;" alt="Click to view the MathML source" title="Click to view the MathML source"><img class="imgLazyJSB" height="22" border="0" style="vertical-align:bottom" width="55" alt="View the MathML source" title="View the MathML source" src="/sd/grey_pxl.gif" data-inlimgsrc="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-si12.gif"><noscript><img height="22" border="0" style="vertical-align:bottom" width="55" alt="View the MathML source" title="View the MathML source" src="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-si12.gif"></noscript></span></th><th rowspan="1" colspan="1"><span id="mmlsi13" class="mathmlsrc" onclick="submitCitation('/science?_ob=MathURL&amp;_method=retrieve&amp;_eid=1-s2.0-S0005109802002054&amp;_mathId=si13.gif&amp;_pii=S0005109802002054&amp;_issn=00051098&amp;_acct=C000053881&amp;_version=1&amp;_userid=1583010&amp;md5=a7817be9b9d87485f72b58497513c3ef')" style="cursor:pointer;" alt="Click to view the MathML source" title="Click to view the MathML source"><img class="imgLazyJSB" height="17" border="0" style="vertical-align:bottom" width="58" alt="View the MathML source" title="View the MathML source" src="/sd/grey_pxl.gif" data-inlimgsrc="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-si13.gif"><noscript><img height="17" border="0" style="vertical-align:bottom" width="58" alt="View the MathML source" title="View the MathML source" src="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-si13.gif"></noscript></span></th><th rowspan="1" colspan="1"><span id="mmlsi14" class="mathmlsrc" onclick="submitCitation('/science?_ob=MathURL&amp;_method=retrieve&amp;_eid=1-s2.0-S0005109802002054&amp;_mathId=si14.gif&amp;_pii=S0005109802002054&amp;_issn=00051098&amp;_acct=C000053881&amp;_version=1&amp;_userid=1583010&amp;md5=98214004d98713380c22591425b4665c')" style="cursor:pointer;" alt="Click to view the MathML source" title="Click to view the MathML source"><img class="imgLazyJSB" height="21" border="0" style="vertical-align:bottom" width="58" alt="View the MathML source" title="View the MathML source" src="/sd/grey_pxl.gif" data-inlimgsrc="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-si14.gif"><noscript><img height="21" border="0" style="vertical-align:bottom" width="58" alt="View the MathML source" title="View the MathML source" src="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-si14.gif"></noscript></span></th></tr></thead><tbody><tr><td rowspan="1" colspan="1">0.0611</td><td rowspan="1" colspan="1">0.2</td><td rowspan="1" colspan="1">0.1725</td><td rowspan="1" colspan="1">0.1744</td><td rowspan="1" colspan="1">78.80&deg;</td><td rowspan="1" colspan="1">79.41&deg;</td></tr><tr><td rowspan="1" colspan="1">0.1361</td><td rowspan="1" colspan="1">0.4</td><td rowspan="1" colspan="1">0.3498</td><td rowspan="1" colspan="1">0.3529</td><td rowspan="1" colspan="1">67.16&deg;</td><td rowspan="1" colspan="1">67.53&deg;</td></tr><tr><td rowspan="1" colspan="1">0.7636</td><td rowspan="1" colspan="1">1.0</td><td rowspan="1" colspan="1">0.9783</td><td rowspan="1" colspan="1">0.9848</td><td rowspan="1" colspan="1">43.12&deg;</td><td rowspan="1" colspan="1">43.21&deg;</td></tr><tr><td rowspan="1" colspan="1">1.4673</td><td rowspan="1" colspan="1">1.6</td><td rowspan="1" colspan="1">1.6787</td><td rowspan="1" colspan="1">1.6716</td><td rowspan="1" colspan="1">19.30&deg;</td><td rowspan="1" colspan="1">19.41&deg;</td></tr><tr><td rowspan="1" colspan="1">1.6622</td><td rowspan="1" colspan="1">1.8</td><td rowspan="1" colspan="1">1.7245</td><td rowspan="1" colspan="1">1.7056</td><td rowspan="1" colspan="1">8.95&deg;</td><td rowspan="1" colspan="1">9.50&deg;</td></tr><tr><td rowspan="1" colspan="1">&mdash;</td><td rowspan="1" colspan="1">2.0</td><td rowspan="1" colspan="1">&mdash;</td><td rowspan="1" colspan="1">&mdash;</td><td rowspan="1" colspan="1">&mdash;</td><td rowspan="1" colspan="1">&mdash;</td></tr></tbody></table></dd><dd class="fullsizeTable"><a onclick="openStrippedNS('/science?_ob=MiamiCaptionURL&amp;_method=retrieve&amp;_eid=1-s2.0-S0005109802002054&amp;_image=TBL2&amp;_ba=&amp;_fmt=full&amp;_orig=na&amp;_issn=00051098&amp;_pii=S0005109802002054&amp;_isTablePopup=Y&amp;_acct=C000053881&amp;_version=1&amp;_urlVersion=0&amp;_userid=1583010&amp;md5=0d90dd28e478149d059178a7029819f8','');  return false;" title="Full-size table - Opens new window" href="#">Full-size table</a></dd><dd class="menuButtonLinks"><div class="btnHolder"><a class="menuTitle" href="#">Table options</a><div class="down_Btn"></div></div><ul class="menuButton"><li><a href="#TBL2" class="viewWS" title="View in workspace">View in workspace</a></li><li><div class="downloadCsv"><a title="Download as CSV" href="#">Download as CSV</a></div></li></ul></dd></dl></div></div><!--VALIDHTML--><div class="figTblUpiOuter svArticle" id="figure_FIG7"><div class="&#10;                    textboxdefault&#10;                "><dl class="figure" id="FIG7" data-t="f"><dt class="autoScroll" data-style="height:154px;width:237px;"><a class="figureLink" href="#gr7" title="Full-size image (3 K)"><img class="imgLazyJSB figure large" border="0" alt="Full-size image (3 K)" src="/sd/grey_pxl.gif" data-thumbsrc="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-gr7.sml" data-fullsrc="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-gr7.gif" height="154" width="237" data-thumbheight="81" data-thumbwidth="125" data-fullheight="154" data-fullwidth="237"><noscript class="figure large" border="0" alt="Full-size image" data-thumbsrc="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-gr7.sml" data-fullsrc="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-gr7.gif"><img class="figure large" border="0" alt="Full-size image (3 K)" src="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-gr7.gif" data-thumbsrc="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-gr7.sml" data-fullsrc="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-gr7.gif"></noscript></a></dt><dd id="labelCaptionFIG7"><p class="caption">Fig. 7.&#xA0;<span id="">Bode magnitude plot of the sensitivity function: real curve <span id="mmlsi3" class="mathmlsrc" onclick="submitCitation('/science?_ob=MathURL&amp;_method=retrieve&amp;_eid=1-s2.0-S0005109802002054&amp;_mathId=si3.gif&amp;_pii=S0005109802002054&amp;_issn=00051098&amp;_acct=C000053881&amp;_version=1&amp;_userid=1583010&amp;md5=fecb4035e07d38edf47c735de5a69248')" style="cursor:pointer;" alt="Click to view the MathML source" title="Click to view the MathML source"><span class="formulatext" title="click to view the MathML source">(&minus;),r&minus;1</span></span> at <span id="mmlsi4" class="mathmlsrc" onclick="submitCitation('/science?_ob=MathURL&amp;_method=retrieve&amp;_eid=1-s2.0-S0005109802002054&amp;_mathId=si4.gif&amp;_pii=S0005109802002054&amp;_issn=00051098&amp;_acct=C000053881&amp;_version=1&amp;_userid=1583010&amp;md5=38fa977ec66c0a44a6ce018824b85854')" style="cursor:pointer;" alt="Click to view the MathML source" title="Click to view the MathML source"><img class="imgLazyJSB" height="17" border="0" style="vertical-align:bottom" width="45" alt="View the MathML source" title="View the MathML source" src="/sd/grey_pxl.gif" data-inlimgsrc="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-si4.gif"><noscript><img height="17" border="0" style="vertical-align:bottom" width="45" alt="View the MathML source" title="View the MathML source" src="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-si4.gif"></noscript></span> and estimates using DFT (Δ).<!--Comment--></span><!--caption--></p></dd><dd class="menuButtonLinks"><div class="btnHolder"><a class="menuTitle" href="#">Figure options</a><div class="down_Btn"></div></div><ul class="menuButton"><li><a href="#FIG7" class="viewWS" title="View in workspace">View in workspace</a></li><li><a onclick="openStrippedNS('/science?_ob=MiamiCaptionURL&amp;_method=retrieve&amp;_eid=1-s2.0-S0005109802002054&amp;_image=1-s2.0-S0005109802002054-gr7.gif&amp;_ba=&amp;_fmt=full&amp;_orig=na&amp;_issn=00051098&amp;_pii=S0005109802002054&amp;_acct=C000053881&amp;_version=1&amp;_urlVersion=0&amp;_userid=1583010&amp;md5=174848bede9f37ba54a87c313de30090','labelCaptionFIG7','','S0005109802002054'); return false;" href="#gr7" title="View full-size image - Opens in new window">Download full-size image</a></li><li><a class="ppt" title="Download as PowerPoint slide" href="http://services.elsevier.com/SDWebExport/export/figure/S0005109802002054/1-s2.0-S0005109802002054-gr7.sml/ppt">Download as PowerPoint slide</a></li></ul></dd></dl></div></div><!--VALIDHTML--><div class="figTblUpiOuter svArticle" id="figure_FIG8"><div class="&#10;                    textboxdefault&#10;                "><dl class="figure" id="FIG8" data-t="f"><dt class="autoScroll" data-style="height:151px;width:236px;"><a class="figureLink" href="#gr8" title="Full-size image (3 K)"><img class="imgLazyJSB figure large" border="0" alt="Full-size image (3 K)" src="/sd/grey_pxl.gif" data-thumbsrc="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-gr8.sml" data-fullsrc="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-gr8.gif" height="151" width="236" data-thumbheight="80" data-thumbwidth="125" data-fullheight="151" data-fullwidth="236"><noscript class="figure large" border="0" alt="Full-size image" data-thumbsrc="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-gr8.sml" data-fullsrc="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-gr8.gif"><img class="figure large" border="0" alt="Full-size image (3 K)" src="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-gr8.gif" data-thumbsrc="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-gr8.sml" data-fullsrc="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-gr8.gif"></noscript></a></dt><dd id="labelCaptionFIG8"><p class="caption">Fig. 8.&#xA0;<span id="">Bode phase plot of the sensitivity function: real curve (&minus;) and estimates using DFT (Δ).<!--Comment--></span><!--caption--></p></dd><dd class="menuButtonLinks"><div class="btnHolder"><a class="menuTitle" href="#">Figure options</a><div class="down_Btn"></div></div><ul class="menuButton"><li><a href="#FIG8" class="viewWS" title="View in workspace">View in workspace</a></li><li><a onclick="openStrippedNS('/science?_ob=MiamiCaptionURL&amp;_method=retrieve&amp;_eid=1-s2.0-S0005109802002054&amp;_image=1-s2.0-S0005109802002054-gr8.gif&amp;_ba=&amp;_fmt=full&amp;_orig=na&amp;_issn=00051098&amp;_pii=S0005109802002054&amp;_acct=C000053881&amp;_version=1&amp;_urlVersion=0&amp;_userid=1583010&amp;md5=ee3cfeb6503c8f47dd5788f27ecce5f1','labelCaptionFIG8','','S0005109802002054'); return false;" href="#gr8" title="View full-size image - Opens in new window">Download full-size image</a></li><li><a class="ppt" title="Download as PowerPoint slide" href="http://services.elsevier.com/SDWebExport/export/figure/S0005109802002054/1-s2.0-S0005109802002054-gr8.sml/ppt">Download as PowerPoint slide</a></li></ul></dd></dl></div></div><!--VALIDHTML--><h2 class="svArticle" id="section_lbl6">6. Conclusions</h2><p class="svArticle section" id="">In this paper, a new technique for transfer function magnitude estimation is presented. A basic procedure is developed and new relay experiments are obtained for estimating frequency points in the loop transfer function and the sensitivity function. Stability conditions are presented which make the technique reliable for application to actual processes. Simulation examples illustrate the capabilities of the identification procedures.</p><!--VALIDHTML--><script type="text/javascript">
+            prs.rt("ref_start");
+            </script><div class="refText svRefs" id="bibl001"><h2 id="bibl001">References</h2><ol class="references"><li id="BIB1" data-t="r"><ul class="reference" id=""><li class="referenceLabel"><a href="#BIB1" class="label intra_ref">&Aring;str&ouml;m and H&auml;gglund 1984</a></li><li class="author">K.J. &Aring;str&ouml;m, T. H&auml;gglund</li><li class="title"><p>Automatic tuning of simple regulators with specifications on phase and amplitude margins</p></li><li class="source"><p>Automatica, 20 (5) (1984), pp. 645&#x2013;651</p></li><li class="external refPlaceHolder" id="bibsbref1" data-refres="N"><img class="refimgLoader" alt="" src="http://cdn.els-cdn.com/sd/loading_icon.gif"></li></ul><script language="Javascript" type="text/javascript">
+             myMap['bibsbref1'] = new Array();
+        </script></li><li id="BIB2" data-t="r"><ul class="reference" id=""><li class="referenceLabel"><a href="#BIB2" class="label intra_ref">&Aring;str&ouml;m and H&auml;gglund 1995</a></li><li class="author">K.J. &Aring;str&ouml;m, T. H&auml;gglund</li><li class="source"><p>PID controllers: Theory, design and tuning (2nd ed.)Instrument Society of America, Research Triangle Park, NC (1995)</p></li><li class="external refPlaceHolder" id="bibsbref2" data-refres="N"><img class="refimgLoader" alt="" src="http://cdn.els-cdn.com/sd/loading_icon.gif"></li></ul><script language="Javascript" type="text/javascript">
+             myMap['bibsbref2'] = new Array();
+        </script></li><li id="BIB3" data-t="r"><ul class="reference" id=""><li class="referenceLabel"><a href="#BIB3" class="label intra_ref">Barros and Wittenmark 1997</a></li><li class="source">Barros, P.R., &amp; Wittenmark, B. (1997). Frequency domain sensitivity shaping using overparametrized controllers. In <em>34th IEEE CDC&mdash;conference on decision and control</em>, San Diego, CA, USA (pp. 2716&ndash;2721).</li><li class="external refPlaceHolder" id="bibsbref3" data-refres="N"><img class="refimgLoader" alt="" src="http://cdn.els-cdn.com/sd/loading_icon.gif"></li></ul><script language="Javascript" type="text/javascript">
+             myMap['bibsbref3'] = new Array();
+        </script></li><li id="BIB4" data-t="r"><ul class="reference" id=""><li class="referenceLabel"><a href="#BIB4" class="label intra_ref">de Arruda and Barros 2000</a></li><li class="source">de Arruda, G.H.M., &amp; Barros, P.R. (2000). Relay based closed loop transfer function estimation, Vol. 3. <em>2000 American control conference</em>, Chicago, USA (pp. 1812&ndash;1816).</li><li class="external refPlaceHolder" id="bibsbref4" data-refres="N"><img class="refimgLoader" alt="" src="http://cdn.els-cdn.com/sd/loading_icon.gif"></li></ul><script language="Javascript" type="text/javascript">
+             myMap['bibsbref4'] = new Array();
+        </script></li><li id="BIB5" data-t="r"><ul class="reference" id=""><li class="referenceLabel"><a href="#BIB5" class="label intra_ref">de Arruda, Barros, &amp; Bazanella 2002</a></li><li class="source">de Arruda, G.H.M., Barros, P.R., &amp; Bazanella, A.S. (2002). Dynamics of a relay based frequency response estimator. <em>15th IFAC World Congress on automatic control</em>, Barcelona, Spain.</li><li class="external refPlaceHolder" id="bibsbref5" data-refres="N"><img class="refimgLoader" alt="" src="http://cdn.els-cdn.com/sd/loading_icon.gif"></li></ul><script language="Javascript" type="text/javascript">
+             myMap['bibsbref5'] = new Array();
+        </script></li><li id="BIB6" data-t="r"><ul class="reference" id=""><li class="referenceLabel"><a href="#BIB6" class="label intra_ref">Doyle, Francis, &amp; Tannenbaum 1995</a></li><li class="author">J.C. Doyle, B.A. Francis, A.R. Tannenbaum</li><li class="source"><p>Feedback control theoryMacmillan, Englewood Cliffs, NJ (1995)</p></li><li class="external refPlaceHolder" id="bibsbref6" data-refres="N"><img class="refimgLoader" alt="" src="http://cdn.els-cdn.com/sd/loading_icon.gif"></li></ul><script language="Javascript" type="text/javascript">
+             myMap['bibsbref6'] = new Array();
+        </script></li><li id="BIB7" data-t="r"><ul class="reference" id=""><li class="referenceLabel"><a href="#BIB7" class="label intra_ref">Guillaume, Pintelon, &amp; Schoukens 1992</a></li><li class="author">P. Guillaume, R. Pintelon, J. Schoukens</li><li class="title"><p>Nonparametric frequency response functions estimators based on non-linear averaging techniques</p></li><li class="source"><p>IEEE Transactions on Instrumentation and Measurement, IM-41 (6) (1992), pp. 739&#x2013;746</p></li><li class="external refPlaceHolder" id="bibsbref7" data-refres="N"><img class="refimgLoader" alt="" src="http://cdn.els-cdn.com/sd/loading_icon.gif"></li></ul><script language="Javascript" type="text/javascript">
+             myMap['bibsbref7'] = new Array();
+        </script></li><li id="BIB8" data-t="r"><ul class="reference" id=""><li class="referenceLabel"><a href="#BIB8" class="label intra_ref">Langer and Landau 1999</a></li><li class="author">J. Langer, I.D. Landau</li><li class="title"><p>Combined pole placement/sensitivity function shaping method using convex optimization criteria</p></li><li class="source"><p>Automatica, 35 (6) (1999), pp. 1111&#x2013;1120</p></li><li class="external refPlaceHolder" id="bibsbref8" data-refres="N"><img class="refimgLoader" alt="" src="http://cdn.els-cdn.com/sd/loading_icon.gif"></li></ul><script language="Javascript" type="text/javascript">
+             myMap['bibsbref8'] = new Array();
+        </script></li><li id="BIB9" data-t="r"><ul class="reference" id=""><li class="referenceLabel"><a href="#BIB9" class="label intra_ref">Ljung 1999</a></li><li class="author">L. Ljung</li><li class="source"><p>System identification: Theory for the user (2nd ed.)Prentice-Hall, Upper Saddle River, NJ (1999)</p></li><li class="external refPlaceHolder" id="bibsbref9" data-refres="N"><img class="refimgLoader" alt="" src="http://cdn.els-cdn.com/sd/loading_icon.gif"></li></ul><script language="Javascript" type="text/javascript">
+             myMap['bibsbref9'] = new Array();
+        </script></li><li id="BIB10" data-t="r"><ul class="reference" id=""><li class="referenceLabel"><a href="#BIB10" class="label intra_ref">Pintelon and Schoukens 1996</a></li><li class="author">R. Pintelon, J. Schoukens</li><li class="title"><p>An improved sinewave fitting procedure for characterizing data acquisition channels</p></li><li class="source"><p>IEEE Transactions on Instrumentation and Measurement, IM-45 (2) (1996), pp. 588&#x2013;593</p></li><li class="external refPlaceHolder" id="bibsbref10" data-refres="N"><img class="refimgLoader" alt="" src="http://cdn.els-cdn.com/sd/loading_icon.gif"></li></ul><script language="Javascript" type="text/javascript">
+             myMap['bibsbref10'] = new Array();
+        </script></li><li id="BIB11" data-t="r"><ul class="reference" id=""><li class="referenceLabel"><a href="#BIB11" class="label intra_ref">Schei 1992</a></li><li class="author">T.S. Schei</li><li class="title"><p>A method for closed loop automatic tuning of PID controllers</p></li><li class="source"><p>Automatica, 28 (3) (1992), pp. 587&#x2013;591</p></li><li class="external refPlaceHolder" id="bibsbref11" data-refres="N"><img class="refimgLoader" alt="" src="http://cdn.els-cdn.com/sd/loading_icon.gif"></li></ul><script language="Javascript" type="text/javascript">
+             myMap['bibsbref11'] = new Array();
+        </script></li><li id="BIB12" data-t="r"><ul class="reference" id=""><li class="referenceLabel"><a href="#BIB12" class="label intra_ref">Schei 1994</a></li><li class="author">T.S. Schei</li><li class="title"><p>Automatic tuning of PID controllers based on transfer function estimation</p></li><li class="source"><p>Automatica, 30 (12) (1994), pp. 1983&#x2013;1989</p></li><li class="external refPlaceHolder" id="bibsbref12" data-refres="N"><img class="refimgLoader" alt="" src="http://cdn.els-cdn.com/sd/loading_icon.gif"></li></ul><script language="Javascript" type="text/javascript">
+             myMap['bibsbref12'] = new Array();
+        </script></li><li id="BIB13" data-t="r"><ul class="reference" id=""><li class="referenceLabel"><a href="#BIB13" class="label intra_ref">Tan, Wang, Hang, &amp; H&auml;gglund 1999</a></li><li class="author">K.K. Tan, Q.-G. Wang, C.C. Hang, T.J. H&auml;gglund</li><li class="source"><p>Advances in PID controlSpringer, London (1999)</p></li><li class="external refPlaceHolder" id="bibsbref13" data-refres="N"><img class="refimgLoader" alt="" src="http://cdn.els-cdn.com/sd/loading_icon.gif"></li></ul><script language="Javascript" type="text/javascript">
+             myMap['bibsbref13'] = new Array();
+        </script></li><li id="BIB14" data-t="r"><ul class="reference" id=""><li class="referenceLabel"><a href="#BIB14" class="label intra_ref">Wang, Hang, &amp; Bi 1999</a></li><li class="author">Q.-G. Wang, C.-C. Hang, Q. Bi</li><li class="title"><p>A technique for frequency response identification from relay feedback</p></li><li class="source"><p>IEEE Transactions on Control Systems Technology, 7 (1) (1999), pp. 122&#x2013;128</p></li><li class="external refPlaceHolder" id="bibsbref14" data-refres="N"><img class="refimgLoader" alt="" src="http://cdn.els-cdn.com/sd/loading_icon.gif"></li></ul><script language="Javascript" type="text/javascript">
+             myMap['bibsbref14'] = new Array();
+        </script></li></ol></div><!--VALIDHTML--><div class="artFooterContent"><dl class="footnote" id="item1" data-t="n"><dt class="label"><a href="#bitem1" class="intra_ref">☆</a></dt><dd><p>This paper was not presented at any IFAC meeting. This paper was recommended for publication in revised form by Associate Editor Tor Arne Johansen under the direction of Editor Sigurd Skogestad.</p></dd></dl><dl class="correspondence" id="CORAST"><dt class="label topPadd"><a href="#bCORAST" class="intra_ref"><sup><img border="0" src="http://cdn.els-cdn.com/sd/entities/REcor.gif" alt="Corresponding author contact information" title="Corresponding author contact information"></sup></a></dt><dd>Corresponding author. Tel.: +55-083-3101147; fax: +55-083-3101418</dd></dl><!--footerNotes--></div><div class="articleText svArticle" id="vitae"><h2 id="m4vt1">Vitae</h2><div id="AUT1" class="vitae"><span><img height="114" border="0" align="middle" width="86" style="vertical-align: bottom;" alt="Image" title="Image" src="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-fx1.sml"></span><p id=""><strong class="boldFont">Gustavo H. M. de Arruda</strong> received the B.Sc. and M.Sc. degrees in Electrical Engineering from the Universidade Federal da Paraı́ba (now Universidade Federal de Campina Grande), Brazil, in 1998 and 2000, where he is also currently working towards the D.Sc. degree in Electrical Engineering. His main research interests are applications of relay feedback structures to identification and automatic controller tuning, and analysis of nonlinear phenomena in piecewise linear systems.</p></div><!--VALIDHTML--><div id="AUT2" class="vitae"><span><img height="114" border="0" align="middle" width="86" style="vertical-align: bottom;" alt="Image" title="Image" src="http://ars.els-cdn.com/content/image/1-s2.0-S0005109802002054-fx2.sml"></span><p id=""><strong class="boldFont">P&eacute;ricles R. Barros</strong> received the Bachelor's degree in Electrical Engineering (1979) and the M.Sc. degrees (1985) from the Universidade Federal da Paraı́ba &mdash; Brazil, and Ph.D. degree (1990) from The Newcastle University &mdash; Australia. In 1981 he was a trainee at the Philips International Institute &mdash; The Netherlands. From 1982 to 1985 he worked as engineer, lecturer and systems analyst within Brazil. In 1986 he was appointed Lecturer at the Departamento de Engenharia El&eacute;trica, Universidade Federal da Paraı́ba &mdash; Brazil (now Universidade Federal de Campina Grande), where he is a Professor in Control Systems since 1997. In 1996/1997 he spent his sabatical year at the Uppsala University &mdash; Sweden and at the Lund Institute of Technology &mdash; Sweden. His main research areas are system identification, controller design and tuning and adaptive control.</p></div><!--VALIDHTML--></div><p class="copyright">Copyright &copy; 2002 Elsevier Science Ltd. All rights reserved.</p><!--VALIDHTML-->
+<script>prs.rt('data_end');</script>
+       
+        
+    </div>
+ </div>
+ <div id="rightPane" class="column" aria-label="Related content" role="complementary">
+   <div class="toggleSideBar">
+      <a tabindex=0>
+         <div class="close" title="Open to view article outline"></div>
+      </a>
+    </div>
+    <div id="rightInner" class="rightInner">
+       <h2 class="accordionHead first-tab bibliographic">
+    <span class="showHideIcon"></span>
+    Bibliographic information
+</h2>
+<div class="accordionContent">
+    <div class="innerPadding js_bibliographic_content">
+
+    </div>
+</div>
+
+
+  <h2 class="accordionHead relatedArticles">
+    <span class="showHideIcon"></span>
+    Citing and related articles
+  </h2>
+  <div class="accordionContent">
+    <div class="innerPadding js_citation_content">
+      
+        
+     
+
+     
+     
+        <div class="articleList">
+             <h3>Related articles</h3>
+             <ol id="relArtList"><li class="note"><p>No articles found.</p></li></ol>
+        </div>
+     
+
+     
+         
+             <ol class="citedByLink"><div class="boxLink"><a href="/science?_ob=RedirectURL&_method=outwardLink&_partnerName=656&_eid=1-s2.0-S0005109802002054&_pii=S0005109802002054&_origin=article&_zone=art_page&_targetURL=http%3A%2F%2Fwww.scopus.com%2Finward%2Fcitedby.url%3Feid%3D2-s2.0-0037295222%26partnerID%3D10%26rel%3DR3.0.0%26md5%3D5218b5032f1cc7764ff1e46e7097cf5d&_acct=C000037878&_version=1&_userid=687335&md5=db2687e2d90f7bfdd04562a4c3ad8bc6"  rel="nofollow" class="olSpawnWindow" target="outwardLink"><span class='scopus_logo_txt'>Cited by in Scopus (10)</span></a></div></ol>
+         
+     
+
+     
+         
+             <div class="articleList">
+                 <h3>Related reference work articles</h3>
+                 <ol id="relRefList"><li class="note"><p>No articles found.</p></li></ol>
+             </div>
+         
+      
+
+    </div>
+  </div>
+
+
+
+  <h2 class="accordionHead applications">
+    <span class="showHideIcon"></span>
+    Applications and tools
+  </h2>
+  <div class="accordionContent">
+    <div class="innerPaddingApp js_application_content">
+
+      
+        <div id="SD_AT1P" class="boxLink sgfNoTitleBar sgfNoGadgetBorder"></div>
+      
+
+      
+        <div id="SD_FTA1" class="boxLink sgfHorToolbar sgfShowMyApps sgfShowMoreLessApps"></div>
+      
+
+    </div>
+  </div>
+
+
+<h2 class="accordionHead last-tab workspace">
+    <span class="showHideIcon"></span>
+    Workspace
+</h2>
+<div class="accordionContent">
+    <div class="innerPadding js_workspace_content">
+        <div class="scrollArea">
+           <li class="note"><p>No content has been selected.</p></li>
+           <div id="workSpaceView"></div>
+        </div>
+    </div>
+    <div class="hidescrollbar"></div>
+</div>
+
+    </div>
+ </div>
+</div>
+<div style="clear:both;"></div>
+<div id="footer-area" aria-label="product support" role="contentinfo">
+  <div id="sdFoot">
+    <div id="footer">	
+  <div class="bottomArticle"></div>
+  <div class="padding">
+    <div id="linkArea">
+      <div class="padding">
+        <div style="float:left;width:0;height:1px;"></div>
+        <div id="banner-bottom">
+          <a href="http://www.elsevier.com" target="_blank"><img src="http://cdn.els-cdn.com/sd/wordmark_elsevier.png" alt="Elsevier homepage (opens in a new window)" title="Elsevier homepage (opens in a new window)"></a>
+        </div>
+        <ul class="col5">
+<li><a target="_blank" href="http://www.info.sciverse.com/sciencedirect?utm_source=sciencedirect&utm_medium=link&utm_campaign=aboutsd">About ScienceDirect</a></li>
+</ul>
+<ul class="col5">
+<li><a target="_blank" href="http://www.elsevier.com/?utm_source=sciencedirect&utm_medium=link&utm_campaign=aboutelsevier">About Elsevier</a></li>
+</ul>
+<ul class="col5">
+<li> <a target="_blank" href="http://www.sciencedirect.com/science/contactus">Contact and support</a></li>
+</ul>
+<ul class="col5">
+<li><a target="_blank" href="http://www.elsevierscitech.com/forms/sd/form.html?utm_source=sciencedirect&amp;utm_medium=link&amp;utm_campaign=advert">Information for advertisers</a></li>
+</ul>
+<ul class="col5">
+<li><a target="_blank" href="http://www.elsevier.com/locate/termsandconditions?utm_source=sciencedirect&utm_medium=link&utm_campaign=terms">Terms and conditions</a></li>
+</ul>
+<ul class="col5">
+<li><a target="_blank" href="http://www.elsevier.com/privacypolicy?utm_source=sciencedirect&utm_medium=link&utm_campaign=privacy">Privacy policy</a></li>
+</ul>
+        <div class="clear"></div>
+        <!-- CSAS will be providing the links-->
+      </div>
+      <div class="padding" style="padding-top:8px;padding-bottom:4px;font-size:11px;">
+        Copyright &copy; 2013 <a href="http://www.elsevier.com" target="_blank">Elsevier B.V.</a> All rights reserved.  SciVerse&reg; is a registered trademark of Elsevier Properties S.A., used under license. ScienceDirect&reg; is a registered trademark of Elsevier B.V.
+      </div>
+    </div>
+  </div>
+</div> <!--footer-->
+
+  </div><!--sdFooter-->
+</div><!--footer-area-->
+
+
+<form name="citationInfo" id ="citationInfo" method="POST" action="">
+    <input type="hidden" name="art_citation" value="Relay-based closed loop transfer function frequency points estimation
+G.H.M. de Arruda, P.R. Barros
+Published in:
+Automatica
+Volume 39, Issue 2, February 2003, Pages 309-315
+http://dx.doi.org/10.1016/S0005-1098(02)00205-4"/>
+</form>
+<div id="pdfModalWindow" class="pdfModalWindow" style="display:none;" onClick="pdfCite.closePopup();"></div>
+
+
+<!-- PDFKING/PDFCITE -->
+<div id="suggestedPdfList" style="display:none;">
+ 
+<div id="modalBoxDisplay" class="nojs" tabindex="0" role="dialog" aria-labelledby="hdSDSuggestions">
+<div class="pdfModalWindowMsgBox" id="pdfModalWindowMsgBox" >
+<div>
+        <div class = "close">
+          <a onClick="pdfCite.closePopup();" href = "#" title = "Close article suggestions" alt="Close article suggestions">
+            <img src = "http://cdn.els-cdn.com/sd/close-button.png" width = "25" height = "27" alt = "Close" />
+          </a>
+        </div>
+    <div class = "modal">
+      <div class = "header">
+        <h1 class = "headline" id="hdSDSuggestions">ScienceDirect article suggestions</h1>
+        <img class = "sd-bubbles" src = "http://cdn.els-cdn.com/sd/sd_bubbles.jpg" width = "125" height = "60" alt = "ScienceDirect" title = "" />
+      </div>
+      <div id="SuggestedArtList">
+      <ul class = "tabs group">
+        <li id="pdfkingTab" style="display:none;"><a href="#" onclick="pdfCite.toggleSuggestedTabs('#pdfking','#pdfcite',this);"> <h2>Related articles</h2></a>
+        </li>
+		
+      </ul>
+
+      <div id="pdfkingContent" style="display:none;">
+        <div class = "related-articles-msg">
+          <span>These articles have key terms similar to those in the article you downloaded.</span>
+           <!-- Tech comm team yet to give the help URL -->
+          <a class = "learn-more" href = "#" onclick="openNS('http://help.sciencedirect.com/flare/sdhelp_CSH.htm#related_art_lrn_more.htm');">Learn more</a>
+        </div>
+        <div class="popcontent">
+         </div>
+         <div id="relatedArtList" data-entitled="Y"></div>
+      </div>
+	  
+    </div>
+      <div class = "footer">
+        
+        <a class = "do-not-show" href="#" onClick="pdfCite.setOptOutFlag('http://www.sciencedirect.com/science/suggestedArt/optOut');" style="cursor: pointer;">Do not show again</a>
+      </div>
+    </div>
+    </div>
+</div>
+</div>
+
+
+</div>
+
+
+<script src="http://cdn.els-cdn.com/sd/js/sdX_123R6.js"></script>
+<script src="http://cdn.els-cdn.com/sd/js/sd_123R6.js"></script>
+
+<script>
+var sciverse="empty";
+var SDM=new Object;
+SDM.pm=new Object;
+SDM.pm.contentType = 'JL';
+SDM.doi = '10.1016/S0005-1098(02)00205-4';
+SDM.pm.issn_or_isbn = "00051098";
+SDM.pm.pii = 'S0005109802002054';
+SDM.pm.cid = '271426';
+SDM.pm.eid = '1-s2.0-S0005109802002054';
+
+
+
+
+SDM.pm.toc=new Object;
+SDM.pm.toc.retry = 20;
+SDM.pm.toc.retryDelay = 1000;
+SDM.pm.toc.retryFactor = 1.09;
+ SDM.tocJson = '{"PII":"S0005109802002054","EID":"1-s2.0-S0005109802002054","TIMESTAMP":"2010-10-04T17:30:42.203127-04:00","TOC":[{"sT":"Abstract", "sID":"section_abstract", "cT":[  ] }, {"sT":"Keywords", "sID":"kwd_1"}, {"sT":"1. Introduction", "sID":"section_lbl1", "faID":[  ] }, {"sT":"2. Transfer function frequency response estimation", "sID":"SEC2", "faID":[  ] , "cT":[ {"sT":"2.1. Problem statement", "sID":"section_lbl2.1", "faID":[ {"fID":"FIG1", "fT":"fig","fL":"Fig. 1", "fI":"gr1.sml","fIh":"35"} ] }, {"sT":"2.2. General problem solution", "sID":"section_lbl2.2", "faID":[ {"fID":"FIG2", "fT":"fig","fL":"Fig. 2", "fI":"gr2.sml","fIh":"54"} ] }, {"sT":"2.3. Stability", "sID":"section_lbl2.3", "faID":[  ] }, {"sT":"2.4. Improving the transfer function estimation", "sID":"section_lbl2.4", "faID":[  ] } ]}, {"sT":"3. Loop transfer function estimation", "sID":"SEC3", "faID":[  ] , "cT":[ {"sT":"3.1. The relay structure", "sID":"section_lbl3.1", "faID":[ {"fID":"FIG3", "fT":"fig","fL":"Fig. 3", "fI":"gr3.sml","fIh":"42"} ] }, {"sT":"3.2. Signal boundness and stability", "sID":"section_lbl3.2", "faID":[  ] } ]}, {"sT":"4. Sensitivity function estimation", "sID":"SEC4", "faID":[  ] , "cT":[ {"sT":"4.1. The relay structure", "sID":"section_lbl4.1", "faID":[ {"fID":"FIG4", "fT":"fig","fL":"Fig. 4", "fI":"gr4.sml","fIh":"43"} ] }, {"sT":"4.2. Signal boundness and stability", "sID":"section_lbl4.2", "faID":[  ] } ]}, {"sT":"5. Simulation examples", "sID":"SEC5", "faID":[  ] , "cT":[ {"sT":"5.1. First-order transfer function with time delay", "sID":"section_lbl5.1", "faID":[  ] , "cT":[ {"sT":"5.1.1. Process description", "sID":"section_lbl5.1.1", "faID":[  ] }, {"sT":"5.1.2. Loop transfer function estimation", "sID":"section_lbl5.1.2", "faID":[ {"fID":"TBL1", "fT":"tbl","fL":"Table 1"},{"fID":"FIG5", "fT":"fig","fL":"Fig. 5", "fI":"gr5.sml","fIh":"79"},{"fID":"FIG6", "fT":"fig","fL":"Fig. 6", "fI":"gr6.sml","fIh":"80"} ] }, {"sT":"5.1.3. Sensitivity function estimation", "sID":"section_lbl5.1.3", "faID":[ {"fID":"TBL2", "fT":"tbl","fL":"Table 2"},{"fID":"FIG7", "fT":"fig","fL":"Fig. 7", "fI":"gr7.sml","fIh":"81"},{"fID":"FIG8", "fT":"fig","fL":"Fig. 8", "fI":"gr8.sml","fIh":"80"} ] } ]} ]}, {"sT":"6. Conclusions", "sID":"section_lbl6", "faID":[  ] }, {"sT":"References", "sID":"bibl001"} , {"sT":"", "sID":"","faID":[  ] }, {"sT":"Vitae", "sID":"m4vt1"}]}';
+ SDM.tocCacheAvail=true; 
+
+
+SDM.ep=new Object;
+SDM.ep.urlPrefix = "http://www.sciencedirect.com/science";
+SDM.ep.refLinkURL = "http://www.sciencedirect.com/science/relLink/ajaxReq?_eid=1-s2.0-S0005109802002054";
+SDM.ep.updatedCitedBy = "http://www.sciencedirect.com/science/referenceResolution/ajaxRefResol?_updateCitedBy=";
+SDM.ep.refResolvePath = "http://www.sciencedirect.com/science/referenceResolution/ajaxRefResol?_eid=1-s2.0-S0005109802002054&_refCnt=14&_docType=converted-article";
+SDM.ep.crossMarkURL = "http://www.sciencedirect.com/science/crossMark";
+SDM.ep.crossMarkLib = "http://crossmark.crossref.org/javascripts/crossmark.min.js";
+SDM.ep.userActionURL = "http://www.sciencedirect.com/science/UserActions"
+SDM.ep.svShindigLib="http://sciverse-shindig.elsevier.com/gadgets/js/shindig-container:pubsub-2.js?c=1";
+SDM.ep.svSciverseLib="http://www.sciencedirect.com/gadgetservices/gadgets/v3_1/js/SciverseShindigService,GadgetToolBar,jquery-outside,jquery.ba-bbq.min,SciverseShindigContainer,ScienceDirectShindigServices.js";
+SDM.ep.downloadCsvURL = "http://services.elsevier.com/SDWebExport/export/table/csv";
+SDM.ep.downloadActionURL = "http://www.sciencedirect.com/science/downloadActions/keyEvent/S0005109802002054/00051098";
+
+  SDM.urlPrefix = "http://www.sciencedirect.com/science";
+  SDM.refLinkURL = "http://www.sciencedirect.com/science/relLink/ajaxReq?_eid=1-s2.0-S0005109802002054";
+SDM.attrImageUrl = "http://ars.els-cdn.com/content/image/";
+SDM.prodColor="sci_dir";if(SDM.prodColor=="sci_dir")SDM.prodColor="";
+SDM.pageTransKey = "03/14/2013 14:02:09 EDT#2845_005#75741#200.19.175.13";
+SDM.pageType = "article_full";
+  SDM.pii = "S0005109802002054";
+  SDM.contentType = "JL";
+  SDM.issn_or_isbn = "00051098";
+  SDM.sds = "b1a4caebb31e6615dcaf904c70859f738d9c433545e0e7b8b5f2c269d8db74d82a16521b003cbcb3df3766f1a0c9bc66";
+  SDM.tid = "4a0367cc-8cd1-11e2-88d7-00000aacb35d";
+  SDM.pru = "http://pa.elsevier.com";
+  SDM.crossMarkURL = "http://www.sciencedirect.com/science/crossMark";
+  SDM.crossMarkLib = "http://crossmark.crossref.org/javascripts/crossmark.min.js";
+  SDM.keOriginContentFamily = "serial"
+  SDM.userActionURL = "http://www.sciencedirect.com/science/UserActions"
+  SDM.sciverseUrlPfx="http://www.sciencedirect.com";
+  SDM.sciverseJsonObject='';
+  SDM.sciverseGadgetDetailsID = "846a00dd-35d1-4261-b941-9d4fef74bf59";
+SDM.imageLazyLoading = true;
+SDM.fullSize = true;
+SDM.outlineGraphics = true;
+SDM.outlineTab = "";
+SDM.outlineImgFence = true;
+SDM.entitled = true;
+SDM.urlTOCLink="http://www.sciencedirect.com/science/article/pii/S0005109802002054";
+SDM.urlTOCLinkQueryStr="?_rdoc=1&_fmt=full&_origin=&md5=22543fb95e34d36391c44b9d9cd72533";
+
+SDM.displayGadgets=true;
+SDM.euidCookieObject='480acf64cb2b5d4d447e6e2e277a4158306b8bb673e0821e4672f8f1b7ba6b432af46cfc806b21e0';
+SDM.adArticleLeftURL="/science/advertisement/left/num/321533/mainCat/general/cat/general/acct/f97cdabd485fca06b06370ee4a432975/isn/00051098/doi/10.1016_S0005-1098(02)00205-4/page/article";
+SDM.adArticleOptionsURL="/science/advertisement/options/num/321533/mainCat/general/cat/general/acct/f97cdabd485fca06b06370ee4a432975/isn/00051098/doi/10.1016_S0005-1098(02)00205-4/page/article";
+SDM.adArticleRightSmURL="/science/advertisement/rightsm/num/321533/mainCat/general/cat/general/acct/f97cdabd485fca06b06370ee4a432975/isn/00051098/doi/10.1016_S0005-1098(02)00205-4/page/article";
+SDM.adArticleRightLgURL="/science/advertisement/rightlg/num/321533/mainCat/general/cat/general/acct/f97cdabd485fca06b06370ee4a432975/isn/00051098/doi/10.1016_S0005-1098(02)00205-4/page/article";
+SDM.adReqOutline=true;
+SDM.adReqOptions=false;
+SDM.relatedRefAvail=true;
+SDM.mlktAvail = true;
+SDM.citedByScAvail = false;
+SDM.crawlerAvail = false;
+SDM.outwardLinks = '<div class="olLeftMiddle"><div class="boxLink"><a href="/science?_ob=RedirectURL&_method=outwardLink&_partnerName=19979&_eid=1-s2.0-S0005109802002054&_pii=S0005109802002054&_origin=article&_zone=rightPane&_targetURL=http%3A%2F%2Flinkinghub.elsevier.com%2Fretrieve%2Fpii%2FS0005109802002054%3Fshowall%3Dtrue&_acct=C000037878&_version=1&_userid=687335&md5=67b3da607127930d6e34e270344349f3"  rel="nofollow" class="olSpawnWindow" target="outwardLink"><img src="http://www.sciencedirect.com/scidirimg/gw_rtn_ihub.gif" alt="Get Full Text Elsewhere" title="Get Full Text Elsewhere" border="0"></a></div></div><div class="tableFmDivider">&nbsp;</div><div class="olLeftMiddle"><div class="boxLink"><a href="/science?_ob=RedirectURL&_method=outwardLink&_partnerName=5978&_eid=1-s2.0-S0005109802002054&_pii=S0005109802002054&_origin=article&_zone=rightPane&_targetURL=http%3A%2F%2Flinkinghub.pangaea.de%2Felsevier%2FredirectToSupplement%2F10.1016%2FS0005-1098(02)00205-4&_acct=C000037878&_version=1&_userid=687335&md5=5582796156b7e965ced796ee73e44b87"  rel="nofollow" class="olSpawnWindow" target="outwardLink"><img src="http://linkinghub.pangaea.de/elsevier/supplementBanner/10.1016/S0005-1098(02)00205-4" alt="PANGAEA Supplementary Data" title="PANGAEA Supplementary Data" border="0"></a></div></div><div class="olLeftMiddle"><div class="boxLink SC_record"><a href="/science?_ob=RedirectURL&_method=outwardLink&_partnerName=655&_eid=1-s2.0-S0005109802002054&_pii=S0005109802002054&_origin=article&_zone=rightPane&_targetURL=http%3A%2F%2Fwww.scopus.com%2Finward%2Frecord.url%3Feid%3D2-s2.0-0037295222%26partnerID%3D10%26rel%3DR3.0.0%26md5%3D5218b5032f1cc7764ff1e46e7097cf5d&_acct=C000037878&_version=1&_userid=687335&md5=48232c43143a8ebb46018aa475767549"  rel="nofollow" class="olSpawnWindow" target="outwardLink">View Record in Scopus</a></div></div>';
+   SDM.doi = '10.1016/S0005-1098(02)00205-4'; 
+ SDM.isSpecialIssue=false; 
+ SDM.hubEid = '1-s2.0-S0005109800X02762'; 
+
+
+ SDM.relatedCitingPanelAvail = true; 
+ SDM.applicationsPanelAvail=true; 
+ SDM.rerunJson =''; 
+ SDM.rerunAvail=true; 
+ SDM.helpUrlDomain="http://help.sciencedirect.com/flare"; 
+ SDM.permAndReprint='<div class="boxLink"><a href="/science?_ob=RedirectURL&_method=outwardLink&_partnerName=936&_eid=1-s2.0-S0005109802002054&_pii=S0005109802002054&_origin=article&_zone=art_page&_targetURL=https%3A%2F%2Fs100.copyright.com%2FAppDispatchServlet%3FpublisherName%3DELS%26contentID%3DS0005109802002054%26orderBeanReset%3Dtrue&_acct=C000037878&_version=1&_userid=687335&md5=5fe31c095242538fb24a27585326a37d"  rel="nofollow" class="olSpawnWindow" target="outwardLink">Permissions & Reprints</a></div>'; 
+ SDM.ppvMsg=''; 
+
+var googleAds = '';
+
+SDM.svapi = SVApi;
+
+</script>
+
+
+<script>
+
+initializeArticlePage();
+</script>
+
+
+
+<script>$(document).ready( ArticlePage.showLeftAd() );</script>
+
+
+
+
+
+
+
+
+<script>
+  prs.rt('body_end');
+  
+</script>
+
+</body></html>

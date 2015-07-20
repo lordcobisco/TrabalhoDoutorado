@@ -1,0 +1,12 @@
+\chapter{CONCLUSÕES}
+
+Os derramamentos de petróleo ocorrem em todas as etapas do ciclo de produção, sendo o transporte dos fluidos a etapa que envolve os maiores riscos. Os derramamentos provocados por navios petroleiros são difíceis de controlar, já que é muito difícil conter o óleo dentro da estrutura avariada. Os derramamentos em oleodutos, por outro lado, podem ser interrompidos por meio do desligamento das bombas e fechamento de válvulas. A detecção dos vazamentos de forma rápida permite a interrupção do fluxo, minimizando a quantidade de óleo derramado.
+
+Existe inúmeros métodos de detecção de vazamentos. A escolha do método está atrelada a vários fatores. Fatores que podem ser resumidos em apenas dois: confiabilidade e custo. Este trabalho trata de um método baseado em ondas acústicas e de pressão negativa. A literatura afirma que métodos baseados neste tipo de informação têm alta sensibilidade e médio custo de instalação e manutenção. Em contrapartida, são sensíveis a mudanças operacionais e apresentam altas taxas de alarmes falsos. 
+
+Em primeira instância, o objetivo deste trabalho é analisar minuciosamente aspectos dos sinais de pressão, identificando cada característica que possa ser utilizada na detecção de vazamentos, e, então, propor uma estratégia, uma metodologia de detecção. Para alcançar este objetivo, foi construída uma grande estrutura de aquisição de dados, que merece ser ressaltada, por se tratar de um sistema de aquisição bastante específico, que adquire informações de vários pontos do duto de forma síncrona.
+
+Utilizar o GPS para sincronizar as aquisições tornou as simulações de vazamentos mais dinâmicas e facilitou a organização e processamento \textit{offline} dos dados. Mas, certamente, a maior contribuição foi no cálculo da velocidade das ondas de pressão negativa. A aquisição dos dados é parte fundamental do sistema de detecção, seja na fase de identificação dos padrões de vazamento, seja no sistema final. Garantir a corretude dos dados é, antes de qualquer coisa, garantir o funcionamento do sistema de detecção.
+
+No que se refere ao processamento dos dados, não foi encontrada nenhuma frequência que caracterizasse a fase estacionária dos vazamentos.
+As frequências subsônicas, por si só, também não têm a capacidade de caracterizar a fase transitória. Mas, podem ser utilizadas como descritores para métodos inteligentes como redes neurais. \cite{avelino} utilizou redes neurais com descritores calculados a partir de Transformada Wavelet e obteve sucesso para um duto experimental de $3''$ de diâmetro.  

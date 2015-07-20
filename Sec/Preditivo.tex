@@ -1,0 +1,272 @@
+\noindent\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+\\
+\chapter{CONTROLE PREDITIVO}
+\label{cap:Preditivo}
+\noindent\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+\\
+
+O controle preditivo remete a uma classe de controladores que tem por característica principal o uso de um modelo para prever o comportamento futuro de suas variáveis controladas. O controlador se utiliza dessa informação para buscar uma resposta otimizada de acordo com um critério pré-definido \cite{NUNES2001}.
+A principal característica do controlador preditivo é a utilização de um modelo de processo utilizado para prever futuras saídas determinadas por um horizonte de previsão determinado. A figura \ref{fig:Preditivo} mostra um esquema de como funciona um controlador preditivo.
+
+\begin{figure}[H]
+   \inserirListaFiguras
+   \centering
+   \caption{Estratégia de Controle Preditivo.
+   Fonte: \cite{NUNES2001}}
+   %\FONTE{\cite{franca}}
+   \includegraphics[scale = 0.7]{Figuras/Preditivo.png}
+   \label{fig:Preditivo}
+\end{figure}
+
+No gráfico apresentado existem dois sinais em função do tempo, um respectivo a entrada de controle u(t) e o outro corresponde a saída do sistema. No instante t são realizadas $\hat{y}(t+i|t)$ previsões futuras, que é o horizonte de previsão. A partir das previsões são calculados os sinais de controle futuros, que é o horizonte de controle u(t+i).
+
+O controle preditivo, segundo ~\citeonline{BAI2008}, é uma das estratégias de controle mais largamente utilizada devido a utilização de um modelo de processo que prediz as respostas futuras de uma planta agregada a capacidade de trabalhar com restrições no sinal de controle aplicado e na saída. Porém, os sistemas encontrados nas aplicações de controle são freqüentemente não lineares, por isso, a maioria dos sistemas de controle preditivo deveriam trabalhar com modelos não lineares.
+ 
+O controle de sistemas não lineares tem sido destaque nas recentes pesquisas. Os métodos regulares, que tratam os sistemas não lineares, consistem em aproximar tais sistemas a um ponto de operação através do qual o problema pode ser convertido em um sistema linear \cite{SHI2007}.
+
+Para que seja possível implementar um controle preditivo que utilize modelos não lineares existem algumas dificuldades a serem superadas, dentre elas, a baixa exatidão dos preditores baseados em modelos lineares, e uma maneira eficiente para otimização da função de custo que resulte em estabilidade e robustez \cite{BAI2008}).
+O modelo matemático do Controlador GPC segue como descrito em ~\citeonline{Yan2009}, e o modelo não linear para o preditor de n passos a frente é o NARX (\ref{eq:permu}).
+
+Tendo em vista um modelo não linear do sistema identificado, o NARX, é necessário realizar a linearização no ponto de operação. Em um processo recursivo de predição vários passos a frente é inevitável a existência de diferenças entre as saídas da predição e as saídas futuras reais, porém essa diferença é minimizada pela existência de um modelo não linear que foi identificado a partir de dados reais do processo, ~\citeonline{Yan2009}.
+Expandindo as saídas reais do processo em séries de Taylor no ponto u(k) = u(k-1), e retendo os termos de primeira ordem é possível obter:
+
+\begin{equation}
+\begin{array}{rcll}
+ y(k|k) = F^{l}(y(k-1),y(k-2),...,y(k-n_y),u(k-d),u(k-d-1), ... ,\\
+ & & & \\
+ u(k-d-n_u+1), e(k-1),e(k-2), ... ,e(k-n_e))+e(k) & \\ & \\
+ = \hat{y}(k|k) + \Big (\frac{\partial \hat{y}(k|k) }{\partial u(k)} \Big |_{u(k)=u(k-1)} [u(k)-u(k-1)] \Big )
+ 
+\end{array}
+\label{eq:PredNl}
+\end{equation}
+
+Onde:
+
+$y(k|k)$ - predição de um passo a frente real;
+
+$\hat{y}(k|k)$ - predição de um passo a frente recursiva.
+
+Definindo:
+
+\begin{equation}
+\begin{array}{rcll}
+ g_{11} = \frac{\partial \hat{y}(k|k) }{\partial u(k)} \Big |_{u(k)=u(k-1)}
+ 
+\end{array}
+\label{eq:g11}
+\end{equation}
+
+O sistema pode ser reescrito da seguinte forma:
+
+\begin{equation}
+\begin{array}{rcll}
+ y(k|k) = \hat{y}(k|k) + g_{11} [u(k)-u(k-1)]
+ 
+\end{array}
+\label{eq:Sg11}
+\end{equation}
+
+Similarmente é possível obter a previsão dois passos a frente conforme \ref{eq:S2}.
+
+\begin{equation}
+\begin{array}{rcll}
+ y(k+1|k) = \hat{y}(k+1|k) + g_{21} [u(k)-u(k-1)] + g_{22} [u(k+1)-u(k-1)]
+
+\end{array}
+\label{eq:S2}
+\end{equation}
+
+Onde:
+
+\begin{equation}
+\begin{array}{rcll}
+ g_{21} = \frac{\partial \hat{y}(k+1|k) }{\partial u(k)} \Big |_{u(k)=u(k-1)}^{u(k+1)=u(k-1)}
+ 
+\end{array}
+\label{eq:g21}
+\end{equation}
+
+\begin{equation}
+\begin{array}{rcll}
+ g_{22} = \frac{\partial \hat{y}(k+1|k) }{\partial u(k+1)} \Big |_{u(k)=u(k-1)}^{u(k+1)=u(k-1)}
+ 
+\end{array}
+\label{eq:g22}
+\end{equation}
+
+Generalizando é possível obter:
+
+\begin{equation}
+\begin{array}{rcll}
+ y(k+N-1|k) = \hat{y}(k+N-1|k) + g_{N1} [u(k)-u(k-1)] + \cdots + & \\ g_{NM} [u(k+M-1)-u(k-1)]
+\end{array}
+\label{eq:SG}
+\end{equation}
+
+Tendo:
+
+\begin{equation}
+\begin{array}{rcll}
+ g_{NM} = \frac{\partial \hat{y}(k+N-1|k) }{\partial u(k+M-1)} \Bigg |
+ 
+ \left.
+ 
+ \begin{smallmatrix}
+ {u(k+M-1)=u(k-1)} & \\
+ \vdots  & \\
+ {u(k)=u(k-1)}&\\
+
+\end{smallmatrix}\right.
+ 
+\end{array}
+\label{eq:gNM}
+\end{equation}
+
+Para facilitar a notação adota-se:
+
+\begin{equation}
+\begin{array}{rcll}
+Y = [y(k|k)   & y(k+1|k) & \cdots &   y(k+N-1|k) ]^T
+\end{array}
+\label{eq:Yvet}
+\end{equation}
+
+\begin{equation}
+\begin{array}{rcll}
+\hat{Y} = [\hat{y}(k|k)   & \hat{y}(k+1|k) & \cdots &   \hat{y}(k+N-1|k) ]^T
+\end{array}
+\label{eq:YchapeuVet}
+\end{equation}
+
+\begin{equation}
+\begin{array}{rcll}
+\Delta U = [\Delta u(k|k)   & \Delta u(k+1|k) & \cdots &   \Delta u(k+N-1|k) ]^T
+\end{array}
+\label{eq:DeltaU}
+\end{equation}
+
+Onde:
+
+\begin{equation}
+\begin{array}{rcll}
+\Delta u(k+i) =  u(k+i) - u(k+i-1), i =0,\cdots,M-1
+\end{array}
+\label{eq:VariaçãoU}
+\end{equation}
+
+E,
+
+\begin{equation}
+\begin{array}{rcll}
+ G = &
+ 
+ \left[
+ \begin{matrix}
+ 
+ g_{11} & 0 & \cdots & 0 \\
+ g_{21} & g_{22} & \cdots & 0 \\
+ \vdots  & \vdots \ddots & \vdots \\
+ g_{N1}& g_{N2} & \vdots & g_{NM}\\
+
+\end{matrix}\right]
+, N=M \\
+\end{array}
+\label{eq:gNMmatriz}
+\end{equation}
+
+Com isso, a previsão real para as saídas preditas vários passos a frente pode ser escrita na forma vetorial de acordo com a equação \ref{eq:Prev}.
+
+\begin{equation}
+\begin{array}{rcll}
+ Y = \hat{Y} + G \Delta U
+\end{array}
+\label{eq:Prev}
+\end{equation}
+
+Por causa da abreviação no cálculo da expansão em séries de Taylor e a influência de perturbações não mensuradas, ainda existirá uma diferença entre o valor predito da relação \ref{eq:Prev} e o valor real. Para corrigir essa diferença é adicionado um fator de correção de erro mostrado na seguinte equação:
+
+\begin{equation}
+\begin{array}{rcll}
+ y(k+N-1|k) = \hat{y}(k+N-1|k) + g_{N1} [u(k)-u(k-1)] + \cdots + & \\ g_{NM} [u(k+M-1)-u(k-1)] + \psi(N) , N=M
+\end{array}
+\label{eq:SGW}
+\end{equation}
+
+Em que:
+
+\begin{equation}
+\begin{array}{rcll}
+\psi(N) =  y(k) - \hat{y}(k|k-N), i =0,\cdots,M-1
+\end{array}
+\label{eq:ErroPrev}
+\end{equation}
+
+Para facilitar a notação o fator de correção de erro é reescrito na forma de um vetor como o explicitado na equação \ref{eq:ErroPrevVet}.
+
+\begin{equation}
+\begin{array}{rcll}
+\Psi = [\psi(k)   & \psi(k+1) & \cdots &   \psi(k+N-1) ]^T
+\end{array}
+\label{eq:ErroPrevVet}
+\end{equation}
+
+Portanto, a saída de previsão real corrigida pode ser reescrita como:
+
+\begin{equation}
+\begin{array}{rcll}
+ Y = \hat{Y} + G \Delta U + \Psi
+\end{array}
+\label{eq:PrevCerro}
+\end{equation}
+
+A função de custo da predição de vários passos utilizada é:
+
+\begin{equation}
+\begin{array}{rcll}
+ J = \frac{1}{2}\sum_{j=1}^{N}[y_r(k+j) - y(k+j|k)]^2 + \frac{\lambda}{2}\sum_{j=1}^{M}[\Delta u(k+j-1)]^2
+\end{array}
+\label{eq:CustoPred}
+\end{equation}
+
+Onde:
+
+$y_r(k+j)$ - trajetória de referência;
+
+$N$ - horizonte de predição;
+
+$M$ - horizonte de controle;
+
+$\lambda$ - penalização do sinal de controle.\\
+
+Definindo:
+
+\begin{equation}
+\begin{array}{rcll}
+Y_r = [y_r(k)   & y_r(k+1) & \cdots &   y_r(k+N-1) ]^T
+\end{array}
+\label{eq:Referencia}
+\end{equation}
+
+Com isso, a função de custo em forma vetorial pode ser escrita.
+
+\begin{equation}
+\begin{array}{rcll}
+ J = \frac{1}{2}[Y_r - Y]^T[Y_r - Y] + \frac{\lambda}{2}\Delta U^T\Delta U
+\end{array}
+\label{eq:CustoPredVet1}
+\end{equation}
+
+Derivando a função de custo em relação ao sinal U e igualando a zero é possível obter a variação do sinal de controle que minimiza a função de custo. Esse sinal e dado pela relação:
+
+\begin{equation}
+\begin{array}{rcll}
+ \Delta U = (\lambda I + G^{T}G)^{-1} G^T(Y_r - \hat{Y} - \Psi)
+\end{array}
+\label{eq:ControlPredVet}
+\end{equation}
+
+A partir da derivada do sinal de controle obtida é possível aplicar o novo sinal de controle, e, assim, o processo é repetido.
+
+A partir da estrutura mostrada foi possível sintetizar uma lei de controle preditivo baseada em modelos não lineares. As equações listadas servirão de base para a construção do algoritmo de controle preditivo utilizado.
+

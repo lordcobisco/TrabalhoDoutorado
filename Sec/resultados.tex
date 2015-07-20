@@ -1,0 +1,285 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% CAPÍTULO 5
+
+\chapter{ANÁLISE DE SINAIS NÃO-ESTACIONÁRIOS E RESULTADOS}
+\label{resultados}
+
+\begin{epigrafecap}
+Se o termo ``frequência'', no sentido matemático estrito, é usado somente para ondas periódicas infinitas, o termo ``mudança de frequência'' é contraditório, pois é uma declaração que envolve tanto tempo como frequência.  
+
+%Se o termo ``frequência'', no sentido matemático estrito, é usado somente para ondas periódicas infinitas, uma ``mudança de frequência'' torna-se, em termos, uma contradição, pois é uma declaração que envolve tanto tempo como frequência. 
+\begin{flushright}
+Gabor, D.
+\end{flushright}
+\end{epigrafecap}
+
+No século XIX, o matemático e físico francês Jean-Baptiste Fourier desenvolveu um método de decomposição de sinais periódicos em séries de ondas senoidais, com o objetivo de explicar o fenômeno de condução do calor. Os resultados dos seus estudos foram publicados, em 1822, no trabalho intitulado \textit{Thèorie Analitique de la Chaleur} (Teoria Analítica do Calor). A contribuição do trabalho foi muito além de explicar o fenômeno da condução térmica. O método de decomposição desenvolvido por Fourier se tornou o primeiro estágio para o entendimento do que é a frequência e como ela pode ser utilizada. A matemática na qual o método se baseou logo se expandiu para outras áreas, com destaque para as telecomunicações. 
+
+%Durante o século XIX, o matemático e físico frances Jean-Baptiste Fourier desenvolveu estudos na área de condução de calor que levaram a criação de um método de decomposição de sinais periódicos em séries de ondas senoidais. O método foi publicado, em 1822, no trabalho intitulado \textit{Thèorie Analitique de la Chaleur} (Teoria Analítica do Calor) e significou o primeiro estágio para o entendimento do que é a frequência e como ela pode ser utilizada. A matemática desenvolvida por Fourier passou a ser base para outras áreas, destacando-se as telecomunicações.
+
+O problema com a matemática de Fourier é que ela foi totalmente pensada para sinais estacionários, ou seja, sinais que apresentam os mesmos componentes de frequência independente do trecho analisado. Por isso que, na análise de Fourier, o aspecto tempo não é considerado e a frequência é definida em termos de ondas senoidais de duração infinita. A Série de Fourier logo evoluiu para a Transformada, que diferente da anterior, pode ser utilizada para sinais não periódicos. Na Transformada de Fourier, descrita pela equação \ref{eq:tFourier}, um sinal qualquer, inclusive não-estacionário, pode ser decomposto numa série de onda senoidais com frequência variando de zero até infinito. O fato de admitir sinais não-estacionários não indica que a Transformada de Fourier é adequada para este tipo de sinal. A Transformada, assim como a Série, não considera o aspecto tempo, logo o resultado remete ao comportamento médio global das frequências em todo o sinal.
+
+\begin{equation}
+	\centering
+	   F(\omega) = \int^{\infty}_{-\infty}f(t)e^{-j\omega t} dt
+	\label{eq:tFourier}
+\end{equation}
+
+% descartou o aspecto tempo da análise e definiu a frequência em termos de ondas senoidais de duração infinita.
+
+%O problema com a matemática de Fourier é que foi desenvolvida tendo em vista sinais restritos. Foram utilizados sinais estacionários, ou seja, que não apresentam variações de frequência durante o tempo. Por isso, Fourier definiu a frequência em termos de ondas senoidais de duração infinita e não considerou o aspecto tempo em sua análise.
+
+Em 1946, o engenheiro elétrico húngaro-britânico Dennis Gabor impôs o seguinte questionamento: como expressar o termo mudança de frequência se a frequência é definida como algo infinito? O questinamento de Gabor foi uma resposta natural a necessidade de analisar sinais não-estacionários e o levou a formulação da primeira técnica de análise simultânea no tempo e frequência. A técnica de Gabor veio acompanhada por um princípio que discutia as limitações da análise de sinais não-estacionários. O \textit{Princípio da Incerteza de Gabor-Heisenberg}, como ficou conhecido, estabelece que é possível fazer correspondências entre os intervalos de tempo de uma função e as bandas de freqüência presentes. Contudo, a diminuição do intervalo de tempo (maior exatidão no domínio do tempo) reflete a uma maior incerteza no domínio da frequência \cite{gabor}.
+
+%A decomposição em séries harmônicas desenvolvida por Joseph Fourier, no século XIX, só se aplica a sinais periódicos de duração infinita. Sinais desta natureza são ditos estacionários, pois os componentes de frequencias são os mesmos durante todo o intervalo do sinal. Os sinais não-estacionários são aqueles que apresentam variações de frequência ao longo do tempo. A análise de sinais não-estacionários é bastante complexa,  pois é necessário identificar quais componentes de frequência estão presentes a cada instante, ou seja, trata-se de uma análise simultânea no tempo e frequência.
+
+%Como a série de Fourier foi desenvolvida para sinais estacionários, não houve a preocupação de considerar a variável tempo na análise. Os sinais são represetados pela soma de ondas senoidais de duração infinita.
+
+A partir do Princípio da Incerteza, Gabor percebeu que o aspecto da localidade está associado às ondas de base utilizadas. A Transformada de Fourier decompõe o sinal em ondas senoidais de duração infinita e, por isso, a sua resolução no domínio tempo é nula. Gabor decidiu, então, utilizar ondas de curta duração. Para isso, adicionou uma função Gaussiana na integral de Fourier, como pode ser visto na equação \ref{eq:tGabor}.
+
+\begin{equation}
+	\centering
+	   F(\omega, \tau) = \int^{\infty}_{-\infty}g^{*}(t - \tau)f(t)e^{-j\omega t} dt
+	\label{eq:tGabor}
+\end{equation}
+
+A Figura \ref{fig:GaussSen} mostra como a gaussiana age sobre as funções de bases e qual a influência no domínio da frequência. Observe que o espectro se torna mais espalhado à medida que o comprimento da onda reduz, o que comprova o princípio da Incerteza.
+%A figura xx mostra como a gaussiana age nas funções de bases.
+
+\begin{figure}[h]
+   \inserirListaFiguras
+   \centering
+   \caption{Funções de base das Transformadas de (a) Fourier e (b) Gabor, e seus respectivos espectros.}
+   %\FONTE{\cite{franca}}
+   \includegraphics{Figuras/gaussianaSenoide.pdf}
+   \label{fig:GaussSen}
+\end{figure} 
+
+A técnica ficou conhecida como Transformada de Gabor ou STFT (do inglês: \textit{Short Time Fourier Transform}), e pode ser interpretada como uma janela deslizante de tamanho fixo que percorre o sinal, definindo intervalos a serem processados por uma espécie de ``Transformada de Fourier Local'' \cite{oliveira}. A dificuldade deste tipo de análise é escolher o tamanho da janela, ou seja, a \textit{resolução tempo x frequência} que mais se adéqua ao sinal não-estacionário analisado.
+
+De uma forma geral, a dinâmica dos sinais de alta freqüência pode ser percebida por meio da observação de um curto intervalo de tempo. Enquanto que, a dinâmica dos sinais de baixa freqüência só é compreendida após a análise de um intervalo relativamente maior. Tendo isso em vista, o geofísico Jean Morlet desenvolveu uma nova técnica que permitia a análise sobre múltiplas resoluções. A técnica ficou conhecida como \textit{Transformada Wavelet}. A expressão \textit{Wavelet} significa ``ondinha'', o que é uma menção às funções de base. Assim como Gabor, Morlet utilizou ondas oscilatórias com energia concentrada. Mas, diferentemente das funções de base de Gabor, as \textit{Wavelets} não têm espalhamento fixo. Morlet utilizou ondas mais espalhadas para analisar as baixas frequências e ondas mais curtas para as altas frequências. Em outras palavras, a Transformada Wavelet aumenta a incerteza da análise na região de alta frequência. Isso pode representar um problema, pois o aumento da incerteza significa que as informações de grandes bandas de frequência serão condensadas numa única informação que representa o comportamento médio de todas as frequência localizadas dentro do intervalo, sendo assim, impossível determinar qual a influência de cada uma delas sobre o resultado.
+
+A Transformada Wavelet geralmente é utilizada quando se tem conhecimento prévio das bandas de frequência que se deseja analisar. Como o objetivo deste trabalho, neste primeiro instante, é descobrir quais frequências caracterizam os vazamentos, a Transformada de Fourier de Curta Duração (STFT) é mais apropriada.
+
+%O problema da Transformada Wavelet é que obrigatoriamente se perde resolução quando se analisa as altas frequências. E se isso não for desejado? se os componentes de alta frequência forem importantes para a aplicação a ponto de justificar alta resolução nas altas frequências? Se a redução da resolução nas altas frequência interferir na análise? Neste caso, a transformada de fourier de curta duração propicia um controle maior.
+
+
+%POR QUE UTILIZAR FFT E NÃO OUTROS MÉTODOS DE ANÁLISE TEMPO FREQUÊNCIA? Porque é mais fácil definir a relação tempo frequência. Analises com Wavelet utilizam multirresolução. O problema com a multirresolução, é que aumenta a resolução nas baixas frequência e reduz nas altas frequências. 
+
+\section{Transformada Rápida de Fourier (FFT)}
+
+O cálculo da Transformada de Fourier pelas equações de definição é complexo e muito lento. Por isso, no decorrer do século XX,  alguns métodos baseados em computação numérica foram desenvolvidos. O método mais conhecido é a Transforma Rápida de Fourier (FFT). A Transformada Rápida de Fourier é uma forma de implementação de STFT discreta que decompõe uma sequência $x[n]$ finita, no domínio do tempo, numa outra $X[k]$, no domínio da frequência. A equação \ref{eq:FFT} expressa a transformação.
+
+%, a Transformada de Rápida de Fourier, teve origem no trabalho (Cooley; Tukey, 1965).
+
+
+%foram desenvolvidos métodos baseados em computação numérica, como a Transformada Rápida de Fourier (FFT).
+
+
+%As sequências $x[n]$ e $X[k]$ representam, respectivamente, o sinal no domínio do tempo e frequência.
+
+\begin{equation}
+	\centering
+	   X[k] = \sum^{N-1}_{n=0} X(n)e^{-j2\pi k \frac{n}{N}}
+	\label{eq:FFT}
+\end{equation}
+
+A FFT provê uma análise puramente frequencial. Contudo, se o sinal for dividido em intervalos, e a equação \ref{eq:FFT} for aplicada sobre os intervalos, como mostra a Figura \ref{fig:prossFFT}, a análise passa a incluir, também, o aspecto tempo. \cite{haykin} denominou este processo como janelamento. 
+
+\begin{citacao}
+O número de amostras consideradas (tamanho da janela) reflete de maneira direta na resolução do espectro de frequências obtido. [...] as Séries de Fourier de Tempo Discreto permitem representar um sinal de N amostras no domínio do tempo através de N coeficientes no domínio da frequência, onde cada coeficiente corresponde a amplitude de uma senóide complexa de frequência múltipla da frequência fundamental do sinal $\omega_{0}$. \cite[p. 32]{azevedo}
+\end{citacao}
+
+A frequência fundamental do sinal $\omega_{0}$ é obtida a partir da frequência de amostragem $f_{S}$ e do tamanho da janela utilizados $N$, como mostra a equação \ref{eq:freqFundamental}.
+
+\begin{equation}
+	\centering
+	   \omega_{0} = \frac{2 \pi f_{S}}{N}
+	\label{eq:freqFundamental}
+\end{equation}
+
+\begin{figure}[h]
+   \inserirListaFiguras
+   \centering
+   \caption{Processamento da FFT sobre intervalos do sinal.}
+   %\FONTE{\cite{franca}}
+   \includegraphics{Figuras/processamentoFFT.pdf}
+   \label{fig:prossFFT}
+\end{figure} 
+
+%É importante observar que sinais reais no domínio do tempo têm representação simétrica no domínio da frequência, como mostra a figura 14. O mesmo não é válido para os sinais complexos.
+
+\section{Análise dos sinais de pressão}
+
+Durante os vazamentos, ondas acústicas e de pressão negativa percorrem a duto, fato que foi discutido na seção \ref{secao:Deteccao}. O objetivo deste trabalho é utilizar estas ondas para identificação e localização dos vazamentos.
+
+%A ideia é utilizar análise espectral para identificar estes componentes de frequência.
+
+As ondas acústicas introduzem componentes de frequência específicos nos sinais de pressão. Componentes estes que podem ser identificados por meio de análise espectral. Fenômenos como desligamentos e acionamentos de bombas, que remetem ao comportamento normal do duto, também alteram o comportamente espectral do sinal, mas de forma diferente.
+
+As ondas de pressão negativa causam a queda da pressão interna do duto e também podem caracterizar os vazamentos. Contudo, a análise da queda de pressão considera apenas os sinais no domínio do tempo, sendo menos abrangente. 
+%Por isso, neste trabalho, as ondas de pressão negativas são utilizadas apenas na localização dos vazamentos.
+
+%As frequências subsonicas e o efeito no momento da ruptura.
+%Qual o algoritmo que poderia complementar as frequências subsônicas, eliminando os desligamentos de bombas.
+%Tem alguma faixa de frequência que caracterize com si só, ou seja, elimine os desligamentos de bomba.
+
+\subsection{Análise das ondas de pressão negativa}
+
+Os vazamentos são quase sempre acompanhados por quedas de pressão. As quedas são provocadas por ondas de pressão negativa que percorrem o duto com velocidade aproximada ao som. Na realidade, a velocidade de propagação varia de acordo com alguns fatores, destacando-se o diâmetro do duto e as características do fluido transportado. 
+
+A velocidade de propagação das ondas de pressão negativa é uma das variáveis utilizadas no cálculo da localização dos vazamentos (equação \ref{eq:lacalizacao}). Logo, a precisão na localização está diretamente atrelada à precisão na determinação da velocidade destas ondas. A maneira mais intuitiva de aferir a velocidade das ondas de pressão negativa é por meio de simulações de vazamentos e aquisições simultâneas de dados em pontos distribuídos da planta. O sistema de aquisição de dados descrito na seção \ref{aquisicao4} foi desenvolvido com esta finalidade.
+
+Com o sistema de aquisição de dados síncrono, também, foi possível verificar a atenuação sofrida pelas ondas de pressão negativa e relacionar a dimensão dos vazamentos com a queda de pressão resultante. Fatores que repercutem diretamente na sensibilidade do sistema de detecção.
+
+%A atenuação é um critério importante, pois repercute diretamente sobre a sensibilidade do sistema de detecção.
+
+%O sistema de aquisição de dados multiponto síncrono, descrito na seção 3, foi desenvolvido visando à determinação da velocidade de propagação.
+
+%O cálculo da localização dos vazamentos, equação xx, utiliza a velocidade de propagação das ondas de pressão negativa. Então, a precisão na localização está atrelada à precisão do valor adotado para a velocidade da onda. O sistema de aquisição de dados multiponto síncrono, descrito na seção 3, foi desenvolvido visando à determinação da velocidade de propagação mais próxima a realidade.
+
+
+
+\subsubsection{Velocidade de propagação das ondas e atenuação}
+
+As simulações de vazamentos mostraram que a velocidade da onda de pressão negativa é maior no sentido montante, ou seja,  contrário ao fluxo. Enquanto os vazamentos realizados em ET-B demoram cerca de 11,3 segundos para serem sentidos em ET-A, os efeitos dos vazamentos em ET-A foram sentidos, em ET-B, em aproximadamente 8,8 segundos. A Figura \ref{fig:ondaPresNeg1} mostra os gráficos de pressão obtidos durante um vazamento em ET-A.
+
+\begin{figure}[h]
+   \inserirListaFiguras
+   \centering
+   \caption{Simulação de vazamento no ponto 2 ET-A: sinais de pressão capturados em \textbf{(a)} ET-A, \textbf{(b)} ET-B e \textbf{(c)} sobreposição dos dois sinais, aplicando \textit{offset} de 3,5 bar no sinal de ET-A}
+   %\FONTE{\cite{franca}}
+   \includegraphics[scale = 0.8]{Figuras/ondaPressaoNegativa1.pdf}
+   \label{fig:ondaPresNeg1}
+\end{figure} 
+
+
+Sabendo que a distância entre as estações é de $9,8$ $km$, é possível calcular a velocidade de propagação da onda. A velocidade no sentido montante é de aproximadamente $1,1$ $km/s$. Enquanto que, no sentido jusante, a velocidade é cerca de $867$ $m/s$.
+
+Observe que a onda de pressão negativa praticamente não sofre atenuação quando se propaga no sentido montante. A Figura \ref{fig:ondaPresNeg2} mostra que, por outro lado, a atenuação é bem perceptível no sentido jusante. 
+
+\begin{figure}[h]
+   \inserirListaFiguras
+   \centering
+   \caption{Simulação de vazamento em ET-B: sinais de pressão capturados em \textbf{(a)} ET-B, \textbf{(b)} ET-A e \textbf{(c)} sobreposição dos dois sinais, aplicando \textit{offset} de 3 bar no sinal de ET-A}
+   %\FONTE{\cite{franca}}
+   \includegraphics[scale = 0.8]{Figuras/ondaPressaoNegativa2.pdf}
+   \label{fig:ondaPresNeg2}
+\end{figure} 
+
+
+
+\subsubsection{Diâmetro do vazamento e queda de pressão}
+
+Como mencionado na seção \ref{secao:Deteccao}, as simulações de vazamentos foram realizadas nas próprias estações, por meio da abertura, parcial e total, de válvulas de 3/4'' e 2''. Os pontos de simulação estão descritos nas Figuras \ref{fig:ETA} e \ref{fig:ETB}. %Em todos os testes, a atenuação foi maior no sentido jusante.
+
+As simulações de vazamentos em ET-A provocaram quedas de pressão maiores que as de ET-B. As Figuras \ref{fig:ondaPresNeg1} e \ref{fig:ondaPresNeg2} mostram sinais capturados durante simulações de vazamentos em válvulas de 2''. Enquanto, a simulação em ET-A provocou uma queda de pressão de 1,5 bar, que se propagou até ET-B praticamente sem atenuação. O vazamento em ET-B gerou uma queda de pressão que não ultrapassou 0,4 bar.%, que ao chegar à ET-A não ultrapassava 0,2 bar.
+
+No contexto geral, todas as simulações, exceto as realizadas com abertura parcial das válvulas de 3/4'', apresentaram quedas de pressão visíveis. A Figura \ref{fig:diametroVaz} mostra a queda de pressão provocada por uma simulação de vazamento com abertura total da válvula 3/4'' do ponto 1 de ET-B.
+% no ponto 1 de ET-B. Lembrando que este ponto corresponde a uma válvula esfera de 3/4''.
+
+\begin{figure}[h]
+   \inserirListaFiguras
+   \centering
+   \caption{Simulação de vazamento no ponto 1 ET-B: sinais de pressão capturados em \textbf{(a)} ET-B e \textbf{(b)} ET-A}
+   %\FONTE{\cite{franca}}
+   \includegraphics[scale = 0.8]{Figuras/diametroVaz.pdf}
+   \label{fig:diametroVaz}
+\end{figure}
+
+
+\subsection{Análise Espectral}
+
+O duto ET-B/ET-A apresenta muitos transitórios de pressão durante o escoamento normal (sem vazamentos). Estes transitórios ocorrem, por exemplo, devido aos ligamentos e desligamentos de bombas. A Figura \ref{fig:90minEmETB}, mostra um sinal de pressão, com duração de uma hora e meia, capturado em ET-B. Durante este intervalo de tempo foram realizadas onze simulações de vazamentos, que, se não estivessem demarcadas pelos retângulos, dificilmente seriam reconhecidas.
+
+
+%qualquer tipo de detecção por correlação, no domínio do tempo, entre sinais e perfis conhecidos
+
+%Os transitórios de pressão tornam muito complicado qualquer tipo de detecção por correlação entre os sinais e padrões conhecidos. 
+
+
+%A detecção de vazamentos não pode se basear, apenas, nos perfis de queda de pressão, principalmente, quando o duto monitorado apresenta muitos transitórios de pressão durante o escoamento normal. Os transitórios de pressão são provocados por acionamentos e desligamentos de bombas e podem ocorrer a qualquer instante, inclusive durante os vazamentos. A ocorrência de um transitório no instante de um vazamento praticamente inviabiliza a detecção por correlação entre sinais e perfis conhecidos. 
+
+%Os transitórios de pressão podem, inclusive, ocorrer no instante de um vazamento, o que inviabiliza qualquer tipo de detecção por correlação entre sinais e perfis conhecidos. Por isso, a utilização de outros critérios é importante.
+
+
+% As regiões delimitadas por quadros representam simulações de vazamentos. 
+
+\begin{figure}[h]
+   \inserirListaFiguras
+   \centering
+   \caption{Perfil de pressão com muitos transitórios em ET-B}
+   %\FONTE{\cite{franca}}
+   \includegraphics[scale = 0.9]{Figuras/90minEmETB.pdf}
+   \label{fig:90minEmETB}
+\end{figure}
+
+Os transitórios de pressão podem ocorrer a qualquer instante, inclusive, durante os vazamentos. Por isso que detectar vazamentos utilizando apenas informações no domínio do tempo é tão complicado.
+
+A proposta deste trabalho é aplicar a Transformada Rápida de Fourier sobre intervalos dos sinais de pressão, de forma a conseguir uma análise simultânea nos domínios do tempo e frequência. 
+
+\begin{citacao}
+A idéia é que durante situações anômalas, como um vazamento, ondas com freqüências características se propagam pela tubulação. A presença mais forte de tais componentes de freqüências, no sinal de pressão, denuncia as situações críticas. É importante salientar que cada duto apresenta uma assinatura própria. As freqüências que caracterizam os vazamentos não são, necessariamente, iguais para todos os dutos. \cite[p. 20]{araujo}
+\end{citacao}
+
+~\citeonline{azevedo} propõe a divisão da evolução temporal de um vazamento em três fases: pré-vazamento, transitório e pós-vazamento. O pré-vazamento corresponde as condições de operação normal do duto. O transitório começa no instante da ruptura do duto e se estende até a acomodação da pressão num patamar inferior, momento em que o sinal entra no estado de pós-vazamento. O pós-vazamento reflete as condições de escoamento estacionário com a presença do vazamento. A divisão temporal é mostrada na Figura \ref{fig:fasesVaz}.
+
+%Os vazamentos apresentam duas etapas: transitória e estacionária. A etapa transitória ocorre no instante da ruptura do duto, momento em que observa-se a queda de pressão. Na etapa estacionária, a pressão se estabiliza num patamar inferior. As maiores variações de frequência são verificadas na etapa transitória. 
+
+\begin{figure}[h]
+   \inserirListaFiguras
+   \centering
+   \caption{Evolução temporal do vazamento.}
+   %\FONTE{\cite{franca}}
+   \includegraphics{Figuras/fasesVaz.pdf}
+   \label{fig:fasesVaz}
+\end{figure}
+
+
+As maiores variações de frequência são verificadas na fase do transitório. \cite{martins} afirma que no instante da ruptura do duto ocorre aumento substancial nas frequências subsônicas (0,0 a 3,0 Hz). 
+
+Como mencionado na subseção \ref{fenHidraulico}, os fenômenos hidráulicos apresentam dinâmica lenta. A Figura \ref{fig:fftETBNormal} mostra que os componentes de frequência mais significativos nos sinais de pressão de ET-A e ET-B estão abaixo de 20 Hz. É importante salientar que os componentes de baixa frequência são predominantes no sinal, mas isso não indica que os componentes de frequência mais altas não possam caracterizar os vazamentos.
+
+\begin{figure}[h]
+   \inserirListaFiguras
+   \centering
+   \caption{Espectro típico de operação normal de \textbf{(a)} ET-A e \textbf{(b)} ET-B.}
+   %\FONTE{\cite{franca}}
+   \includegraphics[scale = 0.8]{Figuras/fftETBNormal.pdf}
+   \label{fig:fftETBNormal}
+\end{figure}
+
+Neste trabalho, devido as limitações no processo de armazenamento dos dados, foi utilizada taxa de aquisição de 1 kHz. Com esta taxa é possível analisar a faixa de frequência de 0 a 500 Hz.
+
+A análise espectral confirmou os resultados de \cite{martins}. Em todas as simulações, tanto em ET-A quanto em ET-B, foi verificado o aumento das frequências subsônicas durante o transitório de pressão. %Contudo, as frequências afetadas
+A Figura \ref{fig:freqSubsonicas} mostra espectros de operação normal e vazamento de ET-A e ET-B.
+%que confirmam o aumento nas frequências subsônicas.
+
+\begin{figure}[h]
+   \inserirListaFiguras
+   \centering
+   \caption{Região de baixa frequência dos espectros típico de operação normal e vazamento de \textbf{(a)} ET-A e \textbf{(b)} ET-B.}
+   %\FONTE{\cite{franca}}
+   \includegraphics[scale = 0.8]{Figuras/freqSubsonicas.pdf}
+   \label{fig:freqSubsonicas}
+\end{figure}
+
+Os espectros da Figura \ref{fig:freqSubsonicas} mostram o comportamento frequencial de intervalos isolados do sinal. Para entender o comportamento ao longo do tempo é necessário calcular o espectro de vários intervalos contíguos. Fazendo isso, e isolando as frequências que se deseja analisar, obtêm-se os gráficos da Figura 22.
+
+A Figura \ref{fig:freqSubsonicas2} mostra a evolução de alguns componentes subsônicos ao longo de um vazamento. A maioria dos componentes na banda de 0,0 a 2,5 Hz sofreram algum aumento durante o transitório de pressão. Os componentes mostrados, na figura, foram escolhidos aleatoriamente. Os gráficos foram obtidos usando FFT sobre janelas de 10.000 amostras, com taxa de sobreposição de 90\%.
+
+\begin{figure}[h]
+   \inserirListaFiguras
+   \centering
+   \caption{Aumento das frequências subsônicas durante o transitório de pressão causado por um vazamento.}
+   %\FONTE{\cite{franca}}
+   \includegraphics{Figuras/freqSubsonicas2.pdf}
+   \label{fig:freqSubsonicas2}
+\end{figure}
+
+O problema é que as frequências subsônicas também são afetadas por transitórios de pressão típicos de operação normal, como os provocados pelos ligamentos e desligamentos de bombas. Logo, não existe uma banda de frequência que caracteriza somente os vazamentos. Existe um conjunto de frequências que indicam a ocorrência de anomalias no escoamento. 
+
+%\section{Conclusões}
+
+%Não foi encontrada nenhuma frequência que caracterizasse a fase estacionária do vazamento.
+%As frequências subsônicas, por si só, também não têm a capacidade de caracterizar a fase transitória. Mas, podem ser utilizadas como descritores para métodos inteligentes como redes neurais. \cite{avelino} utilizou redes neurais com descritores calculados a partir de Transformada Wavelet e obteve sucesso para um duto experimental de $3''$ de diâmetro. 

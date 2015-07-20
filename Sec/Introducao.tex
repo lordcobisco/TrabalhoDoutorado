@@ -1,0 +1,87 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% CAPÍTULO 1
+\noindent\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+\\
+\chapter{\large INTRODUÇÃO}
+\noindent\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+\\
+
+Segundo ~\citeonline{Nelles2001} os modelos de sistemas reais podem ser úteis para a análise, fornecendo conhecimento sobre determinado sistema. Além disso, técnicas avançadas para projeto e síntese de controladores, otimização, supervisão, detecção de falhas, e diagnóstico de componentes são também baseadas em modelos de processos.
+
+Para modelar um sistema é possível utilizar técnicas de identificação de sistemas, que é o campo da modelagem matemática de sistemas (processos) em que uma de suas etapas é a obtenção de parâmetros, que são obtidos a partir de testes ou dados experimentais \cite{Zhu2001}.	Uma das importantes características das técnicas de identificação de sistemas, segundo ~\citeonline{Aguirre2007}, é que pouca ou nenhuma informação prévia sobre o sistema é necessária. Devido a isso, em muitos casos, será preferível usar técnicas de identificação de sistemas para obter o seu modelo.
+
+Alguns modelos bastante utilizados na identificação de sistemas lineares são os modelos OE (\textit{Output Error}), ARX (\textit{Autoregressive with eXogenous Input}) e, em sistemas não lineares, o modelo NARX \textit{Nonlinear Autoregressive with eXogenous Input}. Estes modelos são utilizados para representar sistemas os mais variados. Os parâmetros de tais modelos podem ser encontrados utilizando algoritmos de identificação BCRLS (\textit{Bias Compensation Recursive Least Square}) \cite{Soderstrom2005,Ding2006,Mahata2007,Zhang2011,Ding2011}, MQ (\textit{Mínimos Quadrados}) \cite{Aguirre2007}, MQE (\textit{Mínimos Quadrados Estendido}) \cite{ettaleb1998,Yam1997,Wenxiao2007,Cohen1995} e PSO (\textit{Particle Swarm Optimization}) \cite{Huynh2010,Najjarzadeh2008,Tang2008,Khosla2007}. Os três primeiros algoritmos, BRCLS, MQ e MQE, são métodos relativamente clássicos e o último, a PSO, é baseado em heurísticas que ajudam o algoritmo a buscar o melhor conjunto de parâmetros para os modelos.
+
+As técnicas determinísticas dominaram as pesquisas voltadas à otimização por várias décadas. Porém, a incapacidade de encontrar os máximos e mínimos globais para certas funções, adicionada à complexidade dessas técnicas levaram ao estudo de métodos estocásticos e algoritmos heurísticos \cite{Emara2004}. Dentre as técnicas de otimização observadas aquelas aplicações baseadas em PSO tem sido bastante estudadas \cite{Najjarzadeh2008}, o que motiva o seu estudo, uso e aplicação na referida área do conhecimento (Identificação de Sistemas).
+
+Desde a concepção da PSO, os pesquisadores desenvolveram melhorias principalmente na dinâmica das partículas, e no próprio algoritmo \cite{Bhattacharya2008}. Estudos voltados para a melhoria dos algoritmos baseados na PSO podem ser encontrados nas seguintes referências \citeonline{Zeng2010} e \citeonline{Sharifi2012}. Apesar de muitas evidências empíricas terem sido acumuladas, mostrando que a PSO funciona adequadamente, ou seja, é uma excelente técnica de otimização, até agora, poucas pesquisas são voltadas para a maneira como ele se comporta e a sua convergência, especificamente.
+
+
+%Some studies in the literature tried to analyze the convergence and stability of the PSO in many ways. Among these it is possible to mention the first stability analysis of PSO ~\citep{Clerc2002}, the stability analysis using the concept of absolute stability ~\citep{Kadirkamanathan2006}, the convergence analysis of the PSO using multiobjective functions ~\citep{Chakraborty2010} and the nonlinear time variant stability analysis of the PSO ~\citep{Fan2010}. 
+%
+%The stability analysis presented in this paper differs from the others because it has formulated a new structure for the computation of new positions, speeds, better local and global minimum. This formulation consists in reorganizing the algorithm for these calculations being performed as a matrix multiplication. Thus, it is possible to analyze the algorithm from the perspective of a dynamic piecewise linear system. In this case, the system is formulated as a piecewise linear system whose parts are analyzed separately using the concept of eigenvalues and cooperatively using the concept of almost sure convergence whose theorem is presented in \citep{HANLON2011}.
+
+%
+%Como mencionado anteriormente, uma das possíveis aplicações dos modelos é na síntese e projeto de controladores. A teoria de controle objetiva desenvolver métodos para análise e projeto de sistemas de controle. O objetivo em controlar é manter o valor da variável controlada dentro de uma região de tolerância, próxima a variável de referência, mesmo na presença de perturbações atuando na planta \cite{Jamshidi2002}.
+%
+%Muitas são as estratégias de controle utilizadas para regular ou seguir uma referência. Dentre os vários algoritmos existentes é possível citar os controladores PID \cite{Han2009,Su2010,Kim2010,Yamamoto2009} e preditivo \cite{Mahfouf1992}.
+%
+%Os algoritmos de controle que utilizam estas sínteses podem ser aplicados a controle de motores de indução trifásicos \cite{Negm2006}, sistemas robóticos \cite{Duchaine2007,Cheng2004}, sistemas de levitação magnética \cite{Lin2011}, sistemas de controle de torque em drivers eletromecânicos \cite{Sourkounis2012}, controle de Diabetes tipo 1 \cite{Marchetti2008} e sistemas de controle de temperatura \cite{Wang2012}. 
+%
+%Além de ser possível o uso de algoritmos tradicionais, de controle de processos, também é possível citar aqueles que utilizam heurísticas, como o PSO para realizar a síntese do sinal de controle \cite{Wai2011}. Esses algoritmos mais avançados visam principalmente aumentar o desempenho dos controladores e garantir robustez, mesmo na presença de não linearidades e perturbações externas, buscando a melhor solução global que minimize funções de custo, que podem ser não lineares ou baseadas em conhecimento humano \cite{Wai2011}.
+%
+%Outra área de pesquisa intensa que envolve controle de sistemas dinâmicos é a sintonia de controladores. O projeto e sintonia de controladores PID tem sido bastante pesquisado desde ~\citeonline{Ziegler1942} \cite{Astrom2001}. Segundo ~\citeonline{Astrom2004} não é possível encontrar uma regra de sintonia ótima para a sintonia utilizando Ziegler \& Nichols (ZN). Porém, é possível encontrar soluções conservadoras e robustas com baixos desempenhos. As limitações do método de ZN levaram ~\citeonline{Astrom1984} a proporem a utilização de um relé na realimentação do sistema a ser sintonizado, o que deu origem ao método do relé para ajuste de PID.
+%
+%A técnica de sintonia automática utilizando realimentação a relé tem várias vantagens. Ela possibilita extrair a resposta em frequência do processo que é usualmente suficiente para sintonizar os controladores PID, para uma grande variedade de processos. Além disso o procedimento ocorre com o sistema sob controle em malha fechada, e, devido a isso, o processo pode ser mantido próximo ao valor de referência \cite{Hang2002}. Existem várias extensões que foram incorporadas ao método do relé, o que resulta em uma variedade de técnicas \cite{Arruda2003}. Dos métodos utilizando sintonia de controladores é possível citar métodos como, o do relé com relé parasita \cite{BI1997}, o método do \textit{relay apparatus} \cite{Wang1999}, e o método do relé com modificações na estrutura do diagrama de blocos \cite{Arruda2003,Arruda20032,Arruda2000}.
+%
+%Além das técnicas tradicionais utilizadas para a sintonia de controladores, também é possível buscar uma sintonia ótima baseada no modelo de processos utilizando heurísticas. As técnicas de otimização heurísticas tem recebido bastante atenção devido a sua habilidade em buscar uma solução ótima na sintonia de controladores PID \cite{Huidang2010}. Vários algoritmos inteligentes têm sido aplicados para sintonizar controladores PID tais como a otimização por nuvem de partículas (PSO) \cite{Huidang2010,Oi2008}. 
+
+Portanto, devido a intensidade da pesquisa em torno da computação evolucionária, principalmente a PSO, aplicada à área de estimação de parâmetros (~\citeonline{Huynh2010,Najjarzadeh2008,Tang2008,Khosla2007,ARRUDA2011}) foi despertado o interesse em investigar tais aplicações, de maneira a garantir melhor desempenho do algoritmo. Para tanto, é apresentada neste trabalho uma análise do algoritmo PSO envolvendo uma mudança em sua estrutura de cálculo, visando permitir que a otimização realizada pela PSO retorne um resultado tão bom ou melhor que os algoritmos tradicionais para os casos analisados. 
+
+\section{Objetivos Gerais}
+Dentro do contexto apresentado é objetivo geral deste trabalho propor uma nova estrutura de cálculo para a PSO, organizando-a no formato matricial como um sistema linear por partes e analisando a sua convergência, e aplicar à identificação de sistemas dinâmicos lineares simulados.
+
+\section{Objetivos Específicos}
+
+São objetivos específicos deste trabalho:
+
+\begin{itemize}
+	\item Implementar os algoritmos de identificação utilizando MQ, MQE, BCRLS, PSO;
+	\item Organizar o PSO nas formas matricial (PSOM) simplificada (pois serão realizadas simplificações no cálculo do algoritmo) e completa;
+	\item Realizar uma análise de convergência das partículas da PSO matricial representando-a na forma de sistemas lineares por partes e analisando os autovalores das partes separadamente e do sistema completo (através do critério de convergência quase certa);
+	\item Realizar uma análise de convergência do algoritmo para a solução otimizada utilizando o erro quadrático iterativo;
+	\item Propor modificações ajustando a convergência das partículas da PSO matricial;
+	\item Hibridizar o algoritmo da PSOM com os MQE e BCRLS, visando obter desempenhos melhores quando os sistemas identificados estão sujeitos a dinâmicas não modeladas;
+	\item Apresentar resultados e testes que mostrem a convergência do algoritmo da PSOM de maneira individual
+	\item Apresentar resultados experimentais que comprovem o melhor desempenho em média da PSOM híbrido.
+\end{itemize}
+
+\section{Revisão Bibliográfica do Estado da Arte}
+
+As técnicas de otimização determinísticas dominaram esta área por várias décadas. Porém, a incapacidade de encontrar o mínimo global de certas funções, somado à complexidade destas técnicas, motivaram o estudo de métodos estocásticos e algoritmos heurísticos \cite{Emara2004}. 
+
+Recentemente, diversas técnicas de computação evolucionárias, tais como GA (Algoritmos genéticos), AGA (Algoritmos Genéticos Adaptativo), PSO, ACO (\textit{Ant Colony Optimization}), têm emergido como técnicas de otimização aplicáveis a áreas como estimação de parâmetros (utilizando GA ~\citeonline{Huang2002},~\citeonline{Bishop1990}, ~\citeonline{Kampisios2008}, ~\citeonline{Chen2008}, utilizando AGA ~\citeonline{Chen2008}, ~\citeonline{Zhou2004}, utilizando ACO ~\citeonline{Chen2008}, utilizando PSO ~\citeonline{Huynh2010}, ~\citeonline{Najjarzadeh2008}, ~\citeonline{Tang2008}, ~\citeonline{Khosla2007}). Além dessas aplicações, podemos utilizar as técnicas de computação evolucionárias em áreas como identificação \cite{ARRUDA2011}, sintonia \cite{Dantas2011} e controle \cite{Song2007}. Segundo ~\citeonline{Najjarzadeh2008} sabe-se que as aplicações em GA são de difícil implementação devido à complexidade no código e por possuir baixa taxa de convergência em relação a algoritmos como a PSO. Isso motiva a utilização desse algoritmo (PSO) com o intuito de aplicá-lo nas referidas áreas do conhecimento. 
+
+Desde a concepção da PSO as pesquisas que o englobam desenvolvem principalmente melhorias nas dinâmicas das partículas e do algoritmo em si \cite{Bhattacharya2008}. Pesquisas sobre melhorias nos algoritmos baseados na PSO podem ser encontradas em ~\citeonline{Zhan2009,Ueno2005,Zeng2010,Lu2008,Sharifi2012,Chen2007}. Apesar de muitas evidências empíricas acumuladas mostrarem que o PSO funciona, ou seja, é uma excelente ferramenta de otimização, até então, pouco se pesquisou sobre o seu funcionamento e convergência ~\cite{Clerc2002}. Por isso, a análise de estabilidade da PSO vem despertando o interesse dos pesquisadores. 
+
+Alguns trabalhos na literatura buscaram analisar a convergência e estabilidade da PSO de várias maneiras. Dentre estas é possível citar a primeira análise de estabilidade da PSO proposta por ~\citeonline{Clerc2002}, a análise de estabilidade utilizando o conceito de estabilidade absoluta proposta por ~\citeonline{Kadirkamanathan2006}, a análise de convergência do PSO utilizando funções multi-objetivo proposta por ~\citeonline{Chakraborty2010} e a análise de estabilidade não linear variante no tempo do PSO proposta por ~\citeonline{Fan2010}.
+
+
+\section{Principais Contribuições}
+
+Neste trabalho é proposto utilizar a PSO como técnica de otimização aplicada a identificação de sistemas. Atualmente, existem várias técnicas determinísticas capazes de realizar essa operação. Porém, elas falham quando a modelagem não é adequada, ou seja, quando existe no processo dinâmicas que não foram modeladas e ruídos de medição. Para aplicar a PSO na identificação de sistemas é necessário que o algoritmo tenha a capacidade de encontrar soluções com menores erros e mais genéricas que as encontradas pelos algoritmos tradicionais.
+Para que esse objetivo fosse alcançado, algumas análises e formulação precisaram ser realizadas. Nesse contexto, as principais contribuições deste trabalho são:
+
+\begin{itemize}
+	\item A síntese do algoritmo da PSO no formato matricial (síntese simplificada e exata). Essa síntese permite realizar a análise da PSO, de convergência das partículas a partir da análise de seus autovalores;
+	\item A síntese permite organizar o sistema como sendo linear por partes. Essa organização possibilita a utilização de um teorema para analisar a convergência das partículas utilizando o critério estatístico de ``convergência quase certa'';
+	\item Outra contribuição advinda da organização matricial e da síntese na forma de sistemas lineares por partes é a possibilidade de analisar a convergência do erro quadrático iterativo, que mostra as condições necessárias para que o erro quadrático de identificação da PSOM a cada iteração diminua;
+	\item Outra contribuição deste trabalho é a hibridização da PSO com os algoritmos MQE (Mínimos Quadrados Estendido) e BCRLS (Bias Compensation Recursive Least Square), pois ela permite melhorar os resultados iniciais obtidos com a PSOM, apesar de diminuir a variabilidade da busca. Adicionalmente a isso, realizar essa hibridização permite que seja possível ter uma identificação tão boa quanto um algoritmo determinístico, e, em caso de uma modelagem não exata, diminuir o erro de identificação, utilizando a PSOM.
+	
+A análise de estabilidade apresentada neste trabalho se diferencia das demais, pois é formulada uma nova estrutura para o cálculo das novas posições, velocidades, melhores partículas locais e global. Esta formulação consiste em reorganizar o algoritmo para que estes cálculos sejam efetuados como uma multiplicação matricial. Desta maneira, é possível analisar o algoritmo da perspectiva de um sistema dinâmico linear variante no tempo. Neste caso, o sistema é formulado como um sistema linear por partes, cujas partes são analisadas separadamente, utilizando o conceito de autovalores, e conjuntamente, utilizando o conceito de convergência quase certa, cujo teorema é apresentado em \citeonline{HANLON2011}.
+\end{itemize}
+
+\section{Organização do Texto}
+
+O trabalho está organizado da seguinte maneira:  No capítulo \ref{cap:PSO} é mostrada a origem da PSO. Também é apresentada uma revisão bibliográfica com várias aplicações da otimização a aplicada em diversas áreas, tais como a identificação, a sintonia e o controle. Além disso, no capítulo \ref{cap:PSO} serão apresentadas a síntese da PSOM (versão simplificada e versão completa), juntamente com os algoritmos, a análise de convergência das partículas da PSOM utilizando o critério dos autovalores e da convergência quase certa, e a análise da convergência do erro quadrático iterativo de otimização. Ainda no capítulo \ref{cap:PSO}, será apresentada a estrutura que permitirá a inicialização das partículas, ou seja, será mostrado como uma possível hibridização com outros algoritmos poderia acontecer. No capítulo \ref{cap:Identificacao} é realizada uma revisão bibliográfica da estrutura principal de identificação e os principais algoritmos. Neste capítulo, serão apresentados os algoritmos MQ, MQE, BCRLS, suas principais características e problemas relacionados à identificação. No capítulo seguinte, \ref{cap:Metodologia}, é formalizada a sequência de testes de identificação, quais os parâmetros inicializam os algoritmos e quais testes serão realizados. Além disso, são discutidos os resultados obtidos nesses testes, como eles comprovam a teoria apresentada e quais os problemas envolvidos na utilização dos algoritmos. Finalmente, no capítulo \ref{cap:Conclusao}, são realizadas as considerações finais do trabalho, conclusões acerca dos testes do novo algoritmo de PSO e proposições para trabalhos futuros.
+

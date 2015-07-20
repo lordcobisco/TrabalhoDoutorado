@@ -1,0 +1,23 @@
+This is BibTeX, Version 0.99dThe top-level auxiliary file: publicacao.aux
+A level-1 auxiliary file: ./docs/dedicatoria.aux
+A level-1 auxiliary file: ./docs/agradecimentos.aux
+A level-1 auxiliary file: ./docs/resumo.aux
+A level-1 auxiliary file: ./docs/abstract.aux
+A level-1 auxiliary file: ./docs/abreviaturasesiglas.aux
+A level-1 auxiliary file: ./sec/Introducao.aux
+A level-1 auxiliary file: ./sec/PSOTese.aux
+A level-1 auxiliary file: ./sec/IdentificacaoTese.aux
+A level-1 auxiliary file: ./sec/MetodologiaTese.aux
+A level-1 auxiliary file: ./sec/conclusoesTese.aux
+The style file: abnt-alf.bst
+Database file #1: abnt-options.bib
+Database file #2: ./bib/referencia.bib
+Warning--opção abnt-show-options passou para warn
+Warning--opção abnt-verbatim-entry passou para no
+Warning--opção abnt-url-package passou para url
++---------------------------------------------------------+
+| Estilo bibliográfico abnt-alf.bst versão 1.45.2.1           |
+| Em caso de dúvidas ou problemas com este estilo procure |
+| http://abntex.codigolivre.org.br                        |
++---------------------------------------------------------+
+(There were 3 warnings)

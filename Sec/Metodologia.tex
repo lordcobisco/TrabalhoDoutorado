@@ -1,0 +1,630 @@
+\noindent\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+\\
+\chapter{METODOLOGIA}
+\label{cap:Metodologia}
+\noindent\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+\\
+
+O simulador utilizado neste trabalho é resultado de uma parceria da Universidade Federal do Rio Grande do Norte com o grupo de controle da Universidade Federal de Sergipe (UFS) representado pelo Prof. D. Sc. Sotomayor. Nela, foram desenvolvidos um simulador de processos envolvendo o método de elevação por \textit{Gas-Lift}, separação trifásica, separação por hidrociclones, identificação utilizando modelos NARX multi-variável e mono-variável, algoritmos de controle PID (linear) e preditivo utilizando os modelos não lineares NARX mono-variável e, finalmente, métodos de sintonia baseados em PSO, para otimização dos controladores e futura comparação. Um diagrama de atividades desenvolvidas no trabalho pode ser observado na figura \ref{fig:algoritmoMetodologia}, este diagrama representa de forma resumida o que foi utilizado, os ítens necessários e os algoritmos necessários para a realização do trabalho.
+
+\begin{figure}[H]
+   \inserirListaFiguras
+   \centering
+   \caption{Diagrama de atividades do Trabalho.}
+   \includegraphics[scale = 0.7]{Figuras/algoritmoMetodologia.png}
+   \label{fig:algoritmoMetodologia}
+\end{figure}
+
+No presente capítulo serão esclarecidos alguns pontos justificam as escolhas dos algoritmos utilizados no trabalho. Após, será explicado o funcionamento do simulador de processos utilizado e em seguida apresentados os procedimentos e resultados obtidos na identificação e nos controles PI e preditivo.
+
+\section{Justificativas para os Métodos Escolhidos}
+
+No presente trabalho, como já mostrado anteriormente, é utilizado um simulador de processos. Como nos trabalhos em parceria com a UFS foi desenvolvido um simulador, levando em consideração as dinâmicas e não linearidades envolvidas no processo de produção e separação traifásica, esse simulador foi utilizado para representar um processo real e desconhecido. A partir desse processo desconhecido utilizou-se técnicas de identificação estrutural.
+
+A vantagem de se utilizar um modelo NARX polinomial em relação ao modelo do simulador, utilizado para representar o processo, é que, devido a maior simplicidade, o NARX possui custo computacional inferior que pode ser ainda melhorado quando se utiliza a identificação estrutural eliminando termos desnecessários ao modelo. Aliado a isso, ele tem a vantagem de ser não linear, podendo ser tão complexo quanto necessário e de não ser necessária a modelagem fenomenológica do processo.
+
+Para identificar o sistema de separação trifásica é utilizado o algoritmo de mínimos quadrados recursivo. Esse método de identificação é utilizado adaptando \textit{online} os parâmetros do modelo às mudanças de ponto de operação causadas devido a presença de golfadas. Em conjunto com o modelo não linear pretende-se sanar problemas com não linearidades, mudanças em parâmetros do sistema e pontos de operação, que podem ocorrer com frequência em sistemas reais.
+
+No trabalho ainda foram utilizados algoritmos de controle PI e Preditivo. Como o controlador PI já havia sido integrado ao simulador, anteriormente a este trabalho, achou-se interessante a comparação desse controlador com outro algoritmo de controle apropriado ao problema. Devido à escolha de modelar o processo desde sua estrutura até encontrar um modelo não linear que representasse o processo, decidiu-se utilizar um algoritmo de controle que aproveitasse o modelo, ou parte do modelo. Ou seja, o controlador preditivo foi escolhido devido a sua caracteristica de aproveitar grande parte do trabalho realizado na modelagem. Também decidiu-se por sua utilização devido a possibilidade de trabalhar com previsões do processo e de nele não haver restrições quanto a mudanças do modelo \textit{online} (possibilidade de fazê-lo se adaptar a mudanças).
+
+Além da utilização dos algoritmos citados também foi utilizado um algoritmo baseado em nuvem de partículas (PSO). A justificativa para a utilização desse algoritmo no trabalho é a de possibilitar a comparação do sistema controlado com os controladores PI e preditivo de forma igualitária, ou seja, sem privilegiar um ou outro algoritmo tornando a comparação a mais justa possível. 
+
+
+\section{Simulador}
+
+O simulador de processos utilizado foi projetado de maneira que utilizasse as equações definidas nos apêndices \ref{APENDICE_A}, \ref{APENDICE_B}, \ref{APENDICE_C}  para a modelagem do separador trifásico, hidrociclones e \textit{Gas-Lift}, respectivamente. As equações foram implementadas em arquivo com extensão *.m do Matlab® interagindo, após a sua elaboração, com o Simulink®, programa utilizado para simulações. Uma imagem do simulador pode ser observada na figura \ref{fig:Simulador}.
+
+\begin{figure}[H]
+   \inserirListaFiguras
+   \centering
+   \caption{Diagrama de Blocos do Simulador no Simulink.}
+   \includegraphics[scale = 0.4]{Figuras/Simulador.png}
+   \label{fig:Simulador}
+\end{figure}
+
+É possível visualizar na figura \ref{fig:Simulador} os 3 poços com \textit{Gas-Lift} contínuo que alimentam o separador trifásico com água, óleo e gás, controladores PI, utilizados para controlar o nível de água, nível de óleo, pressão no vaso separador, e a diferença de pressão no hidrociclone, e um sistema de identificação que analisa as entradas e saídas do processo. 
+
+\begin{figure}[H]
+   \inserirListaFiguras
+   \centering
+   \caption{Diagrama de Blocos Aumentado do \textit{Gas-Lift}.}
+   \includegraphics[scale = 0.8]{Figuras/GasLiftMetodologia.png}
+   \label{fig:GasLiftMetodologia}
+\end{figure}
+
+A figura \ref{fig:GasLiftMetodologia} mostra uma expansão da figura \ref{fig:Simulador} explorando a parte da produção de gás. Nela aparecem duas variáveis regulaveis que são \textit{Gas-lift choke valve} e \textit{Production choke valve} que regulam o processo.
+
+\begin{figure}[H]
+   \inserirListaFiguras
+   \centering
+   \caption{Diagrama de Blocos da Separação com os Controladores.}
+   \includegraphics[scale = 0.52]{Figuras/SeparacaoMetodologia.png}
+   \label{fig:SeparacaoMetodologia}
+\end{figure}
+
+Uma versão aumentada e reformatada (para ser possível a melhor visualização do processo) do processo de separação e seu controle pode ser obtida na figura \ref{fig:SeparacaoMetodologia}. Onde são visualizadas as variáveis de controle recebendo os sinais dos controladores e as saídas sendo enviadas para um visualizador. A seguir será explicada a simulação, quais são as variáveis de controle e em quais variáveis interferem. Essa explicação, de como foram realizadas as simulações, será dividida em processo de \textit{Gas-lift}, separação, e controle.
+
+\subsection{\textit{Gas-Lift}}
+
+ Para o processo de \textit{Gas-Lift} os valores dos parâmetros alimentados nas equações que definem o poço utilizado no simulador são apresentados na tabela \ref{tab:ParamPoco}.
+
+\begin{table}[H]
+	\inserirListaTabelas
+	\begin{center}
+		\caption{Valores dos parâmetros do poço. Fonte: \cite{Teixeira2010}}
+		{\footnotesize
+		\begin{tabular}{c c}
+		\hline 
+		\textbf{Parâmetro} 																	 & \textbf{Valor}\\
+		\hline
+		$g$			& $9,80665 (\frac{m}{s^2}) $   \\
+		\hline
+		$R$     & $8314,51(\frac{J}{kmol K})$       \\
+		\hline
+		$M$			& $16,48 (\frac{g}{mol})$    \\
+		\hline
+		$P_o$		& $781(\frac{kg}{m^3}) $       \\
+		\hline
+		$v_o$		& $0,00128 (\frac{m^3}{kg})$ \\
+		\hline
+		$P_r$		& $1,5. 10^7 (Pa)$ \\
+		\hline
+		$T_a$		& $303 (K)$ \\
+		\hline
+		$T_t$		& $37,68 (m^3)$ \\
+		\hline
+		$L_t$		& $2400 (m)$ \\
+		\hline
+		$L_a$		& $2400 (m)$ \\
+		\hline
+		$L_r$		& $150 (m)$ \\
+		\hline
+		$A_t$		& $0,00316 (m^2)$ \\
+		\hline
+		$A_r$		& $0,00316 (m^2)$ \\
+		\hline
+		$C_{pc}$		& $2. 10^{-3}(\frac{kg}{s. Pa})$ \\
+		\hline
+		$C_{iv}$		& $2. 10^{-4}(\frac{kg}{s. Pa})$ \\
+		\hline
+		$C_r$		& $1,9992 10^{-6}(\frac{kg}{s. Pa})$ \\
+		\hline
+		\end{tabular}
+		}
+	\label{tab:ParamPoco}		
+	\end{center}
+\end{table}
+
+Os valores mostrados na tabela \ref{tab:ParamPoco} são respectivos a constantes que compõe o processo de elevação artificial. É válido ressaltar que para aproximar o processo um pouco mais do que acontece em uma linha de recebimento de fluidos foram modelados três poços de petróleo com produção paralela somados ao final. A soma da produção dos três poços de petróleo em conjunto pode ser visualizada através do Scope do Matlab® semelhante ao mostrado na figura \ref{fig:Producao}, que são as saídas de água, óleo, gás e a pressão no fundo do tubo de produção respectivamente para uma simulação.
+
+\begin{figure}[H]
+   \inserirListaFiguras
+   \centering
+   \caption{Produções de Água, Óleo e Gás Provenientes do Poço e Pressão do Tubo de Produção}
+   \includegraphics[scale = 0.9]{Figuras/Producao.png}
+   \label{fig:Producao}
+\end{figure}
+
+O comportamento dos gráficos na figura \ref{fig:Producao} é explicado a seguir. Os pontos mais inferiores, na produção de água, óleo e gás, são respectivos a um funcionamento normal de operação. As saliências próximas aos tempos 0, 3000, 4500, 6000, são perturbações (golfadas), que acontecem nesses instantes reagindo a maneira como são determinados os parâmetros de produção (controlados pelas válvulas \textit{choke} nesse simulador). O gráfico que mostra a pressão no fundo do tubo de produção está relacionado com o que acontece no \textit{Gas-Lift}, e, nesse caso, apenas o gráfico respectivo a um poço foi mostrado. O que é importante entender é que essa pressão interfere diretamente na produção das golfadas.
+
+\subsection{Separação}
+
+Após a produção das quantidades de água, gás e óleo, estes fluidos são enviados para o sistema de tratamento primário, isto é, o separador trifásico começará seu processo de separação. O sistema de separação trifásica agregado a três baterias de hidrociclones foi modelado de acordo com as equações que os regem. Os parâmetros de entradas e saídas e as variáveis que possibilitam o controle do sistema de separação estão listados na tabela \ref{tab:ParamSep}.
+
+\begin{table}[H]
+	\inserirListaTabelas
+	\begin{center}
+		\caption{Entradas, variáveis manipuladas e controladas e saídas. Fonte: \cite{Teixeira2010}}
+		{\footnotesize
+		\begin{tabular}{c l}
+		\hline 
+		& Entradas 																	\\
+		 \hline
+		\textbf{Entrada} & \textbf{Legenda} \\
+		\hline
+		$W_{in}$			& Vazão de entrada da fase aquosa   \\
+		\hline
+		$L_{in}$     & Vazão de entrada da fase oleosa       \\
+		\hline
+		$G_{in}$			& Vazão de entrada da fase gasosa    \\
+		\hline
+		
+		& Variáveis Manipuladas 																	\\
+		\hline
+		\textbf{Variável} & \textbf{Legenda} \\
+		\hline
+		
+		$S_l$		& Fração de abertura da válvula de óleo do separador       \\
+		\hline
+		$S_u$		& Fração de abertura da válvula underflow do hidrociclone DC\\
+		\hline
+		$S_g$		& Fração de abertura da válvula de gás\\
+		\hline
+		$S_{o1}$		& Fração de abertura da válvula overflow do hidrociclone BOW\\
+		\hline
+		$S_{o2}$		& Fração de abertura da válvula overflow do hidrociclone PDC\\
+		\hline
+		$S_{o3}$		& Fração de abertura da válvula overflow do hidrociclone DC\\
+		\hline
+		
+		& Variáveis Controladas																\\
+		 \hline
+		\textbf{Saída} & \textbf{Legenda} \\
+		\hline
+		$h_l$		& Altura da fase oleosa \\
+		\hline
+		$h_w$		& Altura da fase aquosa \\
+		\hline
+		$P$		& Pressão no Separador \\
+		\hline
+		$R$		& Razão da diferença de pressão do hidrociclone \\
+		\hline
+		\end{tabular}
+		}
+	\label{tab:ParamSep}		
+	\end{center}
+\end{table}
+
+De acordo com a tabela é possível perceber os elementos que, dentro do sistema de separação trifásica em série com os hidrociclones, representarão as variáveis de controle (as variáveis manipuladas), e os elementos que representam as saídas do sistema (as variáveis controladas). Além disso, devido ao comportamento da pressão do tubo de produção na figura \ref{fig:Producao}, o comportamento das entradas corresponde a uma produção constante em conjunto com uma perturbação em forma de golfadas.
+
+\subsection{Controle}
+
+Dentro da estrutura do simulador dois sistemas podem ser controlados, sendo um a elevação e o outro a separação. Neste trabalho as estratégias de controle envolverão apenas o sistema de separação, com a elevação setada em parâmetros constantes.
+
+Em princípio, o sistema de separação trifásico juntamente com os hidrociclones mostrado na figura \ref{fig:SeparacaoMetodologia} foi desenvolvido (em um projeto de cooperação entre a UFRN e a UFS) com uma estrutura de controle com 6 atuadores, 4 variáveis controladas, 3 entradas (água, óleo e gás juntamente com as golfadas). Como o simulador possui 6 controladores, foi necessário entender como acontece o processo e em que essas variáveis interferem garantindo estabilidade e controle no vaso e nos hidrociclones. É possível perceber a necessidade de controlar os 6 atuadores a partir da utilização das seguintes variáveis:
+
+\begin{itemize}
+	\item A válvula $S_l$, que controla a fração de abertura da válvula de óleo do separador, está diretamente relacionada com o controle do nível de óleo;
+	\item As válvulas $S_u$, $S_{o1}$ e $S_{o2}$, que controlam a fração de abertura da válvula \textit{underflow} do hidrociclone DC, \textit{overflow} do hidrociclone BOW e \textit{overflow} do hidrociclone PDC, respectivamente, estão diretamente relacionadas com o controle dos níveis de água e óleo, pois é o processo seguinte de separação água-óleo;
+	\item A válvula $S_{o3}$, que controla a fração de abertura da válvula \textit{underflow} do hidrociclone DC, está diretamente relacionada com o controle da pressão nos hidrociclones;
+	\item A válvula $S_g$, que controla a fração de abertura da válvula de gás, está diretamente relacionada com o controle de pressão no vaso separador.
+\end{itemize}
+
+Entendendo as influências que cada válvula causa no sistema foram projetados 6 controladores PI, utilizando o método de Ziegler-Nichols, para atuar diretamente nessas variáveis manipuladas e manter as 4 variáveis de saída em seus respectivos \textit{setpoints}. Ou seja, no total são quatro setpoints: um para o PI que controla a válvula $S_l$; outro para os PIs que controlam as válvulas $S_u$, $S_{o1}$ e $S_{o2}$; um terceiro para o PI que controla a válvula $S_{o3}$; e um quarto para o PI que controla a válvula $S_{g}$. Os \textit{setpoints} podem ser visualizados na tabela~\ref{tab:setpoints}.
+
+\begin{table}[H]
+	\inserirListaTabelas
+	\begin{center}
+		\caption{Valores dos \textit{setpoints} das variáveis controladas}
+		{\footnotesize
+		\begin{tabular}{c c}
+		\hline 
+		\textbf{Saída} & \textbf{Legenda} \\
+		\hline
+		$h_l$		& $0,5$ \\
+		\hline
+		$h_w$		& $0,5$ \\
+		\hline
+		$P$		& $9,4806$ \\
+		\hline
+		$R$		& $1,25$ \\
+		\hline
+		\end{tabular}
+		}
+	\label{tab:setpoints}		
+	\end{center}
+\end{table}
+É válido ressaltar que o sinal de controle enviado para as válvulas está normalizado entre 0 e 1, significando 0 para 0\% e 1 para 100\%. Portanto, foram projetados controladores para atuar de modo regulador objetivando minimizar a influência das golfadas, mantendo os níveis e as pressões o mais próximos do desejado. 
+
+\section{Identificação}
+
+Com o processo de separação trifásica completo foi desenvolvido o estimador de parâmetros NARX. O estimador foi projetado para trabalhar com um número qualquer de entradas e saídas. Para o caso específico do sistema desenvolvido, de maneira semelhante ao realizado para os controladores PI, quanto às variáveis de entrada e saída, foram adicionados os regressores de maneira a seguir a mesma lógica. Ou seja:
+
+\begin{itemize}
+	\item A válvula $S_l$ foi utilizada como entrada para a estimação do nível de óleo;
+	\item As válvulas $S_u$, $S_{o1}$ e $S_{o2}$ foram utilizadas como entradas para a estimação do nível de água;
+	\item A válvula $S_{o3}$ foi utilizada como entrada para a estimação da diferença de pressão nos hidrociclones;
+	\item A válvula $S_g$ foi utilizada como entrada para a estimação da pressão no vaso separador.
+\end{itemize}
+
+Além das variáveis listadas também foram adicionadas as vazões de entrada como parte do processo de identificação. Seguindo o mesmo procedimento utilizado para determinar as variáveis de entrada acima, foram escolhidos também:
+
+\begin{itemize}
+	\item A variável $L_{in}$ foi utilizada como entrada para a estimação do nível de óleo, por ser a vazão de entrada de óleo;
+	\item A variável $W_{in}$ foi utilizada como entrada para a estimação do nível de água, por ser a vazão de entrada de água;
+	\item As variáveis $L_{in}$ e $W_{in}$ foram utilizadas como entradas para a estimação da diferença de pressão nos hidrociclones, devido ao processo nos hidrociclones envolver a separação entre a água e o óleo;
+	\item A variável $G_{in}$ foi utilizada como entrada para a estimação da pressão no vaso separador, por ser a vazão de entrada de gás.
+\end{itemize}
+
+Nesse processo foi levado em consideração que os dados são obtidos a partir do sistema em malha fechada. Para garantir a identificabilidade dos parâmetros corretos do sistema, como o sugerido na literatura, seria necessário que o sistema oscilasse de maneira a garantir a convergência dos parâmetros. Por isso, o processo de separação trifásica, para este trabalho, é identificado na presença de perturbações externas, ou seja existe uma perturbação de entrada que faz oscilar o sistema. Além disso, no sistema é considerada a ausência de ruídos de medição.
+
+\subsection{Determinação da Ordem do Modelo (ERR, AIC)}
+
+O primeiro passo para melhorar a convergência na estimação de parâmetros é a utilização de critérios para a seleção de quais regressores são importantes para a representação do modelo, descartando, assim, as informações que não causam melhora significativa. Para isso foi necessário analisar quais regressores possuíam melhores índices de redução de erro (ERR), para cada saída, organizá-los em grau de importância e, utilizando o método estatístico AIC, definir quantos dos regressores (quando a derivada de AIC = 0), que estão organizados por importância, são relevantes para o modelo.
+
+
+Adotando esse procedimento foi possível extrair os regressores de cada uma das saídas ($h_l$, $h_w$, P, R respectivamente), organizados por importância, como mostrado nas equações \ref{eq:regressoresHl}, \ref{eq:regressoresHw}, \ref{eq:regressoresP} e \ref{eq:regressoresR}. É importante perceber que para o caso específico deste trabalho foi inserido no modelo dados referentes as entradas de água óleo e gás. Esses dados na prática não são utilizado no controle e por isso podem requerer alguma modificação na metodologia aplicada.
+
+\begin{equation}
+	\begin{array}{rcll}
+	\phi_{hl} = &
+		\begin{bmatrix}
+			 h_l(k - 2) & \\ 
+			 h_l(k - 1) & \\
+			 h_l(k - 2)L_{in}(k - 2)& \\
+			 h_l(k - 1)L_{in}(k - 1) & \\
+			 h_l(k - 1)L_{in}(k - 3) & \\
+			 h_l(k - 1)S_l(k - 1)& \\
+			 h_l(k - 2)L_{in}(k - 3) & \\
+			 h_l(k - 2)S_l(k - 1) & \\
+			 L_{in}(k - 1)L_{in}(k - 1)& \\
+			 L_{in}(k - 3)S_l(k - 2)& \\
+			 L_{in}(k - 2)S_l(k - 1) & \\
+			 L_{in}(k - 3)L_{in}(k - 3)& \\
+			 L_{in}(k - 3)L_{in}(k - 2)& \\
+			 L_{in}(k - 2)L_{in}(k - 2) & \\
+			 L_{in}(k - 1)S_l(k - 1)& \\
+			 S_l(k - 1) & \\
+			 S_l(k - 3)S_l(k - 1) & \\
+			 L_{in}(k - 3) & \\
+			 L_{in}(k - 1)&\\
+			 L_{in}(k - 2)L_{in}(k - 1) & \\
+			 h_l(k - 1)h_l(k - 1)& \\
+			 L_{in}(k - 2)S_l(k - 2) & \\
+			 h_l(k - 2)L_{in}(k - 1) & \\
+			 L_{in}(k - 3)L_{in}(k - 1)& \\
+			 S_l(k - 3)& \\
+			 L_{in}(k - 2) & \\
+			 h_l(k - 1)S_l(k - 3)& \\
+			 L_{in}(k - 1)S_l(k - 2)& \\
+			 L_{in}(k - 3)S_l(k - 1)
+		\end{bmatrix}
+	\end{array}
+	\label{eq:regressoresHl}
+\end{equation}
+\\
+\begin{equation}
+	\begin{array}{rcll}
+	\phi_{hw} = &
+		\begin{bmatrix}
+			h_w(k - 1)& \\
+			h_w(k - 2)& \\
+			W_{in}(k - 1) W_{in}(k - 1)& \\
+			W_{in}(k - 3)& \\
+			W_{in}(k - 2)& \\
+			W_{in}(k - 2) W_{in}(k - 2)& \\
+			h_w(k - 1)  h_w(k - 1)& \\
+			S_{o2}(k - 3) S_{o2}(k - 3)& \\
+			S_{o2}(k - 2) S_{o2}(k - 3)& \\
+			W_{in}(k - 3) W_{in}(k - 3)& \\
+			W_{in}(k - 2) W_{in}(k - 3)& \\
+			h_w(k - 2) S_{o2}(k - 3)& \\
+			W_{in}(k - 1)& \\
+			W_{in}(k - 1) S_{o2}(k - 2)& \\
+			W_{in}(k - 3) S_{o2}(k - 2)& \\
+			W_{in}(k - 2) S_{o2}(k - 2)& \\
+			h_w(k - 1)  S_u(k - 1)& \\
+			h_w(k - 1) W_{in}(k - 2)& \\
+			h_w(k - 1) W_{in}(k - 3)& \\
+			h_w(k - 1) W_{in}(k - 1)& \\
+			h_w(k - 1)  S_u(k - 2)& \\
+			h_w(k - 1)  S_u(k - 3)& \\
+			h_w(k - 1) S_{o1}(k - 1)& \\
+			h_w(k - 1) S_{o1}(k - 2)& \\
+			h_w(k - 1) S_{o1}(k - 3)& \\
+			h_w(k - 1) S_{o2}(k - 1)& \\
+			h_w(k - 1) S_{o2}(k - 2)& \\
+			h_w(k - 1) S_{o2}(k - 3)& \\
+			h_w(k - 2)  h_w(k - 2)& \\ 
+  	\end{bmatrix}
+  \end{array}
+ 	\label{eq:regressoresHw}
+\end{equation}
+\\
+\begin{equation}
+	\begin{array}{rcll}
+	\phi_{P} = &
+		\begin{bmatrix} 
+			P(k - 1)& \\
+			P(k - 2)P(k - 2)& \\
+			G_in(k - 3)G_in(k - 3)S_g(k - 3)& \\
+			G_in(k - 1)G_in(k - 1)S_g(k - 1)& \\
+			S_g(k - 3)& \\
+			S_g(k - 2)& \\
+		\end{bmatrix}
+ \end{array}
+ \label{eq:regressoresP}
+\end{equation}
+
+\begin{equation}
+	\begin{array}{rcll}
+	\phi_{R} = &
+		\begin{bmatrix} 
+			h_w(k - 1)& \\
+			h_w(k - 2) h_w(k - 2)& \\
+			h_w(k - 1) h_w(k - 1)S_{o1}(k - 1)& \\
+			h_w(k - 2) h_w(k - 2)W_in(k - 3)& \\
+			W_in(k - 2)& \\
+			h_w(k - 1) h_w(k - 2)S_{o1}(k - 1)& \\
+			h_w(k - 1) h_w(k - 1)& \\
+			h_w(k - 2)S_{o1}(k - 1)& \\
+			h_w(k - 1)W_in(k - 2)S_{o1}(k - 1)& \\
+			h_w(k - 2)S_{o1}(k - 1)S_{o1}*k - 1)& \\
+			h_w(k - 1)S_{o1}(k - 1)& \\
+			S_{o1}(k - 2)& \\
+			S_{o1}(k - 3)& \\
+		\end{bmatrix}
+ \end{array}
+ \label{eq:regressoresR}
+\end{equation}
+\\
+
+Em princípio existia uma quantidade de parâmetros maior que 600. Por isso, foram realizadas análises nos parâmetros em relação ao sinal de erro de estimação, buscando qual grau de não linearidade deveria ser adotado e a quantidade de atrasos a serem utilizados no modelo a ser reduzido. Após essa análise e incluindo a utilização do algoritmo de detecção de estrutura de modelos 30 termos foram percebidos como relevantes para a representação do sistema na ordem disposta para as equações \ref{eq:regressoresHl} e \ref{eq:regressoresHw}, onde os vetores de regressores são respectivos aos níveis de óleo e água respectivamente. Já para o vetor de regressores na equação \ref{eq:regressoresP}, que possui grau de não linearidade 3, 6 foram escolhidos. Finalmente, para o vetor da equação \ref{eq:regressoresR}, também com grau de não linearidade 3, 14 foram os termos considerados pertinentes.
+
+A partir do conhecimento dos regressores mais importantes para a representação do sistema foi utilizado o algoritmo de mínimos quadrados recursivo, com o objetivo de realizar predições em relação ao modelo.
+
+
+\subsection{Mínimos Quadrados Recursivos (MQR - \textit{Online})}
+
+Definido o número de entradas presentes no sistema onde foram considerados, segundo as equações \ref{eq:permu} e \ref{eq:estimaTeta}, 2 atrasos, e grau de não linearidade 2, para os sistemas de nível de água e nível de óleo, e 3 para os sistemas de pressão. Também foram definidos um atraso de transporte igual a 0, que não existiria realimentação do erro de estimação, a matriz de covariância do estimador de mínimos quadrados seria inicializada em 1.000.000 e o fator de esquecimento dos estimadores utilizado foi igual a 0,98.
+
+Para auxiliar o processo de estimação em malha fechada, em um primeiro momento, foram adicionados às entradas de controle no sistema de separação trifásico sinais pseudo-aleatórios de freqüência variada e amplitude escolhida de maneira a não instabilizar o sistema, como mostrado na figura \ref{fig:Perturbacao}.
+
+\begin{figure}[H]
+   \inserirListaFiguras
+   \centering
+   \caption{Diagrama de identificação com MQR}
+   \includegraphics[scale = 0.7]{Figuras/Perturbacao.png}
+   \label{fig:Perturbacao}
+\end{figure}
+
+Na figura o controlador representa os seis controladores na malha do separador trifásico, e a planta é o esquema de separação trifásica. O diagrama mostra que após o controlador será injetado um sinal que auxilie na identificação em um primeiro momento garantindo convergência. Como o processo de separação trifásica possui seis variáveis manipuladas, foram projetados seis diferentes sinais de teste, um para cada variável como mostrado na figura \ref{fig:SinalPerturbacao}.
+
+\begin{figure}[H]
+   \inserirListaFiguras
+   \centering
+   \caption{Diagrama de identificação com MQR}
+   \includegraphics[scale = 0.7]{Figuras/SinalPerturbacao.png}
+   \label{fig:SinalPerturbacao}
+\end{figure}
+
+Finalizado o processo de estimação recursiva foram extraídos os resultados que mostram a comparação entre as saídas estimadas e as reais (adotando como saída real as saídas do simulador), e os erros de predição um passo a frente, respectivamente (sendo eles a comparação realizada recursivamente entre a saída calculada pelo algoritmo dos mínimos quadrados e a saída real a cada iteração do algoritmo (saída real(k+1) - saída estimada(k+1))), como mostrado nas figuras \ref{fig:Estimacao}, e  \ref{fig:ErroEstimacao}. 
+
+
+\begin{figure}[H]
+   \inserirListaFiguras
+   \centering
+   \caption{Identificação com MQR - Saída real X Estimada}
+   \includegraphics[scale = 0.75]{Figuras/Estimacao.png}
+   \label{fig:Estimacao}
+\end{figure}
+
+\begin{figure}[H]
+   \inserirListaFiguras
+   \centering
+   \caption{Identificação com MQR - Erro de Estimação}
+   \includegraphics[scale = 0.7]{Figuras/ErroEstimacao.png}
+   \label{fig:ErroEstimacao}
+\end{figure}
+
+A identificação realizada leva em consideração que, nos próximos passos, a mesma será implementada de maneira a cooperar com o controle preditivo, de maneira a torná-lo adaptativo às perturbações (golfadas) provenientes da linha de produção. Além disso, comparações no intuito de melhorar o desempenho do sistema atual, controlado por PI's, serão realizadas a seguir. 
+
+\section{Controle PID e Preditivo}
+
+Após a validação dos modelos identificados e otimizados foram realizados testes e simulações para comparar o desempenho de controladores PIs, dos controladores PIs com sintonia ótima e de controladores preditivos, em mesma situação, ou seja, atuando de modo regulatório na malha de controle e sendo monovariável, utilizando os sistemas identificados para as predições dos comportamentos das malhas no processo de separação.
+
+\subsection{Controlador PI}
+
+Segundo \cite{Astom1995} o controlador PID é, sem dúvida, o algoritmo de controle mais comum. A maioria dos sistemas em prática são controlados por esse algoritmo ou pequenas variações dele. O controlador PID pode ser visto como um dispositivo que opera com certas regras que pode ser implementado de forma paralela e serial. A forma paralela está esquematizada na equação \ref{eq:PID} em que seu sinal de controle combina as ações proporcional, integral e derivativa.
+
+\begin{equation}
+\begin{array}{rcll}
+u(t) = K \left(e(t) + \frac{1}{T_i}\int_0^te(t)dt + T_d \frac{de(t)}{dt} \right)
+\end{array}
+\label{eq:PID}
+\end{equation}
+
+Em que:
+
+\begin{itemize}
+	\item K é o ganho proporcional;
+	\item $T_i$ o tempo integral;
+	\item $T_d$ o tempo derivativo;
+	\item e(t) o erro entre o valor desejado e o valor lido.
+\end{itemize}
+
+No entanto, em alguns processos é possível utilizar uma variação do PID, o PI, que pode ter um custo benefício maior em processos lentos e na presença de ruídos. O caso do controle de nível nos vasos separadores, por exemplo, permite um controle satisfatório sem sequer usar uma ação derivativa. A equação \ref{eq:PI} mostra o resultado da simplificação do controlador PID para o PI.
+
+\begin{equation}
+\begin{array}{rcll}
+u(t) = K e(t) + K_i\int_0^te(t)dt 
+\end{array}
+\label{eq:PI}
+\end{equation}
+
+\subsection{Sintonia do Controlador PI com PSO}
+
+A planta implementada apresentada na figura \ref{fig:Simulador} mostra um sistema de separação trifásica seguido de hidrociclones controlados por PI's. Em princípio, a sintonia dos controladores foi baseada no trabalho de ~\citeonline{Teixeira2010}, ou seja, utilizando o método de Ziegler-Nichols. Na figura \ref{fig:Estimacao}, a mesma mostrada para a estimação, é possível observar o desempenho aproximado do sistema quando controlado com a sintonia adotada. A partir desta sintonia, foi introduzido no simulador um algoritmo baseado em PSO, utilizado para otimizar o desempenho dos controladores PI's levando em consideração a função apresentada na equação \ref{eq:custoPSO}. 
+
+\begin{equation}
+\begin{array}{rcll}
+J_{PSO} = \frac{1}{N}\sum_{i=0}^{N} (Y_{ref}^i - Y^i)^T(Y_{ref}^i - Y^i) + \frac{\lambda}{N}\sum_{i=0}^{N} (\Delta U^i)^T(\Delta U^i)
+\end{array}
+\label{eq:custoPSO}
+\end{equation}
+
+Onde: 
+
+$J_{PSO}$ - Função objetivo, que deve ser minimizada;
+
+$Y_{ref}$ - Vetor de setpoints desejados, ou seja, referências ótimas para $h_w$, $h_l$, P e R;
+
+$Y$ - Vetor de saídas das variáveis $h_w$, $h_l$, P e R;
+
+$\Delta U$ - Vetor formado com as variações nos sinais de controle $S_{o1}$, $S_{o2}$, $S_{o3}$, $S_{u}$, $S_l$ e $S_g$. \\
+
+É importante ressaltar que além da função objetivo implementada também foi analisado que os ganhos não deveriam mudar de sinal em relação à sintonia original realizada com o método de Ziegler-Nichols, e isso foi incorporado ao algoritmo como uma restrição. A sintonia ótimizada encontrada a partir da função de custo que e incorpora a restrição pode ser visualizada na tabela \ref{tab:sintoniaPI}. 
+
+\begin{table}[H]
+	\inserirListaTabelas
+	\begin{center}
+		\caption{Comparação entre as sintonias antes e depois da otimização com o PSO}
+		{\footnotesize
+		\begin{tabular}{l c c c c}
+		\hline 
+		\textbf{Pi's} & \ \ \ \textbf{Sintonia}& \textbf{PSO} \ \ \ \ & \ \ \ \textbf{Sintonia}& \textbf{Original} \ \ \ \ \\
+		\hline 
+							\				&			P			&			I				&				P			&			I \\
+							\hline 							
+			Pi $n^o 1 (S_u)$ 	& 270,6822 & -19,1891   &   366.228	& -0.51559\\
+			\hline 
+			Pi $n^o 2 (S_g)$ 	& 1039,3135 & -132,7354		&		366.228	& -2.77494\\
+			\hline 
+			Pi $n^o 3 (S_{o3})$	&	20,7138  & -0,3760		&		16.6667	& -0.096\\
+			\hline 
+			Pi $n^o 4 (S_{o2})$	&	3,0576   & 0,32585			&		8	& 0.05\\
+			\hline 
+			Pi $n^o 5 (S_{o1})$	&	472,2090 &  -103,1364		&		366.228	& -2.77494\\
+			\hline 
+			Pi $n^o 6 (S_l)$	&	493,5059 & -4,6197		&		366.228	& -2.77494\\
+			\hline 
+		\end{tabular}
+		}
+	\label{tab:sintoniaPI}		
+	\end{center}
+\end{table}
+
+Uma comparação entre os desempenhos, antes e depois da otimização, em relação ao sinal de saída, no modo regulatório, e os sinais de controle podem ser visualizadas nas figuras \ref{fig:OtSaida} e \ref{fig:OtControle} respectivamente.
+
+\begin{figure}[H]
+   \inserirListaFiguras
+   \centering
+   \caption{Sinais de Saídas Não Otimizados X Otimizados}
+   \includegraphics[scale = 0.85]{Figuras/OtSaida.png}
+   \label{fig:OtSaida}
+\end{figure}
+
+\begin{figure}[H]
+   \inserirListaFiguras
+   \centering
+   \caption{Sinais de Controle Não Otimizados X Otimizados}
+   \includegraphics[scale = 0.85]{Figuras/OtControle.png}
+   \label{fig:OtControle}
+\end{figure}
+
+Pelos resultados mostrados é possível perceber que apesar de o sinal de controle permanecer dentro da faixa permissível e com baixa oscilação em relação ao sinal não otimizado, é perceptível a diferença na saída de óleo. Essa diferença provoca mudanças nas outras saídas, gerando uma melhoria no sistema como um todo. Para ilustrar a melhora causada pela otimização, um gráfico ``Função Objetivo X Número de Iterações'' é apresentado na figura \ref{fig:CustoPI}.
+
+\begin{figure}[H]
+   \inserirListaFiguras
+   \centering
+   \caption{Otimização do Desempenho dos Controladores PI's}
+   \includegraphics[scale = 0.85]{Figuras/CustoPI.png}
+   \label{fig:CustoPI}
+\end{figure}
+
+
+É observável que para esse sistema, considerando todas as entradas e saídas, a função de custo resulta inicialmente um valor próximo a 0,0080 e minimiza a relação entre esforço de controle e erro de saída para um valor próximo a 3,7177e-004. Numericamente falando ao final da otimização foi percebida uma melhora de 21 vezes em relação ao sistema com os mesmos PI's, porém, com sintonias diferentes.
+
+Outro fator a se analisar quanto a sintonia é se a busca realizada pelo algoritmo de otimização foi ampla o suficiente para buscar as melhores sintonias possíveis, ou seja, se houve variabilidade o suficiente para garantir que o sistema chegou ao ótimo global. Por isso, um gráfico que representa as partículas em função das variáveis P (proporcional) e I (integrativo) é apresentado na figura \ref{fig:particulasPI}
+
+\begin{figure}[H]
+   \inserirListaFiguras
+   \centering
+   \caption{Dispersão das Partículas}
+   \includegraphics[scale = 0.85]{Figuras/particulasPI.png}
+   \label{fig:particulasPI}
+\end{figure}
+
+Apesar de o algorítmo de otimização por PSO não garantir que o sistema sempre tenderá ao mínimo global, é possível perceber que em relação a sintonia anterior a melhoria foi significativa.
+
+\subsection{Controlador Preditivo}
+
+Quanto ao controlador preditivo que aproveita a utilização dos modelos não lineares implementados para modelar o separador trifásico, foram implementadas as equações mostradas no capítulo \ref{cap:Preditivo} com o intuito de adequá-las ao simulador de processos e verificar seu desempenho, comparando-o com o controlador PI já otimizado.
+
+Após o desenvolvimento dos algoritmos de controle preditivo, foram inseridos como modelos de predição os modelos NARX polinomiais, regidos pela equação \ref{eq:permu} e que tem por regressores as variáveis encontradas em \ref{eq:regressoresHl}, \ref{eq:regressoresHw}, \ref{eq:regressoresP}, \ref{eq:regressoresR}. Além disso, foi utilizado o algoritmo de mínimos quadrados recursivo, com o objetivo de tornar o sistema adaptativo. 
+
+Finalmente, após comprovar o funcionamento do sistema para uma sintonia aleatória e inicial dos parâmetros do controlador preditivo, foi utilizado o algoritmo de otimização para levar o desempenho desse controlador ao seu estado ótimo. Os parâmetros antes da sintonia e após podem ser visualizados na tabela \ref{tab:sintoniaPred}.
+
+\begin{table}[H]
+	\inserirListaTabelas
+	\begin{center}
+		\caption{Comparação entre as sintonias antes e depois da otimização com o PSO}
+		{\footnotesize
+		\begin{tabular}{l c c c c}
+		\hline 
+		\textbf{Preditivos} & \ \ \ \textbf{Sintonia}& \textbf{PSO} \ \ \ \ & \ \ \ \textbf{Sintonia}& \textbf{Inicial} \ \ \ \ \\
+		\hline 
+							\				&			$\lambda$			&			n				&				$\lambda$			&			n \\
+							\hline 							
+			Predtivo $n^o 1 (S_u)$ 	& $0,0843$ & 3   &   $1$	& 3\\
+			\hline 
+			Predtivo $n^o 2 (S_g)$ 	& $1,4169$ & 3	&		$1,24$	& 3\\
+			\hline 
+			Predtivo $n^o 3 (S_{o3})$	&	$0,5863$  & 3		&		$0,49$	& 3\\
+			\hline 
+			Predtivo $n^o 4 (S_{o2})$	&	$2,5539$   & 3		&		$2,35$	& 3\\
+			\hline 
+			Predtivo $n^o 5 (S_{o1})$	&	$6,9008$ &  3		&		$6,91$	& 3\\
+			\hline 
+			Predtivo $n^o 6 (S_l)$	&	$5,4109$ & 3		&		$2,73$	& 3\\
+			\hline 
+		\end{tabular}
+		}
+	\label{tab:sintoniaPred}		
+	\end{center}
+\end{table}
+
+Onde:
+
+	$\lambda$ -	Penalização do sinal de controle;
+	
+	n - Horizonte de predição.\\
+	
+É possível perceber que o valor de n não foi considerado na otimização, levando em consideração apenas a penalização do sinal de controle. Como já justificado anteriormente, ambos os controladores deveriam ser comparados justamente. Como consequencia disso, ambos os controlarores utilizados são monovariáveis e sintonizados pelo mesmo algoritmo.
+
+Os resultados e comparação do controle preditivo otimizado e a sintonia PI, encontrada em ~\citeonline{Teixeira2010}, ou seja, não otimizada, podem ser visualizados nas figuras \ref{fig:OtSaidaPred} (que representa as saídas do sistema de separação) e \ref{fig:OtControlePred} (que representa os sinais de controle necessários para levar o sistema ao desempenho observado).
+
+\begin{figure}[H]
+   \inserirListaFiguras
+   \centering
+   \caption{Sinais de Saídas PI's Otimizados X Preditivos Otimizados}
+   \includegraphics[scale = 0.85]{Figuras/OtSaidaPred.png}
+   \label{fig:OtSaidaPred}
+\end{figure}
+
+\begin{figure}[H]
+   \inserirListaFiguras
+   \centering
+   \caption{Sinais de Controle PI's Otimizados X Preditivos Otimizados}
+   \includegraphics[scale = 0.85]{Figuras/OtControlePred.png}
+   \label{fig:OtControlePred}
+\end{figure}
+
+As figuras apresentam uma resposta cujos valores da função objetivo (\ref{eq:funçãoCusto}) são bastante inferiores aos apresentados na sintonia encontrada PI original. É possível perceber que em princípio o controle preditivo começa oscilatório devido a adaptação inicial do algoritmo de mínimos quadrados recursivo. Porém, em regime permanente, o sistema quase não possui oscilações (as existentes são provocadas principalmente por oscilações na entrada de água óleo e gás). A regulação total do sistema, considerando a figura \ref{fig:OtSaidaPred}, é relativamente melhor do que na resposta aos controladores PI's, tanto otimizados quanto não otimizados.
+
+As principais características que ressaltam as melhorias na aplicação do controle preditivo são que não é perceptível o sobresinal, e a melhoria na regulação do nível de óleo. Além disso, em termos quantitativos, houve uma minimização da função $J_{PSO}$ da equação \ref{eq:custoPSO} de 31 vezes na regulação do preditivo otimizado em relação ao PI não otimizado (contra 21 vezes do PI otimizado) e de 1,4766 vezes em relação ao PI otimizado.
+
+Outro fator que é interessante de ser analisado é a melhora que o próprio algoritmo do preditivo teve em relação a sua otimização. Um fato que se destaca, nesse caso, é que em relação ao valor inicial do custo houve uma melhora de apenas 1,0042 vezes, o que pode não justificar a necessidade de uma otimização, ou que o espaço de busca das partículas não foi o suficiente. O gráfico da dispersão das partículas pode ser observado na figura \ref{fig:particulasPred}.
+
+\begin{figure}[H]
+   \inserirListaFiguras
+   \centering
+   \caption{Dispersão das Partículas}
+   \includegraphics[scale = 0.85]{Figuras/particulasPred.png}
+   \label{fig:particulasPred}
+\end{figure}
+
+Analisando a figura, percebe-se que o espaço de busca ficou restrito a uma faixa entre 2 e 6, o que pode significar baixa variabilidade das partículas. Porém, a busca em outras faixas sofre algumas limitações no simulador, já que quando a variabilidade do algoritmo era aumentada o sistema tendia a instabilidade e provocava erro de simulação.
+
+Outro possível motivo da baixa taxa de otimização é o fato de o preditivo já possuir em sua estrutura um algoritmo cujo objetivo é a minimização do erro médio quadrático e do sinal da variação controle quadrático localmente em cada variável de saída do simulador, tornando mínima a necessidade de outra otimização.
+

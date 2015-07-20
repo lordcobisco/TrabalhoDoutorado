@@ -1,0 +1,9 @@
+\select@language {brazilian}
+\thispagestyle {empty}
+\contentsline {figure}{\numberline {1}{\ignorespaces Gr\'aficos com regi\~oes de estabilidade no $R^4$ com os par\^ametros n\~ao apresentados iguais a 1}}{31}{figure.2.1}
+\contentsline {figure}{\numberline {2}{\ignorespaces Procedimento b\'asico para identifica\c c\~ao. Fonte: Adaptado de ~\citeonline {LJUNG1987}}}{40}{figure.3.1}
+\contentsline {figure}{\numberline {3}{\ignorespaces Diagrama de Blocos do Modelo ARX. Fonte: ~\citeonline {Isermann2011}}}{43}{figure.3.2}
+\contentsline {figure}{\numberline {4}{\ignorespaces Diagrama de blocos de um processo sujeito a ru\IeC {\'\i }do. Fonte: Adaptado de ~\citeonline {Isermann2011}}}{44}{figure.3.3}
+\contentsline {figure}{\numberline {5}{\ignorespaces Valida\c c\~ao Comparando Sa\IeC {\'\i }da Real e Estimada}}{56}{figure.4.1}
+\contentsline {figure}{\numberline {6}{\ignorespaces Valida\c c\~ao Comparando os Diagramas de Bode}}{57}{figure.4.2}
+\contentsfinish 

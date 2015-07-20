@@ -1,0 +1,17 @@
+\noindent\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+\\
+\chapter{\large CONCLUSÕES}
+\noindent\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+\\
+\label{cap:Conclusao}
+
+Este trabalho teve como objetivo principal utilizar a PSO como técnica de otimização aplicada a identificação de sistemas em duas plantas simuladas.
+Para que esse objetivo fosse alcançado, algumas análises e formulação precisaram ser realizadas, tais como a análise de convergência das partículas da PSO, a análise das condições necessárias para que a PSO tenha uma convergência em direção ao valor correto de identificação e a definição de uma inicialização para as partículas a partir de algoritmos determinísticos.
+
+As análises apresentadas neste trabalho se diferenciaram das demais, principalmente no rearranjo da estrutura da PSO e na análise do erro no sentido quadrático. Além disso, foram aplicados teoremas de sistemas dinâmicos lineares por partes, que se mostraram coerentes com os resultados práticos.
+
+Além disso, neste trabalho, foi apresentada uma revisão bibliográfica que relaciona os algoritmos heurísticos à área de identificação. Em conformidade com a revisão bibliográfica os algoritmos apresentados foram implementados. Esses algoritmos são o MQ, MQR, MQE, BCRLS, PSO tradicional, PSOM (híbrido com o MQE), o PSOM (híbrido com o BCRLS).
+
+Além das implementações, foram realizados testes para analisar o desempenho dos algoritmos relacionados à identificação. Os resultados mostram que o sinal de teste aplicado é capaz de excitar o sistema, e obter resultados com baixo erro entre as saída real e estimada. Também, foi possível observar que quando o sistema é aproximado por um de segunda ordem o desempenho dos PSO híbridos são superiores, ou seja, possuem a melhor representação quando utilizado o diagrama de Bode, mesmo que o PSO tradicional estivesse minimizando a mesma função de custo.
+
+Como trabalhos futuros, é sugerido que sejam realizados testes experimentais para aplicar os conceitos em um processo prático. Além disso, segundo essa linha, o algoritmo da PSO pode ser mais investigado para realização de sintonia de controladores e controle preditivo de processos (com aplicações experimentais).
