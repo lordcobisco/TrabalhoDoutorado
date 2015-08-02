@@ -6,7 +6,7 @@
 \label{cap:Identificacao}
 
 
-O algoritmo de otimização por nuvem de partículas pode ser aplicado nas mais variadas áreas, sempre o objetivo de encontrar a melhor solução de determinado processo. Uma das partes fundamentais deste trabalho é a aplicação do novo algoritmo de otimização, com a análise de convergência. A primeira área do conhecimento na qual serão realizadas análises e comparações é na área de identificação. O objetivo é realizar a modelagem de sistema através da minimização do erro de estimação, utilizando o algoritmo. 
+O algoritmo de otimização por nuvem de partículas pode ser aplicado nas mais variadas áreas, sempre com o objetivo de encontrar a melhor solução de determinado processo. Uma das partes fundamentais deste trabalho é a aplicação do novo algoritmo de otimização, com a análise de convergência. A primeira área do conhecimento na qual serão realizadas análises e comparações é na área de identificação. O objetivo é realizar a modelagem de sistema através da minimização do erro de estimação, utilizando o algoritmo. 
 
 \section{Introdução}
 
@@ -35,7 +35,7 @@ Modelos matemáticos podem ser desenvolvidos de duas maneiras, que podem ser comb
  
 Os dados de entrada e saída são normalmente coletados a partir de um teste ou experimento de identificação, que é projetado de maneira que os dados medidos sejam suficientemente informativos, isto é, de maneira que seja extraído o máximo de informação possível sobre as propriedades do sistema de interesse \cite{Zhu2001}. Uma consideração que deve ser realizada, quando se trata da escolha do modelo, é que não existe uma única maneira de se modelar um sistema, e sim, uma família de modelos com características e desempenhos variados, que proporcionam representações aproximadas do processo a ser aprendido. Isto significa que decidir qual desses modelos melhor se adequa é um dos problemas não triviais a ser enfrentado \cite{Aguirre2007}. 
  
- Um conjunto de modelos candidatos pode ser obtido especificando propriedades comuns do sistema a ser estudado. É nesse estágio que o conhecimento a \textit{priori} e a intuição devem ser combinados com as propriedades formais do sistema. Após obtidos os dados experimentais e escolhido o modelo que melhor se adéqua ao sistema, os parâmetros desse modelo escolhido devem ser estimados. Para que seja possível essa estimação, um critério, comumente chamado de função objetivo, é especificado, e o valor dos parâmetros é encontrado, objetivando a minimização dessa função. Finalizada a etapa de estimação, o próximo passo é sua validação. Nesse estágio é avaliado se o modelo é suficientemente bom e se ele interpola os dados adequadamente \cite{Zhu2001}. A figura \ref{fig:DiagramaIdentificacao} mostra um diagrama representando a sequência de passos necessários para realizar a identificação de um processo.
+ Um conjunto de modelos candidatos pode ser obtido especificando propriedades comuns do sistema a ser estudado. É nesse estágio que o conhecimento a \textit{priori} e a intuição devem ser combinados com as propriedades formais do sistema. Após obtidos os dados experimentais e escolhido o modelo que melhor se adequa ao sistema, os parâmetros desse modelo escolhido devem ser estimados. Para que seja possível essa estimação, um critério, comumente chamado de função objetivo, é especificado, e o valor dos parâmetros é encontrado, objetivando a minimização dessa função. Finalizada a etapa de estimação, o próximo passo é sua validação. Nesse estágio é avaliado se o modelo é suficientemente bom e se ele interpola os dados adequadamente \cite{Zhu2001}. A figura \ref{fig:DiagramaIdentificacao} mostra um diagrama representando a sequência de passos necessários para realizar a identificação de um processo.
  
  \begin{figure}[H]
    \inserirListaFiguras
@@ -50,7 +50,7 @@ Os dados de entrada e saída são normalmente coletados a partir de um teste ou ex
  
 \section{Projeto de Sinais de Excitação}
 		 
-		 Ao fornecer a um sistema, que se deseja analisar sinais de entrada, é possível realizar um experimento de identificação. Esses sinais de teste devem ser aplicados quando os sinais operacionais (quando a planta está em operação) não são o suficiente para excitar as dinâmicas do sistema. Os sinais mais favoráveis para a excitação de sistemas segundo ~\citeonline{Isermann2011} devem seguir alguns critérios tais como: devem ser simples de se reproduzir, com ou sem um gerador de sinais, possuir uma simples descrição matemática e suas propriedades correspondentes ao método de identificação, devem ser aplicáveis ao atuador do processo e ao processo como um todo, além de excitar as dinâmicas de interesse.
+		 Ao excitar um sistema, que se deseja analisar sinais de entrada, é possível realizar um experimento de identificação. Esses sinais de teste devem ser aplicados quando os sinais operacionais (quando a planta está em operação) não são o suficiente para excitar as dinâmicas do sistema. Os sinais mais favoráveis para a excitação de sistemas segundo ~\citeonline{Isermann2011} devem seguir alguns critérios tais como: devem ser simples de se reproduzir, com ou sem um gerador de sinais, possuir uma simples descrição matemática e suas propriedades correspondentes ao método de identificação, devem ser aplicáveis ao atuador do processo e ao processo como um todo, além de excitar as dinâmicas de interesse.
 		 	 
 		 No projeto de sinais de excitação são elaboradas as entradas para o sistema em análise que, segundo ~\citeonline{Aguirre2007}, devem observar três aspectos: 
 		 
@@ -70,13 +70,13 @@ Os dados de entrada e saída são normalmente coletados a partir de um teste ou ex
 		 
 		 Os principais sinais utilizados em identificação são os sinais baseados em ruído. Sinais de teste baseados em ruído branco ou colorido podem ser utilizados para identificação e permitem obter a resposta ao impulso de um processo (sua função de transferência). Para o caso de um ruído branco, a resposta ao impulso é diretamente proporcional a sua função de correlação cruzada. Como a correlação cruzada de um sinal estacionário automaticamente separa o sinal desejado do ruído, é possível utilizar esses métodos mesmo na presença de grandes perturbações e relações sinal-ruído desfavoráveis. Nesse caso é apenas necessário que o tempo de medição dos dados seja longo o suficiente. O uso de ruídos naturais como sinal de teste é possível apenas sob certas circunstâncias. Por isso, na prática, é normalmente melhor utilizar sinais de excitações artificiais \cite{Isermann2011}. 
 		 
-		 Os sinais pseudo aleatórios binários (PRBS) têm sido largamente utilizados devido a serem facilmente gerados computacionalmente, além de permitirem a identificação de respostas ao impulso diretamente. Porém, esse sinal não é recomendado para excitação de sistemas não lineares, pois, para que as não linearidades sejam identificadas, é necessário excitar mais níveis de sinal \cite{Isermann2011}. No caso de sistemas não lineares, muitas vezes será necessário ou até desejável excitar várias amplitudes na faixa onde essa não linearidade é mais percebida com o objetivo de observar melhor as características estáticas e dinâmicas,ou seja, será interessante combinar as propriedades do PRBS em excitar várias frequências e ao mesmo tempo excitar várias amplitudes de sinal \cite{Aguirre2007}.
+		 Os sinais pseudo aleatórios binários (PRBS) têm sido largamente utilizados devido a serem facilmente gerados computacionalmente, além de permitirem a identificação de respostas ao impulso diretamente. Porém, esse sinal não é recomendado para excitação de sistemas não lineares, pois, para que as não linearidades sejam identificadas, é necessário excitar mais níveis de sinal \cite{Isermann2011}. No caso de sistemas não lineares, muitas vezes será necessário ou até desejável excitar várias amplitudes na faixa onde essa não linearidade é mais percebida com o objetivo de observar melhor as características estáticas e dinâmicas, ou seja, será interessante combinar as propriedades do PRBS em excitar várias frequências e ao mesmo tempo excitar várias amplitudes de sinal \cite{Aguirre2007}.
 		 
 		 A seleção de uma sequência de sinais de entrada está associada diretamente à faixa de operação a ser excitada. Além disso, normalmente é interessante manter a excitação do sistema em baixas frequências, com o intuito de evitar excitar dinâmicas indesejadas para a identificação. Duas das estratégias mais utilizadas estão relacionadas nos itens a seguir \cite{Meleiro2002}.
 		 
 		 
 \begin{itemize}
-	\item Seja v(t) um sinal correspondente a um ruído branco. O sinal de entrada utilizando o ruído pode ser definida como mostra a equação \ref{eq:PRS1}.
+	\item Seja v(t) um sinal correspondente a um ruído branco. O sinal de entrada utilizando o ruído pode ser definido como mostra a equação \ref{eq:PRS1}.
 	
 			\begin{equation}
 			\begin{array}{lllllll}
@@ -103,6 +103,8 @@ Os dados de entrada e saída são normalmente coletados a partir de um teste ou ex
 			\end{equation}
 	
 \end{itemize}
+
+Em que $\alpha$ é um valor escolhido pelo operador.
 		 
 		 %\subsection{Escolha do Período de Amostragem}
 		 %
@@ -185,7 +187,7 @@ Os dados de entrada e saída são normalmente coletados a partir de um teste ou ex
 	
 	Há diversas formas de representar modelos lineares. Uma das mais utilizadas é a forma de funções de transferência definida como a transformada da resposta ao impulso do sistema modelado, para condições iniciais nulas. Se a resposta ao impulso for contínua no tempo, então, utiliza-se a transformada de \textit{Laplace}. Se a resposta ao impulso for discreta no tempo, a respectiva função de transferência é, por definição, a transformada Z \cite{Aguirre2007}. 
 		
-		Nas representações a seguir definiremos  $A(z^{-1})$, $B(z^{-1})$ $C(z^{-1})$ e $D(z^{-1})$ conforme as equações \ref{eq:A} e \ref{eq:B} respectivamente.
+		Nas representações a seguir definiremos  $A(z^{-1})$, $B(z^{-1})$ $C(z^{-1})$ e $D(z^{-1})$ conforme as equações \ref{eq:A}, \ref{eq:B}, \ref{eq:C} e \ref{eq:D} respectivamente.
 		
 		\begin{equation}
 			\begin{array}{lllllll}
@@ -253,7 +255,14 @@ Os dados de entrada e saída são normalmente coletados a partir de um teste ou ex
 			\label{Eq:ARX}
 			\end{equation}
 		
-		O modelo ARX (\textit{AutoRegressive with eXogenous inputs})apresentado no diagrama de blocos da figura \ref{fig:ARX}, pode ser obtido a partir de um modelo polinomial linear mais geral de entradas e saídas resultando na equação  \ref{Eq:ARX} \cite{Aguirre2007}.
+		Em que:
+			\begin{itemize}
+				\item $y(k)$ é a saída do modelo ARX;
+				\item $u(k)$ é a entrada do sistema;
+				\item $v(k)$ é um ruído branco com média nula.
+			\end{itemize}
+		
+		O modelo ARX (\textit{AutoRegressive with eXogenous inputs}) apresentado no diagrama de blocos da figura \ref{fig:ARX}, pode ser obtido a partir de um modelo polinomial linear mais geral de entradas e saídas resultando na equação  \ref{Eq:ARX} \cite{Aguirre2007}.
 		
 		\begin{figure}[H]
    	\inserirListaFiguras
@@ -263,6 +272,7 @@ Os dados de entrada e saída são normalmente coletados a partir de um teste ou ex
   	\includegraphics[scale = 0.3]{Figuras/ARX.png}
    	\label{fig:ARX}
 		\end{figure}
+
 		
 		%\subsection{ARMAX}
 		%
@@ -367,6 +377,13 @@ Os dados de entrada e saída são normalmente coletados a partir de um teste ou ex
    	\includegraphics[scale = 0.4]{Figuras/ProcessoComRuido.png}
    	\label{fig:ProcessoComRuido}
 		\end{figure}
+
+Em que:
+			\begin{itemize}
+				\item $y_u$ é a saída do sistema sem ruído;
+				\item $y_z$ é a saída contaminada com o ruído.
+			\end{itemize}
+
 		
 		Esse ruído interfere no sinal de saída por algumas razões particulares. O ruído pode ser causado por perturbações externas atuando no processo ou por perturbações internas localizadas dentro dos limites do processo. Identificar um processo utilizando um sinal de teste só é normalmente possível se o ruído for de pequena amplitude comparado ao sinal projetado e se o ruído possuir média constante. Caso um ruído de propriedades desconhecidas esteja atuando no sistema é praticamente impossível obter qualquer modelo útil resultante de uma identificação em um tempo relativamente curto de aquisição de dados. Nesse caso, é necessário esperar um período de tempo no qual a média do sinal de ruído seja percebida constante ou buscar métodos mais avançados de identificação \cite{Isermann2011}.
 			
@@ -433,7 +450,14 @@ Os dados de entrada e saída são normalmente coletados a partir de um teste ou ex
 			\label{eq:XIvec}
 			\end{equation}
 			
-			Onde N  é o número de amostras coletadas.
+			Em que:
+			\begin{itemize}
+				\item N  é o número de amostras coletadas;
+				\item $\Xi$ é o vetor de resíduos;
+				\item $Y$ é o vetor de saídas;
+				\item $\Psi$ é a matriz de regressores.
+			\end{itemize}
+			
 			
 			Com isso é possível representar a equação \ref{eq:regARX} na forma matricial da equação \ref{eq:regARXMat}:
 			
@@ -461,40 +485,40 @@ Os dados de entrada e saída são normalmente coletados a partir de um teste ou ex
 		
 		O estimador de mínimos quadrados analisa as propriedades de uma variável aleatória $\theta$ utilizando equações a diferenças do processo \cite{Coelho2004}. As propriedades mais importantes nesse método são que o estimador é não polarizado, ou seja, os parâmetros estimados convergem para os verdadeiros quando o número de iterações aumenta, a precisão das estimativas é estabelecida pelo valor inicial da matriz de covariância e pelo fato de o resíduo ser branco com média nula \cite{LJUNG1983}.
 		
-		Os autores ~\citeonline{Coelho2004} descrevem um algoritmo simples para estimação em mínimos quadrados descrito a seguir:
+		Os autores ~\citeonline{Coelho2004} descrevem um algoritmo simples para estimação em mínimos quadrados. %descrito a seguir:
 		
-		\begin{itemize}
-			\item	Mede-se a saída e entrada do sistema;
-			\item	Atualiza-se o vetor de medidas $\phi(t-1)$;
-			\item	Calcula-se o erro de previsão $\xi(t)=y(t)-\theta\phi(t-1)$;
-			\item	Calcula-se o ganho do estimador utilizando-se da equação \ref{eq:ganhoEstima};
-			
-			\begin{equation}
-				\begin{array}{rcll}
-				 	K(t) = & \frac {\phi(t-1) p(t)} {\lambda + p^T(t) \phi p(t)}  \\
-				\end{array}
-			\label{eq:ganhoEstima}
-			\end{equation}
-			
-			\item	Calcula-se o vetor de parâmetros estimados $\theta$ como em \ref{eq:estimaTeta};
-			
-			\begin{equation}
-				\begin{array}{rcll}
-				 	\hat{\theta}(t+1) = & \hat{\theta}(t) + K(t)\xi(t)  \\
-				\end{array}
-			\label{eq:estimaTeta}
-			\end{equation}
-			
-			\item	Calcula-se a matriz de covariância como em \ref{eq:covariacia};
-			
-			\begin{equation}
-				\begin{array}{rcll}
-					\phi(t) = & \frac{1}{\lambda}{\phi(t-1) - K(t) [\phi(t-1)p(t)]^T}
-				\end{array}
-			\label{eq:covariacia}
-			\end{equation}
-			
-		\end{itemize}
+		%\begin{itemize}
+			%\item	Mede-se a saída e entrada do sistema;
+			%\item	Atualiza-se o vetor de medidas $\phi(t-1)$;
+			%\item	Calcula-se o erro de previsão $\xi(t)=y(t)-\theta\phi(t-1)$;
+			%\item	Calcula-se o ganho do estimador utilizando-se da equação \ref{eq:ganhoEstima};
+			%
+			%\begin{equation}
+				%\begin{array}{rcll}
+				 	%K(t) = & \frac {\phi(t-1) p(t)} {\lambda + p^T(t) \phi p(t)}  \\
+				%\end{array}
+			%\label{eq:ganhoEstima}
+			%\end{equation}
+			%
+			%\item	Calcula-se o vetor de parâmetros estimados $\theta$ como em \ref{eq:estimaTeta};
+			%
+			%\begin{equation}
+				%\begin{array}{rcll}
+				 	%\hat{\theta}(t+1) = & \hat{\theta}(t) + K(t)\xi(t)  \\
+				%\end{array}
+			%\label{eq:estimaTeta}
+			%\end{equation}
+			%
+			%\item	Calcula-se a matriz de covariância como em \ref{eq:covariacia};
+			%
+			%\begin{equation}
+				%\begin{array}{rcll}
+					%\phi(t) = & \frac{1}{\lambda}{\phi(t-1) - K(t) [\phi(t-1)p(t)]^T}
+				%\end{array}
+			%\label{eq:covariacia}
+			%\end{equation}
+			%
+		%\end{itemize}
 
 		
 		\subsection{Estimador de Mínimos Quadrados Estendido - MQE}
@@ -613,7 +637,7 @@ Os dados de entrada e saída são normalmente coletados a partir de um teste ou ex
 			\label{eq:Rcol}
 			\end{equation}
 			
-			Então, a partir das equações \ref{eq:OE2}, \ref{eq:MA2} e \ref{eq:Rcol} e possível obter as formas regressivas do modelo da saída $y(t)$ do processo, do modelo do ruído branco $e(t)$ e do modelo do ruído colorido $w(t)$, respectivamente, como mostrado nas equações \ref{eq:regOE2}, \ref{eq:regMA2} e \ref{eq:regRcol}.
+			Então, a partir das equações \ref{eq:OE2}, \ref{eq:MA2} e \ref{eq:Rcol} é possível obter as formas regressivas do modelo da saída $y(t)$ do processo, do modelo do ruído branco $e(t)$ e do modelo do ruído colorido $w(t)$, respectivamente, como mostrado nas equações \ref{eq:regOE2}, \ref{eq:regMA2} e \ref{eq:regRcol}.
 			
 			\begin{equation}
 			\begin{array}{lllllll}
@@ -865,6 +889,11 @@ Os dados de entrada e saída são normalmente coletados a partir de um teste ou ex
 		 \end{algorithmic}
 \end{algorithm}
 			
+\subsection{Conclusão do Capítulo}
+
+Neste capítulo foram apresentados os conceitos básicos de identificação e alguns algoritmos de identificação, geração de sinal de excitação e problemas relacionados. No próximo capítulo sarão abordados dois exemplos simulados. Nestes exemplos, é intensão trabalhar com problemas cujos algoritmos descritos neste capítulo não serão capazes de garantir a melhor solução, abrindo possibilidades para a integração destes com o PSO.
+
+Assim como os algoritmos descritos apresentarão problemas, o PSO também apresenta, porém, é objetivo mostrar que os dois algoritmos juntos podem ter melhor desempenho.
 
 %\section{Detecção de Estrutura de Modelos}
 			%

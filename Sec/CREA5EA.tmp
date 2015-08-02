@@ -159,13 +159,13 @@ De maneira similar ao realizado na seção \ref{sec:example}, nesta seção foram re
 		\item Os teste que foram realizados, de maneira a obter os resultados, foram repetidos $80$ vezes utilizando cada uma das heurísticas implementadas. Após a obtenção dos $80$ resultados, estes foram utilizados para obter a variância, média e a melhor performance encontradas durante os testes.
 \end{itemize}
 
-A escolha dos parâmetros não permitem que os autovalores da equação \ref{eq:avMA4} permaneçam no interior do círculo de raio unitário, ou seja, que todos os autovalores sejam menores ou iguais a $1$. Porém, o valor do módulo do maior autovalor da matriz $\bar{A}$ permanece no interior do círculo. Isto significa que, existe uma garantia de convergência quase certa com a PSO, de acordo com o teorema apresentado anteriormente, pois, o maior autovalor em módulo $0,9991$. Os resultados podem ser visualizados nas figuras \ref{fig:EX21} e \ref{fig:EX22} e na tabela \ref{tab:ResultIdapx2ordemP2} ao final do capítulo.
+A escolha dos parâmetros não permitem que os autovalores da equação \ref{eq:avMA4} permaneçam no interior do círculo de raio unitário, ou seja, que todos os autovalores sejam menores ou iguais a $1$. Porém, o valor do módulo do maior autovalor da matriz $\bar{A}$ permanece no interior do círculo. Isto significa que, existe uma garantia de convergência quase certa com a PSO, de acordo com o teorema apresentado anteriormente, pois, o maior autovalor em módulo $0,9991$. Os resultados podem ser visualizados nas figuras \ref{} e \ref{} e na tabela \ref{tab:ResultIdapx2ordemP2} ao final do capítulo.
 
 \begin{figure}[!htb]
 \inserirListaFiguras
 \centering
    %\FONTE{\citep{franca}}
-   \includegraphics[scale=0.48]{./Figuras/Fig1.png}
+   \includegraphics[scale=0.15]{./Figuras/Fig1.png}
       \caption{Validação Comparando Saída Real e Estimada}
    \label{fig:EX21}
 \end{figure}
@@ -174,7 +174,7 @@ A escolha dos parâmetros não permitem que os autovalores da equação \ref{eq:avMA
 \inserirListaFiguras
 \centering
    %\FONTE{\citep{franca}}
-   \includegraphics[scale=0.48]{./Figuras/Fig2.png}
+   \includegraphics[scale=0.15]{./Figuras/Fig2.png}
       \caption{Validação Comparando Saída Real e Estimada}
    \label{fig:EX22}
 \end{figure}

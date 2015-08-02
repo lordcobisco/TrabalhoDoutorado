@@ -13,10 +13,10 @@ No presente capítulo serão apresentados o algoritmo PSO tradicional e sua princi
 
 Entre as décadas de 1970 e 1990, cientistas como ~\citeonline{Heppner1990},  ~\citeonline{Reynolds1987} e ~\citeonline{Millonas1994} debruçavam-se sobre o estudo do comportamento psicológico e social de determinadas espécies. Tais pesquisadores estavam fascinados com as interações entre bandos de aves e cardumes de peixes em suas atividades cotidianas \cite{Kennedy1995}. Tais grupos de animais, ao procurar por comida ou ao fugir de predadores, possuem um tipo de consciência coletiva. Cada elemento do grupo aprende com o comportamento dos seus demais componentes e tendo em vista esse comportamento, diversos pesquisadores buscaram sintetizar essas interações por intermédio de modelos matemáticos. Nesse contexto, o algoritmo PSO foi desenvolvido por ~\citeonline{Kennedy1995}, e foi posteriormente modificado por ~\citeonline{Shi:98}. 
 
-O PSO é similar a outras técnicas evolutivas, como por exemplo, algoritmo genético \cite{Najjarzadeh2008}. Porém, na PSO, cada indivíduo ou partícula possui uma velocidade de adaptação (mudança de posição), que é alterada à medida que a partícula se move dentro do espaço de busca. Além disso, cada indivíduo tem memória sobre a melhor posição pela qual passou. Seu deslocamento é direcionado para a melhor posição já visitada e para a melhor partícula de uma vizinhança. O PSO é eficaz na otimização de problemas não contínuos em diversas áreas de conhecimento \cite{Shi:98}. Atualmente vem sendo aplicado a problemas de otimização, além dos já citados, em projetos de antenas \cite{Robinson2002}, planejamento de trajetórias de robôs \cite{Sierakowski2005} e sistemas de distribuição de energia elétrica \cite{Fukuyama2001}.
+O PSO é similar a outras técnicas evolutivas, como por exemplo, algoritmo genético \cite{Najjarzadeh2008}. Porém, na PSO, cada indivíduo ou partícula possui uma velocidade de adaptação (mudança de posição), que é alterada à medida que a partícula se move dentro do espaço de busca. Além disso, cada indivíduo memoriza a melhor posição pela qual passou. Seu deslocamento é direcionado para a melhor posição já visitada e para a melhor partícula de uma vizinhança. O PSO é eficaz na otimização de problemas não contínuos em diversas áreas de conhecimento \cite{Shi:98}. Atualmente vem sendo aplicado a problemas de otimização, além dos já citados, em projetos de antenas \cite{Robinson2002}, planejamento de trajetórias de robôs \cite{Sierakowski2005} e sistemas de distribuição de energia elétrica \cite{Fukuyama2001}.
 
 Existe uma teoria muito simples que está por trás do PSO. Nessa teoria, cada indivíduo de uma população possui sua própria experiência quantizada na forma de uma função objetivo. Para incorporar às partículas um comportamento social, cada indivíduo
-possui conhecimento sobre como seus vizinhos se comportam. Essas duas informações correspondem à aprendizagem individual (cognitiva) e à transmissão cultural (social), respectivamente. Portanto, cada decisão estará associado a seu desempenho passado e de alguns de seus vizinhos \cite{Serapiao2009}.
+possui conhecimento sobre como seus vizinhos se comportam. Essas duas informações correspondem à aprendizagem individual (cognitiva) e à transmissão cultural (social), respectivamente. Portanto, cada decisão estará associada a seu desempenho passado e de alguns de seus vizinhos \cite{Serapiao2009}.
 
  ~\citeonline{Kennedy2001} utilizaram três princípios para resumir o processo de adaptação incorporada ao algoritmo de PSO:
 
@@ -25,7 +25,7 @@ possui conhecimento sobre como seus vizinhos se comportam. Essas duas informaçõe
 
 			\item Comparar - é a capacidade de julgar algo utilizando outros indivíduos como referência comparativa;
 
-			\item Imitar - é a habilidade que apenas os seres humanos e alguns pássaros são capazes de utilizar. A imitação incorporada ao algoritmo não é apenas fazer algo porque outro indivíduo reagiu de tal forma mas é a capacidade de entender o propósito ou o caminho percorrido e utilizá-lo quando apropriado.
+			\item Imitar - é a habilidade que apenas os seres humanos e alguns pássaros são capazes de utilizar. A imitação incorporada ao algoritmo não é apenas fazer algo porque outro indivíduo reagiu de tal forma, mas é a capacidade de entender o propósito ou o caminho percorrido e utilizá-lo quando apropriado.
  \end{itemize}
  
  Com isso é possível entender que, assim como em outras abordagens de inteligência coletiva, o algoritmo PSO incorpora capacidades a uma população de indivíduos de interagir entre si e com o meio ambiente. Com base nos conceitos de avaliação, comparação e imitação, esse algoritmo é capaz de, assim como os indivíduos são capazes de lidar com um número de possíveis situações que o ambiente lhes apresenta, resolver problemas de otimização em diversas áreas do conhecimento \cite{Serapiao2009}.
@@ -33,7 +33,7 @@ possui conhecimento sobre como seus vizinhos se comportam. Essas duas informaçõe
 \section{Algoritmo Base e Principal Variação}
 
 
-Como já referido, os algoritmos de PSO empregam os princípios de avaliar, comparar e imitar \cite{Kennedy2001}. Esses princípios são modelados na forma de aprendizagem individual (cognitiva) e a transmissão cultural (social), ideias importantes no processo de decisão. O transmissão cultural ($P_G$) conecta conceitualmente todos os membros de uma população entre si. Como consequência, o comportamento de cada partícula é influenciado pelo comportamento de todas as outras. A aprendizagem individual ($P^i_B$) cria uma vizinhança para cada indivíduo composta por ele próprio e seus vizinhos mais próximos. Ambas as métricas são respostas de uma função de avaliação $J_{PSO}$, também chamada de função objetivo ou de aptidão (\textit{fitness}), que corresponde aos valores, capacidade, ou qualidade de cada indivíduo na solução do problema  \cite{Kennedy2001}.
+Como já referido, os algoritmos de PSO empregam os princípios de avaliar, comparar e imitar \cite{Kennedy2001}. Esses princípios são modelados na forma de aprendizagem individual (cognitiva) e a transmissão cultural (social), ideias importantes no processo de decisão. A transmissão cultural ($P_G$) conecta conceitualmente todos os membros de uma população entre si. Como consequência, o comportamento de cada partícula é influenciado pelo comportamento de todas as outras. A aprendizagem individual ($P^i_B$) cria uma vizinhança para cada indivíduo composta por ele próprio e seus vizinhos mais próximos. Ambas as métricas são respostas de uma função de avaliação $J_{PSO}$, também chamada de função objetivo ou de aptidão (\textit{fitness}), que corresponde aos valores, capacidade, ou qualidade de cada indivíduo na solução do problema  \cite{Kennedy2001}.
 
 
 
@@ -56,8 +56,17 @@ A velocidade $V^i(k + 1)$, por sua vez, é uma função formada por sua experiência
 			\end{array}
 			\label{eq:Vpso}
 			\end{equation}								 
+			
+Em que:
 
-Em que $\phi_1$ e $\phi_2$ são números aleatórios positivos com distribuição uniforme, geralmente denominados respectivamente como componentes ``cognitivo'' e ``social''.
+				\begin{itemize}
+					\item $P^i_B(k)$ é a melhor experiência local da partícula;
+					\item $P_G(k)$ é a melhor experiência global da partícula;
+					\item $X^i(k)$ é Posição atual da partícula;
+					\item $V^i(k)$ é a velocidade atual da partícula;
+					\item $V^i(k+1)$ é a direção para a qual cada partícula tenderá;
+					\item $\phi_1$ e $\phi_2$ são números aleatórios positivos com distribuição uniforme, geralmente denominados respectivamente como componentes ``cognitivo'' e ``social''.
+				\end{itemize}
 
 A partir dessas duas funções é possível descrever o algoritmo básico do PSO \cite{Serapiao2009} conforme mostrado:
 
@@ -98,100 +107,59 @@ De acordo com testes numéricos, realizados por ~\citeonline{Shi:98,Shi:99}, ao a
 
 		
 \section{PSO Matricial Simplificado}
+\label{sec:PSOsimple}
+		Apesar de muitas evidências empíricas mostrarem que a PSO é uma boa ferramenta de otimização, até então, pouco se pesquisou sobre o seu funcionamento e convergência \cite{Clerc2002}. Com base nessa motivação, o algoritmo para a atualização das partículas, velocidade, melhor local e melhor global, é reorganizado em uma forma que a análise de convergência seja possível. A forma encontrada para a reescrita do algoritmo foi colocando-o na forma de um sistema dinâmico discreto.
 		
-		Apesar de muitas evidências empíricas acumuladas mostrarem que o PSO é uma excelente ferramenta de otimização, até então, pouco se pesquisou sobre o seu funcionamento e convergência \cite{Clerc2002}. Com base nessa motivação o algoritmo para a atualização das partículas, velocidade, melhor local e melhor global, é reorganizado em uma forma que a análise de convergência seja possível. A forma encontrada para a reescrita do algoritmo foi colocando-o na forma um sistema dinâmico discreto.
-		
-		Para que seja possível organizar o PSO na forma matricial algumas definiçõoes são necessárias. Primeiramente é necessário reescrever a condição de atualização das melhores partículas locais conforme as equações \ref{eq:Condicao2} e \ref{eq:Condicao3}. 
+		Para que seja possível organizar o PSO na forma matricial, algumas definições são necessárias. Primeiramente é necessário reescrever a condição de atualização das melhores partículas locais. Essa atualização deve substituir as condições de ``if-else'' responsáveis por atualizar as melhores partículas locais, ou seja, ``1'' quando se deseja atualizar e ``0'' quando não se deseja atualizar, conforme a equação \ref{eq:Condicao2}. Lembrando que toda a dedução é realizada para minimização. 
 		
 		\begin{equation}
 		\left\{\begin{matrix}
-		Se ( J_{PSO}(X^i(k)) < J_{PSO}(P^i_B(k)) ) \Rightarrow Verdadeiro = 1 \\ \\
+		Se ( J_{PSO}(X^i(k)) < J_{PSO}(P^i_B(k)) ) for Verdadeiro assumirá o valor 1 \\ \\
 		s_1^i(k) = \frac{-sign (J_{PSO}(X^i(k)) - J_{PSO}(P^i_B(k)))+1}{2}\\ \\
 				\end{matrix}\right.
 	\label{eq:Condicao2}
 \end{equation}
-
-		E,
+	
+	Em que:
+	\begin{itemize}
+		\item $J_{PSO}(X^i(k))$ é a avaliação da i-ésima partícula X no instante k (J seria a função objetivo); 
+		\item $J_{PSO}(P^i_B(k))$ é a avaliação da i-ésima melhor partícula local $P_B$ no instante k;
+		\item $sign$ é a função sinal representada de acordo com a equação \ref{eq:sinal}.
+	\end{itemize}
+	
+	\begin{equation}
+			\begin{array}{ll}
+					sign(x) = \left\{\begin{matrix} 1, se \ x\geqslant 0 
+\\-1, se \ x< 0 \end{matrix}\right.
+			\end{array}
+			\label{eq:sinal}
+			\end{equation}
+	
+	
+	Ao final, é possível observar que o resultado de $s_1^i(k)$ será ``1'' caso a condição seja verdadeira e ``0'' caso seja falsa, isso permitirá a atualização da partícula com base na avaliação. Caso se deseje as equações para maximização é só mudar de lugar o $s_1^i(k)$ pelo $1 - s_1^i(k)$.
+	
+	Para gerar a atualização, também será necessário incluir um termo que quando não for realizada a atualização da melhor partícula local, ela seja atualizada por ela mesma, conforme a equação \ref{eq:Condicao3}.
 		
 		\begin{equation}
 		\left\{\begin{matrix}
-		Se ( J_{PSO}(X^i(k)) < J_{PSO}(P^i_B(k)) ) \Rightarrow Falso = 0\\ \\
+		Se ( J_{PSO}(X^i(k)) < J_{PSO}(P^i_B(k)) ) for Falso assumirá o valor 1\\ \\
 		1-s_1^i(k) = \frac{sign (J_{PSO}(X^i(k)) - J_{PSO}(P^i_B(k)))+1}{2}\\ \\
 		\end{matrix}\right.
 	\label{eq:Condicao3}
 \end{equation}
-		
-		Sendo que $J_{PSO}(L)$ é a função custo, que é uma função de $L$, e que são as melhores partículas locais, ou as melhores experiências locais das partículas. A função $sign$, ou sinal, é representada de acordo com a equação \ref{eq:sinal}.
-	
-	\begin{equation}
-			\begin{array}{ll}
-					sign(x) = \left\{\begin{matrix} 1, If \ x\geqslant 0 
-\\-1, If \ x< 0 \end{matrix}\right.
-			\end{array}
-			\label{eq:sinal}
-			\end{equation}
-			
-			Isso significa que podemos escrever as condições \ref{eq:Condicao2} e \ref{eq:Condicao3} na forma da equação \ref{eq:Mlocal}.
+				
+			Utilizando as condições \ref{eq:Condicao2} e \ref{eq:Condicao3} na forma da equação \ref{eq:Mlocal}, é possível reescrever a função de atualização das melhores partículas locais.
 			
 			\begin{equation}
 			\begin{array}{ll}
-				P^i_B(k+1) = X^i(k)s_1^i(k) + P^i_B(k)(1-s_1^i(k))
+				P^i_B(k+1) = X^i(k)s_1^i(k) + P^i_B(k)(1-s_1^i(k)) = P^i_B(k) + s_1^i(k)(X^i(k) - P^i_B(k))
 			\end{array}
 			\label{eq:Mlocal}
-			\end{equation}
-		
-		%\begin{equation}
-		%\left\{\begin{array}{llcc}
-		%se ( J_{PSO}(X^i(k)) < J_{PSO}(P^i_B(k)) ) \Rightarrow Verdadeiro = 1; & P^i_B(k+1) = X^i(k) \\
-		%se ( J_{PSO}(X^i(k)) < J_{PSO}(P^i_B(k)) ) \Rightarrow Falso = 0; & P^i_B(k+1) = P^i_B(k) \\
-	%\end{array}\right.
-	%\label{eq:Condicao1}
-%\end{equation}
-
-%Onde $J_{PSO}(L)$ é a função custo, que é uma função de L, ou seja, das partículas, melhores locais ou global.
-		
-		%Define-se:
-		%
-%\begin{equation}
-		%\left\{\begin{matrix}
-		%Se ( J_{PSO}(X^i(k)) < J_{PSO}(P^i_B(k)) ) \Rightarrow Verdadeiro = 1 \\ \\
-		%s_1^i(k) = \frac{-sign (J_{PSO}(X^i(k)) - J_{PSO}(P^i_B(k)))+1}{2}\\ \\
-				%\end{matrix}\right.
-	%\label{eq:Condicao2}
-%\end{equation}
-%
-%
-		%e,
-		%
-		%\begin{equation}
-		%\left\{\begin{matrix}
-		%se ( J_{PSO}(X^i(k)) < J_{PSO}(P^i_B(k)) ) \Rightarrow Falso = 0\\ \\
-		%1-s_1^i(k) = \frac{sign (J_{PSO}(X^i(k)) - J_{PSO}(P^i_B(k)))+1}{2}\\ \\
-		%\end{matrix}\right.
-	%\label{eq:Condicao3}
-%\end{equation}
-		%
-		%Onde a função sinal é representada conforme a equação \ref{eq:sinal}.
-	%
-	%\begin{equation}
-			%\begin{array}{ll}
-					%sign(x)= s_1^i(k) = s_2(k) = \left\{\begin{matrix} 1, se \ x\geqslant 0 
-%\\-1, se \ x< 0 \end{matrix}\right.
-			%\end{array}
-			%\label{eq:sinal}
-			%\end{equation}
-			%
-			%Isso significa que é possível escrever as condiçõoes \ref{eq:Condicao2} e \ref{eq:Condicao3} na forma da equação \ref{eq:Mlocal}.
-			%
-			%\begin{equation}
-			%\begin{array}{ll}
-				%P^i_B(k+1) = X^i(k)s_1^i(k) + P^i_B(k)(1-s_1^i(k))
-			%\end{array}
-			%\label{eq:Mlocal}
-			%\end{equation}
+			\end{equation}		
 			
+			Como é possível observar, a equação \ref{eq:Mlocal} atualizará o valor de $P^i_B(k+1)$ para o valor da i-ésima partícula $X^i(k)$ somente se o valor de $s_1^i(k)$ for ``1'', caso ele seja ``0'', ele será atualizado com o seu valor anterior, ou seja, $P^i_B(k)$. Em outras palavras temos, se J diminui, para o caso de uma função de minimização, $P^i_B(k+1) = X^i(k)$, caso contrário, $P^i_B(k+1) = P^i_B(k)$.
 	
-		Tendo reescrito a condição de atualização das melhores partículas locais, a segunda condição para construir a variação matricial do PSO é reescrever a condição de atualização da melhor partícula global. Para isso, foi buscada uma solução, em princípio baseada na simplificação desenvolvida por ~\cite{Mendes2004}. Na simplificação realizada pelos autores utiliza-se um conceito de média entre as melhores partículas locais e globais com o intuito de melhorar o algoritmo. Percebendo a possibilidade de utilização de tal conceito para a sintetização de uma relação semelhante a da equação \ref{eq:Mlocal}, foi definido que a atualização da partícula global seria realizada a partir da média das partículas locais, conforme a equação \ref{eq:Pmedia}.
+		Tendo reescrito a condição de atualização das melhores partículas locais, a segunda condição para construir a variação matricial do PSO é reescrever a condição de atualização da melhor partícula global. Para isso, foi buscada uma solução, em princípio baseada na simplificação desenvolvida por ~\cite{Mendes2004}. Na simplificação realizada pelos autores, utiliza-se um conceito de média entre as melhores partículas locais e globais com o intuito de melhorar o algoritmo e simplificar a análise. Percebendo a possibilidade de utilização de tal conceito para a sintetização de uma relação semelhante a da equação \ref{eq:Mlocal}, foi definido que a atualização da partícula global seria realizada a partir da média das partículas locais, conforme a equação \ref{eq:Pmedia}.
 					
 			\begin{equation}
 			\begin{array}{ll}
@@ -202,15 +170,17 @@ De acordo com testes numéricos, realizados por ~\citeonline{Shi:98,Shi:99}, ao a
 			
 			Sendo que $n_I$ é o número de partículas, ou seja, número de indivíduos da população.
 			
-			Com isso, é possível a partir da condição \ref{eq:CondicaoPg} obter a equação \ref{eq:MGlobal}:
+			A simplificação realizada na equação \ref{eq:Pmedia}, permite utilizar uma única função para concentrar todas as melhores avaliações locais. O objetivo disso é poder utilizar as mesmas equações aplicadas na atualização das melhores partículas locais ($P_m(k)$), conforme eq. \ref{eq:CondicaoPg}. 
 			
 			\begin{equation}
 			\left\{\begin{array}{llcc}
-				se ( J_{PSO}(P_m(k)) < J_{PSO}(P_G(k)) ) \Rightarrow Verdadeiro = 1; & P_G(k+1) = P_m(k) \\
-				se ( J_{PSO}(P_m(k)) < J_{PSO}(P_G(k)) ) \Rightarrow Falso = 0; & P_G(k+1) = P_G(k) \\
+				se ( J_{PSO}(P_m(k)) < J_{PSO}(P_G(k)) ) for Verdadeiro; & P_G(k+1) = P_m(k) \\
+				se ( J_{PSO}(P_m(k)) < J_{PSO}(P_G(k)) ) for Falso; & P_G(k+1) = P_G(k) \\
 			\end{array}\right.
 			\label{eq:CondicaoPg}
 			\end{equation}
+			
+			Por isso, é possível, a partir da condição \ref{eq:CondicaoPg}, obter a equação \ref{eq:MGlobal}:
 		 
 		 \begin{equation}
 			\begin{array}{ll}
@@ -218,6 +188,10 @@ De acordo com testes numéricos, realizados por ~\citeonline{Shi:98,Shi:99}, ao a
 			\end{array}
 			\label{eq:MGlobal}
 			\end{equation}
+			
+			Em que $s_2(k) = \frac{-sign (J_{PSO}(P_m(k)) - J_{PSO}P_G(k))+1}{2}$ (semelhante a "$s_1(k)$).
+			
+			Ou seja, foram obtidas tanto a atualização da melhor partícula local, quanto da melhor partícula global, utilizando o mesmo conceito (aplicando a função sinal para selecionar entre as duas possibilidades).
 			
 			Definindo $T(k)$ como o vetor ``aumentado'', ou vetor de partículas $1d$ (significando que $i = 1$) na forma da equação \ref{eq:vetorT}:
 			
@@ -249,7 +223,7 @@ De acordo com testes numéricos, realizados por ~\citeonline{Shi:98,Shi:99}, ao a
 			\label{eq:aT}
 			\end{equation}
 
-A solução otimizada com PSO, ou seja, a melhor partícula da iteração k pode ser obtida a partir da equação \ref{eq:SolPSO}.
+A solução otimizada com PSO, ou seja, a melhor partícula da iteração k, pode ser obtida a partir da equação \ref{eq:SolPSO}.
 
 			\begin{equation}
 			S = [0\, 0\, 0\, 1]
@@ -257,7 +231,7 @@ A solução otimizada com PSO, ou seja, a melhor partícula da iteração k pode ser 
 			\label{eq:SolPSO}
 			\end{equation}
 
-Devido a simplicidade da equação \ref{eq:aT} tanto o algoritmo do PSO se torna simplificado quanto é possível realizar a análise dos autovalores de forma a verificar a convergência das particulas em certas condições. 
+Devido a simplicidade da equação \ref{eq:aT}, tanto o algoritmo do PSO se torna simplificado quanto é possível realizar a análise dos autovalores de forma a verificar a convergência das particulas em certas condições. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -284,7 +258,7 @@ Devido a simplicidade da equação \ref{eq:aT} tanto o algoritmo do PSO se torna s
 		
 		A diferença básica entre a variação matricial exata e a variação simplificada está na forma como a melhor partícula global $P_{G}(k)$ é atualizada. Isso significa que a organização no formato matricial segue a mesma sequência das equações \ref{eq:Condicao2} até a \ref{eq:Mlocal} e na sequência será apresentada a síntese da equação que calcula a atualização de $P_{G}(k)$, desenvolvida neste trabalho.
 		
-		Tendo reescrito a condição de atualização das melhores partículas locais (equações de \ref{eq:Condicao2} até \ref{eq:Mlocal}), a segunda condição para construir a variação matricial do PSO é reescrever a condição de atualização da melhor partícula global. Para que isso seja possível serão definidas quatro novas variáveis conforme as equações \ref{eq:EPG}, \ref{eq:MEPG}, \ref{eq:GD},\ref{eq:SDG} que são: 
+		Tendo reescrito a condição de atualização das melhores partículas locais (equações de \ref{eq:Condicao2} até \ref{eq:Mlocal}), a segunda condição para construir a variação matricial do PSO é reescrever a condição de atualização da melhor partícula global. Para que isso seja possível serão definidas quatro novas variáveis conforme as equações \ref{eq:EPG}, \ref{eq:MEPG}, \ref{eq:GD},\ref{eq:SDG} que são $E_{P_G}^i(k)$, diferença entre o custo (para função de minimização) em se utilizar a melhor partícula global e a i-ésima melhor partícula local, $ME_{P_G}^i(k)$, função que seleciona a melhor avaliação de todas as melhores partículas locais ($J_{PSO} (P_B^i(k))$) (coloca zero caso seja a melhor e o restante se torna negativo), $G_{D}^i(k)$ e $s_{DG}(k)$, são duas funções que combinadas retornam ``1'' se a i-ésima partícula é a escolhida para ser a melhor partícula global e ``0'' caso contrário. 
 		
 		\begin{equation}
 			E_{P_G}^i(k)= J_{PSO} (P_G)- J_{PSO} (P_B^i(k))
@@ -297,7 +271,7 @@ Devido a simplicidade da equação \ref{eq:aT} tanto o algoritmo do PSO se torna s
 			\end{equation}
 			
 			\begin{equation}
-			G_{D}^i(k)= \frac{[s(E_{P_G}^i(k)) + s(ME_{P_G}^i(k))] + [s(E_{P_G}^i(k))\,s(ME_{P_G}^i(k))] + 1}{4}
+			G_{D}^i(k)= \frac{[sign(E_{P_G}^i(k)) + sign(ME_{P_G}^i(k))] + [sign(E_{P_G}^i(k))\,sign(ME_{P_G}^i(k))] + 1}{4}
 			\label{eq:GD}
 			\end{equation}
 			
@@ -306,7 +280,7 @@ Devido a simplicidade da equação \ref{eq:aT} tanto o algoritmo do PSO se torna s
 			\label{eq:SDG}
 			\end{equation}
 		
-		Em que $s_{3}(x)$ é a função sinal, definida como:
+		Em que $s_{3}(x)$ é uma função sinal modificada, definida como:
 		
 		\begin{equation}
 			s_{3}(x)= \left\{\begin{matrix}
@@ -318,13 +292,13 @@ Devido a simplicidade da equação \ref{eq:aT} tanto o algoritmo do PSO se torna s
 			
 			e N é o número de partículas.
 
-Utilizando as formulações apresentadas é possível obter a equação que atualiza as melhores partículas globais conforme \ref{eq:Pgexato}.
+Utilizando as formulações apresentadas é possível obter a equação que atualiza as melhores partículas globais, conforme \ref{eq:Pgexato}.
 
 \begin{equation}
 			P_G(k+1)= \frac{G_{D}^i(k)}{s_{DG}(k)}P_B^i(k) + (1-\sum_{i=1}^N{\frac{G_D^i(k)}{s_{DG}(k)}})P_G(k)
 			\label{eq:Pgexato}
 			\end{equation}
-
+			
 Utilizando as formulações é possível reescrever a matriz A(k) para o PSOM exato na forma da equação \ref{eq:Aexata}.
 
 \begin{equation}
@@ -356,6 +330,9 @@ O algoritmo da PSOM, versão sem simplificações é descrito conforme mostrado:
 	
 \end{algorithmic}
 \end{algorithm}
+
+De forma semelhante ao realizado na secção \ref{sec:PSOsimple} foi obtida uma equação de atualização para a melhor partícula global. Neste caso, é possível observar que a atualização foi realizada com base nos valores calculados com a função custo. Além disso, as tomadas de decisão no algoritmo foram equacionadas, o que permite sintetizá-lo na forma de um sistema linear variante no tempo, utilizando o mesmo PSO original e obtendo os mesmos resultados. A grande vantagem de se obter esse equacionamento é que isso auxiliará na dedução de garantias de convergência para funções específicas de forma determinística.
+
 
 \subsection{Análise de Estabilidade do Algoritmo}
 \label{sec:Estabilidade}
@@ -390,9 +367,9 @@ O algoritmo da PSOM, versão sem simplificações é descrito conforme mostrado:
 		
 		Alguns trabalhos na literatura buscaram analisar a convergência e estabilidade do algoritmo PSO de várias maneiras. Dentre estas é possível citar a primeira análise de estabilidade do PSO proposta por ~\citeonline{Clerc2002}, a análise de estabilidade utilizando o conceito de estabilidade absoluta proposta por ~\citeonline{Kadirkamanathan2006}, a análise de convergência do PSO utilizando funções multi-objetivo proposta por ~\citeonline{Chakraborty2010} e a análise de estabilidade não linear variante no tempo do PSO proposta por ~\citeonline{Fan2010}. Pode-se concluir, então, que a análise de estabilidade vem sendo profundamente estudada por vários autores. 
 		
-		Assim como foi analisada a estabilidade de algoritmos baseados em enxame de partículas pelos autores será realizada uma análise de estabilidade dividindo o algoritmo PSO, proposto, em sistemas lineares.
+		Assim como foi analisada a estabilidade de algoritmos baseados em enxame de partículas pelos autores, será realizada uma análise de estabilidade dividindo o algoritmo PSO, proposto, em sistemas lineares.
 		
-		Nas ultimas duas décadas aumentou-se o interesse no estudo de sistemas híbridos. Esses sistemas são utilizados para reduzir a complexidade na modelagem de sistemas não lineares. Muitos deles podem ser modelados como um conjunto de sistemas lineares com chaves selecionadoras entre eles. Essa abordagem caracteriza uma classe de sistemas híbridos conhecidos como sistemas lineares por partes. Mesmo havendo progressos importantes na análise de estabilidade de sistemas lineares por partes, sua análise ainda é um grande desafio. Pois, a estabilidade de sistemas lineares por partes não pode ser inferida apenas pela estabilidade dos sistemas que o compõe, porque mesmo no caso em que todas as partes são estáveis a estrutura de chaveamento pode fazer com que o sistema se instabilize \cite{Barijough2010}. Como a estabilidade de um sistema linear por partes depende não só de todas as partes do sistema serem estáveis, mas também da estrutura de chaveamento, será proposta uma análise que leve em consideração ambos os acontecimentos, ou seja, cada parte em separado e o sistema como um todo.
+		Nas últimas duas décadas aumentou-se o interesse no estudo de sistemas híbridos. Esses sistemas são utilizados para reduzir a complexidade na modelagem de sistemas não lineares. Muitos deles podem ser modelados como um conjunto de sistemas lineares com chaves selecionadoras entre eles. Essa abordagem caracteriza uma classe de sistemas híbridos conhecidos como sistemas lineares por partes. Mesmo havendo progressos importantes na análise de estabilidade de sistemas lineares por partes, sua análise ainda é um grande desafio. Pois, a estabilidade de sistemas lineares por partes não pode ser inferida apenas pela estabilidade dos sistemas que o compõe, porque mesmo no caso em que todas as partes são estáveis a estrutura de chaveamento pode fazer com que o sistema se instabilize \cite{Barijough2010}. Como a estabilidade de um sistema linear por partes depende não só de todas as partes do sistema serem estáveis, mas também da estrutura de chaveamento, será proposta uma análise que leve em consideração ambos os acontecimentos, ou seja, cada parte em separado e o sistema como um todo.
 		
 	Suponhamos que a equação \ref{eq:aT} possa ser reescrita na forma da equação \ref{eq:aT2}.
 		
@@ -401,9 +378,9 @@ O algoritmo da PSOM, versão sem simplificações é descrito conforme mostrado:
 			\label{eq:aT2}
 			\end{equation}
 			
-		Ou seja,em princípio será assumindo que os seus parâmetros são constantes (lembrando que o sistema mostrado é aplicável tanto à estrutura do PSOM simplificado quanto para o exato).
+		Ou seja, em princípio será assumindo que os seus parâmetros são constantes (lembrando que o sistema mostrado é aplicável tanto à estrutura do PSOM simplificado quanto para o exato).
 		
-		A partir do conceito de autovalores é possível provar que a estabilidade assintótica do ponto fixo do sistema linear depende do m\'odulo dos autovalores de ``A'', matriz da equação \ref{eq:aT2}. Isto é, o ponto de equilíbrio é assintóticamente estável quando o m\'odulo de todos os seus autovalores é menor que 1, para um sistema discreto. Em consequ\^encia, quando, pelo menos, o m\'odulo de um autovalor é maior que 1 o sistema é instável \cite{Monteiro2002}. Isto significa que:
+		A partir do conceito de autovalores é possível provar que a estabilidade assintótica do ponto fixo do sistema linear depende do m\'odulo dos autovalores de ``A'', matriz da equação \ref{eq:aT2}. Isto é, o ponto de equilíbrio é assintoticamente estável quando o m\'odulo de todos os seus autovalores é menor que 1, para um sistema discreto. Em consequ\^encia, quando, pelo menos, um m\'odulo de um autovalor é maior que 1 o sistema é instável \cite{Monteiro2002}. Isto significa que:
 
 \begin{itemize}
 	\item A equação \ref{eq:aT2} é marginalmente estável se, e somente se, todos os autovalores de A têm magnitudes menores ou iguais a 1 e aqueles que tiverem magnitudes iguais a 1 forem raízes simples do polinômio mínimo de A;
@@ -411,7 +388,8 @@ O algoritmo da PSOM, versão sem simplificações é descrito conforme mostrado:
 	\item A equação \ref{eq:aT2} é instável quando pelo menos o módulo de um autovalor for maior que 1;
 \end{itemize}
 		
-		Para aplicar os conceitos apresentados é necessário supor que o sistema é linear e invariante no tempo. Dessa maneira, serão assumidas tais hipóteses de maneira a analisar parte do algoritmo. 
+		Para aplicar os conceitos apresentados é necessário supor que o sistema é linear e invariante no tempo. Dessa maneira, serão assumidas tais hipóteses para analisar parte do algoritmo. 
+				
 				
 		Devido a $s_1^i(k)$ e $s_2(k)$ (onde $ \sum_{i=1}^N{\frac{G_D^i(k)}{s_{DG}(k)}}$ é semelhante a $s_2(k)$) serem funções que variam em apenas dois valores é possível reestruturar o PSO matricial em 4 diferentes partes principais. Os valores que $s_1^i(k)$ e $s_2(k)$ podem assumir são:
 
@@ -470,7 +448,7 @@ O algoritmo da PSOM, versão sem simplificações é descrito conforme mostrado:
 
 \end{itemize}
 
-Como o comportamento de $s_1^i(k)$ e $s_2(k)$ é equivalente a uma chave, ou seja, assume valores ``0'' ou ``1'', as possibilidades formam o conjunto que calcula as novas partículas, o valor das melhores locais e a melhor partícula global para o algoritmo de PSO matricial. Com isso, é possível reorganizar o sistema da seguinte maneira:
+Como o comportamento de $s_1^i(k)$ e $s_2(k)$ é equivalente a uma chave, ou seja, assume valores ``0'' ou ``1'', as possibilidades formam o conjunto que calcula as novas partículas, o valor das melhores partículas locais e a melhor global para o algoritmo de PSO matricial. Com isso, é possível reorganizar o sistema da seguinte maneira:
 
 			\begin{equation}
 				T(k+1) = (\delta_1\,A_1\, +\cdots +\, \delta_n\,A_n)\,T(k) 
@@ -607,13 +585,13 @@ Para $s_1^i(k)=1$ e $s_2(k)=1$ temos:
 			
 			Como pode-se observar na equação \ref{eq:avMA4}, dependendo da forma como são escolhidos os parâmetros, é possível encontrar valores constantes para as variáveis $\phi_1$, $\phi_2$, $\omega$ e $\lambda_{esq}$ onde o módulo dos autovalores seja menor que ``1'', e, para as outras possibilidades, sejam no máximo igual a ``1''. 
 
-Contudo, a estabilidade dos sistemas lineares por partes não pode ser inferida apenas pela estabilidade dos sistemas que os compõe, porque mesmo no caso em que todas as partes são estáveis a estrutura de chaveamento pode fazer com que o sistema se instabilize \cite{Barijough2010}. Por isso, como a estabilidade de um sistema linear por partes depende não só de todas as partes do sistema serem estáveis, mas também da estrutura de chaveamento. A seguir, será proposta uma forma de analisar a estabilidade da estrutura da equação \ref{eq:aT3}.
+Contudo, a estabilidade dos sistemas lineares por partes não pode ser inferida apenas pela estabilidade dos sistemas que os compõe, porque mesmo no caso em que todas as partes são estáveis a estrutura de chaveamento pode fazer com que o sistema se instabilize \cite{Barijough2010}. Por isso, como a estabilidade de um sistema linear por partes depende não só de todas as partes do sistema serem estáveis, mas também da estrutura de chaveamento, a seguir, será proposta uma forma de analisar a estabilidade da estrutura da equação \ref{eq:aT3}.
 
 A teoria de sistemas chaveados tem recebido uma atenção especial na literatura de teoria de sistemas lineares nas últimas duas décadas, apresentando resultados sólidos no que concerne a estabilidade e estabilização desses sistemas. Um desses resultados, que pode ser visualizado em \cite{HANLON2011}, apresenta o seguinte teorema:
 
-\textit{Teorema 1}: O sistema \ref{eq:aT3} converge para zero quase certamente se e somente se todos os autovalores da matriz $\frac{\sum^{n}_{i=1}{A_i}}{n} $ se encontram no interior do ciclo de raio unitário.
+\textit{Teorema 1}: O sistema \ref{eq:aT3} converge para zero quase certamente se e somente se todos os autovalores da matriz $\frac{\sum^{n}_{i=1}{A_i}}{n} $ se encontram no interior do círculo de raio unitário.
 
-Baseado no teorema apresentado a matriz da equação \ref{eq:matMAs}, substituídas com as 4 possibilidades, resultariam numa nova matriz $\bar{A}$, que pode ser visualizada na equação \ref{eq:matMAbs} cujos autovalores determinam a estabilidade quase certa das partículas.
+Baseado no teorema apresentado a matriz da equação \ref{eq:matMAs}, substituídas com as 4 possibilidades, resultariam numa nova matriz $\bar{A}$, que pode ser visualizada na equação \ref{eq:matMAbs} cujos autovalores determinam a estabilidade quase certa das partículas. É necessário lembrar que as funções $s(k)$ possuem dependência com os estados de maneira indireta, mas, como essa função é não linear e complexa a sua autocorrelação linear não é percebida, e, portanto, é possível utilizar a teoria apresentada (principalmente pelos resultados apresentados serem compatíveis).
 
 	\begin{equation}
 		\bar{A} = \sum_{l=1}^n{\frac{A_l}{n}}
@@ -643,27 +621,44 @@ Em que:
 	\item $\phi_{i\,in}$ e $\phi_{i\,f}$ são os valores inicial e final dos intervalos onde as variáveis $\phi_1$ e $\phi_2$ estão distribuídas.
 \end{itemize}
 
-Com base na matriz da equação \ref{eq:matMAbs2} é possível realizar uma simulação em busca de regiões estáveis, que são as possíveis escolhas de parâmetros que resultam em uma estabilidade quase certa. A figura \ref{fig:EstabilidadeQuaseCerta} apresenta uma região formada com os parâmetros no $R^4$ ($\phi_1$, $\phi_2$, $\omega$ e $\lambda_{esq}$), porém, apresentada em pares, onde os parâmetros que não são apresentados em cada gráfico foram fixados iguais a 1.
+Com base na matriz da equação \ref{eq:matMAbs2} é possível realizar uma simulação em busca de regiões estáveis, que são as possíveis escolhas de parâmetros que resultam em uma estabilidade quase certa. As figuras \ref{fig:EstabilidadeQuaseCerta1}, \ref{fig:EstabilidadeQuaseCerta2}, e \ref{fig:EstabilidadeQuaseCerta3}, apresentam as regiões formadas com os parâmetros no $R^3$ ($\phi_1$, $\phi_2$, $\omega$ e definindo $\lambda_{esq} = 1$).
 
+O gráfico das figuras \ref{fig:EstabilidadeQuaseCerta1}, \ref{fig:EstabilidadeQuaseCerta2}, e \ref{fig:EstabilidadeQuaseCerta3}, está dividido em 3 partes, pois a quantidade de parâmetros é igual a 3, assumindo o valor de $\lambda_{esq} = 1$, ou seja, para analisar a estabilidade do sistema, os parâmetros foram variados de 0 à 3, enquanto o $\lambda_{esq}$ foi fixado em 1. Então, se forem escolhidos parâmetros dentro da região azul, será possível garantir que os autovalores estarão contidos no círculo de raio unitário. Portanto, é possível determinar uma região de estabilidade quase certa para o sistema linear por partes, apresentado na equação \ref{eq:aT3}. Isso significa que a comutação entre as matrizes que geram esse sistema quase certamente resultará na convergência do estado T(k), e, consequentemente, na convergência das partículas ($X$), das velocidades ($V$), das melhores locais ($P_B$) e das melhores globais ($P_G$).
 
-\begin{figure}[!htb]
+\begin{figure}[!h]
 \inserirListaFiguras
 \centering
    %\FONTE{\cite{franca}}
-   \includegraphics[scale=0.485]{Figuras/EstabilidadeQuaseCerta.png}
-      \caption{Gráficos com regiões de estabilidade no $R^4$ com os parâmetros não apresentados iguais a 1}
-   \label{fig:EstabilidadeQuaseCerta}
+   \includegraphics[scale=0.8]{Figuras/omegaEc1.png}
+      \caption{Região de estabilidade na perspectiva de $\omega$ e $c_1$}
+   \label{fig:EstabilidadeQuaseCerta1}
 \end{figure}
 
+\begin{figure}[!h]
+\inserirListaFiguras
+\centering
+   %\FONTE{\cite{franca}}
+   \includegraphics[scale=0.8]{Figuras/omegaEc2.png}
+      \caption{Região de estabilidade na perspectiva de $\omega$ e $c_2$}
+   \label{fig:EstabilidadeQuaseCerta2}
+\end{figure}
 
-Portanto, é possível determinar uma região de estabilidade quase certa para o sistema linear por partes, apresentado na equação \ref{eq:aT3}. Isso significa que a comutação entre as matrizes que geram esse sistema quase certamente resultará na convergência do estado T(k), e, em consequência, na convergência das partículas ($X$), das velocidades ($V$), das melhores locais ($P_B$) e das melhores globais ($P_G$).
+\begin{figure}[!h]
+\inserirListaFiguras
+\centering
+   %\FONTE{\cite{franca}}
+   \includegraphics[scale=0.8]{Figuras/c1Ec2.png}
+      \caption{Região de estabilidade na perspectiva de $c_1$ e $c_2$}
+   \label{fig:EstabilidadeQuaseCerta3}
+\end{figure}
+
 		
 		\subsection{Análise de Convergência do Erro Quadrático Iterativo}
 		
 		O critério de estabilidade utilizado na seção \ref{sec:Estabilidade} apenas garante que as partículas dentro do PSO tenderão a convergir para um valor finito, não significando que essa convergência acontecerá na direção da minimização ou maximização da função custo. Por isso, com o objetivo de analisar a convergência no sentido de otimizar a função custo, deve-se analisar se o erro diminui a cada iteração. Neste caso podemos utilizar o critério da inequação \ref{eq:ErroIterativoQuadratico}.
 		
 	\begin{equation}
-		E(k)^2 - E(k-1)^2 < 0
+		E^2(k) - E^2(k-1) < 0
 	\label{eq:ErroIterativoQuadratico}
 \end{equation}	
 		
@@ -676,7 +671,7 @@ Portanto, é possível determinar uma região de estabilidade quase certa para o si
 		
 		Através da inequação \ref{eq:ErroIterativoQuadratico} é possível perceber que sempre que a mesma é verdadeira o erro diminui, e, portanto, o sistema fica mais próximo da solução correta.
 		
-		Para que seja possível perceber quais são as condições necessárias para que o erro diminua a inequação pode ser expandida. Conforme as inequações \ref{eq:DeducaoErro1}, \ref{eq:DeducaoErro2}, \ref{eq:DeducaoErro3}, \ref{eq:DeducaoErro4}, \ref{eq:DeducaoErro5}, \ref{eq:DeducaoErro6}, \ref{eq:DeducaoErro7}:
+		Para que seja possível perceber quais são as condições necessárias para que o erro diminua a inequação pode ser expandida, conforme a inequação \ref{eq:DeducaoErro1}:
 		
 		\begin{equation}
 			\begin{matrix}
@@ -685,40 +680,7 @@ Portanto, é possível determinar uma região de estabilidade quase certa para o si
 		\label{eq:DeducaoErro1}
 	  \end{equation}
 		
-		\begin{equation}
-			\begin{matrix}
-				- 2\,y\,S\,A(k)\,A(k-1)\,T(k-1) + (S\,A(k)\,A(k-1)\,T(k-1))^2 +2\,y\,S\,A(k-1)\,T(k-1) - \\(S\,A(k-1)\,T(k-1))^2 < 0
-			\end{matrix}
-		\label{eq:DeducaoErro2}
-	  \end{equation}
-		
-		\begin{equation}
-			\begin{matrix}
-				- 2\,y\,S\,A(k)\,A(k-1)\,T(k-1) + (S\,A(k)\,A(k-1)\,T(k-1)\,S\,A(k)\,A(k-1)\,T(k-1)) +\\2\,y\,S\,A(k-1)\,T(k-1) - (S\,A(k-1)\,T(k-1)\,S\,A(k-1)\,T(k-1)) < 0
-			\end{matrix}
-		\label{eq:DeducaoErro3}
-	  \end{equation}
-		
-		\begin{equation}
-			\begin{matrix}
-				(2\,y\,S\,I - 2\,y\,S\,A(k))\,A(k-1)\,T(k-1) + \\(S\,A(k)\,A(k-1)\,T(k-1)\,S\,A(k)\,A(k-1)\,T(k-1)) - \\(S \, A(k-1) \, T(k-1) \, S \, A(k-1)\,T(k-1)) < 0
-			\end{matrix}
-		\label{eq:DeducaoErro4}
-	  \end{equation}
-		
-		\begin{equation}
-			\begin{matrix}
-				2\,y\,S\,(I-A(k))\,A(k-1)\,T(k-1) + (S\,A(k)\,A(k-1)\,T(k-1)\,S\,A(k)\,A(k-1)\,T(k-1)) - \\(S\,A(k-1)\,T(k-1)\,S\,A(k-1)\,T(k-1)) < 0
-			\end{matrix}
-		\label{eq:DeducaoErro5}
-	  \end{equation}
-		
-		\begin{equation}
-			\begin{matrix}
-				2\,y\,S\,(I-A(k))\,A(k-1)\,T(k-1) + ((S\,A(k)\,A(k-1)\,T(k-1)\,S\,A(k)) - \\(S\,A(k-1)\,T(k-1)\,S))\,A(k-1)\,T(k-1) < 0
-			\end{matrix}
-		\label{eq:DeducaoErro6}
-	  \end{equation}
+		A inequação \ref{eq:DeducaoErro1} pode ser reagrupada na forma da inequação \ref{eq:DeducaoErro7}.
 		
 		\begin{equation}
 			\begin{matrix}
@@ -727,7 +689,7 @@ Portanto, é possível determinar uma região de estabilidade quase certa para o si
 		\label{eq:DeducaoErro7}
 	  \end{equation}
 		
-		Ao analisar a inequação \ref{eq:DeducaoErro7} conjuntamente com a forma como as matrizes $A(k)$ e $A(k-1)$ são montadas (tendo como base a equação 	\ref{eq:matA}), é possível perceber que existem $4*4$ possibilidades, $4$ para $A(k)$ e $4$ para $A(k-1)$. Dessa maneira temos:
+		A inequação \ref{eq:DeducaoErro7}, quando satisfeita, garante a diminuição do erro entre o valor que se deseja encontrar e o valor obtido utilizando o PSOM. Isso significa que, como o valor y (em princípio desconhecido) é constante, encontrar esse valor depende apenas dos estados $T(k-1)$ (que representam as partículas do PSO e cujo valor de interesse é o $P_G$, o melhor global) e das matrizes $A(k)$ e $A(k-1)$. É importante ressaltar que a estabilidade das partículas ($T(k)$ tendendo a um valor constante) já foi analisada, e é possível encontrar valores convergentes. Nesta análise, pretende-se entender como ocorre a convergência para o valor otimizado, através da inequação \ref{eq:DeducaoErro7}. Ao analisar a inequação \ref{eq:DeducaoErro7} conjuntamente com a forma como as matrizes $A(k)$ e $A(k-1)$ são montadas (tendo como base a equação 	\ref{eq:matA}), é possível perceber que existem $4*4$ possibilidades, $4$ para $A(k)$ e $4$ para $A(k-1)$. Como as matrizes possuem muitos termos iguais a zero, ou que podem ser zero, também devido aos valores de $s_1(k)$ e $s_2(k)$ assumirem os valores ``0'' ou ``1'' é possível simplificar a expressão da inequação, mesmo após a divisão em 16 possibilidades. Dessa maneira temos:
 		
 		\begin{itemize}
 		%1
@@ -877,7 +839,7 @@ Portanto, é possível determinar uma região de estabilidade quase certa para o si
 			
 		\end{itemize}
 		
-		Como pode ser percebido, existem apenas $3$ possibilidades de ocorrer a diminuição do erro em direção ao zero, descritos pelas condições expressas nas inequações \ref{eq:ConvErro1}, \ref{eq:ConvErro2} e \ref{eq:ConvErro3}.
+		Como mencionado anteriormente, as matrizes $A(k)$ e $A(k-1)$ possuem muitos termos iguais a zero e, por isso, as simplificações puderam ser obtidas. Como pode ser percebido, existem apenas $3$ possibilidades de ocorrer a diminuição do erro em direção ao zero, descritos pelas condições expressas nas inequações \ref{eq:ConvErro1}, \ref{eq:ConvErro2} e \ref{eq:ConvErro3}.
 
 			\begin{equation}
 				-(G(k-1) - P(k-1))\,(G(k-1) + P(k-1) - 2\,y) < 0
@@ -942,7 +904,7 @@ Portanto, é possível determinar uma região de estabilidade quase certa para o si
 				\label{eq:Cond3}
 			\end{equation}
 			
-			Algo que é possível perceber com isso é que a partir da forma como as partículas se movimentam é possível estimar quando as partículas estão abaixo do ponto de equilíbrio ou acima dele.
+			As inequações nas condições \ref{eq:Cond1}, \ref{eq:Cond2} e \ref{eq:Cond3}, representam as condições necessárias para que haja a convergência do erro quadrático, do instante $k-1$ para o instante $k$. Isso significa que sempre que houver a convergência do erro (lembrando que a análise é realizada para apenas uma partícula e um único melhor local), acontecerão as condições dispostas. Ou seja, é concluído que, a partir da forma como as partículas se movimentam, é possível estimar quando as partículas estão abaixo do ponto de equilíbrio ou acima dele. Essa análise auxilia entender melhor o movimento das partículas e sua convergência em direção ao valor correto, pudendo servir de orientação para um algoritmo auxiliar para melhorias no algoritmo original, aumentando a velocidade de convergência em funções com apenas uma variável. 
 		
 		%\subsection{Inserção do Passo Múltiplo}
 		%
@@ -967,7 +929,7 @@ Portanto, é possível determinar uma região de estabilidade quase certa para o si
 		
 		\subsection{PSOM - Híbrido}			
 					
-			Após a PSO ser reescrito na forma matricial e realizada uma análise de convergências das partículas e da otimização, foi pensado em uma maneira de combinar a PSO com algoritmos de otimização determinísticos, quando a PSO é aplicada a processos com incertezas. O objetivo desta combinação é eliminar a possibilidade de uma inicialização ruim, que não permita a convergência das partículas para uma solução aceitável na PSO. Além disso, intenciona-se obter desempenhos melhores que os algoritmos tradicionais. Ou seja, associando algoritmos determinísticos com o PSO espera-se obter resultados tão bons ou melhores que os algoritmos deterministicos, eliminando a possibilidade de não encontrar um bom indivíduo devido à aleatoriedade do PSO.
+			Após a PSO ser reescrito na forma matricial e realizada uma análise de convergência das partículas e da otimização, foi pensado em uma maneira de combinar a PSO com algoritmos de otimização determinísticos, quando a PSO é aplicada a processos com incertezas. O objetivo desta combinação é eliminar a possibilidade de uma inicialização ruim, que não permita a convergência das partículas para uma solução aceitável na PSO. Além disso, intenciona-se obter desempenhos melhores que os algoritmos tradicionais. Ou seja, associando algoritmos determinísticos com o PSO espera-se obter resultados tão bons ou melhores que os algoritmos determinísticos, eliminando a possibilidade de não encontrar um bom indivíduo devido à aleatoriedade do PSO.
 			
 			Neste trabalho a hibridização consistirá em utilizar o resultado obtido com o uso de algoritmos determinísticos como base para a inicialização das melhores partículas locais ($P_B$) e melhor global do PSO ($P_G$) conforme apresentado nas equações \ref{eq:InitPB} e \ref{eq:InitPG}.
 			
@@ -988,3 +950,16 @@ Portanto, é possível determinar uma região de estabilidade quase certa para o si
 			Onde $P_D$ é o resultado obtido pelo algoritmo determinístico, C é uma constante que determina a região onde serão dispersadas as melhores partículas locais e Rand é um vetor de números aleatórios com distribuição uniforme no intervalo [-1,1].
 		
 		Nesses termos será possível aplicar o algoritmo de PSO para otimização de processos em que as técnicas tradicionais não alcançam o melhor desempenho, porém possuem desempenho suficiente para garantir resultados aceitáveis. Com isso será possível otimizar tal desempenho objetivando o melhor desempenho global dentro dos sistemas que serão utilizados.
+
+\subsection{Conclusão do Capítulo}
+
+				Neste capítulo o algoritmo do PSO foi reorganizado na forma matricial utilizando duas abordagens, uma simplificada e outra completa. Em ambas as abordagens é possível obter uma forma matricial e organizar o PSO na forma de um sistema linear por partes. Observando a teoria para analisar os sistemas estocásticos lineares por partes é possível perceber que, como a forma de chaveamento de $s_1(k)$ e $s_2(k)$ é complexa (semelhante a distribuições descorrelacionadas e independentes) e os outros parâmetros da matriz serem ou constantes ou com distribuição uniforme a estabilidade do algoritmo pode ser analisada a partir dos autovalores da média das matrizes de chaveamento. Essa estabilidade significa que as partículas não tenderão a crescer (não necessariamente convergirão em direção ao valor correto).
+				
+				Além da análise de estabilidade das partículas, também foi analisada a convergência das partículas em direção ao valor correto (utilizando o erro quadrático). Nessa análise o objetivo é concluir sobre o comportamento das partículas quando elas tendem ao valor correto, ou seja, quando o PSO está atuando como otimizador. As conclusões são que inequações simples são condições necessárias para que o erro diminua, e, consequentemente, indicam a direção para na qual o valor correto se encontra. As inequações, portanto, podem auxiliar o aprimoramento do algoritmo tanto em velocidade de convergência, quanto na obtenção da solução global.
+				
+				Em resumo, as principais contribuições deste capítulo são a abordagem matricial, a organização do algoritmo na forma de um sistema estocástico linear por partes, a convergência de cada parte do sistema através da inserção de um fator de esquecimento, as análises de convergência tanto das partículas quanto do PSO como otimizador e a inicialização do algoritmo utilizando métodos auxiliares.
+				
+				Na sequência, serão abordados os algoritmos que auxiliarão a inicialização do PSO e, após, dois sistemas simulados serão identificados utilizando as estratégias estudadas neste e no capítulo de identificação.
+				
+				
+				
